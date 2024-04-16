@@ -62,7 +62,9 @@ class RegisterView1 extends StatelessWidget {
                       width: size.width * 0.5,
                       hasElevation: true,
                       text: 'التالي',
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'register2');
+                      },
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

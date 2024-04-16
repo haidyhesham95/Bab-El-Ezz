@@ -70,7 +70,9 @@ class LoginView extends StatelessWidget {
               style: AppStyles.styleRegular16(context),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, 'register1');
+              },
               child: Text(
                 'قم بانشاء حساب',
                 style: AppStyles.styleBold16(context)

@@ -139,7 +139,9 @@ class RegisterView2 extends StatelessWidget {
                       width: size.width * 0.5,
                       hasElevation: true,
                       text: 'اتمام التسحيل',
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'login');
+                      },
                     ),
 
 
