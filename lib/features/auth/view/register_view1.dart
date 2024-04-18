@@ -1,8 +1,12 @@
+import 'package:bab_el_ezz/features/auth/widget/check_account_text.dart';
+import 'package:bab_el_ezz/features/auth/widget/top_page.dart';
 import 'package:bab_el_ezz/shared_utils/styles/text.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/material.dart';
-import '../../../generated/assets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../manager/register/register_cubit.dart';
 
 class RegisterView1 extends StatelessWidget {
   const RegisterView1({super.key});
@@ -15,75 +19,65 @@ class RegisterView1 extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
               child:
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      Assets.imagesLogo,
-                    ),
-                    Align(
-                      widthFactor: 2.6,
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        'انشاء حساب جديد',
-                        style: AppStyles.styleExtraBold20(context),
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    TextFieldWidget(
-                      hint: "رقم الهاتف",
-                      textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.phone
-
-                    ),
-                    SizedBox(height: 5),
-                    TextFieldWidget(
-                      hint: "الرقم السري ",
-                      isPassword: true,
+              BlocConsumer<RegisterCubit, RegisterState>(
+  listener: (context, state) {
+  },
+  builder: (context, state) {
+    RegisterCubit cubit = RegisterCubit.get(context);
+    return Form(
+      key: cubit.formKey1,
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TopPage(text: 'انشاء حساب جديد',widthFactor: 2.7,),
+                      SizedBox(height: 20),
+                      TextFieldWidget(
+                        errorMessage: 'رقم الهاتف يجب ان يحتوي علي 11 خانات',
+                        controller: cubit.phoneNameController,
+                        hint: " رقم الهاتف",
                         textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.phone
 
-                        keyboardType: TextInputType.visiblePassword
+                      ),
+                      SizedBox(height: 5),
+                      TextFieldWidget(
+                        errorMessage: 'الرقم السري يجب ان يحتوي علي 6 خانات',
+                        controller: cubit.passwordController,
+                        hint: " الرقم السري ",
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.visiblePassword
 
-                    ),
-                    SizedBox(height: 10),
-                    TextFieldWidget(
-                      label: "(يجب ان يحتوي علي 6 خانات) ",
-                        titleStyle: AppStyles.styleRegular12(context),
-                        hint: "تأكيد الرقم السري ",
-                      isPassword: true,
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.visiblePassword
-                    ),
+                      ),
+                      SizedBox(height: 10),
+                      TextFieldWidget(
+                          controller: cubit.confirmPasswordController,
+                          errorMessage: 'الرقم السري يجب ان يحتوي علي 6 خانات',
+                          titleStyle: AppStyles.styleRegular12(context),
+                          hint: " تأكيد الرقم السري  ",
+                          textInputAction: TextInputAction.done,
+                          keyboardType: TextInputType.visiblePassword
+                      ),
 
-                    SizedBox(height: 40),
-                    ButtonWidget(
-                      height: size.height * 0.06,
-                      width: size.width * 0.5,
-                      hasElevation: true,
-                      text: 'التالي',
-                      onPressed: () {
-                        Navigator.pushNamed(context, 'register2');
-                      },
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'لديك حساب؟',
-                          style: AppStyles.styleRegular16(context),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'قم بتسجيل الدخول',
-                            style: AppStyles.styleBold16(context)
-                                .copyWith(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    )
-                  ]),
+                      SizedBox(height: 40),
+                      ButtonWidget(
+                        height: size.height * 0.06,
+                        width: size.width * 0.5,
+                        hasElevation: true,
+                        text: 'التالي',
+                        onPressed: () {
+                          if (cubit.formKey1.currentState!.validate()) {
+                            Navigator.pushNamed(context, 'register2');
+
+                          }
+                        },
+                      ),
+                      CheckAccountText(text1: 'لديك حساب؟', text2:  'قم بتسجيل الدخول', onPressed: (){ Navigator.pushNamed(context, 'login');}),
+
+                    ]),
+              );
+  },
+),
 
           )),
     );

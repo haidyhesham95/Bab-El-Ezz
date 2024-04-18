@@ -15,12 +15,7 @@ SliverToBoxAdapter silverBoxButtons(BuildContext context, {required bool showAll
             child: TextButton(
               style: TextButton.styleFrom(
               ),
-              onPressed: () {
-                onPressed();
-                // setState(() {
-                //   showAll = !showAll;
-                // });
-              },
+              onPressed: onPressed,
               child: Text(
                   showAll ? 'رؤية الكل' : 'رؤية اقل',
                   style: AppStyles.styleRegular14(context).copyWith(color: Colors.white)

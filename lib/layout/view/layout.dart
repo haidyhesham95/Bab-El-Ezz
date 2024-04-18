@@ -1,5 +1,6 @@
 import 'package:bab_el_ezz/features/auth/view/login_view.dart';
 import 'package:bab_el_ezz/features/staff/view/staff_page.dart';
+import 'package:bab_el_ezz/features/workshop/view/add_client.dart';
 import 'package:bab_el_ezz/features/workshop/view/work_shop_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

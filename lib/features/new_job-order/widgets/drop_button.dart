@@ -6,7 +6,7 @@ import '../../../shared_utils/styles/colors.dart';
 class DropButton extends StatelessWidget {
   const DropButton({super.key,required this.items, required this.onChanged,  this.value, required this.hintText, this.height, this.color, this.borderRadius, this.padding,
     this.iconSize,
-    this.style});
+    this.styleHint, this.styleValue});
  final List<DropdownMenuItem<String>>? items;
  final void Function(String?)? onChanged;
  final String? value;
@@ -16,7 +16,8 @@ class DropButton extends StatelessWidget {
   final double? borderRadius;
   final EdgeInsetsGeometry? padding;
   final double? iconSize;
-  final TextStyle? style ;
+  final TextStyle? styleHint ;
+  final TextStyle? styleValue;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class DropButton extends StatelessWidget {
         color: color?? ColorsAsset.kDarkGray,
       ),
       child: DropdownButton(
-        hint: Text(hintText, style:style?? AppStyles.styleSemiBold14(context),),
+        hint: Text(hintText, style:styleHint?? AppStyles.styleSemiBold14(context),),
         padding:padding?? const EdgeInsets.only(left: 10,right: 10),
       dropdownColor:color?? ColorsAsset.kDarkGray,
       focusColor: ColorsAsset.kGreen,
@@ -37,7 +38,7 @@ class DropButton extends StatelessWidget {
        iconSize: iconSize?? 24,
        icon: const Icon(Icons.keyboard_arrow_down_outlined,color: Colors.black,),
       isExpanded: true,
-      style: AppStyles.styleSemiBold14(context),
+      style: styleValue?? AppStyles.styleSemiBold14(context),
       items:  items,
         onChanged: onChanged,
 

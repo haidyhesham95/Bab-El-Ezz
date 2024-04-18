@@ -2,7 +2,6 @@
 class Assets {
   Assets._();
 
-  static const String assetsImagesLogo3 = 'assets/images/logo_3.svg';
   static const String fontsCairoBlack = 'assets/fonts/Cairo-Black.ttf';
   static const String fontsCairoBold = 'assets/fonts/Cairo-Bold.ttf';
   static const String fontsCairoExtraBold = 'assets/fonts/Cairo-ExtraBold.ttf';
@@ -21,7 +20,6 @@ class Assets {
   static const String imagesArrowleft = 'assets/images/arrowleft.svg';
   static const String imagesAsnaf = 'assets/images/asnaf.svg';
   static const String imagesCar = 'assets/images/car.svg';
-  static const String imagesCarServices = 'assets/images/car_services.svg';
   static const String imagesCars = 'assets/images/cars.png';
   static const String imagesCarservices = 'assets/images/carservices.png';
   static const String imagesCash = 'assets/images/cash.svg';

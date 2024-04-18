@@ -41,6 +41,8 @@ dependencies:
   flutter_timeline_calendar: ^1.0.9
   table_calendar: ^3.0.9
   flutter_localization: ^0.2.0
+  flutter_bloc: ^8.1.5
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

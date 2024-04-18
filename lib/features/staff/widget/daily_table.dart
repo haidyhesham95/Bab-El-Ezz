@@ -32,8 +32,8 @@ class DailyTable extends StatelessWidget {
               ),
               itemCount: 3,
               itemBuilder: (context, index) {
-                return Container(
-                    child: ItemDailyTable());
+                return (
+                     ItemDailyTable());
               },
             ))
 

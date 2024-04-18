@@ -1,9 +1,11 @@
+import 'package:bab_el_ezz/features/workshop/manager/add_client/add_client_cubit.dart';
 import 'package:bab_el_ezz/features/workshop/widget/otp.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_align.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../shared_utils/utils/widget/pay_container.dart';
 
 class AddClient extends StatelessWidget {
@@ -17,93 +19,141 @@ class AddClient extends StatelessWidget {
         (
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
-          child: Column(
-            children: [
-              const TextFieldWidget(
-                label: " اسم العميل ",
-                hint: " الاسم ",
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-              ),
-              const SizedBox(height: 10,),
-              const TextFieldWidget(
-                label: " رقم الهاتف الخاص بالواتس اب ",
-                hint: " رقم الهاتف ",
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-              ),
-              const SizedBox(height: 10,),
-
-              const TextFieldWidget(
-                label: " نوع السيارة ",
-                hint: " نوع السيارة ",
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-              ),
-              const SizedBox(height: 10,),
-              const TextFieldWidget(
-                label: " موديل السيارة ",
-                hint: " موديل السيارة ",
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-              ),
-              const SizedBox(height: 10,),
-
-              const TextFieldWidget(
-                label: " لون السيارة ",
-                hint: " لون السيارة ",
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-              ),
-              const SizedBox(height: 10,),
-
-              const TextFieldWidget(
-                label: " عداد الكيلو ميترات ",
-                hint: " العداد ",
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-              ),
-              const SizedBox(height: 10,),
-
-              const TextFieldWidget(
-                label: " رقم الشاسية ",
-                hint: " رقم الشاسية ",
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-              ),
-              const SizedBox(height: 10,),
-
-              const TextFieldWidget(
-                label: " رقم الموتور ",
-                hint: " رقم الموتور ",
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-              ),
-              const SizedBox(height: 15),
-              textAlign(context,' نوع ناقل الحركة '),
-              const SizedBox(height: 15),
-              const PayContainer( title: " مانوال "),
-              const SizedBox(height: 10),
-              const PayContainer(title: " اوتوماتيك "),
-              const SizedBox(height: 15),
-              textAlign(context,  ' رقم لوحة السيارة '),
-              const SizedBox(height: 15),
-              const PayContainer( title: " ارقام و حروف "),
-              const SizedBox(height: 10),
-              const PayContainer(title: " ارقام فقط "),
-              const SizedBox(height: 20,),
-              const Otp(),
-              const SizedBox(height: 50,),
-               ButtonWidget(
-                text: 'اضافة عميل',
-                hasElevation: true,
-                onPressed: () {},
-
-              )
+          child: BlocProvider(
+            create: (context) => AddClientCubit(),
+            child: BlocConsumer<AddClientCubit, AddClientState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                AddClientCubit cubit = AddClientCubit.get(context);
 
 
 
-            ],
+           return Form(
+           key:cubit.formKey,
+              child: Column(
+              children: [
+                 TextFieldWidget(
+                  label: " اسم العميل ",
+                  hint: " الاسم ",
+                  controller: cubit.clientNameController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                ),
+                const SizedBox(height: 10,),
+                 TextFieldWidget(
+                  label: " رقم الهاتف الخاص بالواتس اب ",
+                  hint: " رقم الهاتف ",
+                  controller: cubit.phoneNameController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                ),
+                const SizedBox(height: 10,),
+
+                 TextFieldWidget(
+                  label: " نوع السيارة ",
+                  hint: " نوع السيارة ",
+                  controller: cubit.carTypeController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                ),
+                const SizedBox(height: 10,),
+                 TextFieldWidget(
+                  label: " موديل السيارة ",
+                  hint: " موديل السيارة ",
+                  controller: cubit.carModelController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                ),
+                const SizedBox(height: 10,),
+
+                const TextFieldWidget(
+                  label: " لون السيارة ",
+                  hint: " لون السيارة ",
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                ),
+                const SizedBox(height: 10,),
+
+                 TextFieldWidget(
+                  label: " عداد الكيلو ميترات ",
+                  hint: " العداد ",
+                  controller: cubit.counterController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                ),
+                const SizedBox(height: 10,),
+
+                 TextFieldWidget(
+                  label: " رقم الشاسية ",
+                  hint: " رقم الشاسية ",
+                  controller: cubit.screenNumberController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                ),
+                const SizedBox(height: 10,),
+                 TextFieldWidget(
+                  label: " رقم الموتور ",
+                  hint: " رقم الموتور ",
+                  controller: cubit.motorNumberController,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                ),
+                const SizedBox(height: 15),
+                textAlign(context,' نوع ناقل الحركة '),
+                const SizedBox(height: 15),
+                 PayContainer(
+                  title: " مانوال ",
+                  onTap: (){
+                    cubit.manualTapped();
+                  },
+                   isTapped: cubit.isTapped1,
+                 ),
+                const SizedBox(height: 10),
+                PayContainer(
+                  title: " اوتوماتيك ",
+                  onTap: (){
+                    cubit.automaticTapped();
+                  },isTapped: cubit.isTapped2,
+                ),
+                const SizedBox(height: 15),
+                textAlign(context,  ' رقم لوحة السيارة '),
+                const SizedBox(height: 15),
+                PayContainer(
+                  title: " حروف و ارقام ",
+                  onTap: (){
+                    cubit.numberTapped();
+                  },isTapped: cubit.isTapped3,
+                ),
+                const SizedBox(height: 10),
+                PayContainer(
+                  title: " ارقام فقط ",
+                  onTap: (){
+
+                    cubit.charactersTapped();
+
+                  },
+                  isTapped: cubit.isTapped4,
+                ),
+                const SizedBox(height: 20,),
+                const Otp(),
+                const SizedBox(height: 50,),
+                 ButtonWidget(
+                  text: 'اضافة عميل',
+                  hasElevation: true,
+                  onPressed: () {
+                    if (cubit.formKey.currentState!.validate()) {
+                    }
+                  },
+
+                )
+
+
+
+              ],
+            ),
+          );
+              },
+            ),
           ),
         ),
       ),

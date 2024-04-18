@@ -21,7 +21,7 @@ class TextFieldWidget extends StatefulWidget {
       this.trailingIcon,
       this.keyboardType,
       this.node,
-      this.isPassword = false,
+      this.obscureText=false,
       this.hintStyle,
       this.color,
       this.onSubmitted,
@@ -44,6 +44,7 @@ class TextFieldWidget extends StatefulWidget {
       this.style,
       this.width,
       this.onSaved,
+      this.errorMessage,
       this.textAlign});
 
   final double? vertical;
@@ -67,7 +68,7 @@ class TextFieldWidget extends StatefulWidget {
   final Widget? trailingIcon;
   final TextInputType? keyboardType;
   final FocusNode? node;
-  final bool isPassword;
+  final bool obscureText;
   final TextStyle? hintStyle;
   final Color? color;
   final TextStyle? labelStyle;
@@ -85,6 +86,7 @@ class TextFieldWidget extends StatefulWidget {
   final String? label;
   final TextStyle? style;
   final TextAlign? textAlign;
+  final String? errorMessage;
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
@@ -110,11 +112,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       children: [
         if (widget.label != null)
           Text(widget.label!,
-              style: widget.titleStyle ?? AppStyles.styleRegular14(context)),
+              style: widget.titleStyle ?? AppStyles.styleRegular14(context).copyWith(color: Colors.white)),
         SizedBox(height: 10),
         SizedBox(
-          height: widget.height ?? size.height * 0.06,
-          width: widget.width,
+          height: widget.height ,
+          width: widget.width ?? size.width,
           child: TextFormField(
             textAlignVertical: TextAlignVertical.center,
             style: widget.style ??
@@ -140,10 +142,15 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             focusNode: widget.node,
             keyboardType: widget.keyboardType ??
                 (widget.expands ? TextInputType.multiline : TextInputType.text),
-            validator: widget.validator,
+            validator: widget.validator ?? (value) {
+    if (value!.isEmpty) {
+    return widget.errorMessage ?? '';
+    }
+    return null;
+    },
             inputFormatters: widget.inputFormatters,
             enabled: widget.enabled,
-            obscureText: widget.isPassword,
+            obscureText: widget.obscureText,
             textInputAction: widget.textInputAction,
             cursorColor: ColorsAsset.kGreen,
             controller: widget.controller,
