@@ -29,32 +29,31 @@ class ItemStaffTable extends StatelessWidget {
       ),
       const WhiteContainer(
         text: '',
+        width: 70,
       ),
       const SizedBox(
         width: 1,
       ),
-      const WhiteContainer(text: ''),
+      const WhiteContainer(text: '',width: 70,),
       const SizedBox(
         width: 1,
       ),
-      Expanded(
-        flex: 3,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 1),
-          height: 25,
-          color: Colors.white,
-          child: Center(
-              child: ButtonWidget(
-                height: 22,
-                onPressed: () {
-                  Navigator.of(context).pushNamed('accountClearancePage');
+      Container(
+        padding: const EdgeInsets.symmetric(horizontal: 1),
+        height: 25,
+        width: 100,
+        color: Colors.white,
+        child: Center(
+            child: ButtonWidget(
+              height: 22,
+              onPressed: () {
+                Navigator.of(context).pushNamed('accountClearancePage');
 
-                },
-                text: 'عرض التفاصيل',
-                fontStyle: AppStyles.styleRegular8(context),
-                borderRadius: 4,
-              )),
-        ),
+              },
+              text: 'عرض التفاصيل',
+              fontStyle: AppStyles.styleRegular8(context),
+              borderRadius: 4,
+            )),
       ),
     ]);
   }

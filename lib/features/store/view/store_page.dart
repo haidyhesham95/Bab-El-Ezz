@@ -19,25 +19,40 @@ class StorePage extends StatelessWidget {
           StoreCubit cubit = StoreCubit.get(context);
           return Scaffold(
             appBar: appBarWidget(context),
-            body: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
-              child: Column(
-                children: [
-                  topTableStore(context),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: cubit.items.length,
-                      itemBuilder: (context, index) => cubit.items[index],
-                    ),
+            body: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: topTableStore(context),
+                      ),
+                      SizedBox(height: 1),
+                      Container(
+                        height: MediaQuery.of(context).size.height - 180, // Adjust height as needed
+                        width: MediaQuery.of(context).size.width,
+                        child: ListView.separated(
+                          separatorBuilder: (context, index) => SizedBox(height: 1),
+                          scrollDirection: Axis.vertical,
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: cubit.items.length,
+                          itemBuilder: (context, index) => cubit.items[index],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
                 cubit.addItem(ItemTableStore());
-
               },
               child: const Icon(Icons.add, color: Colors.white),
               backgroundColor: ColorsAsset.kGreen,

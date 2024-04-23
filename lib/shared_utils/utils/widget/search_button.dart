@@ -12,7 +12,7 @@ class SearchButton extends StatelessWidget {
     return  SizedBox(
       height: 30,
       width:
-      size.width * 0.12,
+      size.width * 0.14,
       child: TextButton(
           style: TextButton.styleFrom(
             backgroundColor: ColorsAsset.kGreen,

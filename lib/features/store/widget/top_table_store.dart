@@ -5,12 +5,19 @@ Row topTableStore (BuildContext context) {
     return  const Row(
       children: [
         WhiteContainer(text: 'مسلسل'),
-        WhiteContainer(text: 'اسم الصنف', flex: 4),
-        WhiteContainer(text: 'كود الصنف', flex: 4),
+        SizedBox(width: 1),
+        WhiteContainer(text: 'اسم الصنف', flex: 4,width: 70,),
+        SizedBox(width: 1),
+        WhiteContainer(text: 'كود الصنف', flex: 4,width: 70,),
+        SizedBox(width: 1),
         WhiteContainer(text: 'الكمية'),
+        SizedBox(width: 1),
         WhiteContainer(text: 'الماركة'),
-        WhiteContainer(text: 'سعر الجملة', flex: 4),
-        WhiteContainer(text: 'سعر البيع', flex: 3),
+        SizedBox(width: 1),
+        WhiteContainer(text: 'سعر الجملة', flex: 4,width: 70,),
+        SizedBox(width: 1),
+        WhiteContainer(text: 'سعر البيع', flex: 3, width: 70,),
+        SizedBox(width: 1),
         WhiteContainer(text: 'تنبيه'),
       ],
     );

@@ -13,15 +13,13 @@ class PointContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 1,
-      child: Container(
-        height: 25,
-        color:color?? Colors.white,
-        child: InkWell(
-          onTap: onPressed,
-        child: Center(child: Text(text ?? '...',style:style?? AppStyles.styleSemiBold12(context).copyWith(color: colorText??ColorsAsset.kGreen),)),
-        ),
+    return Container(
+      height: 25,
+      width: 50,
+      color:color?? Colors.white,
+      child: InkWell(
+        onTap: onPressed,
+      child: Center(child: Text(text ?? '...',style:style?? AppStyles.styleSemiBold12(context).copyWith(color: colorText??ColorsAsset.kGreen),)),
       ),
     );
   }

@@ -22,10 +22,9 @@ class ItemDailyTable extends StatelessWidget {
         const SizedBox(
           width: 1,
         ),
-        Expanded(
-          flex: 2,
+        SizedBox(
+         width: 50,
           child: DropButton(
-
             styleValue: AppStyles.styleRegular10(context),
             color: Colors.white,
             height: 25,
@@ -57,7 +56,7 @@ class ItemDailyTable extends StatelessWidget {
         const SizedBox(
           width: 1,
         ),
-        const WhiteContainer(text: ''),
+        const WhiteContainer(text: '',width: 70,),
         const SizedBox(
           width: 1,
         ),
@@ -71,34 +70,32 @@ class ItemDailyTable extends StatelessWidget {
         const SizedBox(
           width: 1,
         ),
-        const WhiteContainer(text: ''),
+        const WhiteContainer(text: '', width: 70,),
         const SizedBox(
           width: 1,
         ),
         const WhiteContainer(
           text: '',
-          flex: 3,
+          width: 70,
         ),
         const SizedBox(
           width: 1,
         ),
-        Expanded(
-          flex: 3,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 1),
-            height: 25,
-            color: Colors.white,
-            child: Center(
-                child: ButtonWidget(
-                  height: 22,
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('accountClearancePage');
-                  },
-                  text: 'تصفية حساب',
-                  fontStyle: AppStyles.styleRegular8(context),
-                  borderRadius: 4,
-                )),
-          ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 1),
+          height: 25,
+          width: 70,
+          color: Colors.white,
+          child: Center(
+              child: ButtonWidget(
+                height: 22,
+                onPressed: () {
+                  Navigator.of(context).pushNamed('accountClearancePage');
+                },
+                text: 'تصفية حساب',
+                fontStyle: AppStyles.styleRegular8(context),
+                borderRadius: 4,
+              )),
         ),
       ]);
     },

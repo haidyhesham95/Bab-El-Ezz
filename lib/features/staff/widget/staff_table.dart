@@ -15,29 +15,42 @@ class StaffTable extends StatelessWidget {
           builder: (context, state) {
         StaffTableCubit cubit = StaffTableCubit.get(context);
 
-        return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 60),
-              topStaffTable(
-                context,
-                () {
-                  cubit.add(
-                      const ItemStaffTable()); // Use cubit.add method to add items
-                },
-              ),
-              const SizedBox(
-                height: 1,
-              ),
-              Expanded(
-                  child: ListView.separated(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                     separatorBuilder: (context, index) => const SizedBox(height: 1),
-                itemCount: cubit.items.length,
-                itemBuilder: (context, index) => cubit.items[index],
-              ))
-            ]);
+        return SingleChildScrollView(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 60),
+                    topStaffTable(
+                      context,
+                      () {
+                        cubit.add(
+                            const ItemStaffTable()); // Use cubit.add method to add items
+                      },
+                    ),
+                    const SizedBox(
+                      height: 1,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      child: Expanded(
+                          child: ListView.separated(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                             separatorBuilder: (context, index) => const SizedBox(height: 1),
+                        itemCount: cubit.items.length,
+                        itemBuilder: (context, index) => cubit.items[index],
+                      )),
+                    )
+                  ]),
+            ),
+          ),
+        );
       }),
     );
   }
