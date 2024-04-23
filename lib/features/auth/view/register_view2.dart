@@ -30,7 +30,7 @@ class RegisterView2 extends StatelessWidget {
                       Image.asset(
                         Assets.imagesLogo1,
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       TextFieldWidget(
                         label: " اسم الورشة /مركز/محل ",
                         hint: "الاسم",
@@ -39,7 +39,7 @@ class RegisterView2 extends StatelessWidget {
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.text,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextFieldWidget(
                         label: " اسم الفرع (في حالة وجود فروع) ",
                         hint: "اسم الفرع",
@@ -48,7 +48,7 @@ class RegisterView2 extends StatelessWidget {
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.text,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextFieldWidget(
                         controller: cubit.addressController,
                         errorMessage: "يجب ادخال العنوان",
@@ -57,9 +57,9 @@ class RegisterView2 extends StatelessWidget {
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.text,
                       ),
-                      SizedBox(height: 20),
-                      Location(),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 20),
+                      const Location(),
+                      const SizedBox(height: 15),
                       TextFieldWidget(
                         controller: cubit.ownerNameController,
                         errorMessage: "يجب ادخال اسم صاحب المركز",
@@ -68,14 +68,14 @@ class RegisterView2 extends StatelessWidget {
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.text,
                       ),
-                      SizedBox(height: 10),
-                      TextFieldWidget(
+                      const SizedBox(height: 10),
+                      const TextFieldWidget(
                         label: " رقم هاتف آخر للتواصل(اختياري) ",
                         hint: " رقم الهاتف  ",
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextFieldWidget(
                         label: " الرقم السري لتحليل البيانات ",
                         hint: "الرقم السري ",
@@ -84,7 +84,7 @@ class RegisterView2 extends StatelessWidget {
                         keyboardType: TextInputType.visiblePassword,
                         textInputAction: TextInputAction.next,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextFieldWidget(
                         controller: cubit.confirmPasswordController,
                         errorMessage: "يجب تأكيد الرقم السري",
@@ -93,9 +93,9 @@ class RegisterView2 extends StatelessWidget {
                         textInputAction: TextInputAction.done,
                         keyboardType: TextInputType.visiblePassword,
                       ),
-                      SizedBox(height: 15),
-                       AddLogo(),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 15),
+                       const AddLogo(),
+                      const SizedBox(height: 40),
                       ButtonWidget(
                         height: size.height * 0.06,
                         width: size.width * 0.5,

@@ -9,7 +9,7 @@ class CustomerInvoice extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
         appBar: constAppBar(context, "فواتير العملاء"),
-       body: CustomerInvoiceBody(),
+       body: const CustomerInvoiceBody(),
 
     );
   }

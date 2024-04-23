@@ -7,23 +7,23 @@ import 'package:flutter/material.dart';
 
 Padding topStaffTable(BuildContext context,void Function()? onPressed) {
   return  Padding(
-    padding:  EdgeInsets.symmetric(horizontal: 5),
+    padding:  const EdgeInsets.symmetric(horizontal: 5),
     child: Row(
       children: [
         PointContainer(onPressed: onPressed,color: ColorsAsset.kGreen,text:'+',
           style: AppStyles.styleRegular20(context).copyWith(color: Colors.white),),
-        SizedBox(width: 1,),
-        WhiteContainer(text: 'اسم الفني'),
-         SizedBox(width: 1,),
-         WhiteContainer(text: 'الرقم القومي',),
-         SizedBox(width: 1,),
-         WhiteContainer(text: 'التخصص'),
-         SizedBox(width: 1,),
-         WhiteContainer(text: 'الدرجة الوظيفية',width: 70,),
-         SizedBox(width: 1,),
-         WhiteContainer(text: 'ملاحظات',width: 70,),
-         SizedBox(width: 1,),
-        WhiteContainer(text: 'تصفية حساب',width: 100,),
+        const SizedBox(width: 1,),
+        const WhiteContainer(text: 'اسم الفني'),
+         const SizedBox(width: 1,),
+         const WhiteContainer(text: 'الرقم القومي',),
+         const SizedBox(width: 1,),
+         const WhiteContainer(text: 'التخصص'),
+         const SizedBox(width: 1,),
+         const WhiteContainer(text: 'الدرجة الوظيفية',width: 70,),
+         const SizedBox(width: 1,),
+         const WhiteContainer(text: 'ملاحظات',width: 70,),
+         const SizedBox(width: 1,),
+        const WhiteContainer(text: 'تصفية حساب',width: 100,),
       ],
     ),
   );

@@ -24,7 +24,7 @@ class StaffPage extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 TableButton(
                   selectedIndex: cubit.selectedIndex,
                    onPressed:
@@ -35,13 +35,13 @@ class StaffPage extends StatelessWidget {
                 ),
                 Visibility(
                   visible: cubit.selectedIndex == 0,
-                  child: Expanded(
+                  child: const Expanded(
                     child: DailyTable(),
                   ),
                 ),
                 Visibility(
                   visible: cubit.selectedIndex == 1,
-                  child: Expanded(
+                  child: const Expanded(
                     child: StaffTable(),
                   ),
                 ),

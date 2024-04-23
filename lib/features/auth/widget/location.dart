@@ -27,7 +27,7 @@ class Location extends StatelessWidget {
             SvgPicture.asset(
               Assets.imagesLocation,
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Text(
               'الموقع',
               style: AppStyles.styleMedium16(context)

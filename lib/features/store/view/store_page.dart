@@ -22,7 +22,7 @@ class StorePage extends StatelessWidget {
             body: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
                   child: Column(
@@ -32,12 +32,12 @@ class StorePage extends StatelessWidget {
                         width: MediaQuery.of(context).size.width,
                         child: topTableStore(context),
                       ),
-                      SizedBox(height: 1),
-                      Container(
+                      const SizedBox(height: 1),
+                      SizedBox(
                         height: MediaQuery.of(context).size.height - 180, // Adjust height as needed
                         width: MediaQuery.of(context).size.width,
                         child: ListView.separated(
-                          separatorBuilder: (context, index) => SizedBox(height: 1),
+                          separatorBuilder: (context, index) => const SizedBox(height: 1),
                           scrollDirection: Axis.vertical,
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
@@ -52,10 +52,10 @@ class StorePage extends StatelessWidget {
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                cubit.addItem(ItemTableStore());
+                cubit.addItem(const ItemTableStore());
               },
-              child: const Icon(Icons.add, color: Colors.white),
               backgroundColor: ColorsAsset.kGreen,
+              child: const Icon(Icons.add, color: Colors.white),
             ),
           );
         },

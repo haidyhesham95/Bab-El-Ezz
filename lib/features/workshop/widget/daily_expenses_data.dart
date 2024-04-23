@@ -12,36 +12,36 @@ class DailyExpensesData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 50),
+        const SizedBox(height: 50),
         Row(
           children: [
             PointContainer(
               onPressed: (){},
             ),
-            SizedBox(width: 1),
-            GreenContainer(text: 'البند',width: 100,),
-            SizedBox(width: 1),
+            const SizedBox(width: 1),
+            const GreenContainer(text: 'البند',width: 100,),
+            const SizedBox(width: 1),
             WhiteContainer(flex: 3,text: 'المبلغ',style: AppStyles.styleSemiBold12(context),width: 400,)
           ],
         ),
 
 
-        SizedBox(height: 1),
+        const SizedBox(height: 1),
 
         Row(
           children: [
             PointContainer(
               onPressed: (){},
             ),
-            SizedBox(width: 1),
-            GreenContainer(text: '',width: 100),
-            SizedBox(width: 1),
-            WhiteContainer(flex: 3,text: 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',width: 400,)
+            const SizedBox(width: 1),
+            const GreenContainer(text: '',width: 100),
+            const SizedBox(width: 1),
+            const WhiteContainer(flex: 3,text: 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',width: 400,)
           ],
         ),
-        SizedBox(height: 1),
+        const SizedBox(height: 1),
 
-        Row(
+        const Row(
           children: [
             GreenContainer(text: 'الاجمالي',flex: 3,width: 151,),
             SizedBox(width: 1),

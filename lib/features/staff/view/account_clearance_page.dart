@@ -22,7 +22,7 @@ class AccountClearancePage extends StatelessWidget {
             GrayContainer(
               height:size.height * 0.45,
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [

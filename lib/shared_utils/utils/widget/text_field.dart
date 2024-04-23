@@ -113,7 +113,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         if (widget.label != null)
           Text(widget.label!,
               style: widget.titleStyle ?? AppStyles.styleRegular14(context).copyWith(color: Colors.white)),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         SizedBox(
           height: widget.height ,
           width: widget.width ?? size.width,

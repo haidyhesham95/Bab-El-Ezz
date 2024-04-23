@@ -3,7 +3,6 @@ import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:flutter/material.dart';
 import '../../../shared_utils/utils/widget/container_search.dart';
-import '../../../shared_utils/utils/widget/shadow_container.dart';
 import '../widget/clip_path_gradient.dart';
 import '../widget/grid_item.dart';
 
@@ -34,7 +33,7 @@ class SearchClient extends StatelessWidget {
                   },
                   fontStyle: AppStyles.styleRegular14(context),
                 ),
-                SizedBox(width: 10,),
+                const SizedBox(width: 10,),
                 Flexible(
                   child: ContainerSearch(
                     radius: 0,
@@ -45,12 +44,12 @@ class SearchClient extends StatelessWidget {
               ],
             ),
           ) ,
-          SizedBox(height: 40,),
+          const SizedBox(height: 40,),
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               itemCount: 4,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 25,
                   mainAxisExtent: 100,

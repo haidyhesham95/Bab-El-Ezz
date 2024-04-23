@@ -1,5 +1,3 @@
-import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
-import 'package:bab_el_ezz/shared_utils/styles/text.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +22,7 @@ class SpareReceipt extends StatelessWidget {
                 itemCount: 1,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context ,index){
-                  return SpareReceiptData();
+                  return const SpareReceiptData();
 
                 },
               ),
@@ -40,13 +38,13 @@ class SpareReceipt extends StatelessWidget {
                     text: 'طباعة فاتورة',
                     onPressed: () {},
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   ButtonWidget(
                     hasElevation: true,
                     text: 'حفظ مؤقت',
                     onPressed: () {},
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   ButtonWidget(
                     hasElevation: true,
                     text: 'انهاء الفاتورة',
@@ -56,7 +54,7 @@ class SpareReceipt extends StatelessWidget {
                 ]
               ),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
 
 
 

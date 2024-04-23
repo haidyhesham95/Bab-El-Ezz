@@ -16,7 +16,7 @@ class SilverBoxDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(Assets.imagesCarservices),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             RowText(
@@ -25,7 +25,7 @@ class SilverBoxDetails extends StatelessWidget {
               textStyle: AppStyles.styleExtraBold15(context),
               dataStyle: AppStyles.styleExtraBold13(context),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             RowText(
@@ -34,7 +34,7 @@ class SilverBoxDetails extends StatelessWidget {
               textStyle: AppStyles.styleExtraBold15(context),
               dataStyle: AppStyles.styleExtraBold13(context),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
           ],

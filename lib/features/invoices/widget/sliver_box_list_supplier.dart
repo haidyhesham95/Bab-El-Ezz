@@ -9,7 +9,7 @@ SliverToBoxAdapter sliverBoxListSupplier(BuildContext context, {required void Fu
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 70,),
+          const SizedBox(height: 70,),
           clipBathGradient(context,text:" قائمة الموردين/ التجار"),
           const SizedBox(height: 30),
           ContainerSearch(

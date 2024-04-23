@@ -13,12 +13,12 @@ class DailyTable extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             DateFormat.yMEd('ar').format(DateTime.now()),
             style: AppStyles.styleBold15(context),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
@@ -44,7 +44,7 @@ class DailyTable extends StatelessWidget {
                       ),
                       itemCount: 5,
                       itemBuilder: (context, index) {
-                        return ItemDailyTable();
+                        return const ItemDailyTable();
                       },
                     ),
                   ),

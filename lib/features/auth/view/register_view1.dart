@@ -30,8 +30,8 @@ class RegisterView1 extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TopPage(text: 'انشاء حساب جديد',widthFactor: 2.7,),
-                      SizedBox(height: 20),
+                      const TopPage(text: 'انشاء حساب جديد',widthFactor: 2.7,),
+                      const SizedBox(height: 20),
                       TextFieldWidget(
                         errorMessage: 'رقم الهاتف يجب ان يحتوي علي 11 خانات',
                         controller: cubit.phoneNameController,
@@ -40,7 +40,7 @@ class RegisterView1 extends StatelessWidget {
                           keyboardType: TextInputType.phone
 
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       TextFieldWidget(
                         errorMessage: 'الرقم السري يجب ان يحتوي علي 6 خانات',
                         controller: cubit.passwordController,
@@ -49,7 +49,7 @@ class RegisterView1 extends StatelessWidget {
                           keyboardType: TextInputType.visiblePassword
 
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextFieldWidget(
                           controller: cubit.confirmPasswordController,
                           errorMessage: 'الرقم السري يجب ان يحتوي علي 6 خانات',
@@ -59,7 +59,7 @@ class RegisterView1 extends StatelessWidget {
                           keyboardType: TextInputType.visiblePassword
                       ),
 
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       ButtonWidget(
                         height: size.height * 0.06,
                         width: size.width * 0.5,

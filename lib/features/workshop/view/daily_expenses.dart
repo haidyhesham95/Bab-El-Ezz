@@ -14,11 +14,11 @@ class  DailyExpenses extends StatelessWidget {
        appBar: constAppBar(context, "المصروفات اليومية"),
         body:
         ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 5),
           itemCount: 1,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context ,index){
-            return DailyExpensesData();
+            return const DailyExpensesData();
           },
            )
 

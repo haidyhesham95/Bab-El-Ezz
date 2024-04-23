@@ -9,7 +9,7 @@ class NewJobOrderPage extends StatelessWidget {
     return Scaffold(
       appBar: constAppBar(context, "امر شغل جديد"),
 
-    body:  NewJobOrderBody(),
+    body:  const NewJobOrderBody(),
 
     );
   }

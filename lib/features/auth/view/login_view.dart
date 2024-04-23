@@ -27,10 +27,10 @@ class LoginView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TopPage(
+                    const TopPage(
                       text: 'تسجيل الدخول',
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextFieldWidget(
                       controller: cubit.phoneNameController,
                       hint: " رقم الهاتف",
@@ -38,7 +38,7 @@ class LoginView extends StatelessWidget {
                       keyboardType: TextInputType.phone,
                       errorMessage: '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     TextFieldWidget(
                       controller: cubit.passwordController,
                       hint: " الرقم السري ",
@@ -58,7 +58,7 @@ class LoginView extends StatelessWidget {
                       ),
                     ),
                     forgetPassword(context),
-                    SizedBox(height: 60),
+                    const SizedBox(height: 60),
                     ButtonWidget(
                       height: size.height * 0.06,
                       width: size.width * 0.5,

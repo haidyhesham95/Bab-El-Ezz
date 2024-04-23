@@ -28,10 +28,10 @@ class Details extends StatelessWidget {
               Text('وقت خروج السياره',style: AppStyles.styleSemiBold16(context),),
             ],
           ),
-          Row(
+          const Row(
             children: [
-              const Icon(CupertinoIcons.person),
-              const SizedBox(width: 10,),
+              Icon(CupertinoIcons.person),
+              SizedBox(width: 10,),
               RowText('اسم العميل : ',"هايدي",
                ),
             ],
