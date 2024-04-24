@@ -8,10 +8,12 @@ class StoreCubit extends Cubit<StoreState> {
   static StoreCubit get(context) => BlocProvider.of(context);
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  List<Widget> items = [];
 
-  void addItem(Widget item) {
+  List<DataRow> items = [];
+
+
+  void addItem(DataRow item) {
     items.add(item);
-    emit(StoreItemsAdded(items));
+    emit(StoreItemsAdded(items.cast<Widget>()));
   }
 }

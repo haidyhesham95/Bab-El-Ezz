@@ -1,10 +1,11 @@
+import 'package:bab_el_ezz/features/auth/view/login_view.dart';
 import 'package:bab_el_ezz/features/staff/view/staff_page.dart';
 import 'package:bab_el_ezz/features/workshop/view/work_shop_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../features/invoices/view/invoice_page.dart';
 import '../../features/store/view/store_page.dart';
-import '../../features/table/my_table.dart';
+import '../../features/store/widget/store_table.dart';
 import '../../generated/assets.dart';
 import '../../shared_utils/styles/colors.dart';
 
@@ -20,7 +21,7 @@ class _NavBarState extends State<LayOut> {
 
   final List<Widget> _pages = [
     const WorkShopPage(),
-     const MyTable(),
+     const LoginView(),
     const InvoicePage(),
     const StaffPage(),
     const StorePage(),

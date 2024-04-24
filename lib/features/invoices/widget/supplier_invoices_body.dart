@@ -1,11 +1,13 @@
 import 'package:bab_el_ezz/features/invoices/manager/supplier_invoice/supplier_invoice_cubit.dart';
-import 'package:bab_el_ezz/features/invoices/widget/list_item_supplier.dart';
-import 'package:bab_el_ezz/features/invoices/widget/sliver_box_list_supplier.dart';
-import 'package:bab_el_ezz/features/invoices/widget/custom_sliver_list.dart';
-import 'package:bab_el_ezz/features/invoices/widget/sliver_box_list_supplier_invoice.dart';
+import 'package:bab_el_ezz/features/invoices/widget/invoice_item_table.dart';
+import 'package:bab_el_ezz/features/invoices/widget/invoice_table.dart';
+import 'package:bab_el_ezz/features/invoices/widget/supplier_table.dart';
+import 'package:bab_el_ezz/features/invoices/widget/supplier_table_item.dart';
+import 'package:bab_el_ezz/features/invoices/widget/top_invoice_search.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'list_item_supplier_invoice.dart';
+
 
 class SupplierInvoicesBody extends StatelessWidget {
   const SupplierInvoicesBody({super.key});
@@ -18,26 +20,35 @@ class SupplierInvoicesBody extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           SupplierInvoiceCubit cubit = SupplierInvoiceCubit.get(context);
-          return CustomScrollView(
-            slivers: [
-              sliverBoxListSupplierInvoice(
-                onPressedSearch: () {},
-                context,
-                onPressed: () {
-                  cubit.addInvoiceItem(
-                      ListItemSupplierInvoice(onPressed: () {}));
-                },
-              ),
-              CustomSliverList(items: cubit.invoicesItems),
-              sliverBoxListSupplier(
-                onPressedSearch: () {},
-                context,
-                onPressed: () {
-                  cubit.addSupplierItem(ListItemSupplier(onPressed: () {}));
-                },
-              ),
-              CustomSliverList(items: cubit.suppliersItems),
-            ],
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                TopInvoicesSearch(
+                  onPressedSearch: (){},
+                ),
+                InvoiceTable(
+                    rows: cubit.invoicesItems,
+                    onPressed: (){
+                      cubit.addInvoiceItem(
+                          invoiceItemTable(context, () {}));
+                    }
+                ),
+                TopInvoicesSearch(
+                  onPressedSearch: (){},
+                  height: 70,
+                  text: " قائمة الموردين/ التجار",
+                  hintText: ' بحث عن مورد/تاجر ',
+                ),
+                SupplierTable(
+                    rows: cubit.suppliersItems,
+                    onPressed: (){
+                      cubit.addSupplierItem(
+                          supplierTableItem(context, () {}));
+                    }
+                )
+
+              ],
+            ),
           );
         },
       ),

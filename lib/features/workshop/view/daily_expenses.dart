@@ -8,19 +8,25 @@ class  DailyExpenses extends StatelessWidget {
 
    @override
    Widget build(BuildContext context) {
-     var width = MediaQuery.of(context).size.width;
-     var height = MediaQuery.of(context).size.height;
      return  Scaffold(
        appBar: constAppBar(context, "المصروفات اليومية"),
-        body:
-        ListView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          itemCount: 1,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context ,index){
-            return const DailyExpensesData();
-          },
-           )
+        body:const SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5,),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20,),
+                  SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: DailyExpensesData()),
+                ],
+              ),
+            ),
+          ),
+        )
 
 
 

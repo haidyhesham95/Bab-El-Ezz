@@ -6,13 +6,13 @@ sealed class SupplierInvoiceState {}
 final class SupplierInvoiceInitial extends SupplierInvoiceState {}
 
 final class AddInvoiceItems extends SupplierInvoiceState {
-  final List<Widget> items;
+  late final List<Widget> invoicesItems;
 
-  AddInvoiceItems({required this.items});
+  AddInvoiceItems(this.invoicesItems);
 }
 
 final class AddSupplierItems extends SupplierInvoiceState {
-  final List<Widget> items;
+  late final List<Widget> suppliersItems;
 
-  AddSupplierItems({required this.items});
+  AddSupplierItems(this.suppliersItems);
 }

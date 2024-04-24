@@ -1,10 +1,10 @@
-import 'package:bab_el_ezz/features/store/widget/item_table_store.dart';
-import 'package:bab_el_ezz/features/store/widget/top_table_store.dart';
+import 'package:bab_el_ezz/features/store/widget/store_table.dart';
 import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../shared_utils/utils/widget/appbar_widget.dart';
 import '../manager/store/store_cubit.dart';
+import '../widget/item_table_store.dart';
 
 class StorePage extends StatelessWidget {
   const StorePage({Key? key}) : super(key: key);
@@ -16,43 +16,23 @@ class StorePage extends StatelessWidget {
       child: BlocConsumer<StoreCubit, StoreState>(
         listener: (context, state) {},
         builder: (context, state) {
-          StoreCubit cubit = StoreCubit.get(context);
+          final cubit = StoreCubit.get(context);
           return Scaffold(
             appBar: appBarWidget(context),
-            body: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5,),
               child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width,
-                        child: topTableStore(context),
-                      ),
-                      const SizedBox(height: 1),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height - 180, // Adjust height as needed
-                        width: MediaQuery.of(context).size.width,
-                        child: ListView.separated(
-                          separatorBuilder: (context, index) => const SizedBox(height: 1),
-                          scrollDirection: Axis.vertical,
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: cubit.items.length,
-                          itemBuilder: (context, index) => cubit.items[index],
-                        ),
-                      ),
-                    ],
+                scrollDirection: Axis.horizontal,
+                child: SingleChildScrollView(
+                  child: StoreTable(
+                    rows: cubit.items,
                   ),
                 ),
               ),
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                cubit.addItem(const ItemTableStore());
+                cubit.addItem(itemStoreTable());
               },
               backgroundColor: ColorsAsset.kGreen,
               child: const Icon(Icons.add, color: Colors.white),
@@ -62,4 +42,6 @@ class StorePage extends StatelessWidget {
       ),
     );
   }
+
+
 }

@@ -6,7 +6,7 @@ sealed class CustomerInvoiceState {}
 final class CustomerInvoiceInitial extends CustomerInvoiceState {}
 
 final class AddItems extends CustomerInvoiceState {
-  final List<Widget> items;
+  late final List<Widget> items;
 
-  AddItems({required this.items});
+  AddItems(this.items);
 }

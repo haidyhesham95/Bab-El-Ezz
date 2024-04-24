@@ -7,13 +7,17 @@ part 'staff_table_state.dart';
 class StaffTableCubit extends Cubit<StaffTableState> {
   StaffTableCubit() : super(StaffTableInitial());
   static StaffTableCubit get(context) => BlocProvider.of(context);
-  List<Widget> items = [];
 
-  void add( item) {
+
+
+  List<DataRow> items = [];
+
+
+  void addItem(DataRow item) {
     items.add(item);
-    emit(StaffTableLoaded(items: items));
+    emit(StaffTableAdded(items.cast<Widget>()));
   }
 
-
 }
+
 

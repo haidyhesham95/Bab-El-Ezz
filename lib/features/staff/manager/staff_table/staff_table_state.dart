@@ -6,8 +6,8 @@ sealed class StaffTableState {}
 final class StaffTableInitial extends StaffTableState {}
 
 
-final class StaffTableLoaded extends StaffTableState {
-  final List<Widget> items;
+final class StaffTableAdded extends StaffTableState {
+   late final List<Widget> items;
 
-  StaffTableLoaded({required this.items});
+  StaffTableAdded(this.items);
 }

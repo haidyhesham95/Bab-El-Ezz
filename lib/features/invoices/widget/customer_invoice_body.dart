@@ -1,8 +1,7 @@
-import 'package:bab_el_ezz/features/invoices/widget/list_item_customer.dart';
-import 'package:bab_el_ezz/features/invoices/widget/sliver_box_list_customer.dart';
-import 'package:bab_el_ezz/features/invoices/widget/sliver_box_list_invoice.dart';
-import 'package:bab_el_ezz/features/invoices/widget/custom_sliver_list.dart';
-import 'package:bab_el_ezz/features/invoices/widget/sliver_list_invoice.dart';
+import 'package:bab_el_ezz/features/invoices/widget/customer_item_table.dart';
+import 'package:bab_el_ezz/features/invoices/widget/customer_list_table.dart';
+import 'package:bab_el_ezz/features/invoices/widget/list_invoices_table.dart';
+import 'package:bab_el_ezz/features/invoices/widget/top_invoice_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../manager/customer_invoice/customer_invoice_cubit.dart';
@@ -20,29 +19,33 @@ class CustomerInvoiceBody extends StatelessWidget {
         builder: (context, state) {
           CustomerInvoiceCubit cubit = CustomerInvoiceCubit.get(context);
 
+          return SingleChildScrollView(
+            child: Column(
+              children: [
 
-       return CustomScrollView(
-          slivers: [
-            sliverBoxListInvoice(
-              context,
-              onPressedSearch: (){},
-            ),
+                TopInvoicesSearch(
+                  onPressedSearch: (){},
+                ),
+                const ListInvoiceTable() ,
 
-            const SliverListInvoice() ,
-            sliverBoxListCustomer(
-              onPressedSearch: (){},
-              context,
-              onPressed: (){
-              cubit.add(ListItemCustomer(
-                onPressed: (){},
-              ));
-              },
-            ),
-             CustomSliverList(
-              items: cubit.items
-            ),
-          ],
-        );
+                TopInvoicesSearch(
+                  onPressedSearch: (){},
+                  hintText: ' بحث عن عميل ',
+                  text: ' قائمة العملاء',
+                  height: 70,
+                ),
+
+                CustomerListTable(
+                    rows: cubit.items,
+                    onPressed: () {
+                      cubit.addItem(customerItemTable(context,(){})
+                      ) ;
+                    }
+                ),
+              ],
+            )
+
+          );
         },
         ),
     );

@@ -9,17 +9,20 @@ class SupplierInvoiceCubit extends Cubit<SupplierInvoiceState> {
   static SupplierInvoiceCubit get(context) => BlocProvider.of(context);
 
 
-  List<Widget> invoicesItems = [];
-  List<Widget> suppliersItems = [];
 
-  void addInvoiceItem( item) {
+
+  List<DataRow> invoicesItems = [];
+  List<DataRow> suppliersItems = [];
+
+  void addInvoiceItem(DataRow item) {
     invoicesItems.add(item);
-    emit(AddInvoiceItems(items: invoicesItems));
+    emit(AddInvoiceItems( invoicesItems.cast<Widget>()));
   }
 
-  void addSupplierItem( item) {
+
+  void addSupplierItem(DataRow item) {
     suppliersItems.add(item);
-    emit(AddSupplierItems(items: suppliersItems));
+    emit(AddSupplierItems( suppliersItems.cast<Widget>()));
   }
 
 

@@ -1,7 +1,6 @@
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:flutter/material.dart';
-
 import '../widget/spare_receipt_data.dart';
 
 class SpareReceipt extends StatelessWidget {
@@ -9,60 +8,62 @@ class SpareReceipt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: constAppBar(context, "فاتورة قطع غيار جديدة"),
-      body:
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5, ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Column(
           children: [
-            Expanded(
-              child: ListView.builder(
-               // padding: EdgeInsets.symmetric(horizontal: 5),
-                itemCount: 1,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context ,index){
-                  return const SpareReceiptData();
-
-                },
+            const Expanded(
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(height: 20),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: SpareReceiptData(),
+                    ),
+                    SizedBox(height: 20),
+                  ],
+                ),
               ),
             ),
-            //SizedBox(height: 50),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ButtonWidget(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: ButtonWidget(
                     hasElevation: true,
                     text: 'طباعة فاتورة',
                     onPressed: () {},
                   ),
-                  const SizedBox(width: 8),
-                  ButtonWidget(
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: ButtonWidget(
                     hasElevation: true,
                     text: 'حفظ مؤقت',
                     onPressed: () {},
                   ),
-                  const SizedBox(width: 8),
-                  ButtonWidget(
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: ButtonWidget(
                     hasElevation: true,
                     text: 'انهاء الفاتورة',
                     onPressed: () {},
                   ),
-
-                ]
-              ),
+                ),
+              ],
             ),
-            const SizedBox(height: 50),
-
-
-
-
+            const SizedBox(height: 15),
           ],
         ),
       ),
     );
   }
 }
+
 

@@ -1,7 +1,8 @@
-import 'package:bab_el_ezz/shared_utils/utils/widget/green_container.dart';
-import 'package:bab_el_ezz/shared_utils/utils/widget/point_container.dart';
-import 'package:bab_el_ezz/shared_utils/utils/widget/white_container.dart';
+import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../../shared_utils/styles/colors.dart';
 import '../../../shared_utils/styles/text.dart';
 
 class AddReceiptTable extends StatelessWidget {
@@ -9,71 +10,45 @@ class AddReceiptTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-           children: [
-             PointContainer(onPressed: (){}),
-             const GreenContainer(text: 'الصنف',flex: 3),
-             const WhiteContainer(text: 'الكمية'),
-             const WhiteContainer(text: 'المبلغ'),
-             WhiteContainer(text: 'ملاحظات',style: AppStyles.styleSemiBold12(context) ,flex: 3,),
-          ]
-        ),
-        const Row(
-            children: [
-              PointContainer(text: '',),
-              GreenContainer(text: '',flex: 3),
-              WhiteContainer(text: ''),
-              WhiteContainer(text: ''),
-              WhiteContainer(text: '',flex: 3,),
-            ]
-        ),
-        Row(
-            children: [
-              PointContainer(onPressed: (){}),
-              const GreenContainer(text: 'اضافة صنف او خدمة',flex: 3),
-              const WhiteContainer(text: ''),
-              const WhiteContainer(text: ''),
-              const WhiteContainer(text: '',flex: 3,),
-            ]
-        ),
-        Row(
-            children: [
-              PointContainer(onPressed: (){}),
-              const GreenContainer(text: 'المصنعية',flex: 3),
-              const WhiteContainer(text: ''),
-              const WhiteContainer(text: ''),
-              const WhiteContainer(text: '',flex: 3,),
-            ]
-        ),
-        Row(
-            children: [
-              PointContainer(onPressed: (){}),
-              const GreenContainer(text: 'الخصم',flex: 3),
-              const WhiteContainer(text: ''),
-              const WhiteContainer(text: ''),
-              const WhiteContainer(text: '',flex: 3,),
-            ]
-        ),
-        Row(
-            children: [
-              PointContainer(onPressed: (){}),
-              const GreenContainer(text: 'المصنعية',flex: 3),
-              const WhiteContainer(text: ''),
-              const WhiteContainer(text: ''),
-              const WhiteContainer(text: '',flex: 3,),
-            ]
-        ),const Row(
-            children: [
-              PointContainer(text: '',),
-              GreenContainer(text: 'الإجمالي',flex: 5),
-              WhiteContainer(text: ''),
-              WhiteContainer(text: '',flex: 3,),
-            ]
-        ),
-      ],
-
-    );
+    return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: CustomDataTable(
+            columns: [
+              DataColumn(
+                  label: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        '...',
+                        style: AppStyles.styleSemiBold20(context)
+                            .copyWith(color: ColorsAsset.kGreen),
+                      ))),
+              DataColumn(label: Text(' الصنف ')),
+              DataColumn(label: Text(' الكمية ')),
+              DataColumn(label: Text(' المبلغ ')),
+              DataColumn(label: Text(' ملاحظات ')),
+              DataColumn(label: Text(' الخصم ')),
+              DataColumn(label: Text(' اضافة صنف او خدمة ')),
+              DataColumn(label: Text(' المصنعية ')),
+              DataColumn(label: Text(' الإجمالي ')),
+            ],
+            rows: List.generate(
+                10,
+                (index) => DataRow(cells: [
+                      DataCell(TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            '...',
+                            style: AppStyles.styleSemiBold20(context)
+                                .copyWith(color: ColorsAsset.kGreen),
+                          ))),
+                      DataCell(Text('kk')),
+                      DataCell(Text('25')),
+                      DataCell(Text('250')),
+                      DataCell(Text('----')),
+                      DataCell(Text('الخصم')),
+                      DataCell(Text('اضافة صنف او خدمة')),
+                      DataCell(Text('5%')),
+                      DataCell(Text('الإجمالي')),
+                    ]))));
   }
 }

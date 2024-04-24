@@ -32,8 +32,6 @@ class TextFieldWidget extends StatefulWidget {
       this.onTap,
       this.isDense = false,
       this.borderRadius,
-      this.enabledBorderColor,
-      this.focusedBorderColor,
       this.contentPadding,
       this.vertical,
       this.textInputAction,
@@ -78,8 +76,7 @@ class TextFieldWidget extends StatefulWidget {
   final bool isDense;
   final double? borderRadius;
   final EdgeInsetsGeometry? contentPadding;
-  final Color? enabledBorderColor;
-  final Color? focusedBorderColor;
+
   final TextInputAction? textInputAction;
   final EdgeInsetsGeometry? titlePadding;
   final bool? readOnly;
@@ -119,6 +116,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
           width: widget.width ?? size.width,
           child: TextFormField(
             textAlignVertical: TextAlignVertical.center,
+            textDirection: TextDirection.rtl,
             style: widget.style ??
                 AppStyles.styleRegular14(context)
                     .copyWith(color: ColorsAsset.kDarkBrown),
@@ -158,11 +156,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             onChanged: widget.onChanged,
             maxLines: widget.maxLines ?? (widget.expands ? null : 1),
             decoration: InputDecoration(
-              // contentPadding: widget.contentPadding ??
-              //     EdgeInsetsDirectional.symmetric(
-              //       horizontal: 20,
-              //       vertical: widget.vertical ?? 20,
-              //     ),
+              hintText: widget.hint,
+
+              hintStyle: widget.hintStyle ??
+                  AppStyles.styleRegular14(context)
+                      .copyWith(color: ColorsAsset.kDarkBrown),
               isDense: widget.isDense,
               labelStyle: widget.labelStyle,
               floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -177,36 +175,19 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                       child: widget.trailingIcon,
                     )
                   : null,
-              hintText: widget.hint,
 
-              hintStyle: widget.hintStyle ??
-                  AppStyles.styleRegular14(context)
-                      .copyWith(color: ColorsAsset.kDarkBrown),
 
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
-                // borderSide: BorderSide(
-                //   color: widget.enabledBorderColor ??
-                //       ColorsAsset.kDarkGray,
-                //   width: 1.5,
-                // ),
+
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
-                // borderSide: BorderSide(
-                //  color: widget.focusedBorderColor ??
-                //      ColorsAsset.kDarkGray,
-                //
-                //   width: 1.5,
-                // ),
+
               ),
               disabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
-                // borderSide: BorderSide(
-                //   color: widget.enabledBorderColor ??
-                //       ColorsAsset.kDarkGray,
-                //   width: 1,
-                // ),
+
               ),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),

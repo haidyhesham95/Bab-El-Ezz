@@ -8,11 +8,12 @@ class CustomerInvoiceCubit extends Cubit<CustomerInvoiceState> {
 
   static CustomerInvoiceCubit get(context) => BlocProvider.of(context);
 
-  List<Widget> items = [];
+  List<DataRow> items = [];
 
-  void add( item) {
+
+  void addItem(DataRow item) {
     items.add(item);
-    emit(AddItems(items: items));
+    emit(AddItems(items.cast<Widget>()));
   }
 
 }
