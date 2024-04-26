@@ -17,7 +17,7 @@ DataRow tableItem(BuildContext context) {
 
     DataCell(
         TextFieldWidget(
-          height: size.height * 0.07,
+          height: size.height * 0.05,
           width: size.width * 0.6,
           hintText: 'hhh',
           hintStyle: AppStyles.styleRegular14(context)
@@ -33,7 +33,7 @@ DataRow tableItem(BuildContext context) {
     DataCell(
         Center(
           child: TextFieldWidget(
-            height: size.height * 0.07,
+            height: size.height * 0.05,
             width: size.width * 0.6,
             hintText: 'hhh',
             hintStyle: AppStyles.styleRegular14(context)

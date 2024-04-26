@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../features/invoices/view/invoice_page.dart';
 import '../../features/store/view/store_page.dart';
-import '../../features/store/widget/store_table.dart';
 import '../../generated/assets.dart';
 import '../../shared_utils/styles/colors.dart';
 

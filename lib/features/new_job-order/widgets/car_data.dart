@@ -44,31 +44,29 @@ class CarData extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                RowText('نوع السيارة : ',"نوع السيارة"),
-                RowText('نوع ناقل الحركة : ',"نوع",),
-                RowText('رقم الموتور : ',"25",),
-                RowText('نوع الصيانة : ' , "نوع",),
-                Row(
-                  children: [
-                    Text('عدد الكيلومترات : ',style: AppStyles.styleSemiBold16(context)),
-                    TextFieldWidget(
-                      width: size.width * 0.2,
-                      height: size.height * 0.04,
-                      hintText: '1500',
-                      borderRadius: 4,
-                      onChanged: (value) {},
-                    ),
-                  ],
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              RowText('نوع السيارة : ',"نوع السيارة"),
+              RowText('نوع ناقل الحركة : ',"نوع",),
+              RowText('رقم الموتور : ',"25",),
+              RowText('نوع الصيانة : ' , "نوع",),
+              Row(
+                children: [
+                  Text('عدد الكيلومترات : ',style: AppStyles.styleSemiBold16(context)),
+                  TextFieldWidget(
+                    width: size.width * 0.2,
+                    height: size.height * 0.04,
+                    hintText: '1500',
+                    borderRadius: 4,
+                    onChanged: (value) {},
+                  ),
+                ],
 
-                )
+              )
 
-              ],
-            ),
+            ],
           ),
         ],
       ),
