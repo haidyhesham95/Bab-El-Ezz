@@ -1,3 +1,4 @@
+import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../styles/text.dart';
@@ -12,15 +13,15 @@ final List<DataRow> rows;
   Widget build(BuildContext context) {
     return DataTable(
         dataTextStyle: AppStyles.styleRegular16(context).copyWith(color: Colors.white),
-    headingTextStyle: AppStyles.styleRegular16(context).copyWith(color: Colors.black),
+    headingTextStyle: AppStyles.styleRegular16(context).copyWith(color: Colors.white),
     showCheckboxColumn: true,
-    dataRowMinHeight: 50,
+    dataRowMinHeight: MediaQuery.of(context).size.width * 0.15,
     dataRowMaxHeight: MediaQuery.of(context).size.width * 0.15,
     dividerThickness: 1,
-    headingRowColor: const MaterialStatePropertyAll(Colors.white),
-    horizontalMargin:horizontalMargin?? 5,
+    headingRowColor: const MaterialStatePropertyAll(ColorsAsset.kGreen),
+    //horizontalMargin:horizontalMargin?? 5,
     headingRowHeight: 40,
-    columnSpacing: columnSpacing??25,
+   // columnSpacing: columnSpacing??25,
 
     columns: columns,
     rows: rows,

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
@@ -37,5 +38,15 @@ class NewJobCubit extends Cubit<NewJobState> {
   void electronicTapped() {
     isTapped2 = !isTapped2;
     emit( ElectronicTapped(isTapped2));
+  }
+
+
+
+  List<DataRow> items = [];
+
+
+  void addItem(DataRow item) {
+    items.add(item);
+    emit(AddItems(items.cast<Widget>()));
   }
 }

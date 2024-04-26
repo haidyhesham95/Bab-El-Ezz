@@ -35,7 +35,7 @@ class RegisterView1 extends StatelessWidget {
                       TextFieldWidget(
                         errorMessage: 'رقم الهاتف يجب ان يحتوي علي 11 خانات',
                         controller: cubit.phoneNameController,
-                        hint: " رقم الهاتف",
+                        hintText: " رقم الهاتف",
                         textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.phone
 
@@ -44,7 +44,7 @@ class RegisterView1 extends StatelessWidget {
                       TextFieldWidget(
                         errorMessage: 'الرقم السري يجب ان يحتوي علي 6 خانات',
                         controller: cubit.passwordController,
-                        hint: " الرقم السري ",
+                        hintText: " الرقم السري ",
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.visiblePassword
 
@@ -54,7 +54,7 @@ class RegisterView1 extends StatelessWidget {
                           controller: cubit.confirmPasswordController,
                           errorMessage: 'الرقم السري يجب ان يحتوي علي 6 خانات',
                           titleStyle: AppStyles.styleRegular12(context),
-                          hint: " تأكيد الرقم السري  ",
+                          hintText: " تأكيد الرقم السري  ",
                           textInputAction: TextInputAction.done,
                           keyboardType: TextInputType.visiblePassword
                       ),

@@ -7,9 +7,16 @@ class SupplierInvoiceCubit extends Cubit<SupplierInvoiceState> {
   SupplierInvoiceCubit() : super(SupplierInvoiceInitial());
 
   static SupplierInvoiceCubit get(context) => BlocProvider.of(context);
+  final formKey = GlobalKey<FormState>();
+  TextEditingController supplierNameController = TextEditingController();
 
 
+  String? selectedSupplierType;
 
+  void setSelectedSupplierType(String? value) {
+    selectedSupplierType = value;
+    emit(AddSupplierValueChanged(value));
+  }
 
   List<DataRow> invoicesItems = [];
   List<DataRow> suppliersItems = [];

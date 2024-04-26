@@ -1,4 +1,5 @@
 import 'package:bab_el_ezz/features/new_job-order/manager/new_job/new_job_cubit.dart';
+import 'package:bab_el_ezz/features/new_job-order/widgets/table_item.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/pay_container.dart';
 import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
 import 'package:bab_el_ezz/shared_utils/styles/text.dart';
@@ -9,6 +10,7 @@ import '../../../generated/assets.dart';
 import '../../../shared_utils/utils/widget/button_widget.dart';
 import '../../../shared_utils/utils/widget/text_field.dart';
 import '../../workshop/widget/add_button.dart';
+import 'add_note_text.dart';
 import 'add_receipt_table.dart';
 import 'car_data.dart';
 import 'details.dart';
@@ -81,26 +83,20 @@ class NewJobOrderBody extends StatelessWidget {
                       Assets.imagesCars,
                     ),
                     const SizedBox(height: 20),
-                    TextFieldWidget(
-                      height: size.height * 0.09,
-                      label: " اضافة ملاحظات ",
-                      titleStyle: AppStyles.styleMedium18(context),
-                      hintStyle: AppStyles.styleSemiBold14(context),
-                      style: AppStyles.styleSemiBold14(context)
-                          .copyWith(color: Colors.black),
-                      hint: "ملاحظات..",
-                      maxLines: 3,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.text,
-                      color: ColorsAsset.kDarkGray,
-                    ),
+                    addNoteText(context),
                     const SizedBox(height: 10),
                     textAlign(
                       context,
                       'اضافة فاتورة',
                     ),
                     const SizedBox(height: 15),
-                    const AddReceiptTable(),
+                     AddReceiptTable(
+                      rows: cubit.items,
+                      onPressed: () {
+                        cubit.addItem(tableItem(context));
+                      },
+
+                    ),
                     const SizedBox(height: 20),
                     textAlign(context, 'تحديد طريقة الدفع'),
                     const SizedBox(height: 15),
@@ -124,12 +120,15 @@ class NewJobOrderBody extends StatelessWidget {
                           text: "حفظ مؤقت",
                           onPressed: () {},
                           width: size.width * 0.4,
+                          height: size.height * 0.05,
                         ),
                         ButtonWidget(
                           hasElevation: true,
                           text: "انهاء امر الشغل",
                           onPressed: () {},
                           width: size.width * 0.4,
+                          height: size.height * 0.05,
+
                         ),
                       ],
                     ),

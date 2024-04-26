@@ -9,7 +9,7 @@ class TextFieldWidget extends StatefulWidget {
       {super.key,
       this.onChanged,
       this.maxLength,
-      this.hint,
+      this.hintText,
       this.leading,
       this.validator,
       this.enabled = true,
@@ -46,7 +46,7 @@ class TextFieldWidget extends StatefulWidget {
       this.textAlign});
 
   final double? vertical;
-  final String? hint;
+  final String? hintText;
   final int? maxLength;
   final Widget? leading;
   final ValueChanged<String>? onChanged;
@@ -156,7 +156,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             onChanged: widget.onChanged,
             maxLines: widget.maxLines ?? (widget.expands ? null : 1),
             decoration: InputDecoration(
-              hintText: widget.hint,
+              hintText: widget.hintText,
 
               hintStyle: widget.hintStyle ??
                   AppStyles.styleRegular14(context)
@@ -179,14 +179,26 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
 
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
+                  borderSide:  BorderSide(
+                    color: Colors.grey.shade200,
+                    width: 0.5,
+                  ),
 
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
+                borderSide:  BorderSide(
+                  color: Colors.grey.shade200,
+                  width: 0.5,
+                ),
 
               ),
               disabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
+                borderSide:  BorderSide(
+                  color: Colors.grey.shade200,
+                  width: 0.5,
+                ),
 
               ),
               errorBorder: OutlineInputBorder(

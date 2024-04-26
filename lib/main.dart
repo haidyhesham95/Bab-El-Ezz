@@ -4,6 +4,7 @@ import 'package:bab_el_ezz/features/auth/view/register_view1.dart';
 import 'package:bab_el_ezz/features/staff/view/staff_page.dart';
 import 'package:bab_el_ezz/features/workshop/view/add_client.dart';
 import 'package:bab_el_ezz/layout/view/layout.dart';
+import 'package:bab_el_ezz/shared_utils/utils/widget/drop_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,8 @@ import 'features/auth/view/register_view2.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'features/invoices/view/customer_invoice.dart';
 import 'features/invoices/view/supplier_invoices.dart';
+import 'features/invoices/widget/add_customer.dart';
+import 'features/invoices/widget/add_invoice.dart';
 import 'features/new_job-order/view/new_job_order_page .dart';
 import 'features/staff/view/account_clearance_page.dart';
 import 'features/workshop/view/daily_expenses.dart';
@@ -82,6 +85,8 @@ class MyApp extends StatelessWidget {
           'addClient': (context) => const AddClient(),
           "supplierInvoices": (context) => const SupplierInvoices(),
           "accountClearancePage": (context) => const AccountClearancePage(),
+          "addInvoice": (context) => const AddInvoices(),
+          "addCustomer": (context) => const AddCustomer(),
 
 
 

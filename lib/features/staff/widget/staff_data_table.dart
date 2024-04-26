@@ -11,16 +11,17 @@ class StaffDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomDataTable(
       columns: [
-         DataColumn(label: TextButton(
-           onPressed: onPressed,
-             child: Text(' +',style: AppStyles.styleSemiBold20(context).copyWith(color: ColorsAsset.kGreen),))),
+         DataColumn(label:
+         IconButton(
+             onPressed: onPressed,
+             icon: Icon(Icons.add,color:  Colors.white,size: 20,))),
 
         const DataColumn(label: Text(' اسم الفني ')),
         const DataColumn(label: Text(' الرقم القومي ')),
         const DataColumn(label: Text(' التخصص ')),
         const DataColumn(label: Text(' الدرجة الوظيفية ')),
         const DataColumn(label: Text(' ملاحظات ')),
-        const DataColumn(label: Text('تصفية حساب ')),
+        const DataColumn(label: Text('التفاصيل ')),
 
       ],
       rows: rows,

@@ -18,7 +18,7 @@ class AddClient extends StatelessWidget {
       body: SingleChildScrollView
         (
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: BlocProvider(
             create: (context) => AddClientCubit(),
             child: BlocConsumer<AddClientCubit, AddClientState>(
@@ -32,9 +32,10 @@ class AddClient extends StatelessWidget {
            key:cubit.formKey,
               child: Column(
               children: [
+                SizedBox(height: 20),
                  TextFieldWidget(
                   label: " اسم العميل ",
-                  hint: " الاسم ",
+                  hintText: " الاسم ",
                   controller: cubit.clientNameController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
@@ -42,7 +43,7 @@ class AddClient extends StatelessWidget {
                 const SizedBox(height: 10,),
                  TextFieldWidget(
                   label: " رقم الهاتف الخاص بالواتس اب ",
-                  hint: " رقم الهاتف ",
+                  hintText: " رقم الهاتف ",
                   controller: cubit.phoneNameController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
@@ -51,7 +52,7 @@ class AddClient extends StatelessWidget {
 
                  TextFieldWidget(
                   label: " نوع السيارة ",
-                  hint: " نوع السيارة ",
+                  hintText: " نوع السيارة ",
                   controller: cubit.carTypeController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
@@ -59,7 +60,7 @@ class AddClient extends StatelessWidget {
                 const SizedBox(height: 10,),
                  TextFieldWidget(
                   label: " موديل السيارة ",
-                  hint: " موديل السيارة ",
+                  hintText: " موديل السيارة ",
                   controller: cubit.carModelController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
@@ -68,7 +69,7 @@ class AddClient extends StatelessWidget {
 
                 const TextFieldWidget(
                   label: " لون السيارة ",
-                  hint: " لون السيارة ",
+                  hintText: " لون السيارة ",
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
                 ),
@@ -76,7 +77,7 @@ class AddClient extends StatelessWidget {
 
                  TextFieldWidget(
                   label: " عداد الكيلو ميترات ",
-                  hint: " العداد ",
+                  hintText: " العداد ",
                   controller: cubit.counterController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
@@ -85,7 +86,7 @@ class AddClient extends StatelessWidget {
 
                  TextFieldWidget(
                   label: " رقم الشاسية ",
-                  hint: " رقم الشاسية ",
+                  hintText: " رقم الشاسية ",
                   controller: cubit.screenNumberController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
@@ -93,7 +94,7 @@ class AddClient extends StatelessWidget {
                 const SizedBox(height: 10,),
                  TextFieldWidget(
                   label: " رقم الموتور ",
-                  hint: " رقم الموتور ",
+                  hintText: " رقم الموتور ",
                   controller: cubit.motorNumberController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
@@ -145,7 +146,10 @@ class AddClient extends StatelessWidget {
                     }
                   },
 
-                )
+                ),
+                const SizedBox(height: 20,),
+
+
 
 
 

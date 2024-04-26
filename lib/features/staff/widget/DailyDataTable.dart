@@ -33,7 +33,7 @@ class DailyDataTable extends StatelessWidget {
                     const DataColumn(label: Text(' ملاحظات ')),
                     const DataColumn(label: Text(' تصفية حساب ')),
                   ],
-                  rows: List.generate( 20,
+                  rows: List.generate( 1,
                         (index) => DataRow(
                       cells: <DataCell>[
                         DataCell(Text('dfddh')),

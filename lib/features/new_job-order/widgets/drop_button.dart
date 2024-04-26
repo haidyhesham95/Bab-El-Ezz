@@ -25,12 +25,13 @@ class DropButton extends StatelessWidget {
       height: height ?? 45,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius??4),
-        color: color?? ColorsAsset.kDarkGray,
+        color: color?? Colors.white,
       ),
       child: DropdownButton(
+
         hint: Text(hintText, style:styleHint?? AppStyles.styleSemiBold14(context),),
         padding:padding?? const EdgeInsets.only(left: 10,right: 10),
-      dropdownColor:color?? ColorsAsset.kDarkGray,
+      dropdownColor:color?? Colors.white,
       focusColor: ColorsAsset.kGreen,
       borderRadius: BorderRadius.circular(borderRadius??4),
        underline: const SizedBox(),

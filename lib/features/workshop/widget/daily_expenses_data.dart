@@ -9,8 +9,8 @@ class DailyExpensesData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomDataTable(
-      columnSpacing: 100,
-      horizontalMargin: 20,
+      //columnSpacing: 100,
+     // horizontalMargin: 20,
       columns: [
         DataColumn(label: Text('البند')),
         DataColumn(label: Text('المبلغ')),

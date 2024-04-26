@@ -28,3 +28,9 @@ final class ElectronicTapped extends NewJobState {
 
   ElectronicTapped(this.isTapped2);
 }
+
+final class AddItems extends NewJobState {
+  final List<Widget> items;
+
+  AddItems(this.items);
+}

@@ -16,13 +16,10 @@ class SupplierTable extends StatelessWidget {
       child: CustomDataTable(
         columns: [
           DataColumn(
-              label: TextButton(
-                  onPressed: onPressed,
-                  child: Text(
-                    '+',
-                    style: AppStyles.styleSemiBold20(context)
-                        .copyWith(color: ColorsAsset.kGreen),
-                  ))),
+              label: IconButton(
+                  icon: const Icon(Icons.add,size: 20,),
+                  color: Colors.white,
+                  onPressed: onPressed)),
           const DataColumn(label: Text('مسلسل')),
           const DataColumn(label: Text('الاسم')),
           const DataColumn(label: Text('رقم التليفون')),

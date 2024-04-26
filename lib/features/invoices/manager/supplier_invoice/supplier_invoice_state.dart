@@ -16,3 +16,8 @@ final class AddSupplierItems extends SupplierInvoiceState {
 
   AddSupplierItems(this.suppliersItems);
 }
+final class AddSupplierValueChanged extends SupplierInvoiceState {
+  final String? value;
+
+  AddSupplierValueChanged(this.value);
+}

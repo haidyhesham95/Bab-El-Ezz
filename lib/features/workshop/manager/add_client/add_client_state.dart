@@ -27,3 +27,6 @@ final class CharactersTapped extends AddClientState {
 
   CharactersTapped(this.isTapped);
 }
+
+
+

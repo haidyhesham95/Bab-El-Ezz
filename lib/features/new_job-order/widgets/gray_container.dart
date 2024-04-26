@@ -16,7 +16,7 @@ class GrayContainer extends StatelessWidget {
         height: height?? 141,
         margin: margin,
         padding: padding,
-        width: 380,
+       // width: ,
         decoration: BoxDecoration(
           color: ColorsAsset.kDarkBrown.withOpacity(0.3),
           borderRadius: BorderRadius.circular(10),

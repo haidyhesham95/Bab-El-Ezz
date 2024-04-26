@@ -1,5 +1,4 @@
-import 'package:bab_el_ezz/features/invoices/widget/customer_item_table.dart';
-import 'package:bab_el_ezz/features/invoices/widget/customer_list_table.dart';
+import 'package:bab_el_ezz/features/invoices/widget/customer_table.dart';
 import 'package:bab_el_ezz/features/invoices/widget/list_invoices_table.dart';
 import 'package:bab_el_ezz/features/invoices/widget/top_invoice_search.dart';
 import 'package:flutter/material.dart';
@@ -35,11 +34,9 @@ class CustomerInvoiceBody extends StatelessWidget {
                   height: 70,
                 ),
 
-                CustomerListTable(
-                    rows: cubit.items,
+                CustomerTable(
                     onPressed: () {
-                      cubit.addItem(customerItemTable(context,(){})
-                      ) ;
+                     Navigator.pushNamed(context, 'addCustomer');
                     }
                 ),
               ],

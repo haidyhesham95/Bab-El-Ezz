@@ -33,7 +33,7 @@ class LoginView extends StatelessWidget {
                     const SizedBox(height: 20),
                     TextFieldWidget(
                       controller: cubit.phoneNameController,
-                      hint: " رقم الهاتف",
+                      hintText: " رقم الهاتف",
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.phone,
                       errorMessage: '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
@@ -41,7 +41,7 @@ class LoginView extends StatelessWidget {
                     const SizedBox(height: 5),
                     TextFieldWidget(
                       controller: cubit.passwordController,
-                      hint: " الرقم السري ",
+                      hintText: " الرقم السري ",
                       errorMessage: '(الرقم السري يجب ان يحتوي علي 6 خانات)',
                       keyboardType: TextInputType.visiblePassword,
                       textInputAction: TextInputAction.next,

@@ -2,6 +2,7 @@ import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
 import 'package:flutter/material.dart';
 import '../../../shared_utils/styles/colors.dart';
 import '../../../shared_utils/styles/text.dart';
+import '../../../shared_utils/utils/widget/drop_menu.dart';
 
 
 class ListInvoiceTable extends StatelessWidget {
@@ -14,13 +15,11 @@ class ListInvoiceTable extends StatelessWidget {
       child: CustomDataTable(
           columns: [
             DataColumn(
-                label: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      '...',
-                      style: AppStyles.styleSemiBold20(context)
-                          .copyWith(color: ColorsAsset.kGreen),
-                    ))),
+                label: Text(
+                  '...',
+                  style: AppStyles.styleSemiBold20(context)
+                      .copyWith(color: ColorsAsset.kGreen),
+                )),
             const DataColumn(label: Text('مسلسل')),
             const DataColumn(label: Text('رقم الفاتورة')),
             const DataColumn(label: Text('التاريخ')),
@@ -34,13 +33,11 @@ class ListInvoiceTable extends StatelessWidget {
             2,
             (index) => DataRow(
               cells: <DataCell>[
-                DataCell(TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      '...',
-                      style: AppStyles.styleSemiBold20(context)
-                          .copyWith(color: ColorsAsset.kGreen),
-                    ))),
+                    DataCell(
+                        DropMenu(
+                          onTapEdit: () {},
+                          onTapDelete: () {},
+                        )),
                 DataCell(Text('dfddh')),
                 DataCell(Text('dfddh')),
                 DataCell(Text('dfddh')),

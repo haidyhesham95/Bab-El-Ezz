@@ -1,5 +1,4 @@
 import 'package:bab_el_ezz/features/invoices/manager/supplier_invoice/supplier_invoice_cubit.dart';
-import 'package:bab_el_ezz/features/invoices/widget/invoice_item_table.dart';
 import 'package:bab_el_ezz/features/invoices/widget/invoice_table.dart';
 import 'package:bab_el_ezz/features/invoices/widget/supplier_table.dart';
 import 'package:bab_el_ezz/features/invoices/widget/supplier_table_item.dart';
@@ -27,10 +26,10 @@ class SupplierInvoicesBody extends StatelessWidget {
                   onPressedSearch: (){},
                 ),
                 InvoiceTable(
-                    rows: cubit.invoicesItems,
                     onPressed: (){
-                      cubit.addInvoiceItem(
-                          invoiceItemTable(context, () {}));
+
+                          Navigator.pushNamed(context, 'addInvoice');
+
                     }
                 ),
                 TopInvoicesSearch(

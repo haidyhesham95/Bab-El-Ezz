@@ -17,6 +17,7 @@ class PayContainer extends StatelessWidget {
     return GestureDetector(
         onTap: onTap,
       child: Container(
+
        height: size.height * 0.055,
         decoration: BoxDecoration(
           border: Border.all(

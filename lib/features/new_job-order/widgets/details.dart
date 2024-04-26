@@ -10,9 +10,10 @@ class Details extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+   final size = MediaQuery.of(context).size;
     return GrayContainer(
       padding: const EdgeInsets.only(right: 12),
-      height: 75,
+      height: size.height * 0.15,
       child:Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children:  [
