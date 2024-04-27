@@ -35,6 +35,7 @@ class Assets {
   static const String imagesNotification = 'assets/images/notification.svg';
   static const String imagesReceipt = 'assets/images/receipt.svg';
   static const String imagesSetting = 'assets/images/setting.svg';
+  static const String imagesSpareInvoice = 'assets/images/spare_invoice.svg';
   static const String imagesStore = 'assets/images/store.svg';
   static const String imagesStore1 = 'assets/images/store1.svg';
   static const String imagesWorsha = 'assets/images/worsha.svg';

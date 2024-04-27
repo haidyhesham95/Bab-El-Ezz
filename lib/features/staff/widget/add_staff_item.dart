@@ -73,9 +73,9 @@ class AddStaffItem extends StatelessWidget {
 
                               SizedBox(height: 15),
                               TextFieldWidget(
-                                label: " ملاحظات ",
-                                hintText: " ملاحظات ",
-                                maxLines: 3,
+                                label: " القيمة اليومية ",
+                                hintText: " القيمة اليومية ",
+                                controller: cubit.valueController,
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.name,
                               ),

@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 
 import '../../styles/text.dart';
 
-Align textAlign (BuildContext context, String text) {
+Align textAlign (BuildContext context, String text,{  TextStyle? style}) {
   return Align(
       alignment: Alignment.centerRight,
       child: Text(
         text,
-        style: AppStyles.styleMedium18(context),
+        style:style?? AppStyles.styleMedium18(context),
       ));
 }

@@ -10,6 +10,9 @@ part 'spare_receipt_state.dart';
 class SpareReceiptCubit extends Cubit<SpareReceiptState> {
   SpareReceiptCubit() : super(SpareReceiptInitial());
   static SpareReceiptCubit get(context) => BlocProvider.of(context);
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
 
   List<DataRow> items = [];

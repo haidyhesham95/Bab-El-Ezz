@@ -25,6 +25,10 @@ DataRow dataRowReceiptData(context,) {
             color: Colors.transparent,
           )),      DataCell(Text('50000')),
       DataCell(Text('1200')),
+      DataCell(Text('1200')),
+      DataCell(Text('1200')),
+
+
       DataCell(
           TextFieldWidget(
             height: size.height * 0.05,
@@ -34,7 +38,7 @@ DataRow dataRowReceiptData(context,) {
                 .copyWith(color: Colors.grey.shade300),
             onChanged: (value) {},
             color: Colors.transparent,
-          )),      DataCell(Text('1200')),
+          )),
     ],
   );
 }

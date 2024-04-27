@@ -13,10 +13,14 @@ import 'package:provider/provider.dart';
 import 'features/auth/manager/register/register_cubit.dart';
 import 'features/auth/view/register_view2.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'features/invoices/view/customer_invoice.dart';
-import 'features/invoices/view/supplier_invoices.dart';
-import 'features/invoices/widget/add_customer.dart';
-import 'features/invoices/widget/add_invoice.dart';
+import 'features/invoices/spare_invoices/view/spare_invoices.dart';
+import 'features/invoices/maintenance_invoices/view/maintenance_invoices.dart';
+import 'features/invoices/supplier_invoices/view/supplier_invoices.dart';
+import 'features/invoices/maintenance_invoices/widget/add_maintenance_customer_data.dart';
+import 'features/invoices/spare_invoices/widget/add_customer_spare_data.dart';
+import 'features/invoices/supplier_invoices/widget/add_invoice_data.dart';
+import 'features/invoices/spare_invoices/widget/add_invoice_spare_data.dart';
+import 'features/invoices/maintenance_invoices/widget/add_maintenance_invoice_data.dart';
 import 'features/new_job-order/view/new_job_order_page .dart';
 import 'features/staff/view/account_clearance_page.dart';
 import 'features/staff/widget/add_staff_item.dart';
@@ -84,17 +88,24 @@ class MyApp extends StatelessWidget {
           "workshop": (context) => const WorkShopBody(),
           "spareReceipt": (context) => const SpareReceipt(),
           "newJobOrderPage": (context) => const NewJobOrderPage(),
-          "CustomerInvoice": (context) => const CustomerInvoice(),
+          "maintenanceInvoices": (context) => const MaintenanceInvoices(),
           "searchClient": (context) => const SearchClient(),
           'addClient': (context) => const AddClient(),
           "supplierInvoices": (context) => const SupplierInvoices(),
           "accountClearancePage": (context) => const AccountClearancePage(),
-          "addInvoice": (context) => const AddInvoices(),
-          "addCustomer": (context) => const AddCustomer(),
+          "addInvoiceData": (context) => const AddInvoicesData(),
+          "addMaintenanceCustomer": (context) => const AddMaintenanceCustomerData(),
           "addItemStore": (context) => const AddsItemsStore(),
           "addDailyItem": (context) => const AddDailyItem(),
           "addStaffItem": (context) => const AddStaffItem(),
           'addDailyExpenses': (context) => const AddDailyExpenses(),
+          "spareInvoices": (context) => const SpareInvoices(),
+          "addCustomerSpareData": (context) => const AddCustomerSpareData(),
+          "addInvoiceSpareData": (context) => const AddInvoiceSpareData(),
+          "addMaintenanceInvoiceData": (context) => const AddMaintenanceInvoiceData(),
+
+
+
 
 
 

@@ -12,6 +12,8 @@ class StaffTableCubit extends Cubit<StaffTableState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
   TextEditingController degreeController = TextEditingController();
+  TextEditingController valueController = TextEditingController();
+
   TextEditingController majorController = TextEditingController();
 
 

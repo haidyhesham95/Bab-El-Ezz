@@ -1,11 +1,8 @@
 import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
-import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../../shared_utils/styles/colors.dart';
-import '../../../shared_utils/styles/text.dart';
-import '../../../shared_utils/utils/widget/drop_menu.dart';
+import '../../../shared_utils/utils/widget/add_icon_button.dart';
 
 class AddReceiptTable extends StatelessWidget {
   const AddReceiptTable({super.key,required this. rows,required this.onPressed});
@@ -18,10 +15,8 @@ class AddReceiptTable extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: CustomDataTable(
             columns: [
-              DataColumn(
-                  label:IconButton(
-                      onPressed: onPressed,
-                      icon: Icon(Icons.add,color:  Colors.white,size: 20,))),
+              DataColumn(label: addIconButton(onPressed)),
+
               DataColumn(label: Text(' الصنف ')),
               DataColumn(label: Text(' الكمية ')),
               DataColumn(label: Text(' المبلغ ')),

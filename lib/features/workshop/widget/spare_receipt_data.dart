@@ -19,8 +19,10 @@ class SpareReceiptData extends StatelessWidget {
         DataColumn(label: Text('الصنف')),
         DataColumn(label: Text('الكمية')),
         DataColumn(label: Text('المبلغ')),
-        DataColumn(label: Text('ملاحظات')),
+        DataColumn(label: Text('الخصم')),
         DataColumn(label: Text('الاجمالي')),
+
+        DataColumn(label: Text('ملاحظات')),
       ],
       rows: rows
     );
