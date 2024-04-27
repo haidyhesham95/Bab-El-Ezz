@@ -1,6 +1,10 @@
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../invoices/manager/supplier_invoice/supplier_invoice_cubit.dart';
+import '../manager/spare_receipt_cubit.dart';
+import '../widget/data_raw_receipt_data.dart';
 import '../widget/spare_receipt_data.dart';
 
 class SpareReceipt extends StatelessWidget {
@@ -12,9 +16,15 @@ class SpareReceipt extends StatelessWidget {
       appBar: constAppBar(context, "فاتورة قطع غيار جديدة"),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5),
-        child: Column(
+        child: BlocProvider(
+        create: (context) => SpareReceiptCubit(),
+    child: BlocConsumer<SpareReceiptCubit, SpareReceiptState>(
+    listener: (context, state) {},
+    builder: (context, state) {
+    SpareReceiptCubit cubit = SpareReceiptCubit.get(context);
+    return  Column(
           children: [
-            const Expanded(
+             Expanded(
               child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
                 child: Column(
@@ -23,7 +33,14 @@ class SpareReceipt extends StatelessWidget {
                     SizedBox(height: 20),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: SpareReceiptData(),
+                      child: SpareReceiptData(
+                      rows: cubit.items,
+                      onPressed:(){
+
+                   cubit.addItem(dataRowReceiptData(context));
+
+                        }
+                      ),
                     ),
                     SizedBox(height: 20),
                   ],
@@ -60,8 +77,12 @@ class SpareReceipt extends StatelessWidget {
             ),
             const SizedBox(height: 15),
           ],
+    );
+    }
+
         ),
       ),
+      )
     );
   }
 }

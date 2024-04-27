@@ -5,9 +5,7 @@ import '../../../shared_utils/utils/widget/drop_menu.dart';
 import '../../../shared_utils/utils/widget/text_field.dart';
 
 DataRow tableItem(BuildContext context) {
-  final size = MediaQuery
-      .of(context)
-      .size;
+  final size = MediaQuery.of(context).size;
   return DataRow(cells: [
     DataCell(
         DropMenu(
