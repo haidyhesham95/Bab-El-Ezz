@@ -15,6 +15,8 @@ final List<DataRow> rows;
         dataTextStyle: AppStyles.styleRegular16(context).copyWith(color: Colors.white),
     headingTextStyle: AppStyles.styleRegular16(context).copyWith(color: Colors.white),
     showCheckboxColumn: true,
+
+
     dataRowMinHeight: MediaQuery.of(context).size.width * 0.15,
     dataRowMaxHeight: MediaQuery.of(context).size.width * 0.15,
     dividerThickness: 1,

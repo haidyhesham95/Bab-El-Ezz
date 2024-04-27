@@ -2,6 +2,8 @@ import 'package:bab_el_ezz/features/auth/manager/login/login_cubit.dart';
 import 'package:bab_el_ezz/features/auth/view/login_view.dart';
 import 'package:bab_el_ezz/features/auth/view/register_view1.dart';
 import 'package:bab_el_ezz/features/staff/view/staff_page.dart';
+import 'package:bab_el_ezz/features/staff/widget/add_daily_item.dart';
+import 'package:bab_el_ezz/features/store/widget/add_item_store.dart';
 import 'package:bab_el_ezz/features/workshop/view/add_client.dart';
 import 'package:bab_el_ezz/layout/view/layout.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/drop_menu.dart';
@@ -17,9 +19,11 @@ import 'features/invoices/widget/add_customer.dart';
 import 'features/invoices/widget/add_invoice.dart';
 import 'features/new_job-order/view/new_job_order_page .dart';
 import 'features/staff/view/account_clearance_page.dart';
+import 'features/staff/widget/add_staff_item.dart';
 import 'features/workshop/view/daily_expenses.dart';
 import 'features/workshop/view/search_client.dart';
 import 'features/workshop/view/spare_receipt.dart';
+import 'features/workshop/widget/add_daily_expenses.dart';
 import 'features/workshop/widget/work_shop_body.dart';
 
 
@@ -87,6 +91,13 @@ class MyApp extends StatelessWidget {
           "accountClearancePage": (context) => const AccountClearancePage(),
           "addInvoice": (context) => const AddInvoices(),
           "addCustomer": (context) => const AddCustomer(),
+          "addItemStore": (context) => const AddsItemsStore(),
+          "addDailyItem": (context) => const AddDailyItem(),
+          "addStaffItem": (context) => const AddStaffItem(),
+          'addDailyExpenses': (context) => const AddDailyExpenses(),
+
+
+
 
 
 

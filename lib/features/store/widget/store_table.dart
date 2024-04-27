@@ -5,8 +5,8 @@ import '../../../shared_utils/styles/text.dart';
 import '../../../shared_utils/utils/widget/button_widget.dart';
 
 class StoreTable extends StatelessWidget {
-  const StoreTable({super.key, required this.rows});
-  final List<DataRow> rows;
+  const StoreTable({super.key,});
+ // final List<DataRow> rows;
   @override
   Widget build(BuildContext context) {
     return CustomDataTable(
@@ -20,7 +20,21 @@ class StoreTable extends StatelessWidget {
         const DataColumn(label: Text(' سعر البيع ')),
         const DataColumn(label: Text(' تنبيه ')),
       ],
-      rows: rows,
+      rows: List.generate(
+        2,
+            (index) => DataRow(
+          cells: <DataCell>[
+            DataCell(Text('2')),
+            DataCell(Text('dfdd')),
+            DataCell(Text('dfdd')),
+            DataCell(Text('45')),
+            DataCell(Text('dfdd')),
+            DataCell(Text('dfdd')),
+            DataCell(Text('dfdd')),
+            DataCell(Text('dfdd')),
+          ],
+        ),
+      ),
     );
   }
 }

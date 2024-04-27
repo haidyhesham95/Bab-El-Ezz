@@ -7,7 +7,7 @@ class CustomerInvoiceCubit extends Cubit<CustomerInvoiceState> {
   CustomerInvoiceCubit() : super(CustomerInvoiceInitial());
 
   static CustomerInvoiceCubit get(context) => BlocProvider.of(context);
-  final formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController customerNameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController invoiceNumberController = TextEditingController();

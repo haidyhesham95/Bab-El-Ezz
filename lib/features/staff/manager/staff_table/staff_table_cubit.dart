@@ -8,15 +8,13 @@ class StaffTableCubit extends Cubit<StaffTableState> {
   StaffTableCubit() : super(StaffTableInitial());
   static StaffTableCubit get(context) => BlocProvider.of(context);
 
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
+  TextEditingController degreeController = TextEditingController();
+  TextEditingController majorController = TextEditingController();
 
 
-  List<DataRow> items = [];
-
-
-  void addItem(DataRow item) {
-    items.add(item);
-    emit(StaffTableAdded(items.cast<Widget>()));
-  }
 
 }
 
