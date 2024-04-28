@@ -39,20 +39,23 @@ class AddCustomerSpareData extends StatelessWidget {
 
                             TextFieldWidget(
                               label: " الاسم : ",
-                              hintText: " الاسم ",
+                              hintText: " ادخال الاسم ",
                               controller: cubit.customerNameController,
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.name,
+                              errorMessage: '(الاسم يجب ان يحتوي علي 3 خانات)',
+
                             ),
                             const SizedBox(height: 20),
 
 
                             TextFieldWidget(
                               label: " رقم التلفون : ",
-                              hintText: " رقم التلفون ",
+                              hintText: " +20 ",
                               controller: cubit.customerPhoneController,
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.number,
+                              errorMessage: '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
                             ),
                           ],
                         ),

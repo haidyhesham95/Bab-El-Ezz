@@ -1,4 +1,3 @@
-import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/material.dart';
@@ -39,29 +38,31 @@ class SpareReceipt extends StatelessWidget {
                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                        children: [
                          TextFieldWidget(
+                           height: size.height * 0.045,
                            label: ' اسم العميل :',
                            width: size.width * 0.4,
-                           height: size.height * 0.045,
                            hintText: 'الاسم',
                            hintStyle: AppStyles.styleRegular10(context),
                            borderRadius: 4,
                            controller: cubit.nameController,
                            onChanged: (value) {},
+                           keyboardType: TextInputType.text,
+
+
+                         ),
+                         TextFieldWidget(
+                           height: size.height * 0.045,
+                           label: 'رقم التلفون :',
+                           width: size.width * 0.4,
+                           hintText: 'الموجود عليه الواتساب',
+                           hintStyle: AppStyles.styleRegular10(context),
+                           borderRadius: 4,
+                           controller: cubit.phoneController,
+                           onChanged: (value) {},
+                            keyboardType: TextInputType.number,
 
                          ),
 
-                         TextFieldWidget(
-                           hintStyle: AppStyles.styleRegular10(context),
-                                 label: 'رقم التليفون : ',
-                                 width: size.width * 0.4,
-                                 height: size.height * 0.045,
-                                 hintText: 'الموجود عليه الواتساب',
-                                 borderRadius: 4,
-                                 onChanged: (value) {},
-                           controller: cubit.phoneController,
-
-
-                               ),
                        ],
                      ),
                      SizedBox(height: 20),

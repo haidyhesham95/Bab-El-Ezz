@@ -4,46 +4,42 @@ import 'package:flutter/services.dart';
 
 import '../../styles/text.dart';
 
-class TextFieldWidget extends StatefulWidget {
+class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget(
       {super.key,
-      this.onChanged,
-      this.maxLength,
-      this.hintText,
-      this.leading,
-      this.validator,
-      this.enabled = true,
-      this.controller,
-      this.initialText,
-      this.expands = false,
-      this.height,
-      this.errorText,
-      this.trailingIcon,
-      this.keyboardType,
-      this.node,
-      this.obscureText=false,
-      this.hintStyle,
-      this.color,
-      this.onSubmitted,
-      this.inputFormatters,
-      this.labelStyle,
-      this.autoFillHint,
-      this.maxLines,
-      this.onTap,
-      this.isDense = false,
-      this.borderRadius,
-      this.contentPadding,
-      this.vertical,
-      this.textInputAction,
-      this.titlePadding,
-      this.label,
-      this.readOnly,
-      this.titleStyle,
-      this.style,
-      this.width,
-      this.onSaved,
-      this.errorMessage,
-      this.textAlign});
+        this.onChanged,
+        this.maxLength,
+        this.hintText,
+        this.leading,
+        this.validator,
+        this.enabled = true,
+        this.controller,
+        this.expands = false,
+        this.height,
+        this.errorText,
+        this.trailingIcon,
+        this.keyboardType,
+        this.node,
+        this.obscureText=false,
+        this.hintStyle,
+        this.color,
+        this.onSubmitted,
+        this.inputFormatters,
+        this.labelStyle,
+        this.autoFillHint,
+        this.maxLines,
+        this.onTap,
+        this.borderRadius,
+        this.vertical,
+        this.textInputAction,
+        this.label,
+        this.titleStyle,
+        this.style,
+        this.width,
+        this.onSaved,
+        this.errorMessage,
+        this.labelText,
+        this.textAlign});
 
   final double? vertical;
   final String? hintText;
@@ -57,7 +53,6 @@ class TextFieldWidget extends StatefulWidget {
   final bool enabled;
   final int? maxLines;
   final TextEditingController? controller;
-  final String? initialText;
   final bool expands;
   final double? height;
   final double? width;
@@ -73,32 +68,14 @@ class TextFieldWidget extends StatefulWidget {
   final TextStyle? titleStyle;
   final List<String>? autoFillHint;
   final VoidCallback? onTap;
-  final bool isDense;
   final double? borderRadius;
-  final EdgeInsetsGeometry? contentPadding;
+  final String? labelText;
 
   final TextInputAction? textInputAction;
-  final EdgeInsetsGeometry? titlePadding;
-  final bool? readOnly;
   final String? label;
   final TextStyle? style;
   final TextAlign? textAlign;
   final String? errorMessage;
-
-  @override
-  State<TextFieldWidget> createState() => _TextFieldWidgetState();
-}
-
-class _TextFieldWidgetState extends State<TextFieldWidget> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,86 +84,72 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.label != null)
-          Text(widget.label!,
-              style: widget.titleStyle ?? AppStyles.styleRegular14(context).copyWith(color: Colors.white)),
+        if (label != null)
+          Text(label!,
+              style: titleStyle ?? AppStyles.styleRegular14(context).copyWith(color: Colors.white)),
         const SizedBox(height: 10),
         SizedBox(
-          height: widget.height ,
-          width: widget.width ?? size.width,
+          height: height,
+          width: width ?? size.width,
           child: TextFormField(
+
             textAlignVertical: TextAlignVertical.center,
             textDirection: TextDirection.rtl,
-            style: widget.style ??
+            style: style ??
                 AppStyles.styleRegular14(context)
                     .copyWith(color: ColorsAsset.kDarkBrown),
-            onTap: widget.onTap,
+            onTap: onTap,
             onTapOutside: (v) {
               FocusScope.of(context).unfocus();
             },
-            textAlign: widget.textAlign ?? TextAlign.start,
+            textAlign: textAlign ?? TextAlign.start,
             cursorHeight: 15,
-            onSaved: widget.onSaved,
-            maxLength: widget.maxLength,
-            autofillHints: widget.autoFillHint,
-            key: widget.key,
-            readOnly: widget.readOnly ?? false,
-            onEditingComplete: () {
-              widget.node?.unfocus();
-              FocusScope.of(context).unfocus();
-            },
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            onFieldSubmitted: widget.onSubmitted,
-            focusNode: widget.node,
-            keyboardType: widget.keyboardType ??
-                (widget.expands ? TextInputType.multiline : TextInputType.text),
-            validator: widget.validator ?? (value) {
-    if (value!.isEmpty) {
-    return widget.errorMessage ?? '';
-    }
-    return null;
-    },
-            inputFormatters: widget.inputFormatters,
-            enabled: widget.enabled,
-            obscureText: widget.obscureText,
-            textInputAction: widget.textInputAction,
-            cursorColor: ColorsAsset.kGreen,
-            controller: widget.controller,
-            initialValue: widget.initialText,
-            onChanged: widget.onChanged,
-            maxLines: widget.maxLines ?? (widget.expands ? null : 1),
-            decoration: InputDecoration(
-              hintText: widget.hintText,
+            maxLength: maxLength,
 
-              hintStyle: widget.hintStyle ??
+            enabled: enabled,
+            obscureText: obscureText,
+            textInputAction: textInputAction,
+            cursorColor: ColorsAsset.kGreen,
+             onSaved: onSaved,
+            controller: controller,
+            onChanged: onChanged,
+            keyboardType: keyboardType,
+            maxLines: maxLines ?? (expands ? null : 1),
+            validator: validator ?? (value) {
+              if (value!.isEmpty) {
+                return errorMessage ?? null;
+              }
+              return null;
+            },
+            decoration: InputDecoration(
+              labelText:  labelText,
+              hintText: hintText,
+              hintStyle: hintStyle ??
                   AppStyles.styleRegular14(context)
                       .copyWith(color: ColorsAsset.kDarkBrown),
-              isDense: widget.isDense,
-              labelStyle: widget.labelStyle,
+
+
               floatingLabelBehavior: FloatingLabelBehavior.never,
-              fillColor: widget.color ?? Colors.white,
+              fillColor: color ?? Colors.white,
               filled: true,
-              prefixIcon: widget.leading,
+              prefixIcon: leading,
               suffixIconColor: ColorsAsset.kDarkBrown,
 
-              suffixIcon: widget.trailingIcon != null
-                  ? Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: widget.trailingIcon,
-                    )
-                  : null,
+              suffixIcon: trailingIcon,
+
+
 
 
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
-                  borderSide:  BorderSide(
-                    color: Colors.grey.shade200,
-                    width: 0.5,
-                  ),
+                borderRadius: BorderRadius.circular(borderRadius ?? 10),
+                borderSide:  BorderSide(
+                  color: Colors.grey.shade200,
+                  width: 0.5,
+                ),
 
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
+                borderRadius: BorderRadius.circular(borderRadius ?? 10),
                 borderSide:  BorderSide(
                   color: Colors.grey.shade200,
                   width: 0.5,
@@ -194,7 +157,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
 
               ),
               disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
+                borderRadius: BorderRadius.circular(borderRadius ?? 10),
                 borderSide:  BorderSide(
                   color: Colors.grey.shade200,
                   width: 0.5,
@@ -202,22 +165,22 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
 
               ),
               errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
+                borderRadius: BorderRadius.circular(borderRadius ?? 10),
                 borderSide: const BorderSide(
                   color: Colors.red,
-                  width: 1,
+                  width: 0.5,
                 ),
               ),
               errorStyle: const TextStyle(color: Colors.red),
               focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(widget.borderRadius ?? 10),
+                borderRadius: BorderRadius.circular(borderRadius ?? 10),
                 borderSide: const BorderSide(
                   color: Colors.red,
-                  width: 1,
+                  width: 0.5,
                 ),
               ),
-              errorText: widget.errorText,
-              hintMaxLines: 2,
+              errorText: errorText,
+              hintMaxLines: 1,
               alignLabelWithHint: true,
             ),
           ),

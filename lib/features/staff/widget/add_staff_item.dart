@@ -2,16 +2,11 @@ import 'package:flutter/material.dart';
 import '../../../shared_utils/styles/colors.dart';
 import '../../../shared_utils/styles/text.dart';
 import '../../../shared_utils/utils/widget/button_widget.dart';
-import '../../../shared_utils/utils/widget/drop_menu.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../shared_utils/styles/colors.dart';
-import '../../../shared_utils/styles/text.dart';
-import '../../../shared_utils/utils/widget/button_widget.dart';
+
 import '../../../shared_utils/utils/widget/const_appbar.dart';
 import '../../../shared_utils/utils/widget/text_field.dart';
-import '../../new_job-order/widgets/drop_button.dart';
-import '../manager/daily_table/daily_table_cubit.dart';
+
 import '../manager/staff_table/staff_table_cubit.dart';
 
 class AddStaffItem extends StatelessWidget {
@@ -22,7 +17,7 @@ class AddStaffItem extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return  Scaffold(
-        appBar: constAppBar(context, ' اضافة '),
+        appBar: constAppBar(context, ' اضافة عامل'),
         body: BlocProvider(
             create: (context) => StaffTableCubit(),
             child: BlocBuilder<StaffTableCubit, StaffTableState>(
@@ -38,46 +33,51 @@ class AddStaffItem extends StatelessWidget {
                               const SizedBox(height: 20),
                               TextFieldWidget(
                                 label: " اسم الفني ",
-                                hintText: "  اسم الفني ",
+                                hintText: "  اضافه اسم الفني ",
                                 controller: cubit.nameController,
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.name,
+                                errorMessage: 'الرجاء ادخال الاسم',
+
                               ),
                               const SizedBox(height: 15),
                               TextFieldWidget(
                                 label: " الرقم القومي ",
-                                hintText: " الرقم القومي ",
+                                hintText: "  ادخال الرقم القومي ",
                                 controller: cubit.numberController,
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.number,
+                                errorMessage: 'الرجاء ادخال الرقم القومي',
                               ),
                               const SizedBox(height: 15),
                               TextFieldWidget(
                                 label: " التخصص ",
-                                hintText: " التخصص ",
+                                hintText: "اضافه التخصص ",
                                 controller: cubit.majorController,
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.name,
+                                errorMessage: 'الرجاء ادخال التخصص',
                               ),
                               const SizedBox(height: 15),
 
 
                               TextFieldWidget(
                                 label: " الدرجة الوظيفية ",
-                                hintText: " الدرجة الوظيفية ",
+                                hintText: "  ادخال الدرجة الوظيفية ",
                                 controller: cubit.degreeController,
-
                                 textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.number,
+                                keyboardType: TextInputType.name,
+                                errorMessage: 'الرجاء ادخال الدرجة الوظيفية',
                               ),
 
                               SizedBox(height: 15),
                               TextFieldWidget(
                                 label: " القيمة اليومية ",
-                                hintText: " القيمة اليومية ",
+                                hintText: "  ادخال القيمة اليومية ",
                                 controller: cubit.valueController,
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.name,
+                                errorMessage: 'الرجاء ادخال القيمة اليومية',
                               ),
                               const SizedBox(
                                 height: 50,

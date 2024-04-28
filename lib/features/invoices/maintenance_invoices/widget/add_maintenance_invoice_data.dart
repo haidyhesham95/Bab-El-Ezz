@@ -35,47 +35,53 @@ class AddMaintenanceInvoiceData extends StatelessWidget {
                       addImage(context, ),
                       const SizedBox(height: 20),
                       TextFieldWidget(
-                        label: " سم العميل ",
-                        hintText: "  سم العميل ",
+                        label: " اسم العميل ",
+                        hintText: "  الاسم ",
                         controller: cubit.clientNameController,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
+                        errorMessage: '(الاسم يجب ان يحتوي علي 3 احرف علي الاقل)',
+
                       ),
 
                       const SizedBox(height: 15,),
                       TextFieldWidget(
                         label: " رقم التلفون ",
-                        hintText: " رقم التلفون ",
+                        hintText: " +20 ",
                         controller: cubit.phoneController,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
+                        errorMessage: '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
                       ),
 
                       const SizedBox(height: 15,),
 
                       TextFieldWidget(
                         label: " ماركه السياره",
-                        hintText: " ماركه السياره ",
+                        hintText: " اضافه ماركه السياره ",
                         controller: cubit.cartModelController,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
+                        errorMessage: '(الاسم يجب ان يحتوي علي 3 احرف علي الاقل)',
                       ),
                       const SizedBox(height: 15,),
 
                       TextFieldWidget(
                         label: " رقم اللوحه ",
-                        hintText: " رقم اللوحه ",
+                        hintText: " اضافه رقم اللوحه ",
                         controller: cubit.cartNumberController,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
+                        errorMessage: '(رقم اللوحه يجب ان يحتوي علي 6 خانات)',
                       ),
                       const SizedBox(height: 15,),
                       TextFieldWidget(
                         label: " رقم الفاتورة  ",
-                        hintText: " رقم الفاتورة",
+                        hintText: " اضافه رقم الفاتورة",
                         controller: cubit.screenNumberController,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
+                        errorMessage: '(رقم الفاتورة يجب ان يحتوي علي 6 خانات)',
                       ),
 
 

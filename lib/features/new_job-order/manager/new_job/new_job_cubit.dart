@@ -10,7 +10,6 @@ class NewJobCubit extends Cubit<NewJobState> {
 
   static NewJobCubit get(context) => BlocProvider.of(context);
 
-
   String? selectedValue;
 
   void setSelectedClientValue(String? value) {

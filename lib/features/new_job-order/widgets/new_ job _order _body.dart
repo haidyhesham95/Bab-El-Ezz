@@ -24,7 +24,7 @@ class NewJobOrderBody extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: 5,
+          horizontal: 10,
         ),
         child: BlocProvider(
           create: (context) => NewJobCubit(),
@@ -39,7 +39,26 @@ class NewJobOrderBody extends StatelessWidget {
                     const SizedBox(height: 20),
                     const CarData(),
                     const SizedBox(height: 20),
-                    DropButton(
+                    TextFieldWidget(
+                      label: "عدد الكيلومترات",
+                      titleStyle: AppStyles.styleMedium16(context),
+                      hintStyle: AppStyles.styleSemiBold14(context),
+
+                      hintText: ' ادخال العدد',
+                      onChanged: (value) {},
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    TextFieldWidget(
+                  label: 'نوع السياره',
+                      titleStyle: AppStyles.styleMedium16(context),
+                  hintStyle: AppStyles.styleSemiBold14(context),
+                  hintText: ' ادخال نوع السياره',
+                  onChanged: (value) {},
+                ),
+                    const SizedBox(height: 20),
+                      DropButton(
                       hintText: 'نوع الصيانة',
                       value: cubit.selectedMaintenanceType,
                       onChanged: (String? value) {

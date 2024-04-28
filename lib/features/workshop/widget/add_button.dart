@@ -17,7 +17,7 @@ class AddButton extends StatelessWidget {
       width:width?? 45,
       decoration: BoxDecoration(
         color: colorGround??Colors.white,
-        borderRadius: const BorderRadius.all(Radius.circular(4)),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       child: IconButton(
         onPressed: onPressed,

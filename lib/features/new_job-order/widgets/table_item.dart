@@ -1,3 +1,4 @@
+import 'package:bab_el_ezz/shared_utils/utils/widget/data_text_field.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared_utils/styles/text.dart';
@@ -14,32 +15,19 @@ DataRow tableItem(BuildContext context) {
         )),
 
     DataCell(
-        TextFieldWidget(
-          height: size.height * 0.05,
-          width: size.width * 0.6,
-          hintText: 'hhh',
-          hintStyle: AppStyles.styleRegular14(context)
-              .copyWith(color: Colors.grey.shade300),
-          onChanged: (value) {},
-          color: Colors.transparent,
-        )),
+      DataTextField(
+  hintText: 'اضافه صنف',
+  ),
+       ),
     DataCell(Text('25')),
     DataCell(Text('250')),
     DataCell(Text('الخصم')),
     DataCell(Text('5%')),
     DataCell(Text('الإجمالي')),
     DataCell(
-        Center(
-          child: TextFieldWidget(
-            height: size.height * 0.05,
-            width: size.width * 0.6,
-            hintText: 'hhh',
-            hintStyle: AppStyles.styleRegular14(context)
-                .copyWith(color: Colors.grey.shade300),
-            onChanged: (value) {},
-            color: Colors.transparent,
-          ),
-        )),
+      DataTextField(
+  hintText: 'اضافه ملاحظه',
+      )),
   ]);
 
 

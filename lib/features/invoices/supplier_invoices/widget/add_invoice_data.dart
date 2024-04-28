@@ -44,7 +44,6 @@ class AddInvoicesData extends StatelessWidget {
                             addImage(context,),
                             const SizedBox(height: 20),
                             DropButton(
-                              borderRadius: 10,
                               styleHint: AppStyles.styleRegular14(context).copyWith(
                                   color: ColorsAsset.kDarkBrown),
                               hintText: 'اسم المورد',
@@ -68,10 +67,12 @@ class AddInvoicesData extends StatelessWidget {
                             ),
                             TextFieldWidget(
                               label: " رقم الفاتوره ",
-                              hintText: " رقم الفاتوره ",
+                              hintText: " ادخال رقم الفاتوره ",
                               controller: cubit.supplierNameController,
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.number,
+                              errorMessage: 'برجاء ادخال رقم الفاتوره',
+
                             ),
                           ],
                         ),

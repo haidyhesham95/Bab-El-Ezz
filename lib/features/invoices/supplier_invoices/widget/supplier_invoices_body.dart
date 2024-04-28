@@ -41,7 +41,9 @@ class SupplierInvoicesBody extends StatelessWidget {
                       cubit.addSupplierItem(
                           supplierTableItem(context, () {}));
                     }
-                )
+                ),
+                SizedBox(
+                  height: 20,)
 
               ],
             ),

@@ -14,7 +14,7 @@ class StaffDataTable extends StatelessWidget {
     return CustomDataTable(
       columns: [
         DataColumn(label: addIconButton(() {
-              Navigator.of(context).pushNamed('addStaffPage');
+              Navigator.of(context).pushNamed('addStaffItem');
             })),
 
     const DataColumn(label: Text(' اسم الفني ')),

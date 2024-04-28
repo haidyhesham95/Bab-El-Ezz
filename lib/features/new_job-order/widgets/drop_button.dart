@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../shared_utils/styles/colors.dart';
 
 class DropButton extends StatelessWidget {
-  const DropButton({super.key,required this.items, required this.onChanged,  this.value, required this.hintText, this.height, this.color, this.borderRadius, this.padding,
+  const DropButton({super.key,required this.items, required this.onChanged,  this.value, required this.hintText, this.height, this.color,  this.padding,
     this.iconSize,
     this.styleHint, this.styleValue});
  final List<DropdownMenuItem<String>>? items;
@@ -13,7 +13,6 @@ class DropButton extends StatelessWidget {
  final String hintText;
  final double? height;
  final Color? color;
-  final double? borderRadius;
   final EdgeInsetsGeometry? padding;
   final double? iconSize;
   final TextStyle? styleHint ;
@@ -24,7 +23,7 @@ class DropButton extends StatelessWidget {
     return   Container(
       height: height ?? 45,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadius??4),
+        borderRadius: BorderRadius.circular(10),
         color: color?? Colors.white,
       ),
       child: DropdownButton(
@@ -33,7 +32,7 @@ class DropButton extends StatelessWidget {
         padding:padding?? const EdgeInsets.only(left: 10,right: 10),
       dropdownColor:color?? Colors.white,
       focusColor: ColorsAsset.kGreen,
-      borderRadius: BorderRadius.circular(borderRadius??4),
+      borderRadius: BorderRadius.circular(10),
        underline: const SizedBox(),
          value: value,
        iconSize: iconSize?? 24,

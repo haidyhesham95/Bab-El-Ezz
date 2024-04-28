@@ -40,27 +40,30 @@ class AddInvoiceSpareData extends StatelessWidget {
 
                             TextFieldWidget(
                               label: " اسم العميل  : ",
-                              hintText: " اسم العميل  ",
+                              hintText: " ادخال الاسم  ",
                               controller: cubit.nameController,
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.name,
+                              errorMessage: '(الاسم يجب ان يحتوي علي 3 خانات)',
                             ),
                             const SizedBox(height: 20),
 
                             TextFieldWidget(
                               label: " رقم التلفون : ",
-                              hintText: " رقم التلفون ",
+                              hintText: " +20 ",
                               controller: cubit.customerPhoneController,
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.number,
+                              errorMessage: '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
                             ),
                                const SizedBox(height: 20),
                             TextFieldWidget(
                               label: " رقم الفاتورة : ",
-                              hintText: " رقم الفاتورة ",
+                              hintText: " ادخال رقم الفاتورة ",
                               controller: cubit.nameController,
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.number,
+                              errorMessage: '(رقم الفاتورة يجب ان يحتوي علي 3 خانات)',
                             ),
                           ],
                         ),

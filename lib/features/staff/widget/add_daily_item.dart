@@ -40,10 +40,11 @@ class AddDailyItem extends StatelessWidget {
                       const SizedBox(height: 20),
                       TextFieldWidget(
                         label: " اسم الفني ",
-                        hintText: "  اسم الفني ",
+                        hintText: "  اضافه اسم الفني ",
                         controller: cubit.nameController,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
+                        errorMessage: 'من فضلك ادخل اسم الفني',
                       ),
                       const SizedBox(height: 15),
                       DropButton(
@@ -52,7 +53,6 @@ class AddDailyItem extends StatelessWidget {
                         height: 50,
                         color: Colors.white,
                         hintText: 'عمل',
-                        borderRadius: 10,
                         value: cubit.selectedType,
                         onChanged: (String? value) {
                           cubit.setSelectedType(value);
@@ -71,7 +71,7 @@ class AddDailyItem extends StatelessWidget {
                       SizedBox(height: 15),
                       TextFieldWidget(
                         label: " ملاحظات ",
-                        hintText: " ملاحظات ",
+                        hintText: "  اضافه ملاحظات ",
                         maxLines: 3,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,

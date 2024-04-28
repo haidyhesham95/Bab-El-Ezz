@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared_utils/styles/colors.dart';
 import '../../../../shared_utils/styles/text.dart';
+import '../../../../shared_utils/utils/widget/data_text_field.dart';
 import '../../../../shared_utils/utils/widget/drop_menu.dart';
 import '../../../../shared_utils/utils/widget/text_field.dart';
 
@@ -17,35 +18,23 @@ DataRow supplierTableItem(context , dynamic Function()? onPressed) {
   )),
       DataCell(Text('dfdd')),
       DataCell(
-          TextFieldWidget(
-            height: size.height * 0.05,
-            width: size.width * 0.6,
-            hintText: 'هايدي',
-            hintStyle: AppStyles.styleRegular14(context)
-                .copyWith(color: Colors.grey.shade300),
-            onChanged: (value) {},
-            color: Colors.transparent,
-          )),
+          DataTextField(
+            hintText: 'ادخل اسمك',
+
+          )
+
+      ),
       DataCell(
-          TextFieldWidget(
-            height: size.height * 0.05,
-            width: size.width * 0.6,
-            hintText: '0111',
-            hintStyle: AppStyles.styleRegular14(context)
-                .copyWith(color: Colors.grey.shade300),
-            onChanged: (value) {},
-            color: Colors.transparent,
-          )),
+        DataTextField(
+          hintText: " +20 ",
+
+        )
+      ),
       DataCell(
-          TextFieldWidget(
-            height: size.height * 0.05,
-            width: size.width * 0.6,
-            hintText: 'name',
-            hintStyle: AppStyles.styleRegular14(context)
-                .copyWith(color: Colors.grey.shade300),
-            onChanged: (value) {},
-            color: Colors.transparent,
-          )),
+      DataTextField(
+        hintText:' ادخل اسم الشركه '
+      )
+      ),
       DataCell(Text('dfdd')),
       DataCell(Text('dfdd')),
       DataCell(Text('dfdd')),

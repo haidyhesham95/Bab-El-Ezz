@@ -12,7 +12,7 @@ final List<DataRow> rows;
   @override
   Widget build(BuildContext context) {
     return DataTable(
-        dataTextStyle: AppStyles.styleRegular16(context).copyWith(color: Colors.white),
+        dataTextStyle: AppStyles.styleRegular14(context).copyWith(color: Colors.white),
     headingTextStyle: AppStyles.styleRegular16(context).copyWith(color: Colors.white),
     showCheckboxColumn: true,
 

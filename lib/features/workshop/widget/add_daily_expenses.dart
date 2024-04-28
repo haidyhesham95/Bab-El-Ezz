@@ -19,19 +19,20 @@ class AddDailyExpenses extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-
             TextFieldWidget(
               label: " البند ",
-              hintText: " البند ",
+              hintText: " اضافه البند ",
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
+              errorMessage: 'الرجاء ادخال البند',
             ),
             const SizedBox(height: 15 ),
             TextFieldWidget(
               label: " المبلغ ",
-              hintText: " المبلغ ",
+              hintText: "اضافه المبلغ ",
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
+              errorMessage: 'الرجاء ادخال المبلغ',
             ),
 
           ],

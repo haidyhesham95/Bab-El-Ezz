@@ -17,5 +17,6 @@ class RegisterCubit extends Cubit<RegisterState> {
   TextEditingController branchNameController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController ownerNameController = TextEditingController();
-
+  TextEditingController newPasswordController = TextEditingController();
+  TextEditingController newConfirmPasswordController = TextEditingController();
 }

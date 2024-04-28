@@ -7,6 +7,7 @@ Align textAlign (BuildContext context, String text,{  TextStyle? style}) {
       alignment: Alignment.centerRight,
       child: Text(
         text,
-        style:style?? AppStyles.styleMedium18(context),
+        style:style??  AppStyles.styleMedium16(context),
+
       ));
 }

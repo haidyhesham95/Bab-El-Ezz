@@ -39,21 +39,22 @@ class AddClient extends StatelessWidget {
                   controller: cubit.clientNameController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
+                  errorMessage: 'الرجاء ادخال الاسم',
                 ),
                 const SizedBox(height: 10,),
                  TextFieldWidget(
                   label: " رقم الهاتف الخاص بالواتس اب ",
-                  hintText: " رقم الهاتف ",
+                  hintText: " +20 ",
                   controller: cubit.phoneNameController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
+                  errorMessage: 'الرجاء ادخال رقم الهاتف',
                 ),
 
-                const SizedBox(height: 10,),
+                const SizedBox(height: 15,),
 
                 DropButton(
                    styleHint:AppStyles.styleRegular14(context).copyWith(color: ColorsAsset.kDarkBrown,) ,
-                  borderRadius: 10,
                   hintText: 'نوع السيارة',
                   //value: cubit.selectedValue,
                   onChanged: (String? value) {},
@@ -63,12 +64,11 @@ class AddClient extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 10,),
+                const SizedBox(height: 15,),
 
                 DropButton(
 
                   styleHint:AppStyles.styleRegular14(context).copyWith(color: ColorsAsset.kDarkBrown,) ,
-                  borderRadius: 10,
                   hintText: 'موديل السيارة',
                   //value: cubit.selectedValue,
                   onChanged: (String? value) {},
@@ -78,11 +78,10 @@ class AddClient extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 10,),
+                const SizedBox(height: 15,),
 
                 DropButton(
                   styleHint:AppStyles.styleRegular14(context).copyWith(color: ColorsAsset.kDarkBrown,) ,
-                  borderRadius: 10,
                   hintText: 'لون السيارة',
                   //value: cubit.selectedValue,
                   onChanged: (String? value) {},
@@ -93,11 +92,10 @@ class AddClient extends StatelessWidget {
                 ),
 
 
-                const SizedBox(height: 10,),
+                const SizedBox(height: 15,),
 
                 DropButton(
                   styleHint:AppStyles.styleRegular14(context).copyWith(color: ColorsAsset.kDarkBrown,) ,
-                  borderRadius: 10,
                   hintText: 'سنة الصنع : ',
                   //value: cubit.selectedValue,
                   onChanged: (String? value) {},
@@ -112,27 +110,30 @@ class AddClient extends StatelessWidget {
 
                  TextFieldWidget(
                   label: " عداد الكيلو ميترات ",
-                  hintText: " العداد ",
+                  hintText: " العدد ",
                   controller: cubit.counterController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
+                   errorMessage: 'الرجاء ادخال العدد',
                 ),
                 const SizedBox(height: 10,),
 
                  TextFieldWidget(
                   label: " رقم الشاسية ",
-                  hintText: " رقم الشاسية ",
+                  hintText: " اداخل رقم الشاسية ",
                   controller: cubit.screenNumberController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
+                   errorMessage: 'الرجاء ادخال رقم الشاسية',
                 ),
                 const SizedBox(height: 10,),
                  TextFieldWidget(
                   label: " رقم الموتور ",
-                  hintText: " رقم الموتور ",
+                  hintText: " اداخل رقم الموتور ",
                   controller: cubit.motorNumberController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
+                    errorMessage: 'الرجاء ادخال رقم الموتور',
                 ),
                 const SizedBox(height: 15),
                 textAlign(context,' نوع ناقل الحركة '),

@@ -1,3 +1,4 @@
+import 'package:bab_el_ezz/shared_utils/utils/widget/data_text_field.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared_utils/styles/text.dart';
@@ -15,30 +16,22 @@ DataRow dataRowReceiptData(context,) {
           )),
       DataCell(Text('50000')),
       DataCell(
-          TextFieldWidget(
-            height: size.height * 0.05,
-            width: size.width * 0.6,
-            hintText: 'hhh',
-            hintStyle: AppStyles.styleRegular14(context)
-                .copyWith(color: Colors.grey.shade300),
-            onChanged: (value) {},
-            color: Colors.transparent,
-          )),      DataCell(Text('50000')),
+          DataTextField(
+            hintText: 'اضافه صنف',
+
+
+          )
+      ),      DataCell(Text('50000')),
       DataCell(Text('1200')),
       DataCell(Text('1200')),
       DataCell(Text('1200')),
 
 
       DataCell(
-          TextFieldWidget(
-            height: size.height * 0.05,
-            width: size.width * 0.6,
-            hintText: 'hhh',
-            hintStyle: AppStyles.styleRegular14(context)
-                .copyWith(color: Colors.grey.shade300),
-            onChanged: (value) {},
-            color: Colors.transparent,
-          )),
+          DataTextField(
+            hintText: 'اضافه ملاحظه',
+          )
+          ),
     ],
   );
 }
