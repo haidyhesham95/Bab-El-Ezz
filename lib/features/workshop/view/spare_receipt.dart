@@ -43,6 +43,7 @@ class SpareReceipt extends StatelessWidget {
                            width: size.width * 0.4,
                            hintText: 'الاسم',
                            hintStyle: AppStyles.styleRegular10(context),
+                           style: AppStyles.styleRegular10(context),
                            borderRadius: 4,
                            controller: cubit.nameController,
                            onChanged: (value) {},
@@ -56,6 +57,8 @@ class SpareReceipt extends StatelessWidget {
                            width: size.width * 0.4,
                            hintText: 'الموجود عليه الواتساب',
                            hintStyle: AppStyles.styleRegular10(context),
+                           style: AppStyles.styleRegular10(context),
+
                            borderRadius: 4,
                            controller: cubit.phoneController,
                            onChanged: (value) {},
