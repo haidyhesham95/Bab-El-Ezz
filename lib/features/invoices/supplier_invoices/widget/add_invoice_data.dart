@@ -1,10 +1,10 @@
-import 'package:bab_el_ezz/shared_utils/utils/widget/action_button.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../shared_utils/styles/colors.dart';
 import '../../../../shared_utils/styles/text.dart';
+import '../../../../shared_utils/utils/widget/button_widget.dart';
 import '../../../new_job-order/widgets/drop_button.dart';
 import '../../invoices/widget/add_image.dart';
 import '../manager/supplier_invoice/supplier_invoice_cubit.dart';
@@ -22,16 +22,7 @@ class AddInvoicesData extends StatelessWidget {
             builder: (context, state) {
               SupplierInvoiceCubit cubit = SupplierInvoiceCubit.get(context);
               return Scaffold(
-                appBar: constAppBar(context, ' اضافة فاتوره', actions: [
-                  actionButton(
-                    context,
-                    () {
-                      if (cubit.formKey.currentState!.validate()) {
-                        Navigator.pop(context);
-                      }
-                    },
-                  )
-                ]),
+                appBar: constAppBar(context, ' اضافة فاتوره', ),
                 body: SingleChildScrollView(
                   child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -74,6 +65,20 @@ class AddInvoicesData extends StatelessWidget {
                               errorMessage: 'برجاء ادخال رقم الفاتوره',
 
                             ),
+                            SizedBox(height:50 ,),
+                            ButtonWidget(
+                              hasElevation: true,
+                              height: size.height * 0.05,
+                              text: ' إضافة  ',
+                              onPressed: () {
+                                if (cubit.formKey.currentState!.validate()) {
+                                  Navigator.pop(context);
+                                }
+
+                              },
+
+                            ),
+                            const SizedBox(height: 20,),
                           ],
                         ),
                       )),

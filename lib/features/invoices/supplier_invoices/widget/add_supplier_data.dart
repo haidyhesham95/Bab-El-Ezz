@@ -20,7 +20,7 @@ class AddSuppliersData extends StatelessWidget {
             builder: (context, state) {
               SupplierInvoiceCubit cubit = SupplierInvoiceCubit.get(context);
               return Scaffold(
-                appBar: constAppBar(context, '  إضافة تاجر/مورد ', ),
+                appBar: constAppBar(context, 'إضافة تاجر/مورد ', ),
                 body: SingleChildScrollView(
                   child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -61,23 +61,14 @@ class AddSuppliersData extends StatelessWidget {
                               keyboardType: TextInputType.name,
                               errorMessage: '(الاسم يجب ان يحتوي علي 3 احرف علي الاقل)',
                             ),
-                            const SizedBox(height: 15,),
 
-                            TextFieldWidget(
-                              label: " عدد الفواتير ",
-                              hintText: " ادخل عدد الفواتير",
-                              controller: cubit.invoiceNumberController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.number,
-                              errorMessage: '(عدد الفواتير يجب ان يكون اكبر من 0)',
-                            ),
 
 
                             const SizedBox(height: 50,),
                             ButtonWidget(
                               hasElevation: true,
                               height: size.height * 0.05,
-                              text: ' إضافة تاجر/مورد ',
+                              text: ' إضافة  ',
                               onPressed: () {
                                 if (cubit.formKey1.currentState!.validate()) {
                                   Navigator.pop(context);

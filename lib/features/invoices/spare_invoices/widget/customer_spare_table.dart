@@ -11,12 +11,8 @@ class CustomerSpareTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
         columns: [
-          DataColumn(label: Container(
-            margin: const EdgeInsets.all(5),
-            child: addIconButton(context,(){
-              Navigator.pushNamed(context, 'addCustomerSpareData');
-            }),
-          )),
+          DataColumn(label: AddIconButton(onPressed: (){Navigator.pushNamed(context, 'addCustomerSpareData');},text: 'إضافة عميل',  )),
+
           const DataColumn(label: Text('مسلسل')),
           const DataColumn(label: Text('الاسم')),
           const DataColumn(label: Text('رقم التليفون')),

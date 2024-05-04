@@ -1,5 +1,7 @@
+import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
+import '../../../../shared_utils/styles/text.dart';
 import '../../../../shared_utils/utils/widget/add_icon_button.dart';
 import '../../../../shared_utils/utils/widget/drop_menu.dart';
 
@@ -8,18 +10,15 @@ class InvoicesSuppliersTable extends StatelessWidget {
   final bool showAllDataInvoices ;
   @override
   Widget build(BuildContext context) {
+      final size = MediaQuery.of(context).size;
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
         columns: [
-          DataColumn(label: Container(
-            margin: const EdgeInsets.all(5),
-            child: addIconButton(context,(){
-              Navigator.pushNamed(context, 'addInvoiceData');
+          DataColumn(label: AddIconButton(onPressed: (){Navigator.pushNamed(context, 'addInvoiceData');},  )),
 
-            }),
-          )),
-    if (showAllDataInvoices) ...[
+          if (showAllDataInvoices) ...[
 
     const DataColumn(label: Text('مسلسل')),
           ],

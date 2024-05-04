@@ -8,17 +8,15 @@ class SupplierTable extends StatelessWidget {
  final bool showAllDataSuppliers ;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
         columns: [
-          DataColumn(label: Container(
-            margin: const EdgeInsets.all(5),
-            child: addIconButton(context,(){
-              Navigator.pushNamed(context, 'addSuppliersData');
+          DataColumn(label: AddIconButton(text:"إضافة تاجر/مورد",onPressed: (){Navigator.pushNamed(context, 'addSuppliersData');},width: size.width*0.35,  )),
 
-            }),
-          )),
+
     if (showAllDataSuppliers) ...[
 
     const DataColumn(label: Text('مسلسل')),

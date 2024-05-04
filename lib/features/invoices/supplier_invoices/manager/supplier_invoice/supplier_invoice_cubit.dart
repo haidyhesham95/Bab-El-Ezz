@@ -14,7 +14,6 @@ class SupplierInvoiceCubit extends Cubit<SupplierInvoiceState> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController companyNameController = TextEditingController();
-  TextEditingController invoiceNumberController = TextEditingController();
 
 
 

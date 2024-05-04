@@ -93,6 +93,7 @@ class TextFieldWidget extends StatelessWidget {
           width: width ?? size.width,
           child: TextFormField(
 
+
             textAlignVertical: TextAlignVertical.center,
             textDirection: TextDirection.rtl,
             style: style ??

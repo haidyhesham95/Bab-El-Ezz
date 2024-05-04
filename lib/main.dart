@@ -2,7 +2,7 @@ import 'package:bab_el_ezz/features/auth/manager/login/login_cubit.dart';
 import 'package:bab_el_ezz/features/auth/view/login_view.dart';
 import 'package:bab_el_ezz/features/auth/view/register_view1.dart';
 import 'package:bab_el_ezz/features/invoices/returned_invoices/view/returned_invoices.dart';
-import 'package:bab_el_ezz/features/setting/theme_cubit.dart';
+import 'package:bab_el_ezz/features/setting/manager/theme/theme_cubit.dart';
 import 'package:bab_el_ezz/features/staff/view/staff_page.dart';
 import 'package:bab_el_ezz/features/store/widget/add_item_store.dart';
 import 'package:bab_el_ezz/features/workshop/add_client/view/add_client.dart';

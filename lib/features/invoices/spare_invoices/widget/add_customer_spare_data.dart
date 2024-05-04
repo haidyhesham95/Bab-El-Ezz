@@ -1,9 +1,9 @@
-import 'package:bab_el_ezz/shared_utils/utils/widget/action_button.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../shared_utils/utils/widget/button_widget.dart';
 import '../manager/spare_invoices/spare_invoices_cubit.dart';
 
 
@@ -20,12 +20,7 @@ class AddCustomerSpareData extends StatelessWidget {
             builder: (context, state) {
               SpareInvoicesCubit cubit = SpareInvoicesCubit.get(context);
               return Scaffold(
-                appBar: constAppBar(context, ' اضافة عميل', actions: [
-                  actionButton(
-                    context,
-                        () {},
-                  )
-                ]),
+                appBar: constAppBar(context, ' اضافة عميل',),
                 body: SingleChildScrollView(
                   child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -57,6 +52,21 @@ class AddCustomerSpareData extends StatelessWidget {
                               keyboardType: TextInputType.number,
                               errorMessage: '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
                             ),
+                            const SizedBox(height: 50),
+
+                            ButtonWidget(
+                              hasElevation: true,
+                              height: size.height * 0.05,
+                              text: ' إضافة  ',
+                              onPressed: () {
+                                if (cubit.formKey.currentState!.validate()) {
+                                  Navigator.pop(context);
+                                }
+
+                              },
+
+                            ),
+                            const SizedBox(height: 20,),
                           ],
                         ),
                       )),

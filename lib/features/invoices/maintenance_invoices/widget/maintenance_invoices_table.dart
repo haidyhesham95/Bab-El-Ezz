@@ -14,13 +14,8 @@ class MaintenanceInvoiceTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
           columns: [
-            DataColumn(label: Container(
-              margin: const EdgeInsets.all(5),
-              child: addIconButton(context,(){
-                Navigator.pushNamed(context, 'newJobOrderPage');
+            DataColumn(label: AddIconButton(onPressed: (){Navigator.pushNamed(context, 'newJobOrderPage');},  )),
 
-              }),
-            )),
     if (showAllDataInvoices) ...[
 
     const DataColumn(label: Text('مسلسل')),

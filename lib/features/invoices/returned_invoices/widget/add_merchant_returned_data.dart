@@ -1,14 +1,23 @@
+import 'package:bab_el_ezz/features/invoices/returned_invoices/widget/add_items_marchant_returned.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../shared_utils/styles/text.dart';
 import '../../../new_job-order/widgets/drop_button.dart';
 import '../manager/returned_invoices_cubit.dart';
 
-class AddMerchantReturnedData extends StatelessWidget {
+class AddMerchantReturnedData extends StatefulWidget {
   const AddMerchantReturnedData({super.key});
+
+  @override
+  State<AddMerchantReturnedData> createState() => _AddMerchantReturnedDataState();
+}
+
+class _AddMerchantReturnedDataState extends State<AddMerchantReturnedData> {
+  List<Widget> items = [];
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +36,7 @@ class AddMerchantReturnedData extends StatelessWidget {
                 return Form(
                   key:cubit.formKey1,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 20),
                       DropButton(
@@ -137,8 +146,17 @@ class AddMerchantReturnedData extends StatelessWidget {
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.text,
                       ),
+                      const SizedBox(height: 15,),
 
-
+                      ...items,
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            items.add(AddItemsMerchantReturned());
+                          });
+                        },
+                        child: Text('اضافه صنف اخر',style: AppStyles.styleRegular14(context).copyWith(color: Colors.white),),
+                      ),
 
 
 
@@ -146,7 +164,7 @@ class AddMerchantReturnedData extends StatelessWidget {
                       ButtonWidget(
                         hasElevation: true,
                         height: size.height * 0.05,
-                        text: 'إضافة فاتورة',
+                        text: 'إضافة ',
                         onPressed: () {
                           if (cubit.formKey1.currentState!.validate()) {
                             Navigator.pop(context);

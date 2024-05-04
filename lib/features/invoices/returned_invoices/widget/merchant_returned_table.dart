@@ -13,14 +13,10 @@ class MerchantReturnedTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
           columns: [
+            DataColumn(label: AddIconButton(onPressed: (){Navigator.pushNamed(context, 'addMerchantReturnedData');},  )),
 
-            DataColumn(label: Container(
-              margin: const EdgeInsets.all(5),
-              child: addIconButton(context,(){
-                Navigator.pushNamed(context, 'addMerchantReturnedData');
 
-              }),
-            )),
+
             const DataColumn(label: Text('مسلسل')),
             const DataColumn(label: Text('الصنف')),
             const DataColumn(label: Text('الكمية')),

@@ -13,13 +13,9 @@ class MaintenanceCustomerTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
         columns: [
-          DataColumn(label: Container(
-            margin: const EdgeInsets.all(5),
-            child: addIconButton(context,(){
-              Navigator.pushNamed(context, 'addClient');
-            
-            }),
-          )),
+          DataColumn(label: AddIconButton(onPressed: (){Navigator.pushNamed(context, 'addClient');},text: 'إضافة عميل',  )),
+
+
           if (showAllDataCustomers) ...[
           const DataColumn(label: Text('مسلسل')),
     ],
