@@ -13,20 +13,20 @@ DataRow dataRowReceiptData(context,) {
             onTapEdit: () {},
             onTapDelete: () {},
           )),
-      DataCell(Text('50000')),
-      DataCell(
+      const DataCell(Text('50000')),
+      const DataCell(
           DataTextField(
             hintText: 'اضافه صنف',
 
 
           )
-      ),      DataCell(Text('50000')),
-      DataCell(Text('1200')),
-      DataCell(Text('1200')),
-      DataCell(Text('1200')),
+      ),      const DataCell(Text('50000')),
+      const DataCell(Text('1200')),
+      const DataCell(Text('1200')),
+      const DataCell(Text('1200')),
 
 
-      DataCell(
+      const DataCell(
           DataTextField(
             hintText: 'اضافه ملاحظه',
           )

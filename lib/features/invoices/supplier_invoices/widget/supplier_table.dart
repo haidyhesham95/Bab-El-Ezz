@@ -12,10 +12,13 @@ class SupplierTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
         columns: [
-          DataColumn(label: addIconButton(context,(){
-            Navigator.pushNamed(context, 'addSuppliersData');
+          DataColumn(label: Container(
+            margin: const EdgeInsets.all(5),
+            child: addIconButton(context,(){
+              Navigator.pushNamed(context, 'addSuppliersData');
 
-          })),
+            }),
+          )),
     if (showAllDataSuppliers) ...[
 
     const DataColumn(label: Text('مسلسل')),
@@ -43,21 +46,21 @@ class SupplierTable extends StatelessWidget {
                   )),
         if (showAllDataSuppliers) ...[
 
-    DataCell(Text('dfdd')),
+    const DataCell(Text('dfdd')),
                 ],
 
-                DataCell(Text('hhh')),
-              DataCell(Text('dfdd')),
-              DataCell(Text('dfdd')),
+                const DataCell(Text('hhh')),
+              const DataCell(Text('dfdd')),
+              const DataCell(Text('dfdd')),
     if (showAllDataSuppliers) ...[
 
 
-    DataCell(Text('dfdd')),
-              DataCell(Text('dfdd')),
-              DataCell(Text('dfdd')),
+    const DataCell(Text('dfdd')),
+              const DataCell(Text('dfdd')),
+              const DataCell(Text('dfdd')),
               ],
 
-              DataCell(Text('---')),
+              const DataCell(Text('---')),
 
             ],
           ),

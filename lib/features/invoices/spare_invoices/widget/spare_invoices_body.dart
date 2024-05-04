@@ -17,7 +17,7 @@ class SpareInvoicesBody extends StatelessWidget {
               TopInvoicesSearch(
                 onPressedSearch: (){},
               ),
-              InvoiceSpareTable( ),
+              const InvoiceSpareTable( ),
 
               TopInvoicesSearch(
                 onPressedSearch: (){},
@@ -26,7 +26,7 @@ class SpareInvoicesBody extends StatelessWidget {
                 hintText:  'البحث عن عميل'
 
               ),
-              CustomerSpareTable(
+              const CustomerSpareTable(
               )
 
             ],

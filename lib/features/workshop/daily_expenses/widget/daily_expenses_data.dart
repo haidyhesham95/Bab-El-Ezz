@@ -16,10 +16,10 @@ class DailyExpensesData extends StatelessWidget {
             onPressed: (){
               Navigator.pushNamed(context, "addDailyExpenses");
             },
-            icon: Icon(Icons.add,color:  Colors.white,size: 20,))),
-        DataColumn(label: Text('البند')),
-        DataColumn(label: Text('المبلغ')),
-        DataColumn(label: Text('الاجمالي')),
+            icon: const Icon(Icons.add,color:  Colors.white,size: 20,))),
+        const DataColumn(label: Text('البند')),
+        const DataColumn(label: Text('المبلغ')),
+        const DataColumn(label: Text('الاجمالي')),
       ],
       rows: List.generate(
         5,
@@ -31,9 +31,9 @@ class DailyExpensesData extends StatelessWidget {
                   onTapDelete: () {},
                 )),
 
-            DataCell(Text('5222')),
-            DataCell(Text('5000000')),
-            DataCell(Text('1200')),
+            const DataCell(Text('5222')),
+            const DataCell(Text('5000000')),
+            const DataCell(Text('1200')),
           ],
         ),
       ),

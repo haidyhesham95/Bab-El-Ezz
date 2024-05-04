@@ -1,6 +1,5 @@
 import 'package:bab_el_ezz/features/auth/widget/add_logo.dart';
 import 'package:bab_el_ezz/features/auth/widget/location.dart';
-import 'package:bab_el_ezz/shared_utils/styles/text.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/material.dart';

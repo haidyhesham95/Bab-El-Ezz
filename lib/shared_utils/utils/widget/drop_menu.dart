@@ -11,9 +11,9 @@ class DropMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  PopupMenuButton(
-      icon: RotationTransition(
-          turns: const AlwaysStoppedAnimation(90 / 360),
-          child: const Icon(Icons.more_vert,color:  ColorsAsset.kGreen,size: 20,)),
+      icon: const RotationTransition(
+          turns: AlwaysStoppedAnimation(90 / 360),
+          child: Icon(Icons.more_vert,color:  ColorsAsset.kGreen,size: 20,)),
       offset: const Offset(0, 15),
       color: Colors.white,
       elevation: 2,

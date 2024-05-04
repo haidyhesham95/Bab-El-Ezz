@@ -1,9 +1,7 @@
 import 'package:bab_el_ezz/shared_utils/utils/widget/data_text_field.dart';
 import 'package:flutter/material.dart';
 
-import '../../../shared_utils/styles/text.dart';
 import '../../../shared_utils/utils/widget/drop_menu.dart';
-import '../../../shared_utils/utils/widget/text_field.dart';
 
 DataRow tableItem(BuildContext context) {
   final size = MediaQuery.of(context).size;
@@ -14,20 +12,20 @@ DataRow tableItem(BuildContext context) {
           onTapDelete: () {},
         )),
 
-    DataCell(
+    const DataCell(
       DataTextField(
   hintText: 'اضافه صنف',
   ),
        ),
-    DataCell(Text('25')),
-    DataCell(Text('250')),
-    DataCell(Text('الخصم')),
-    DataCell(
+    const DataCell(Text('25')),
+    const DataCell(Text('250')),
+    const DataCell(Text('الخصم')),
+    const DataCell(
       DataTextField(
         hintText: 'اضافه مصنعية',
       ),
-    ),    DataCell(Text('الإجمالي')),
-    DataCell(
+    ),    const DataCell(Text('الإجمالي')),
+    const DataCell(
       DataTextField(
   hintText: 'اضافه ملاحظه',
       )),

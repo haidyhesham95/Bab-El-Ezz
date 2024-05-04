@@ -21,12 +21,12 @@ class ViewDetailsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20,),
-              RowText("اسم العامل :", "الاسم ..."),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
+              const RowText("اسم العامل :", "الاسم ..."),
+              const SizedBox(height: 20,),
               ListView.separated(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 separatorBuilder: (context, index) => const SizedBox(height: 15),
                 itemCount: 6,
                   itemBuilder: (context, index){
@@ -40,15 +40,15 @@ class ViewDetailsPage extends StatelessWidget {
                         Align(
                           alignment: Alignment.center,
                             child: Text('التاريخ',style: AppStyles.styleSemiBold16(context),)),
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
 
-                        RowText(' عمل /اجازة : ', "عمل"),
-                        RowText('وقت الحضور : ', "3:00pm."),
-                        RowText('وقت الانصراف : ', "3:00pm."),
-                        RowText('مكافأة : ', "...."),
-                        RowText('خصم : ', "...."),
-                        RowText('سلفة-مصروف : ', "...."),
-                        RowText('ملاحظات : ', "لايوجد"),
+                        const RowText(' عمل /اجازة : ', "عمل"),
+                        const RowText('وقت الحضور : ', "3:00pm."),
+                        const RowText('وقت الانصراف : ', "3:00pm."),
+                        const RowText('مكافأة : ', "...."),
+                        const RowText('خصم : ', "...."),
+                        const RowText('سلفة-مصروف : ', "...."),
+                        const RowText('ملاحظات : ', "لايوجد"),
                         Text('تم تصفية الحساب',style: AppStyles.styleSemiBold16(context).copyWith(color: ColorsAsset.kGreen),),
 
                       ],
@@ -57,7 +57,7 @@ class ViewDetailsPage extends StatelessWidget {
 
                   }
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
 
             ]
           ),

@@ -28,12 +28,12 @@ class SpareReceipt extends StatelessWidget {
           children: [
              Expanded(
                child: SingleChildScrollView(
-                 physics: BouncingScrollPhysics(),
+                 physics: const BouncingScrollPhysics(),
                  child: Column(
                    mainAxisAlignment: MainAxisAlignment.start,
                    crossAxisAlignment: CrossAxisAlignment.start,
                    children: [
-                     SizedBox(height: 20),
+                     const SizedBox(height: 20),
                      Row(
                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                        children: [
@@ -68,7 +68,7 @@ class SpareReceipt extends StatelessWidget {
 
                        ],
                      ),
-                     SizedBox(height: 20),
+                     const SizedBox(height: 20),
                      SingleChildScrollView(
                        scrollDirection: Axis.horizontal,
                        child: SpareReceiptData(
@@ -80,12 +80,12 @@ class SpareReceipt extends StatelessWidget {
                          }
                        ),
                      ),
-                     SizedBox(height: 20),
+                     const SizedBox(height: 20),
                    ],
                  ),
                ),
              ),
-            SpareReceiptButtons(),
+            const SpareReceiptButtons(),
             const SizedBox(height: 15),
           ],
     );

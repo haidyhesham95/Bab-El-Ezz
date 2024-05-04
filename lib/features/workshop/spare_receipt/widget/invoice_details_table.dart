@@ -8,7 +8,7 @@ class InvoiceDetailsTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomDataTable(
-        columns: [
+        columns: const [
 
           DataColumn(label: Text('مسلسل')),
           DataColumn(label: Text('الصنف')),
@@ -19,7 +19,7 @@ class InvoiceDetailsTable extends StatelessWidget {
 
           DataColumn(label: Text('ملاحظات')),
         ],
-        rows:  List. generate(3,( index) => DataRow(
+        rows:  List. generate(3,( index) => const DataRow(
     cells: <DataCell>[
     DataCell(Text('5222')),
     DataCell(Text('5000000')),

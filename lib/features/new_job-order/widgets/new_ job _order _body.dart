@@ -1,7 +1,6 @@
 import 'package:bab_el_ezz/features/new_job-order/manager/new_job/new_job_cubit.dart';
 import 'package:bab_el_ezz/features/new_job-order/widgets/table_item.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/pay_container.dart';
-import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
 import 'package:bab_el_ezz/shared_utils/styles/text.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_align.dart';
 import 'package:flutter/material.dart';

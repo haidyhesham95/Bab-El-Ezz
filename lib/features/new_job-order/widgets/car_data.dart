@@ -1,7 +1,4 @@
-import 'package:bab_el_ezz/shared_utils/utils/widget/data_text_field.dart';
-import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/material.dart';
-import '../../../shared_utils/styles/text.dart';
 import '../../../shared_utils/utils/widget/row_text.dart';
 import 'gray_container.dart';
 
@@ -14,7 +11,7 @@ class CarData extends StatelessWidget {
     return   GrayContainer(
       padding: const EdgeInsets.only(right: 10),
       height:  size.height * 0.25,
-      child: Row(
+      child: const Row(
        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

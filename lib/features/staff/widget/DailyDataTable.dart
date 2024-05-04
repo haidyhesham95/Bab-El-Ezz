@@ -27,19 +27,19 @@ class DailyDataTable extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: SingleChildScrollView(
                 child: CustomDataTable(
-                  columns: [
+                  columns: const [
                     DataColumn(
                       label: Text(''),
                     ),
-                    const DataColumn(label: Text(' اسم الفني ')),
-                    const DataColumn(label: Text(' عمل/اجازة ')),
-                    const DataColumn(label: Text(' وقت الحضور ')),
-                    const DataColumn(label: Text(' وقت االانصراف ')),
-                    const DataColumn(label: Text(' مكافأة ')),
-                    const DataColumn(label: Text(' خصم ')),
-                    const DataColumn(label: Text(' سلفة-مصروف ')),
-                    const DataColumn(label: Text(' ملاحظات ')),
-                    const DataColumn(label: Text(' تصفية حساب ')),
+                    DataColumn(label: Text(' اسم الفني ')),
+                    DataColumn(label: Text(' عمل/اجازة ')),
+                    DataColumn(label: Text(' وقت الحضور ')),
+                    DataColumn(label: Text(' وقت االانصراف ')),
+                    DataColumn(label: Text(' مكافأة ')),
+                    DataColumn(label: Text(' خصم ')),
+                    DataColumn(label: Text(' سلفة-مصروف ')),
+                    DataColumn(label: Text(' ملاحظات ')),
+                    DataColumn(label: Text(' تصفية حساب ')),
                   ],
                   rows: List.generate(
                     2,
@@ -92,9 +92,9 @@ class DailyDataTable extends StatelessWidget {
                         cubit.setCheckOutTime
 
                       )),
-                      DataCell(Text('dfddh')),
-                      DataCell(Text('dfddh')),
-                      DataCell(Text('dfddh')),
+                      const DataCell(Text('dfddh')),
+                      const DataCell(Text('dfddh')),
+                      const DataCell(Text('dfddh')),
                       DataCell(
                         DataTextField(
                           hintText: 'اضافه ملاحظه',

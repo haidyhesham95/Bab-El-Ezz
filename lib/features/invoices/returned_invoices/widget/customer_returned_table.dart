@@ -1,9 +1,6 @@
 
-import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
-import '../../../../shared_utils/styles/text.dart';
 import '../../../../shared_utils/utils/widget/add_icon_button.dart';
 import '../../../../shared_utils/utils/widget/drop_menu.dart';
 
@@ -16,10 +13,13 @@ class CustomerReturnedTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
           columns: [
-            DataColumn(label: addIconButton(context,(){
-              Navigator.pushNamed(context, 'addCustomerReturnedData');
+            DataColumn(label: Container(
+              margin: const EdgeInsets.all(5),
+              child: addIconButton(context,(){
+                Navigator.pushNamed(context, 'addCustomerReturnedData');
 
-            })),
+              }),
+            )),
 
             const DataColumn(label: Text('مسلسل')),
             const DataColumn(label: Text('الصنف')),
@@ -38,12 +38,12 @@ class CustomerReturnedTable extends StatelessWidget {
                       onTapEdit: () {},
                       onTapDelete: () {},
                     )),
-                DataCell(Text('dfdd')),
-                DataCell(Text('hhhhhh')),
-                DataCell(Text('dfdd')),
-                DataCell(Text('dfdd')),
-                DataCell(Text('dfdd')),
-                DataCell(Text('dfdd')),
+                const DataCell(Text('dfdd')),
+                const DataCell(Text('hhhhhh')),
+                const DataCell(Text('dfdd')),
+                const DataCell(Text('dfdd')),
+                const DataCell(Text('dfdd')),
+                const DataCell(Text('dfdd')),
 
               ],
             ),

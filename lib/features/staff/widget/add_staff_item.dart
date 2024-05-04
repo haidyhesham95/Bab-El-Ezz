@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../shared_utils/styles/colors.dart';
-import '../../../shared_utils/styles/text.dart';
 import '../../../shared_utils/utils/widget/button_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -70,7 +68,7 @@ class AddStaffItem extends StatelessWidget {
                                 errorMessage: 'الرجاء ادخال الدرجة الوظيفية',
                               ),
 
-                              SizedBox(height: 15),
+                              const SizedBox(height: 15),
                               TextFieldWidget(
                                 label: " القيمة اليومية ",
                                 hintText: "  ادخال القيمة اليومية ",

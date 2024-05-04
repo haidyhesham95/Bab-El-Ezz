@@ -3,7 +3,6 @@ import 'package:bab_el_ezz/features/staff/widget/staff_data_table.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/floating_button.dart';
 import 'package:flutter/material.dart';
 
-import '../../../shared_utils/styles/colors.dart';
 
 class StaffTable extends StatelessWidget {
   const StaffTable({super.key});
@@ -17,7 +16,7 @@ class StaffTable extends StatelessWidget {
           Navigator.of(context).pushNamed('addStaffItem');
         }, text: 'اضافة عامل',),
 
-        body:SingleChildScrollView(
+        body:const SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: SingleChildScrollView(
             child: Padding(

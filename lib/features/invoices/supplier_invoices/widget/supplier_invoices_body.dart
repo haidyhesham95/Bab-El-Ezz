@@ -1,6 +1,5 @@
 import 'package:bab_el_ezz/features/invoices/supplier_invoices/widget/invoice_supplier_table.dart';
 import 'package:bab_el_ezz/features/invoices/supplier_invoices/widget/supplier_table.dart';
-import 'package:bab_el_ezz/features/invoices/supplier_invoices/widget/add_supplier_data.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,7 +56,7 @@ class _SupplierInvoicesBodyState extends State<SupplierInvoicesBody> {
                 ),
 
 
-                SizedBox(
+                const SizedBox(
                   height: 20,)
 
               ],

@@ -2,7 +2,6 @@ import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../shared_utils/utils/widget/action_button.dart';
 import '../../../../shared_utils/utils/widget/const_appbar.dart';
 import '../../../../shared_utils/utils/widget/text_field.dart';
 import '../manager/daily_expenses_cubit.dart';
@@ -22,7 +21,7 @@ class AddDailyExpenses extends StatelessWidget {
     builder: (context, state) {
     DailyExpensesCubit cubit = DailyExpensesCubit.get(context);
       return Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         height: size.height,
         width: size.width,
         child: Form(
@@ -48,7 +47,7 @@ class AddDailyExpenses extends StatelessWidget {
                 errorMessage: 'الرجاء ادخال المبلغ',
               ),
               //SizedBox(height: 50,),
-              Spacer(),
+              const Spacer(),
               ButtonWidget(
                 hasElevation: true,
                 text: 'اضافه',
@@ -62,7 +61,7 @@ class AddDailyExpenses extends StatelessWidget {
 
 
               ),
-              SizedBox(height: 20,)
+              const SizedBox(height: 20,)
 
             ],
           ),

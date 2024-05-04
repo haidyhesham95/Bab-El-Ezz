@@ -46,7 +46,7 @@ class MaintenanceInvoicesBody extends StatelessWidget {
                 MaintenanceCustomerTable(
                   showAllDataCustomers:cubit. showAllDataCustomers,
                 ),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
 
               ],
 

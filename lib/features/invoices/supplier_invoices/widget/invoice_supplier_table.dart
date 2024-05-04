@@ -12,10 +12,13 @@ class InvoicesSuppliersTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
         columns: [
-          DataColumn(label: addIconButton(context,(){
-            Navigator.pushNamed(context, 'addInvoiceData');
+          DataColumn(label: Container(
+            margin: const EdgeInsets.all(5),
+            child: addIconButton(context,(){
+              Navigator.pushNamed(context, 'addInvoiceData');
 
-          })),
+            }),
+          )),
     if (showAllDataInvoices) ...[
 
     const DataColumn(label: Text('مسلسل')),
@@ -44,19 +47,19 @@ class InvoicesSuppliersTable extends StatelessWidget {
               )),
         if (showAllDataInvoices) ...[
 
-    DataCell(Text('dfddh')),
+    const DataCell(Text('dfddh')),
               ],
-              DataCell(Text('dfddh')),
-              DataCell(Text('dfddh')),
-              DataCell(Text('dfddh')),
+              const DataCell(Text('dfddh')),
+              const DataCell(Text('dfddh')),
+              const DataCell(Text('dfddh')),
     if (showAllDataInvoices) ...[
 
-    DataCell(Text('dfddh')),
-              DataCell(Text('dfddh')),
-              DataCell(Text('dfddh')),
-              DataCell(Text('dfddh')),
+    const DataCell(Text('dfddh')),
+              const DataCell(Text('dfddh')),
+              const DataCell(Text('dfddh')),
+              const DataCell(Text('dfddh')),
               ],
-              DataCell(Text('dfddh')),
+              const DataCell(Text('dfddh')),
 
             ],
           ),

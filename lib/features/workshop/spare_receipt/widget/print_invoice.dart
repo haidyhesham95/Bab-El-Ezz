@@ -3,7 +3,6 @@ import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/row_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../shared_utils/utils/widget/appbar_widget.dart';
 import '../../../../shared_utils/utils/widget/const_appbar.dart';
 import '../../../new_job-order/widgets/gray_container.dart';
 
@@ -23,11 +22,11 @@ class PrintInvoice extends StatelessWidget {
           width: size.width,
           child: Column(
             children: [
-              SizedBox(height: 20,),
+              const SizedBox(height: 20,),
               GrayContainer(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 height: size.height * 0.25,
-                child:Column(
+                child:const Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children:  [
@@ -40,17 +39,17 @@ class PrintInvoice extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
 
-              SingleChildScrollView(
+              const SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                   child: InvoiceDetailsTable()),
-              Spacer(flex: 2,),
-              ButtonWidget(
+              const Spacer(flex: 2,),
+              const ButtonWidget(
                 hasElevation: true,
                 text: 'طباعة',
               ),
-              Spacer(flex: 1,),
+              const Spacer(flex: 1,),
 
             ],
           ),

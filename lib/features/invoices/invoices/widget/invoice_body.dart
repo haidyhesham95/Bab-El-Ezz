@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../generated/assets.dart';
-import '../../../../shared_utils/styles/text.dart';
 import 'build_item.dart';
 
 class InvoiceBody extends StatelessWidget {

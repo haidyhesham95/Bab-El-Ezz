@@ -22,7 +22,7 @@ class DailyTable extends StatelessWidget {
               style: AppStyles.styleBold15(context),
             ),
             const SizedBox(height: 20),
-            DailyDataTable(
+            const DailyDataTable(
 
             )
           ],

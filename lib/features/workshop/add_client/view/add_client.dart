@@ -1,5 +1,3 @@
-import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
-import 'package:bab_el_ezz/shared_utils/styles/text.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_align.dart';
@@ -32,7 +30,7 @@ class AddClient extends StatelessWidget {
            key:cubit.formKey,
               child: Column(
               children: [
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                  TextFieldWidget(
                   label: " اسم العميل ",
                   hintText: " الاسم ",

@@ -1,5 +1,3 @@
-import 'package:bab_el_ezz/features/invoices/maintenance_invoices/widget/maintenance_customer_table.dart';
-import 'package:bab_el_ezz/features/invoices/maintenance_invoices/widget/maintenance_invoices_table.dart';
 import 'package:bab_el_ezz/features/invoices/returned_invoices/widget/customer_returned_table.dart';
 import 'package:flutter/material.dart';
 

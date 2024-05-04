@@ -34,7 +34,7 @@ class EditProfile extends StatelessWidget {
                             child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 20,),
+                              const SizedBox(height: 20,),
                               Image.asset(Assets.imagesCarservices),
 
                               const SizedBox(height: 15),

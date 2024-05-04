@@ -44,7 +44,7 @@ class AddsItemsStore extends StatelessWidget {
                             keyboardType: TextInputType.number,
                             errorMessage: 'الرجاء ادخال كود الصنف',
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           TextFieldWidget(
                             label: " الكمية ",
                             hintText: " اضافه الكمية ",

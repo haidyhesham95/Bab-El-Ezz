@@ -117,7 +117,7 @@ class TextFieldWidget extends StatelessWidget {
             maxLines: maxLines ?? (expands ? null : 1),
             validator: validator ?? (value) {
               if (value!.isEmpty) {
-                return errorMessage ?? null;
+                return errorMessage;
               }
               return null;
             },

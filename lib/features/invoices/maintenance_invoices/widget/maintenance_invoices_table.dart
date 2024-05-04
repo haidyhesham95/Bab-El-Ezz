@@ -1,7 +1,5 @@
 import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
 import 'package:flutter/material.dart';
-import '../../../../shared_utils/styles/colors.dart';
-import '../../../../shared_utils/styles/text.dart';
 import '../../../../shared_utils/utils/widget/add_icon_button.dart';
 import '../../../../shared_utils/utils/widget/drop_menu.dart';
 
@@ -16,10 +14,13 @@ class MaintenanceInvoiceTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
           columns: [
-            DataColumn(label: addIconButton(context,(){
-              Navigator.pushNamed(context, 'newJobOrderPage');
+            DataColumn(label: Container(
+              margin: const EdgeInsets.all(5),
+              child: addIconButton(context,(){
+                Navigator.pushNamed(context, 'newJobOrderPage');
 
-            })),
+              }),
+            )),
     if (showAllDataInvoices) ...[
 
     const DataColumn(label: Text('مسلسل')),
@@ -47,18 +48,18 @@ class MaintenanceInvoiceTable extends StatelessWidget {
                         )),
         if (showAllDataInvoices) ...[
 
-    DataCell(Text('dfddh')),
+    const DataCell(Text('dfddh')),
                 ],
-                DataCell(Text('dfddh')),
-                DataCell(Text('dfddh')),
-                DataCell(Text('dfddh')),
+                const DataCell(Text('dfddh')),
+                const DataCell(Text('dfddh')),
+                const DataCell(Text('dfddh')),
         if (showAllDataInvoices) ...[
 
-    DataCell(Text('dfddh')),
-                DataCell(Text('dfddh')),
-                DataCell(Text('dfddh')),
+    const DataCell(Text('dfddh')),
+                const DataCell(Text('dfddh')),
+                const DataCell(Text('dfddh')),
               ],
-                DataCell(Text('dfddh')),
+                const DataCell(Text('dfddh')),
 
               ]
             ),

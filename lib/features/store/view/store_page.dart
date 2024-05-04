@@ -1,6 +1,4 @@
 import 'package:bab_el_ezz/features/store/widget/store_table.dart';
-import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
-import 'package:bab_el_ezz/shared_utils/styles/text.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/show_details_text.dart';
 import 'package:flutter/material.dart';
 import '../../../shared_utils/utils/widget/appbar_widget.dart';
@@ -24,11 +22,11 @@ class _StorePageState extends State<StorePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
             appBar: appBarWidget(context),
             body:  Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5,),
+              padding: const EdgeInsets.symmetric(horizontal: 5,),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     showDetailsText(context: context,  onPressed: () {
                       setState(() {
                         showAllColumns = !showAllColumns;

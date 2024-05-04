@@ -20,6 +20,7 @@ class SearchTextField extends StatelessWidget {
          cursorHeight: 15,
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(vertical: 6,horizontal: 6),
             alignLabelWithHint: true,
             fillColor: Colors.white,
             filled: true,
@@ -31,8 +32,8 @@ class SearchTextField extends StatelessWidget {
           hintStyle: AppStyles.styleRegular13(context).copyWith(
             color: ColorsAsset.kDarkBrown,
           ),
-
           border: OutlineInputBorder(
+
             borderRadius: BorderRadius.circular(4),
 
           ),

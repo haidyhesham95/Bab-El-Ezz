@@ -1,7 +1,6 @@
 import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
 import 'package:flutter/material.dart';
 import '../../../shared_utils/styles/text.dart';
-import '../../../shared_utils/utils/widget/add_icon_button.dart';
 import '../../../shared_utils/utils/widget/button_widget.dart';
 import '../../../shared_utils/utils/widget/drop_menu.dart';
 
@@ -12,15 +11,15 @@ class StaffDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomDataTable(
-      columns: [
-        const DataColumn(label: Text('')),
+      columns: const [
+        DataColumn(label: Text('')),
 
-    const DataColumn(label: Text(' اسم الفني ')),
-        const DataColumn(label: Text(' الرقم القومي ')),
-        const DataColumn(label: Text(' التخصص ')),
-        const DataColumn(label: Text(' الدرجة الوظيفية ')),
-        const DataColumn(label: Text(' القيمة اليومية ')),
-        const DataColumn(label: Text('التفاصيل ')),
+    DataColumn(label: Text(' اسم الفني ')),
+        DataColumn(label: Text(' الرقم القومي ')),
+        DataColumn(label: Text(' التخصص ')),
+        DataColumn(label: Text(' الدرجة الوظيفية ')),
+        DataColumn(label: Text(' القيمة اليومية ')),
+        DataColumn(label: Text('التفاصيل ')),
       ],
       rows: List.generate(
         1,
@@ -30,11 +29,11 @@ class StaffDataTable extends StatelessWidget {
               onTapEdit: () {},
               onTapDelete: () {},
             )),
-            DataCell(Text('dfdd')),
-            DataCell(Text('hhhhhh')),
-            DataCell(Text('dfdd')),
-            DataCell(Text('dfdd')),
-            DataCell(Text('dfdd')),
+            const DataCell(Text('dfdd')),
+            const DataCell(Text('hhhhhh')),
+            const DataCell(Text('dfdd')),
+            const DataCell(Text('dfdd')),
+            const DataCell(Text('dfdd')),
             DataCell(
               ButtonWidget(
                 height: 25,

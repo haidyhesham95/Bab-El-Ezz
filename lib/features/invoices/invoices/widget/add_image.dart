@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../shared_utils/styles/colors.dart';
@@ -25,7 +24,7 @@ Container addImage(context) {
     ),
     child: InkWell(
         onTap: () {},
-        child: Icon(
+        child: const Icon(
           Icons.add_a_photo_outlined, size: 50, color: ColorsAsset.kGreen,)),
 
   );
