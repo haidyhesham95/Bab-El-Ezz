@@ -15,11 +15,14 @@ class AddReceiptTable extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: CustomDataTable(
             columns: [
-              DataColumn(label: addIconButton(onPressed)),
+              DataColumn(label: IconButton(
+                icon: Icon(Icons.add, color: Colors.white,size: 25, ),
+                onPressed: onPressed,
+              )),
 
               DataColumn(label: Text(' الصنف ')),
               DataColumn(label: Text(' الكمية ')),
-              DataColumn(label: Text(' المبلغ ')),
+              DataColumn(label: Text(' السعر ')),
               DataColumn(label: Text(' الخصم ')),
               DataColumn(label: Text(' المصنعية ')),
               DataColumn(label: Text(' الإجمالي ')),

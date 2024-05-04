@@ -9,6 +9,8 @@ class NewJobCubit extends Cubit<NewJobState> {
 
 
   static NewJobCubit get(context) => BlocProvider.of(context);
+  TextEditingController kMController = TextEditingController();
+
 
   String? selectedValue;
 

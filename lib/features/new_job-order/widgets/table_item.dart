@@ -22,8 +22,11 @@ DataRow tableItem(BuildContext context) {
     DataCell(Text('25')),
     DataCell(Text('250')),
     DataCell(Text('الخصم')),
-    DataCell(Text('5%')),
-    DataCell(Text('الإجمالي')),
+    DataCell(
+      DataTextField(
+        hintText: 'اضافه مصنعية',
+      ),
+    ),    DataCell(Text('الإجمالي')),
     DataCell(
       DataTextField(
   hintText: 'اضافه ملاحظه',

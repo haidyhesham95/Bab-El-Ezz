@@ -8,8 +8,8 @@ class MaintenanceInvoices extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-        appBar: constAppBar(context, "فواتير الصيانة"),
-       body: const MaintenanceInvoiceBody(),
+      appBar: constAppBar(context, "فواتير الصيانة"),
+       body: const MaintenanceInvoicesBody(),
 
     );
   }

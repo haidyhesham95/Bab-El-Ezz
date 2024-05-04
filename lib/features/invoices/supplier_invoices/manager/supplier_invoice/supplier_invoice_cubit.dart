@@ -8,7 +8,14 @@ class SupplierInvoiceCubit extends Cubit<SupplierInvoiceState> {
 
   static SupplierInvoiceCubit get(context) => BlocProvider.of(context);
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey1 = GlobalKey<FormState>();
+
   TextEditingController supplierNameController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController companyNameController = TextEditingController();
+  TextEditingController invoiceNumberController = TextEditingController();
+
 
 
   String? selectedSupplierType;

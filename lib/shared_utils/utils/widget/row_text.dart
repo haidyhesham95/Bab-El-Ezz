@@ -11,11 +11,13 @@ final TextStyle? dataStyle;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(' $title ', style: textStyle ?? AppStyles.styleSemiBold16(context),),
-        Text(' $data ',style: dataStyle ?? AppStyles.styleSemiBold15(context)),
-      ],
+    return Center(
+      child: Row(
+        children: [
+          Text(' $title ', style: textStyle ?? AppStyles.styleSemiBold16(context),),
+          Text(' $data ',style: dataStyle ?? AppStyles.styleSemiBold14(context).copyWith(color: Colors.white)),
+        ],
+      ),
     );
   }
 }

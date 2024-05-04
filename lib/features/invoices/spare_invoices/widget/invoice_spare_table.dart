@@ -11,7 +11,7 @@ class InvoiceSpareTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
         columns: [
-          DataColumn(label: addIconButton( (){
+          DataColumn(label: addIconButton( context,(){
             Navigator.pushNamed(context, 'addInvoiceSpareData');
           })),
 

@@ -69,9 +69,10 @@ class RegisterView2 extends StatelessWidget {
                         keyboardType: TextInputType.text,
                       ),
                       const SizedBox(height: 10),
-                      const TextFieldWidget(
+                       TextFieldWidget(
                         label: " رقم هاتف آخر للتواصل(اختياري) ",
                         hintText: " +20 ",
+                        controller: cubit.phoneController,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                         errorMessage: "يجب ادخال رقم الهاتف",

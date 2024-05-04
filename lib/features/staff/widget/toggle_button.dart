@@ -2,8 +2,8 @@ import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
 import 'package:bab_el_ezz/shared_utils/styles/text.dart';
 import 'package:flutter/material.dart';
 
-class TableButton extends StatelessWidget {
-  const TableButton({super.key, required this.selectedIndex, required this.onPressed,});
+class ToggleButton extends StatelessWidget {
+  const ToggleButton({super.key, required this.selectedIndex, required this.onPressed,});
   final int selectedIndex;
   final Function(int) onPressed;
 

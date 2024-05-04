@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../../shared_utils/utils/widget/clip_path_gradient.dart';
 import '../../../../shared_utils/utils/widget/container_search.dart';
-import '../../../workshop/widget/clip_path_gradient.dart';
 
 class TopInvoicesSearch extends StatelessWidget {
   const TopInvoicesSearch({super.key,required this.onPressedSearch, this.height, this.hintText, this.text});

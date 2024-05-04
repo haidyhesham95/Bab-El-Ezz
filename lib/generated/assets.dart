@@ -23,21 +23,27 @@ class Assets {
   static const String imagesCars = 'assets/images/cars.png';
   static const String imagesCarservices = 'assets/images/carservices.png';
   static const String imagesCash = 'assets/images/cash.svg';
+  static const String imagesDarkMode = 'assets/images/dark_mode.svg';
   static const String imagesDb = 'assets/images/db.svg';
+  static const String imagesEditIcon = 'assets/images/edit_icon.svg';
   static const String imagesFawater = 'assets/images/fawater.svg';
   static const String imagesFeninin = 'assets/images/feninin.svg';
   static const String imagesGroup1 = 'assets/images/group1.svg';
   static const String imagesGroup2 = 'assets/images/group2.svg';
+  static const String imagesLightMode = 'assets/images/light_mode.svg';
   static const String imagesLocation = 'assets/images/location.svg';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesLogo1 = 'assets/images/logo1.png';
   static const String imagesLogo3 = 'assets/images/logo3.png';
+  static const String imagesLogoutIcon = 'assets/images/logout_icon.svg';
   static const String imagesNotification = 'assets/images/notification.svg';
   static const String imagesReceipt = 'assets/images/receipt.svg';
-  static const String imagesSetting = 'assets/images/setting.svg';
+  static const String imagesReturnedInvoices = 'assets/images/returned_invoices.svg';
+  static const String imagesSettings = 'assets/images/settings.svg';
   static const String imagesSpareInvoice = 'assets/images/spare_invoice.svg';
   static const String imagesStore = 'assets/images/store.svg';
   static const String imagesStore1 = 'assets/images/store1.svg';
+  static const String imagesUser = 'assets/images/user.svg';
   static const String imagesWorsha = 'assets/images/worsha.svg';
 
 }

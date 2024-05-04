@@ -7,7 +7,7 @@ TextFieldWidget addNoteText(BuildContext context) {
   final size = MediaQuery.of(context).size;
   return TextFieldWidget(
     label: " اضافة ملاحظات ",
-    titleStyle: AppStyles.styleMedium18(context),
+    titleStyle: AppStyles.styleMedium16(context),
     hintStyle: AppStyles.styleSemiBold14(context),
     hintText: "ملاحظات..",
     maxLines: 3,

@@ -1,10 +1,10 @@
 import 'package:bab_el_ezz/features/auth/view/login_view.dart';
 import 'package:bab_el_ezz/features/staff/view/staff_page.dart';
-import 'package:bab_el_ezz/features/workshop/view/work_shop_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../features/invoices/invoices/view/invoice_page.dart';
 import '../../features/store/view/store_page.dart';
+import '../../features/workshop/work_shop/view/work_shop_page.dart';
 import '../../generated/assets.dart';
 import '../../shared_utils/styles/colors.dart';
 

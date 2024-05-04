@@ -1,5 +1,8 @@
+import 'package:bab_el_ezz/features/staff/widget/time_picker.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
+import 'package:bab_el_ezz/shared_utils/utils/widget/data_text_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../shared_utils/styles/colors.dart';
 import '../../../shared_utils/styles/text.dart';
 import '../../../shared_utils/utils/widget/button_widget.dart';
 import 'package:flutter/material.dart';
@@ -9,67 +12,116 @@ import '../../new_job-order/widgets/drop_button.dart';
 import '../manager/daily_table/daily_table_cubit.dart';
 
 class DailyDataTable extends StatelessWidget {
-  const DailyDataTable({Key? key,required this.onPressed}) : super(key: key);
-final void Function()? onPressed;
+  const DailyDataTable({Key? key,}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return  Container(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
+    final size = MediaQuery.of(context).size;
+    return BlocProvider(
+      create: (context) => DailyTableCubit(),
+      child: BlocConsumer<DailyTableCubit, DailyTableState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          DailyTableCubit cubit = DailyTableCubit.get(context);
+          return Container(
             child: SingleChildScrollView(
-              child: CustomDataTable(
-                columns: [
-                  DataColumn(
-              label:IconButton(
-                      onPressed: onPressed,
-                      icon: Icon(Icons.add, color: Colors.white, size: 20,))),
-                  const DataColumn(label: Text(' اسم الفني ')),
-                  const DataColumn(label: Text(' عمل/اجازة ')),
-                  const DataColumn(label: Text(' وقت الحضور ')),
-                  const DataColumn(label: Text(' وقت االانصراف ')),
-                  const DataColumn(label: Text(' مكافأة ')),
-                  const DataColumn(label: Text(' خصم ')),
-                  const DataColumn(label: Text(' سلفة-مصروف ')),
-                  const DataColumn(label: Text(' ملاحظات ')),
-                  const DataColumn(label: Text(' تصفية حساب ')),
-                ],
-                rows: List.generate( 1,
-                      (index) => DataRow(
-                    cells: <DataCell>[
+              scrollDirection: Axis.horizontal,
+              child: SingleChildScrollView(
+                child: CustomDataTable(
+                  columns: [
+                    DataColumn(
+                      label: Text(''),
+                    ),
+                    const DataColumn(label: Text(' اسم الفني ')),
+                    const DataColumn(label: Text(' عمل/اجازة ')),
+                    const DataColumn(label: Text(' وقت الحضور ')),
+                    const DataColumn(label: Text(' وقت االانصراف ')),
+                    const DataColumn(label: Text(' مكافأة ')),
+                    const DataColumn(label: Text(' خصم ')),
+                    const DataColumn(label: Text(' سلفة-مصروف ')),
+                    const DataColumn(label: Text(' ملاحظات ')),
+                    const DataColumn(label: Text(' تصفية حساب ')),
+                  ],
+                  rows: List.generate(
+                    2,
+                        (index) => DataRow(cells: <DataCell>[
+                      DataCell(DropMenu(
+                        onTapEdit: () {},
+                        onTapDelete: () {},
+                      )),
                       DataCell(
-                          DropMenu(
-                            onTapEdit: () {},
-                            onTapDelete: () {},
+                        DataTextField(
+                          hintText: 'اضاقه الفني',
+                          controller: cubit.nameController,
+                        ),
+                      ),
+                      DataCell(
+                        DropButton(
+                          width: size.width * 0.3,
+                          styleHint: AppStyles.styleRegular14(context)
+                              .copyWith(color: ColorsAsset.kDarkBrown),
+                          height: size.height * 0.045,
+                          color: Colors.white,
+                          hintText: 'عمل',
+                          iconSize: 18,
+                          value: cubit.selectedType,
+                          onChanged: (String? value) {
+                            cubit.setSelectedType(value);
+                          },
+                          items: const [
+                            DropdownMenuItem(
+                              value: 'عمل',
+                              child: Text('عمل '),
+                            ),
+                            DropdownMenuItem(
+                              value: 'اجازة',
+                              child: Text('اجازة '),
+                            ),
+                          ],
+                        ),
+                      ),
+                      DataCell(
+                          timePicker(context, cubit.AttendanceTime != null
+                              ? cubit.AttendanceTime!
+                              : 'اختيار الوقت',
+                              cubit.setAttendanceTime
                           )),
 
-                      DataCell(Text('dfddh')),
 
-                        DataCell(Text('dfddh')),
 
+                      DataCell(timePicker(context, cubit.CheckOutTime != null ? cubit.CheckOutTime!: 'اختيار الوقت',
+                        cubit.setCheckOutTime
+
+                      )),
                       DataCell(Text('dfddh')),
                       DataCell(Text('dfddh')),
                       DataCell(Text('dfddh')),
-                      DataCell(Text('dfddh')),
-                      DataCell(Text('dfddh')),
-                      DataCell(Text('dfddh')),
+                      DataCell(
+                        DataTextField(
+                          hintText: 'اضافه ملاحظه',
+                          controller: cubit.noteController,
+                        ),
+                      ),
                       DataCell(
                         ButtonWidget(
                           height: 25,
                           onPressed: () {
-                            Navigator.of(context).pushNamed('accountClearancePage');
+                            Navigator.of(context)
+                                .pushNamed('accountClearancePage');
                           },
                           text: 'تصفية حساب',
-                          fontStyle: AppStyles.styleSemiBold12(context).copyWith(color: Colors.white),
+                          fontStyle: AppStyles.styleSemiBold12(context)
+                              .copyWith(color: Colors.white),
                           borderRadius: 4,
                         ),
                       ),
-                    ],
+                    ]),
                   ),
                 ),
               ),
             ),
-          ),
-        );
-
+          );
+        },
+      ),
+    );
   }
 }

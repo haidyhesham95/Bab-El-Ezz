@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../generated/assets.dart';
 import '../../../shared_utils/utils/widget/button_widget.dart';
 import '../../../shared_utils/utils/widget/text_field.dart';
-import '../../workshop/widget/add_button.dart';
+import '../../workshop/work_shop/widget/add_button.dart';
 import 'add_note_text.dart';
 import 'add_receipt_table.dart';
 import 'car_data.dart';
@@ -43,23 +43,18 @@ class NewJobOrderBody extends StatelessWidget {
                       label: "عدد الكيلومترات",
                       titleStyle: AppStyles.styleMedium16(context),
                       hintStyle: AppStyles.styleSemiBold14(context),
-
                       hintText: ' ادخال العدد',
                       onChanged: (value) {},
+                      controller: cubit.kMController,
+                      errorMessage: 'الرجاء ادخال العدد',
                     ),
 
-                    const SizedBox(height: 10),
 
-                    TextFieldWidget(
-                  label: 'نوع السياره',
-                      titleStyle: AppStyles.styleMedium16(context),
-                  hintStyle: AppStyles.styleSemiBold14(context),
-                  hintText: ' ادخال نوع السياره',
-                  onChanged: (value) {},
-                ),
+
                     const SizedBox(height: 20),
                       DropButton(
-                      hintText: 'نوع الصيانة',
+                        styleHint:AppStyles.styleSemiBold14(context),
+                        hintText: 'نوع الصيانة',
                       value: cubit.selectedMaintenanceType,
                       onChanged: (String? value) {
                         cubit.setSelectedMaintenanceType(value);
@@ -70,16 +65,21 @@ class NewJobOrderBody extends StatelessWidget {
                           child: Text('صيانه اعطال'),
                         ),
                         DropdownMenuItem(
+                          value: 'صيانة دورية',
+                          child: Text('صيانة دورية'),
+                        ),
+                        DropdownMenuItem(
                           value: 'مرتجع',
-                          child: Text('مرتجع'),
+                          child: Text('مرتجع تكرار أعطال'),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     Row(
                       children: [
                         Expanded(
                           child: DropButton(
+                            styleHint:AppStyles.styleSemiBold14(context),
                             hintText: 'اضافة فني للسيارة',
                             value: cubit.selectedValue,
                             onChanged: (String? value) {
@@ -106,7 +106,7 @@ class NewJobOrderBody extends StatelessWidget {
                     const SizedBox(height: 10),
                     textAlign(
                       context,
-                      'اضافة فاتورة',
+                      'اضافة تفاصيل الفاتورة  ',
                     ),
                     const SizedBox(height: 15),
                      AddReceiptTable(
@@ -144,7 +144,9 @@ class NewJobOrderBody extends StatelessWidget {
                         ButtonWidget(
                           hasElevation: true,
                           text: "انهاء امر الشغل",
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           width: size.width * 0.4,
                           height: size.height * 0.05,
 

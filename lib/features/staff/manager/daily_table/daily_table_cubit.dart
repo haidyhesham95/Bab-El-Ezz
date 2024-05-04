@@ -11,8 +11,22 @@ class DailyTableCubit extends Cubit<DailyTableState> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
+  TextEditingController noteController = TextEditingController();
+
+  String? CheckOutTime;
+
+  void setCheckOutTime(String? value) {
+    CheckOutTime = value;
+    emit(SelectedCheckOutTimeChanged(value));
+  }
 
 
+  String? AttendanceTime;
+
+  void setAttendanceTime(String? value) {
+    AttendanceTime = value;
+    emit(SelectedAttendanceChanged(value));
+  }
 
 
   String? selectedType;

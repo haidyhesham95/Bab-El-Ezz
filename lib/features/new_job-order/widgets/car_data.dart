@@ -12,7 +12,7 @@ class CarData extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return   GrayContainer(
-      padding: const EdgeInsets.only(right: 12, left: 5),
+      padding: const EdgeInsets.only(right: 10),
       height:  size.height * 0.25,
       child: Row(
        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -23,10 +23,12 @@ class CarData extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                RowText('اسم العميل : ',"هايدي",),
-                RowText('سنة الصنع : ',"2000",),
+                RowText('نوع السياره : ',"نوع السياره",),
+                RowText('موديل السيارة : ',"موديل السيارة"),
                 RowText('رقم الشاشة : ',"456",),
-                RowText('رقم لوحة السيارة : '  , "نوع",),
+                RowText('رقم لوحة السيارة : '  , " س ل م 123",),
+                RowText('متوسط الاستهلاك الشهري : '  , "200",),
+
 
 
 
@@ -37,11 +39,11 @@ class CarData extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              RowText('نوع السيارة : ',"نوع السيارة"),
-              RowText('نوع ناقل الحركة : ',"نوع",),
+              RowText('سنة الصنع : ',"2000",),
+              RowText('للون السيارة : : ',"ابيض ",),
               RowText('رقم الموتور : ',"25",),
-              RowText('نوع الصيانة : ' , "نوع",),
-
+              RowText('نوع ناقل الحركة : ',"نوع",),
+              RowText(' '  , "",),
             ],
           ),
         ],

@@ -12,7 +12,7 @@ class AddsItemsStore extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: constAppBar(context, ' اضافة منتج'),
+        appBar: constAppBar(context, 'اضافة صنف'),
         body: BlocProvider(
             create: (context) => StoreCubit(),
             child: BlocConsumer<StoreCubit, StoreState>(

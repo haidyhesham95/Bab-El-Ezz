@@ -25,7 +25,7 @@ class StaffPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 30),
-                TableButton(
+                ToggleButton(
                   selectedIndex: cubit.selectedIndex,
                    onPressed:
                       (index) {

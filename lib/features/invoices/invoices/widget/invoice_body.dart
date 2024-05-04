@@ -37,6 +37,15 @@ class InvoiceBody extends StatelessWidget {
         Assets.imagesSpareInvoice,
       ),
     ),
+    CategoryItem(
+      onTap: () {
+        Navigator.pushNamed(context, 'returnedInvoices');
+      },
+      label: 'فواتير مرتجع قطع غيار',
+      icon: SvgPicture.asset(
+        Assets.imagesReturnedInvoices,
+      ),
+    ),
   ],
         super(key: key);
 
@@ -49,8 +58,8 @@ class InvoiceBody extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          crossAxisSpacing: 2,
+          crossAxisCount: 2,
+          crossAxisSpacing: 5,
           mainAxisSpacing: 20,
           mainAxisExtent: 225,
         ),

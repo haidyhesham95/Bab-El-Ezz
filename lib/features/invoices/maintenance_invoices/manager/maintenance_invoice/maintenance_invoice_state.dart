@@ -10,3 +10,15 @@ final class AddItems extends MaintenanceInvoiceState {
 
   AddItems(this.items);
 }
+
+final class ChangeShowAllDataInvoices extends MaintenanceInvoiceState {
+   final bool showAllDataInvoices;
+
+  ChangeShowAllDataInvoices({ required this.showAllDataInvoices});
+}
+
+final class ChangeShowAllDataCustomers extends MaintenanceInvoiceState {
+   final bool showAllDataCustomers;
+
+  ChangeShowAllDataCustomers({ required this.showAllDataCustomers});
+}

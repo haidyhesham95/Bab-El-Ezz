@@ -96,7 +96,7 @@ class TextFieldWidget extends StatelessWidget {
             textAlignVertical: TextAlignVertical.center,
             textDirection: TextDirection.rtl,
             style: style ??
-                AppStyles.styleRegular14(context)
+                AppStyles.styleRegular16(context)
                     .copyWith(color: ColorsAsset.kDarkBrown),
             onTap: onTap,
             onTapOutside: (v) {
@@ -125,7 +125,7 @@ class TextFieldWidget extends StatelessWidget {
               labelText:  labelText,
               hintText: hintText,
               hintStyle: hintStyle ??
-                  AppStyles.styleRegular14(context)
+                  AppStyles.styleRegular16(context)
                       .copyWith(color: ColorsAsset.kDarkBrown),
 
 

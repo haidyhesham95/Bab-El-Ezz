@@ -12,7 +12,7 @@ class Details extends StatelessWidget {
   Widget build(BuildContext context) {
    final size = MediaQuery.of(context).size;
     return GrayContainer(
-      padding: const EdgeInsets.only(right: 12),
+      padding: const EdgeInsets.only(right: 10),
       height: size.height * 0.15,
       child:Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -33,7 +33,7 @@ class Details extends StatelessWidget {
             children: [
               Icon(CupertinoIcons.person),
               SizedBox(width: 10,),
-              RowText('اسم العميل : ',"هايدي",
+              RowText('اسم العميل : ',"الاسم",
                ),
             ],
           ),

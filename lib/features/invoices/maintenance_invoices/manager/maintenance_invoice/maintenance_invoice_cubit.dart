@@ -36,4 +36,18 @@ class MaintenanceInvoiceCubit extends Cubit<MaintenanceInvoiceState> {
     emit(AddItems(items.cast<Widget>()));
   }
 
+
+  bool showAllDataInvoices = false;
+  bool showAllDataCustomers = false;
+
+  void changeShowAllDataInvoices() {
+    showAllDataInvoices = !showAllDataInvoices;
+    emit(ChangeShowAllDataInvoices( showAllDataInvoices: showAllDataInvoices));
+  }
+
+  void changeShowAllDataCustomers() {
+    showAllDataCustomers = !showAllDataCustomers;
+    emit(ChangeShowAllDataCustomers(  showAllDataCustomers: showAllDataCustomers));
+  }
+
 }

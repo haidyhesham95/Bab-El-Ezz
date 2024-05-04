@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../features/setting/view/drop_menu.dart';
 import '../../../generated/assets.dart';
+import '../../styles/colors.dart';
 import '../../styles/text.dart';
 
 AppBar appBarWidget(BuildContext context) {
@@ -23,7 +25,10 @@ AppBar appBarWidget(BuildContext context) {
             ),
           ],
         ),
-        Image.asset(Assets.imagesLogo3)
+        DropMenuWidget()
+
+
+
       ],
     ),
   );

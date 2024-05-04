@@ -13,9 +13,7 @@ class StaffDataTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomDataTable(
       columns: [
-        DataColumn(label: addIconButton(() {
-              Navigator.of(context).pushNamed('addStaffItem');
-            })),
+        const DataColumn(label: Text('')),
 
     const DataColumn(label: Text(' اسم الفني ')),
         const DataColumn(label: Text(' الرقم القومي ')),
@@ -41,7 +39,7 @@ class StaffDataTable extends StatelessWidget {
               ButtonWidget(
                 height: 25,
                 onPressed: () {
-                  Navigator.of(context).pushNamed('accountClearancePage');
+                  Navigator.of(context).pushNamed('viewDetailsPage');
                 },
                 text: 'عرض التفاصيل',
                 fontStyle: AppStyles.styleSemiBold12(context)

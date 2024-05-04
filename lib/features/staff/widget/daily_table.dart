@@ -8,7 +8,8 @@ class DailyTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Scaffold(
+      body: SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Column(
@@ -22,13 +23,12 @@ class DailyTable extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             DailyDataTable(
-              onPressed: (){
-                Navigator.pushNamed(context, "addDailyItem");
-              },
+
             )
           ],
         ),
       ),
+      )
     );
   }
 }

@@ -7,7 +7,8 @@ import '../../../../shared_utils/utils/widget/drop_menu.dart';
 
 
 class MaintenanceInvoiceTable extends StatelessWidget {
-  const MaintenanceInvoiceTable({super.key});
+  const MaintenanceInvoiceTable({super.key, this.showAllDataInvoices=false});
+  final bool showAllDataInvoices ;
 
   @override
   Widget build(BuildContext context) {
@@ -15,21 +16,28 @@ class MaintenanceInvoiceTable extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
           columns: [
-            DataColumn(label: addIconButton((){
-              Navigator.pushNamed(context, 'addMaintenanceInvoiceData');
+            DataColumn(label: addIconButton(context,(){
+              Navigator.pushNamed(context, 'newJobOrderPage');
 
             })),
-            const DataColumn(label: Text('مسلسل')),
-            const DataColumn(label: Text('رقم الفاتورة')),
-            const DataColumn(label: Text('التاريخ')),
+    if (showAllDataInvoices) ...[
+
+    const DataColumn(label: Text('مسلسل')),
+            ],
             const DataColumn(label: Text('اسم العميل')),
             const DataColumn(label: Text('رقم التليفون')),
+            const DataColumn(label: Text('التاريخ')),
+    if (showAllDataInvoices) ...[
+
+            const DataColumn(label: Text('رقم الفاتورة')),
             const DataColumn(label: Text('ماركة السيارة')),
             const DataColumn(label: Text('رقم اللوحة')),
+    ],
             const DataColumn(label: Text('صورة الفاتورة')),
+
           ],
           rows: List.generate(
-            2,
+            3,
             (index) => DataRow(
               cells: <DataCell>[
                     DataCell(
@@ -37,15 +45,22 @@ class MaintenanceInvoiceTable extends StatelessWidget {
                           onTapEdit: () {},
                           onTapDelete: () {},
                         )),
+        if (showAllDataInvoices) ...[
+
+    DataCell(Text('dfddh')),
+                ],
                 DataCell(Text('dfddh')),
                 DataCell(Text('dfddh')),
                 DataCell(Text('dfddh')),
-                DataCell(Text('dfddh')),
-                DataCell(Text('dfddh')),
-                DataCell(Text('dfddh')),
+        if (showAllDataInvoices) ...[
+
+    DataCell(Text('dfddh')),
                 DataCell(Text('dfddh')),
                 DataCell(Text('dfddh')),
               ],
+                DataCell(Text('dfddh')),
+
+              ]
             ),
           )),
     );

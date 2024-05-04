@@ -11,6 +11,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   GlobalKey<FormState> formKey1 = GlobalKey<FormState>();
   GlobalKey<FormState> formKey2 = GlobalKey<FormState>();
   TextEditingController phoneNameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -19,4 +20,5 @@ class RegisterCubit extends Cubit<RegisterState> {
   TextEditingController ownerNameController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController newConfirmPasswordController = TextEditingController();
+
 }
