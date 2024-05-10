@@ -22,7 +22,7 @@ class OtpTextField extends StatelessWidget {
         }
         },
       textInputAction: TextInputAction.next,
-      keyboardType: TextInputType.text,
+      keyboardType: TextInputType.number,
     );
   }
 }

@@ -23,66 +23,73 @@ class AddInvoicesData extends StatelessWidget {
               SupplierInvoiceCubit cubit = SupplierInvoiceCubit.get(context);
               return Scaffold(
                 appBar: constAppBar(context, ' اضافة فاتوره', ),
-                body: SingleChildScrollView(
-                  child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Form(
-                        key: cubit.formKey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const SizedBox(height: 20),
-                            addImage(context,),
-                            const SizedBox(height: 20),
-                            DropButton(
-                              styleHint: AppStyles.styleRegular14(context).copyWith(
-                                  color: ColorsAsset.kDarkBrown),
-                              hintText: 'اسم المورد',
-                              value: cubit.selectedSupplierType,
-                              onChanged: (String? value) {
-                                cubit.setSelectedSupplierType(value);
-                              },
-                              items: const [
-                                DropdownMenuItem(
-                                  value: 'مورد1',
-                                  child: Text('مورد1'),
-                                ),
-                                DropdownMenuItem(
-                                  value: 'مورد2',
-                                  child: Text('مورد2'),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            TextFieldWidget(
-                              label: " رقم الفاتوره ",
-                              hintText: " ادخال رقم الفاتوره ",
-                              controller: cubit.supplierNameController,
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.number,
-                              errorMessage: 'برجاء ادخال رقم الفاتوره',
+                body: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Form(
+                      key: cubit.formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              const SizedBox(height: 20),
+                              addImage(context,),
+                              const SizedBox(height: 20),
+                              DropButton(
+                                styleHint: AppStyles.styleRegular14(context).copyWith(
+                                    color: ColorsAsset.kDarkBrown),
+                                hintText: 'اسم المورد',
+                                value: cubit.selectedSupplierType,
+                                onChanged: (String? value) {
+                                  cubit.setSelectedSupplierType(value);
+                                },
+                                items: const [
+                                  DropdownMenuItem(
+                                    value: 'مورد1',
+                                    child: Text('مورد1'),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 'مورد2',
+                                    child: Text('مورد2'),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              TextFieldWidget(
+                                label: " رقم الفاتوره ",
+                                hintText: " ادخال رقم الفاتوره ",
+                                controller: cubit.supplierNameController,
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.number,
+                                errorMessage: 'برجاء ادخال رقم الفاتوره',
 
-                            ),
-                            SizedBox(height:50 ,),
-                            ButtonWidget(
-                              hasElevation: true,
-                              height: size.height * 0.05,
-                              text: ' إضافة  ',
-                              onPressed: () {
-                                if (cubit.formKey.currentState!.validate()) {
-                                  Navigator.pop(context);
-                                }
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              ButtonWidget(
+                                hasElevation: true,
+                                height: size.height * 0.05,
+                                text: ' إضافة  ',
+                                onPressed: () {
+                                  if (cubit.formKey.currentState!.validate()) {
+                                    Navigator.pop(context);
+                                  }
 
-                              },
+                                },
 
-                            ),
-                            const SizedBox(height: 20,),
-                          ],
-                        ),
-                      )),
-                ),
+                              ),
+                              const SizedBox(height: 20,),
+                            ],
+                          ),
+
+                        ],
+                      ),
+                    )),
               );
             }));
   }
