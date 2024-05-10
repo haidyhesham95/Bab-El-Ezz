@@ -25,22 +25,27 @@ class AddClientCubit extends Cubit<AddClientState> {
 
   void manualTapped() {
     isTapped1 = !isTapped1;
-    emit( ManualTapped(isTapped1));
+    isTapped2 = !isTapped1;
+    emit(ManualTapped(isTapped1));
   }
 
   void automaticTapped() {
     isTapped2 = !isTapped2;
-    emit( AutomaticTapped(isTapped2));
-  }
-  void numberTapped() {
-    isTapped3 = !isTapped3;
-    emit( NumberTapped(isTapped3));
-  }
-  void charactersTapped() {
-    isTapped4 = !isTapped4;
-    emit( CharactersTapped(isTapped4));
+    isTapped1 = !isTapped2;
+    emit(AutomaticTapped(isTapped2));
   }
 
+  void numberTapped() {
+    isTapped3 = !isTapped3;
+    isTapped4 = !isTapped3;
+    emit(NumberTapped(isTapped3));
+  }
+
+  void charactersTapped() {
+    isTapped4 = !isTapped4;
+    isTapped3 = !isTapped4;
+    emit(CharactersTapped(isTapped4));
+  }
 
   String? selectedCarType;
 
@@ -56,7 +61,6 @@ class AddClientCubit extends Cubit<AddClientState> {
     emit(SelectCarModelValueChanged(value));
   }
 
-
   String? selectedCarColor;
 
   void setSelectedCarColor(String? value) {
@@ -70,5 +74,4 @@ class AddClientCubit extends Cubit<AddClientState> {
     selectedYear = value;
     emit(SelectYearValueChanged(value));
   }
-
 }

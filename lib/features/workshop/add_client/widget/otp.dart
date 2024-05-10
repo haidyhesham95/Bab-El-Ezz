@@ -10,17 +10,13 @@ class Otp extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        OtpTextField(previous: false,),
+        OtpTextField(
+          previous: false,
+        ),
         OtpTextField(),
         OtpTextField(),
         OtpTextField(),
-
-
-
-
-
       ],
     );
-
   }
 }

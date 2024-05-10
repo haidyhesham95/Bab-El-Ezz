@@ -7,39 +7,39 @@ import '../../styles/text.dart';
 class TextFieldWidget extends StatelessWidget {
   const TextFieldWidget(
       {super.key,
-        this.onChanged,
-        this.maxLength,
-        this.hintText,
-        this.leading,
-        this.validator,
-        this.enabled = true,
-        this.controller,
-        this.expands = false,
-        this.height,
-        this.errorText,
-        this.trailingIcon,
-        this.keyboardType,
-        this.node,
-        this.obscureText=false,
-        this.hintStyle,
-        this.color,
-        this.onSubmitted,
-        this.inputFormatters,
-        this.labelStyle,
-        this.autoFillHint,
-        this.maxLines,
-        this.onTap,
-        this.borderRadius,
-        this.vertical,
-        this.textInputAction,
-        this.label,
-        this.titleStyle,
-        this.style,
-        this.width,
-        this.onSaved,
-        this.errorMessage,
-        this.labelText,
-        this.textAlign});
+      this.onChanged,
+      this.maxLength,
+      this.hintText,
+      this.leading,
+      this.validator,
+      this.enabled = true,
+      this.controller,
+      this.expands = false,
+      this.height,
+      this.errorText,
+      this.trailingIcon,
+      this.keyboardType,
+      this.node,
+      this.obscureText = false,
+      this.hintStyle,
+      this.color,
+      this.onSubmitted,
+      this.inputFormatters,
+      this.labelStyle,
+      this.autoFillHint,
+      this.maxLines,
+      this.onTap,
+      this.borderRadius,
+      this.vertical,
+      this.textInputAction,
+      this.label,
+      this.titleStyle,
+      this.style,
+      this.width,
+      this.onSaved,
+      this.errorMessage,
+      this.labelText,
+      this.textAlign});
 
   final double? vertical;
   final String? hintText;
@@ -86,14 +86,14 @@ class TextFieldWidget extends StatelessWidget {
       children: [
         if (label != null)
           Text(label!,
-              style: titleStyle ?? AppStyles.styleRegular14(context).copyWith(color: Colors.white)),
+              style: titleStyle ??
+                  AppStyles.styleRegular14(context)
+                      .copyWith(color: Colors.white)),
         const SizedBox(height: 10),
         SizedBox(
           height: height,
           width: width ?? size.width,
           child: TextFormField(
-
-
             textAlignVertical: TextAlignVertical.center,
             textDirection: TextDirection.rtl,
             style: style ??
@@ -106,64 +106,54 @@ class TextFieldWidget extends StatelessWidget {
             textAlign: textAlign ?? TextAlign.start,
             cursorHeight: 15,
             maxLength: maxLength,
-
             enabled: enabled,
             obscureText: obscureText,
             textInputAction: textInputAction,
             cursorColor: ColorsAsset.kGreen,
-             onSaved: onSaved,
+            onSaved: onSaved,
             controller: controller,
             onChanged: onChanged,
             keyboardType: keyboardType,
             maxLines: maxLines ?? (expands ? null : 1),
-            validator: validator ?? (value) {
-              if (value!.isEmpty) {
-                return errorMessage;
-              }
-              return null;
-            },
+            validator: validator ??
+                (value) {
+                  if (value!.isEmpty) {
+                    return errorMessage;
+                  }
+                  return null;
+                },
             decoration: InputDecoration(
-              labelText:  labelText,
+              labelText: labelText,
               hintText: hintText,
               hintStyle: hintStyle ??
                   AppStyles.styleRegular16(context)
                       .copyWith(color: ColorsAsset.kDarkBrown),
-
-
               floatingLabelBehavior: FloatingLabelBehavior.never,
               fillColor: color ?? Colors.white,
               filled: true,
               prefixIcon: leading,
               suffixIconColor: ColorsAsset.kDarkBrown,
-
               suffixIcon: trailingIcon,
-
-
-
-
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(borderRadius ?? 10),
-                borderSide:  BorderSide(
+                borderSide: BorderSide(
                   color: Colors.grey.shade200,
                   width: 0.5,
                 ),
-
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(borderRadius ?? 10),
-                borderSide:  BorderSide(
+                borderSide: BorderSide(
                   color: Colors.grey.shade200,
                   width: 0.5,
                 ),
-
               ),
               disabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(borderRadius ?? 10),
-                borderSide:  BorderSide(
+                borderSide: BorderSide(
                   color: Colors.grey.shade200,
                   width: 0.5,
                 ),
-
               ),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(borderRadius ?? 10),

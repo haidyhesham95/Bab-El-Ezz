@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1030102288513",
+    "project_id": "bab-el-ezz-f8e7a",
+    "storage_bucket": "bab-el-ezz-f8e7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030102288513:android:18f301efcb4aa55254e580",
+        "android_client_info": {
+          "package_name": "com.example.bab_el_ezz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBugdTvCGzWZKfkfBIhLqPmP7dG7XRVe-c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

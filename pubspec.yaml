@@ -43,6 +43,7 @@ dependencies:
   flutter_localization: ^0.2.0
   flutter_bloc: ^8.1.5
   provider: ^6.1.2
+  firebase_core: ^2.27.0
 
 dev_dependencies:
   flutter_test:
@@ -90,9 +91,9 @@ flutter:
           weight: 300
         - asset: assets/fonts/Cairo-Bold.ttf
           weight: 700
-        - asset: assets/fonts/Cairo-medium.ttf
+        - asset: assets/fonts/Cairo-Medium.ttf
           weight: 500
-        - asset: assets/fonts/Cairo-semiBold.ttf
+        - asset: assets/fonts/Cairo-SemiBold.ttf
           weight: 600
         - asset: assets/fonts/Cairo-ExtraBold.ttf
           weight: 800
