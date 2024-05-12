@@ -1,68 +1,62 @@
-import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
-import 'package:bab_el_ezz/shared_utils/utils/widget/row_text.dart';
+import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
 import 'package:flutter/material.dart';
+import '../../../shared_utils/utils/widget/const_appbar.dart';
+import '../../../shared_utils/utils/widget/row_text.dart';
 
-import '../../../shared_utils/styles/colors.dart';
-import '../../../shared_utils/styles/text.dart';
-import '../../new_job-order/widgets/gray_container.dart';
 
 class ViewDetailsPage extends StatelessWidget {
-  const ViewDetailsPage({super.key});
-
+  const ViewDetailsPage({Key? key,}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: constAppBar(context, 'عرض التفاصيل'),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 20,),
-              const RowText("اسم العامل :", "الاسم ..."),
-              const SizedBox(height: 20,),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                separatorBuilder: (context, index) => const SizedBox(height: 15),
-                itemCount: 6,
-                  itemBuilder: (context, index){
-                  return GrayContainer(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    height: size.height * 0.40,
-                    child:Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children:  [
-                        Align(
-                          alignment: Alignment.center,
-                            child: Text('التاريخ',style: AppStyles.styleSemiBold16(context),)),
-                        const SizedBox(height: 10,),
+             appBar: constAppBar(context, 'عرض التفاصيل'),
 
-                        const RowText(' عمل /اجازة : ', "عمل"),
-                        const RowText('وقت الحضور : ', "3:00pm."),
-                        const RowText('وقت الانصراف : ', "3:00pm."),
-                        const RowText('مكافأة : ', "...."),
-                        const RowText('خصم : ', "...."),
-                        const RowText('سلفة-مصروف : ', "...."),
-                        const RowText('ملاحظات : ', "لايوجد"),
-                        Text('تم تصفية الحساب',style: AppStyles.styleSemiBold16(context).copyWith(color: ColorsAsset.kGreen),),
-
-                      ],
-                    ),
-                  );
-
-                  }
+          body:  SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: const RowText("اسم العامل :", "الاسم ..."),
               ),
               const SizedBox(height: 20,),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: CustomDataTable(
+                      columns: const [
+                        DataColumn(label: Text(' التاريخ ')),
+                        DataColumn(label: Text(' عمل /اجازة ')),
+                        DataColumn(label: Text(' وقت الحضور ')),
+                        DataColumn(label: Text(' وقت االانصراف ')),
+                        DataColumn(label: Text(' مكافأة ')),
+                        DataColumn(label: Text(' خصم ')),
+                        DataColumn(label: Text(' سلفة-مصروف ')),
+                        DataColumn(label: Text(' ملاحظات ')),
+                        DataColumn(label: Text(' تصفية حساب ')),
+                      ],
+                      rows: List.generate(
+                        5,
+                            (index) => DataRow(cells: <DataCell>[
+                          DataCell( Text('12/2/2024')),
+                          DataCell( Text('عمل')),
+                          DataCell( Text('9:00pm.')),
+                          DataCell(Text('5:00pm.')),
+                              const DataCell(Text('---')),
+                              const DataCell(Text('5%')),
+                              const DataCell(Text('200')),
+                          const DataCell(Text('----')),
+                             DataCell(Text('تم تصفية الحساب')),
 
-            ]
-          ),
-        ),
-      ),
-    );
+                        ]),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10,),
+
+                ],
+              ),
+            ),
+          );
+
   }
 }
