@@ -12,50 +12,49 @@ class MaintenanceInvoicesBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
         child: BlocProvider(
-        create: (context) => MaintenanceInvoiceCubit(),
-    child: BlocConsumer<MaintenanceInvoiceCubit, MaintenanceInvoiceState>(
-    listener: (context, state) {},
-    builder: (context, state) {
-    MaintenanceInvoiceCubit cubit = MaintenanceInvoiceCubit.get(context);
-    return Column(
-              children: [
-
-                TopInvoicesSearch(
-                  onPressedSearch: (){},
-                ),
-              showDetailsText(context: context, onPressed: (){  cubit.changeShowAllDataInvoices();}),
-                 MaintenanceInvoiceTable(
-                  showAllDataInvoices: cubit.showAllDataInvoices,
-                ),
-
-
-
-                TopInvoicesSearch(
-                  onPressedSearch: (){},
-                  hintText: ' بحث عن عميل ',
-                  text: ' قائمة العملاء',
-                  height: 70,
-                ),
-                showDetailsText(context: context, onPressed: (){
-                  cubit.changeShowAllDataCustomers();
-                }),
-
-
-                MaintenanceCustomerTable(
-                  showAllDataCustomers:cubit. showAllDataCustomers,
-                ),
-                const SizedBox(height: 30,),
-
-              ],
-
-
-          );
-        }
-      )
-    )
-    );
-
+            create: (context) => MaintenanceInvoiceCubit(),
+            child:
+                BlocConsumer<MaintenanceInvoiceCubit, MaintenanceInvoiceState>(
+                    listener: (context, state) {},
+                    builder: (context, state) {
+                      MaintenanceInvoiceCubit cubit =
+                          MaintenanceInvoiceCubit.get(context);
+                      return Column(
+                        children: [
+                          TopInvoicesSearch(
+                            onPressedSearch: () {},
+                          ),
+                          showDetailsText(
+                              context: context,
+                              onPressed: () {
+                                cubit.changeShowAllDataInvoices();
+                              },
+                              showAll: false),
+                          MaintenanceInvoiceTable(
+                            showAllDataInvoices: cubit.showAllDataInvoices,
+                          ),
+                          TopInvoicesSearch(
+                            onPressedSearch: () {},
+                            hintText: ' بحث عن عميل ',
+                            text: ' قائمة العملاء',
+                            height: 70,
+                          ),
+                          showDetailsText(
+                              context: context,
+                              onPressed: () {
+                                cubit.changeShowAllDataCustomers();
+                              },
+                              showAll: false),
+                          MaintenanceCustomerTable(
+                            showAllDataCustomers: cubit.showAllDataCustomers,
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                        ],
+                      );
+                    })));
   }
 }

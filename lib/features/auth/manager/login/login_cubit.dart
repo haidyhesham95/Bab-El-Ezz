@@ -1,3 +1,4 @@
+import 'package:bab_el_ezz/firebase/phone_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,12 +13,18 @@ class LoginCubit extends Cubit<LoginState> {
   TextEditingController phoneNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-
-
   bool isShowLoginPassword = true;
 
   void changeLoginPasswordVisibility() {
     isShowLoginPassword = !isShowLoginPassword;
     emit(ShowPasswordInLogin());
+  }
+
+  login(BuildContext context) {
+    PhoneAuth(context)
+        .verifyPhoneNumber("+12345678901")
+        .onError((error, stackTrace) {
+      print("Error: $error");
+    });
   }
 }

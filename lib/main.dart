@@ -7,6 +7,7 @@ import 'package:bab_el_ezz/features/staff/view/staff_page.dart';
 import 'package:bab_el_ezz/features/store/widget/add_item_store.dart';
 import 'package:bab_el_ezz/features/workshop/add_client/view/add_client.dart';
 import 'package:bab_el_ezz/layout/view/layout.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,13 +43,17 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  bool userAuthenticated = await FirebaseAuth.instance.currentUser != null;
+  print("authent: $userAuthenticated");
+  runApp(MyApp(userAuthenticated));
 }
 
 initializeDateFormatting(String s, param1) {}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp(this.userAuthenticated, {super.key});
+
+  bool userAuthenticated;
 
   @override
   Widget build(BuildContext context) {
@@ -80,15 +85,13 @@ class MyApp extends StatelessWidget {
             supportedLocales: const [
               Locale('ar', ''), // Arabic
             ],
-
             debugShowCheckedModeBanner: false,
-
             title: 'Flutter Demo',
             theme: cubit.isDark ? ThemeData.dark() : ThemeData.light(),
-
+            initialRoute: userAuthenticated ? "layout" : "login",
             home: const Directionality(
               textDirection: TextDirection.rtl,
-              child: LayOut(),
+              child: LoginView(),
             ),
             routes: {
               'login': (context) => const LoginView(),
@@ -97,12 +100,12 @@ class MyApp extends StatelessWidget {
               "staff": (context) => const StaffPage(),
               "layout": (context) => const LayOut(),
               "dailyExpenses": (context) => const DailyExpenses(),
-              "workshop": (context) => const WorkShopBody(),
+              "workshop": (context) => WorkShopBody(),
               "spareReceipt": (context) => const SpareReceipt(),
               "newJobOrderPage": (context) => const NewJobOrderPage(),
               "maintenanceInvoices": (context) => const MaintenanceInvoices(),
-              "searchClient": (context) => const SearchClient(),
-              'addClient': (context) => const AddClient(),
+              "searchClient": (context) => SearchClient(),
+              'addClient': (context) => AddClient(),
               "supplierInvoices": (context) => const SupplierInvoices(),
               "accountClearancePage": (context) => const AccountClearancePage(),
               "addInvoiceData": (context) => const AddInvoicesData(),

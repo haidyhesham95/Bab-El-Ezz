@@ -1,3 +1,7 @@
+import 'package:bab_el_ezz/data/car.dart';
+import 'package:bab_el_ezz/data/customer.dart';
+import 'package:bab_el_ezz/data/job_order.dart';
+import 'package:bab_el_ezz/firebase/firebase_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +19,7 @@ class AddClientCubit extends Cubit<AddClientState> {
   TextEditingController carTypeController = TextEditingController();
   TextEditingController carModelController = TextEditingController();
   TextEditingController carColorController = TextEditingController();
-  TextEditingController screenNumberController = TextEditingController();
+  TextEditingController chassisNumberController = TextEditingController();
   TextEditingController motorNumberController = TextEditingController();
 
   bool isTapped1 = false;
@@ -47,31 +51,72 @@ class AddClientCubit extends Cubit<AddClientState> {
     emit(CharactersTapped(isTapped4));
   }
 
-  String? selectedCarType;
+  String selectedCarType = '';
 
-  void setSelectedCarType(String? value) {
+  void setSelectedCarType(String value) {
     selectedCarType = value;
     emit(SelectCarTypeValueChanged(value));
   }
 
-  String? selectedCarModel;
+  String selectedCarModel = '';
 
-  void setSelectedCarModel(String? value) {
+  void setSelectedCarModel(String value) {
     selectedCarModel = value;
     emit(SelectCarModelValueChanged(value));
   }
 
-  String? selectedCarColor;
+  String selectedCarColor = '';
 
-  void setSelectedCarColor(String? value) {
+  void setSelectedCarColor(String value) {
     selectedCarColor = value;
     emit(SelectCarColorValueChanged(value));
   }
 
-  String? selectedYear;
+  String selectedYear = '';
 
-  void setSelectedYear(String? value) {
+  void setSelectedYear(String value) {
     selectedYear = value;
     emit(SelectYearValueChanged(value));
+  }
+
+  Future submitData(String plateNumber) async {
+    try {
+      // Create Car and Customer objects
+      final car = Car(
+        make: selectedCarType,
+        model: selectedCarModel,
+        licensePlate: plateNumber,
+        color: selectedCarColor,
+        year: selectedYear,
+        mileage: counterController.text,
+        chassisNumber: chassisNumberController.text,
+        engineNumber: motorNumberController.text,
+        transmissionType: isTapped1 ? "Manual" : "Automatic",
+      );
+
+      // Save car to Firestore
+      final carDocRef = await FirebaseCollection().carCol.add(car);
+
+      final customer = Customer(
+        clientNameController.text,
+        phoneNameController.text,
+        carDocRef.id,
+      );
+
+      final jobOrder = JobOrder(
+          car: car,
+          clientName: customer.name,
+          phoneNumber: customer.phoneNumber,
+          startDate: DateTime.now());
+
+      print("jobOrder: $jobOrder");
+      await FirebaseCollection().jobOrderCol.add(jobOrder);
+      await FirebaseCollection().customerCol.add(customer);
+
+      // ... (Show success message, navigate back, etc.)
+      return jobOrder.toJson();
+    } catch (e) {
+      // ... (Handle errors)
+    }
   }
 }

@@ -10,7 +10,6 @@ import '../widget/toggle_button.dart';
 class StaffPage extends StatelessWidget {
   const StaffPage({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,39 +19,35 @@ class StaffPage extends StatelessWidget {
           create: (context) => StaffCubit(),
           child: BlocBuilder<StaffCubit, StaffState>(
             builder: (context, state) {
-            StaffCubit cubit = StaffCubit.get(context);
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(height: 30),
-                ToggleButton(
-                  selectedIndex: cubit.selectedIndex,
-                   onPressed:
-                      (index) {
-                        cubit.changeIndex(index);
-                      },
-
-                ),
-                Visibility(
-                  visible: cubit.selectedIndex == 0,
-                  child: const Expanded(
-                    child: DailyTable(),
+              StaffCubit cubit = StaffCubit.get(context);
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 30),
+                  ToggleButton(
+                    selectedIndex: cubit.selectedIndex,
+                    onPressed: (index) {
+                      cubit.changeIndex(index);
+                    },
                   ),
-                ),
-                Visibility(
-                  visible: cubit.selectedIndex == 1,
-                  child: const Expanded(
-                    child: StaffTable(),
+                  Visibility(
+                    visible: cubit.selectedIndex == 0,
+                    child: const Expanded(
+                      child: DailyTable(),
+                    ),
                   ),
-                ),
-              ],
-            );
-          },
+                  Visibility(
+                    visible: cubit.selectedIndex == 1,
+                    child: const Expanded(
+                      child: StaffTable(),
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
-            ),
-          ),
-
+        ),
+      ),
     );
   }
 }
-

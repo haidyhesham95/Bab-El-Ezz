@@ -1,18 +1,20 @@
 import 'package:bab_el_ezz/features/staff/widget/time_picker.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/data_text_field.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../shared_utils/styles/colors.dart';
 import '../../../shared_utils/styles/text.dart';
 import '../../../shared_utils/utils/widget/button_widget.dart';
-import 'package:flutter/material.dart';
-
 import '../../../shared_utils/utils/widget/drop_menu.dart';
 import '../../new_job-order/widgets/drop_button.dart';
 import '../manager/daily_table/daily_table_cubit.dart';
 
 class DailyDataTable extends StatelessWidget {
-  const DailyDataTable({Key? key,}) : super(key: key);
+  const DailyDataTable({
+    Key? key,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -43,14 +45,14 @@ class DailyDataTable extends StatelessWidget {
                   ],
                   rows: List.generate(
                     2,
-                        (index) => DataRow(cells: <DataCell>[
+                    (index) => DataRow(cells: <DataCell>[
                       DataCell(DropMenu(
                         onTapEdit: () {},
                         onTapDelete: () {},
                       )),
                       DataCell(
                         DataTextField(
-                          hintText: 'اضاقه الفني',
+                          hintText: 'إضافه الفني',
                           controller: cubit.nameController,
                         ),
                       ),
@@ -61,7 +63,7 @@ class DailyDataTable extends StatelessWidget {
                               .copyWith(color: ColorsAsset.kDarkBrown),
                           height: size.height * 0.045,
                           color: Colors.white,
-                          hintText: 'عمل',
+                          hintText: 'عمل/اجازة',
                           iconSize: 18,
                           value: cubit.selectedType,
                           onChanged: (String? value) {
@@ -79,19 +81,18 @@ class DailyDataTable extends StatelessWidget {
                           ],
                         ),
                       ),
-                      DataCell(
-                          timePicker(context, cubit.AttendanceTime != null
+                      DataCell(timePicker(
+                          context,
+                          cubit.AttendanceTime != null
                               ? cubit.AttendanceTime!
                               : 'اختيار الوقت',
-                              cubit.setAttendanceTime
-                          )),
-
-
-
-                      DataCell(timePicker(context, cubit.CheckOutTime != null ? cubit.CheckOutTime!: 'اختيار الوقت',
-                        cubit.setCheckOutTime
-
-                      )),
+                          cubit.setAttendanceTime)),
+                      DataCell(timePicker(
+                          context,
+                          cubit.CheckOutTime != null
+                              ? cubit.CheckOutTime!
+                              : 'اختيار الوقت',
+                          cubit.setCheckOutTime)),
                       const DataCell(Text('dfddh')),
                       const DataCell(Text('dfddh')),
                       const DataCell(Text('dfddh')),

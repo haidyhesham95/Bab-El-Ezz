@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../shared_utils/utils/widget/button_widget.dart';
 import '../../../shared_utils/utils/widget/const_appbar.dart';
 import '../../../shared_utils/utils/widget/text_field.dart';
@@ -82,12 +83,12 @@ class AddsItemsStore extends StatelessWidget {
                           ),
                           const SizedBox(height: 15),
                           TextFieldWidget(
-                            label: " نبيه عند وصول الكميه  ",
-                            hintText: " اضافه نبيه ",
+                            label: " تنبيه عند وصول الكميه  ",
+                            hintText: " اضافه تنبيه ",
                             controller: cubit.alertController,
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.name,
-                            errorMessage: 'الرجاء ادخال نبيه',
+                            errorMessage: 'الرجاء ادخال تنبيه',
                           ),
                           const SizedBox(
                             height: 50,

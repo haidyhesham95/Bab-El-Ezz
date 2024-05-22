@@ -1,17 +1,23 @@
+import 'package:bab_el_ezz/car_number/view/car_number.dart';
+import 'package:bab_el_ezz/car_number/view/letters_otp.dart';
+import 'package:bab_el_ezz/features/workshop/add_client/widget/otp.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_align.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../shared_utils/utils/widget/pay_container.dart';
 import '../../../new_job-order/widgets/drop_button.dart';
 import '../manager/add_client/add_client_cubit.dart';
-import '../widget/otp.dart';
 
 class AddClient extends StatelessWidget {
-  const AddClient({super.key});
+  AddClient({super.key});
+
+  final GlobalKey<OtpState> otpKey = GlobalKey();
+  final GlobalKey<LettersOtpState> lettersOtpKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +69,9 @@ class AddClient extends StatelessWidget {
                       ),
                       DropButton(
                         hintText: 'نوع السيارة',
-                        value: cubit.selectedCarType,
+                        value: 'نوع السيارة',
                         onChanged: (String? value) {
-                          cubit.setSelectedCarType(value);
+                          cubit.setSelectedCarType(value!);
                         },
                         items: const [
                           DropdownMenuItem(
@@ -80,9 +86,9 @@ class AddClient extends StatelessWidget {
                       ),
                       DropButton(
                         hintText: 'موديل السيارة',
-                        value: cubit.selectedCarModel,
+                        value: 'موديل السيارة',
                         onChanged: (String? value) {
-                          cubit.setSelectedCarModel(value);
+                          cubit.setSelectedCarModel(value!);
                         },
                         items: const [
                           DropdownMenuItem(
@@ -98,9 +104,9 @@ class AddClient extends StatelessWidget {
                       ),
                       DropButton(
                         hintText: 'لون السيارة',
-                        value: cubit.selectedCarColor,
+                        value: 'أبيض',
                         onChanged: (String? value) {
-                          cubit.setSelectedCarColor(value);
+                          cubit.setSelectedCarColor(value!);
                         },
                         items: const [
                           DropdownMenuItem(value: 'أبيض', child: Text('أبيض')),
@@ -122,15 +128,13 @@ class AddClient extends StatelessWidget {
                       ),
                       DropButton(
                         hintText: 'سنة الصنع  ',
-                        value: cubit.selectedYear,
+                        value: '2000',
                         onChanged: (String? value) {
-                          cubit.setSelectedYear(value);
+                          cubit.setSelectedYear(value!);
                         },
                         items: const [
-                          DropdownMenuItem(
-                              value: '2000 :', child: Text('2000')),
-                          DropdownMenuItem(
-                              value: '2023 :', child: Text('2023')),
+                          DropdownMenuItem(value: '2000', child: Text('2000')),
+                          DropdownMenuItem(value: '2023', child: Text('2023')),
                         ],
                       ),
                       const SizedBox(
@@ -150,7 +154,7 @@ class AddClient extends StatelessWidget {
                       TextFieldWidget(
                         label: " رقم الشاسية ",
                         hintText: " اداخل رقم الشاسية ",
-                        controller: cubit.screenNumberController,
+                        controller: cubit.chassisNumberController,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                         errorMessage: 'الرجاء ادخال رقم الشاسية',
@@ -186,26 +190,10 @@ class AddClient extends StatelessWidget {
                       ),
                       const SizedBox(height: 15),
                       textAlign(context, ' رقم لوحة السيارة '),
-                      const SizedBox(height: 15),
-                      PayContainer(
-                        title: " حروف و ارقام ",
-                        onTap: () {
-                          cubit.charactersTapped();
-                        },
-                        isTapped: cubit.isTapped3,
+                      CarNumber(
+                        otpKey: otpKey,
+                        lettersOtpKey: lettersOtpKey,
                       ),
-                      const SizedBox(height: 10),
-                      PayContainer(
-                        title: " ارقام فقط ",
-                        onTap: () {
-                          cubit.numberTapped();
-                        },
-                        isTapped: cubit.isTapped4,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Otp(),
                       const SizedBox(
                         height: 50,
                       ),
@@ -213,7 +201,35 @@ class AddClient extends StatelessWidget {
                         text: 'اضافة عميل',
                         hasElevation: true,
                         onPressed: () {
-                          if (cubit.formKey.currentState!.validate()) {}
+                          if (cubit.formKey.currentState!.validate() ||
+                              kDebugMode) {
+                            //TODO: add enter time as current time
+                            var otpState = otpKey.currentState;
+                            var lettersOtpState = lettersOtpKey.currentState;
+                            String plateNumber;
+                            if (otpState == null && lettersOtpState != null) {
+                              //letters & numbers
+                              plateNumber =
+                                  lettersOtpState.otpController1.text +
+                                      lettersOtpState.otpController2.text +
+                                      lettersOtpState.otpController3.text +
+                                      lettersOtpState.otpController4.text;
+                              print("letters otp: $plateNumber");
+                            } else if (otpState != null) {
+                              //numbers
+                              plateNumber = otpState.otpController1.text +
+                                  otpState.otpController2.text +
+                                  otpState.otpController3.text +
+                                  otpState.otpController4.text;
+                              print("otp: $plateNumber");
+                            } else {
+                              throw Exception(
+                                  "OTP: $otpState, Letters: $lettersOtpState");
+                            }
+                            cubit.submitData(plateNumber).then((value) =>
+                                Navigator.pushNamed(context, 'newJobOrderPage',
+                                    arguments: value));
+                          }
                         },
                       ),
                       const SizedBox(

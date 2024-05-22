@@ -12,3 +12,9 @@ final class ShowAllLoaded extends WorkShopState {
     required this.showAll,
   });
 }
+
+final class GetData extends WorkShopState {
+  final List<JobOrder> data;
+
+  GetData({required this.data});
+}
