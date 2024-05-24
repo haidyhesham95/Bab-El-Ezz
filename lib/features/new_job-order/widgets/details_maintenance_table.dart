@@ -4,51 +4,33 @@ import 'package:flutter/material.dart';
 
 
 class DetailsMaintenanceTable extends StatelessWidget {
-  const DetailsMaintenanceTable({super.key, required this.showAllDataInvoices});
-  final bool showAllDataInvoices ;
+  const DetailsMaintenanceTable({super.key,});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: CustomDataTable(
+      //  horizontalMargin: 75,
+        columnSpacing: 90,
           columns: [
+            const DataColumn(label: Text('الصنف')),
+            const DataColumn(label: Text('الكمية')),
+            const DataColumn(label: Text('المصنعية')),
+         ],
 
-            if (showAllDataInvoices) ...[
 
-              const DataColumn(label: Text('مسلسل')),
-            ],
-            const DataColumn(label: Text('اسم العميل')),
-            const DataColumn(label: Text('رقم التليفون')),
-            const DataColumn(label: Text('التاريخ')),
-            if (showAllDataInvoices) ...[
-
-              const DataColumn(label: Text('رقم الفاتورة')),
-              const DataColumn(label: Text('ماركة السيارة')),
-              const DataColumn(label: Text('رقم اللوحة')),
-            ],
-            const DataColumn(label: Text('صورة الفاتورة')),
-
-          ],
           rows: List.generate(
             3,
                 (index) => DataRow(
                 cells: <DataCell>[
 
-                  if (showAllDataInvoices) ...[
 
-                    const DataCell(Text('dfddh')),
-                  ],
-                  const DataCell(Text('dfddh')),
-                  const DataCell(Text('dfddh')),
-                  const DataCell(Text('dfddh')),
-                  if (showAllDataInvoices) ...[
+                  const DataCell(Text('-------')),
+                  const DataCell(Text('5')),
 
-                    const DataCell(Text('dfddh')),
-                    const DataCell(Text('dfddh')),
-                    const DataCell(Text('dfddh')),
-                  ],
-                  const DataCell(Text('dfddh')),
+                  const DataCell(Text('----')),
+
 
                 ]
             ),

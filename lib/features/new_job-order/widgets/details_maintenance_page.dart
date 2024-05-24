@@ -3,18 +3,10 @@ import 'package:flutter/material.dart';
 
 import '../../../shared_utils/utils/widget/const_appbar.dart';
 import '../../../shared_utils/utils/widget/shadow_container.dart';
-import '../../../shared_utils/utils/widget/show_details_text.dart';
 import 'details_maintenance_table.dart';
 
-class DetailsMaintenancePage extends StatefulWidget {
+class DetailsMaintenancePage extends StatelessWidget {
   const DetailsMaintenancePage({super.key});
-
-  @override
-  State<DetailsMaintenancePage> createState() => _DetailsMaintenancePageState();
-}
-
-class _DetailsMaintenancePageState extends State<DetailsMaintenancePage> {
-  late bool showAllData= false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +44,10 @@ class _DetailsMaintenancePageState extends State<DetailsMaintenancePage> {
                                ]),
                 )),
             ),
-        
-            const SizedBox(height: 20),
-            showDetailsText(context: context, onPressed: (){
-              setState(() {
-                showAllData = !showAllData;
-              });
-            }),
-            DetailsMaintenanceTable(showAllDataInvoices: showAllData,),
+
+            const SizedBox(height: 30),
+
+            const DetailsMaintenanceTable(),
 
             const SizedBox(height: 20),
 
