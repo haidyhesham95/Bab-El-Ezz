@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../styles/text.dart';
 
-AppBar constAppBar(BuildContext context, String title,
-    {bool backToMain = false}) {
+AppBar constAppBar(BuildContext context, String title) {
   return AppBar(
     centerTitle: true,
     title: Text(
@@ -13,9 +12,7 @@ AppBar constAppBar(BuildContext context, String title,
     leading: IconButton(
       icon: const Icon(Icons.arrow_back),
       onPressed: () {
-        backToMain
-            ? Navigator.pushReplacementNamed(context, 'workshop')
-            : Navigator.pop(context);
+        Navigator.pop(context);
       },
     ),
   );

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../shared_utils/styles/colors.dart';
 import '../../../shared_utils/styles/text.dart';
 
-TextButton timePicker(BuildContext context,String text,state) {
+TextButton timePicker(BuildContext context, String text, state) {
   return TextButton(
     onPressed: () async {
       final TimeOfDay? pickedTime = await showTimePicker(
@@ -12,25 +12,24 @@ TextButton timePicker(BuildContext context,String text,state) {
         initialTime: TimeOfDay.now(),
         builder: (BuildContext context, Widget? child) {
           return Theme(
-
             data: ThemeData.dark().copyWith(
               textSelectionTheme: const TextSelectionThemeData(
                 cursorColor: ColorsAsset.kGreen,
                 selectionColor: Colors.white,
                 selectionHandleColor: Colors.white,
               ),
-
               dialogBackgroundColor: ColorsAsset.kGreen,
               dataTableTheme: DataTableThemeData(
-
                 headingCellCursor: MaterialStateMouseCursor.clickable,
                 dataRowCursor: MaterialStateMouseCursor.clickable,
-
-                headingRowColor: MaterialStateColor.resolveWith((
-                    states) => ColorsAsset.kGreen),
-                dataRowColor: MaterialStateColor.resolveWith((states) => ColorsAsset.kGreen),
-                dataTextStyle: AppStyles.styleRegular14(context) .copyWith( color: ColorsAsset.kGreen),
-                headingTextStyle: AppStyles.styleRegular14(context).copyWith( color: ColorsAsset.kGreen),
+                headingRowColor: MaterialStateColor.resolveWith(
+                    (states) => ColorsAsset.kGreen),
+                dataRowColor: MaterialStateColor.resolveWith(
+                    (states) => ColorsAsset.kGreen),
+                dataTextStyle: AppStyles.styleRegular14(context)
+                    .copyWith(color: ColorsAsset.kGreen),
+                headingTextStyle: AppStyles.styleRegular14(context)
+                    .copyWith(color: ColorsAsset.kGreen),
               ),
               colorScheme: const ColorScheme.dark().copyWith(
                 onBackground: ColorsAsset.kGreen,
@@ -61,13 +60,9 @@ TextButton timePicker(BuildContext context,String text,state) {
             child: child!,
           );
         },
-
-
       );
       if (pickedTime != null) {
-
-     state(pickedTime.format(context));
-
+        state(pickedTime);
       }
     },
     child: Text(
@@ -75,5 +70,4 @@ TextButton timePicker(BuildContext context,String text,state) {
       style: AppStyles.styleRegular14(context).copyWith(color: Colors.white),
     ),
   );
-
 }

@@ -25,6 +25,7 @@ class WorkShopBody extends StatelessWidget {
           WorkShopCubit cubit = WorkShopCubit.get(context);
           if (state is WorkShopInitial) {
             cubit.getCurrentJobs();
+            return const Center(child: CircularProgressIndicator());
           } else if (state is GetData) {
             listJobs = state.data;
             print("listJobs: $listJobs");

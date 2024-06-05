@@ -18,7 +18,7 @@ ShadowContainer carItem(context, JobOrder jobOrder) {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          jobOrder.car!.make!,
+          jobOrder.car?.make ?? '',
           style: AppStyles.styleMedium16(context),
         ),
         Text(

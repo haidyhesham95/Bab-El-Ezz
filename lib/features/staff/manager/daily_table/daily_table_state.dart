@@ -12,12 +12,15 @@ final class SelectedTypeChanged extends DailyTableState {
 }
 
 final class SelectedCheckOutTimeChanged extends DailyTableState {
-  final String? value;
+  final TimeOfDay? value;
 
   SelectedCheckOutTimeChanged(this.value);
 }
+
 final class SelectedAttendanceChanged extends DailyTableState {
-  final String? value;
+  final TimeOfDay? value;
 
   SelectedAttendanceChanged(this.value);
 }
+
+final class UpdateData extends DailyTableState {}

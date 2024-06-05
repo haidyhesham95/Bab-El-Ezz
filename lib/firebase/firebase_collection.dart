@@ -1,24 +1,42 @@
+import 'package:bab_el_ezz/data/attendance.dart';
 import 'package:bab_el_ezz/data/car.dart';
 import 'package:bab_el_ezz/data/customer.dart';
+import 'package:bab_el_ezz/data/invoice.dart';
 import 'package:bab_el_ezz/data/job_order.dart';
+import 'package:bab_el_ezz/data/maintenance_invoice.dart';
+import 'package:bab_el_ezz/data/merchant.dart';
+import 'package:bab_el_ezz/data/part.dart';
+import 'package:bab_el_ezz/data/technician.dart';
 import 'package:bab_el_ezz/data/workshop.dart';
 import 'package:bab_el_ezz/firebase/user_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseCollection {
   /// User Collection base on firebase collection name
-  // static const String userCollectionName = "Users";
+  static const String staffCollectionName = "Staff";
+  static const String attendanceCollectionName = "Attendance";
   static const String jobOrderCollectionName = "Orders";
   static const String workshopCollectionName = "workshops";
   static const String customerCollectionName = "Customers";
   static const String carCollectionName = "Cars";
+  static const String partCollectionName = "Parts";
+  static const String invoiceCollectionName = "Invoices";
+  static const String merchantsCollectionName = "Merchants";
 
   static final FirebaseCollection _singleton = FirebaseCollection._internal();
   static final Map<Type, CollectionReference<dynamic>> _collectionCache = {};
   late CollectionReference<JobOrder> jobOrderCol;
+  late CollectionReference<Technician> staffCol;
+  late CollectionReference<Attendance> attendanceCol;
   late CollectionReference<Customer> customerCol;
   late CollectionReference<Workshop> workshopCol;
   late CollectionReference<Car> carCol;
+  late CollectionReference<Part> partCol;
+  late CollectionReference<Invoice> maintenanceInvCol;
+  late CollectionReference<Invoice> merchantInvCol;
+  late CollectionReference<Invoice> partsInvCol;
+  late CollectionReference<Invoice> returnInvCol;
+  late CollectionReference<Merchant> merchantsCol;
 
   factory FirebaseCollection() {
     return _singleton;
@@ -29,6 +47,38 @@ class FirebaseCollection {
         collectionName: jobOrderCollectionName,
         fromJson: JobOrder.fromFirestore,
         toJson: (JobOrder model) => model.toJson());
+    merchantsCol = _getOrCreateCollection<Merchant>(
+        collectionName: merchantsCollectionName,
+        fromJson: Merchant.fromFirestore,
+        toJson: (Merchant model) => model.toJson());
+    maintenanceInvCol = _getOrCreateCollection<MaintenanceInvoice>(
+        collectionName: invoiceCollectionName,
+        fromJson: MaintenanceInvoice.fromFirestore,
+        toJson: (MaintenanceInvoice model) => model.toJson());
+    merchantInvCol = _getOrCreateCollection<MaintenanceInvoice>(
+        collectionName: invoiceCollectionName,
+        fromJson: MaintenanceInvoice.fromFirestore,
+        toJson: (MaintenanceInvoice model) => model.toJson());
+    partsInvCol = _getOrCreateCollection<MaintenanceInvoice>(
+        collectionName: invoiceCollectionName,
+        fromJson: MaintenanceInvoice.fromFirestore,
+        toJson: (MaintenanceInvoice model) => model.toJson());
+    returnInvCol = _getOrCreateCollection<MaintenanceInvoice>(
+        collectionName: invoiceCollectionName,
+        fromJson: MaintenanceInvoice.fromFirestore,
+        toJson: (MaintenanceInvoice model) => model.toJson());
+    partCol = _getOrCreateCollection<Part>(
+        collectionName: partCollectionName,
+        fromJson: Part.fromFirestore,
+        toJson: (Part model) => model.toJson());
+    staffCol = _getOrCreateCollection<Technician>(
+        collectionName: staffCollectionName,
+        fromJson: Technician.fromFirestore,
+        toJson: (Technician model) => model.toJson());
+    attendanceCol = _getOrCreateCollection<Attendance>(
+        collectionName: attendanceCollectionName,
+        fromJson: Attendance.fromFirestore,
+        toJson: (Attendance model) => model.toJson());
     customerCol = _getOrCreateCollection<Customer>(
         collectionName: customerCollectionName,
         fromJson: Customer.fromFirestore,

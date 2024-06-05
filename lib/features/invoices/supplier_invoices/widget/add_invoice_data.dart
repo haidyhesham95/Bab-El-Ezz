@@ -2,6 +2,7 @@ import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../shared_utils/styles/colors.dart';
 import '../../../../shared_utils/styles/text.dart';
 import '../../../../shared_utils/utils/widget/button_widget.dart';
@@ -22,7 +23,10 @@ class AddInvoicesData extends StatelessWidget {
             builder: (context, state) {
               SupplierInvoiceCubit cubit = SupplierInvoiceCubit.get(context);
               return Scaffold(
-                appBar: constAppBar(context, ' اضافة فاتوره', ),
+                appBar: constAppBar(
+                  context,
+                  ' اضافة فاتوره',
+                ),
                 body: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Form(
@@ -33,26 +37,27 @@ class AddInvoicesData extends StatelessWidget {
                           Column(
                             children: [
                               const SizedBox(height: 20),
-                              addImage(context,),
+                              addImage(
+                                context,
+                              ),
                               const SizedBox(height: 20),
                               DropButton(
-                                styleHint: AppStyles.styleRegular14(context).copyWith(
-                                    color: ColorsAsset.kDarkBrown),
+                                styleHint: AppStyles.styleRegular14(context)
+                                    .copyWith(color: ColorsAsset.kDarkBrown),
                                 hintText: 'اسم المورد',
-                                value: cubit.selectedSupplierType,
+                                value: cubit.merchants.isNotEmpty
+                                    ? cubit.merchants[0].name
+                                    : "اسم المورد",
                                 onChanged: (String? value) {
                                   cubit.setSelectedSupplierType(value);
                                 },
-                                items: const [
-                                  DropdownMenuItem(
-                                    value: 'مورد1',
-                                    child: Text('مورد1'),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 'مورد2',
-                                    child: Text('مورد2'),
-                                  ),
-                                ],
+                                items: List.generate(
+                                    cubit.merchants.length,
+                                    (index) => DropdownMenuItem(
+                                          value: cubit.merchants[index].name,
+                                          child:
+                                              Text(cubit.merchants[index].name),
+                                        )),
                               ),
                               const SizedBox(
                                 height: 15,
@@ -60,11 +65,10 @@ class AddInvoicesData extends StatelessWidget {
                               TextFieldWidget(
                                 label: " رقم الفاتوره ",
                                 hintText: " ادخال رقم الفاتوره ",
-                                controller: cubit.supplierNameController,
+                                controller: cubit.invoiceNumberController,
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.number,
                                 errorMessage: 'برجاء ادخال رقم الفاتوره',
-
                               ),
                             ],
                           ),
@@ -79,14 +83,13 @@ class AddInvoicesData extends StatelessWidget {
                                   if (cubit.formKey.currentState!.validate()) {
                                     Navigator.pop(context);
                                   }
-
                                 },
-
                               ),
-                              const SizedBox(height: 20,),
+                              const SizedBox(
+                                height: 20,
+                              ),
                             ],
                           ),
-
                         ],
                       ),
                     )),

@@ -91,7 +91,7 @@ class AddClientCubit extends Cubit<AddClientState> {
         mileage: counterController.text,
         chassisNumber: chassisNumberController.text,
         engineNumber: motorNumberController.text,
-        transmissionType: isTapped1 ? "Manual" : "Automatic",
+        transmissionType: isTapped1 ? "يدوي" : "أوتوماتيك",
       );
 
       // Save car to Firestore

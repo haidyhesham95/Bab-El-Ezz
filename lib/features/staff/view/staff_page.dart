@@ -1,5 +1,7 @@
+import 'package:bab_el_ezz/data/technician.dart';
 import 'package:bab_el_ezz/features/staff/widget/daily_table.dart';
-import 'package:bab_el_ezz/features/staff/widget/staff_table.dart';
+import 'package:bab_el_ezz/features/staff/widget/staff_data_table.dart';
+import 'package:bab_el_ezz/shared_utils/utils/widget/floating_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,18 +10,35 @@ import '../manager/staff/staff_cubit.dart';
 import '../widget/toggle_button.dart';
 
 class StaffPage extends StatelessWidget {
-  const StaffPage({Key? key}) : super(key: key);
+  StaffPage({Key? key}) : super(key: key);
+
+  late StaffCubit cubit;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: floatingButton(
+        context: context,
+        onPressed: () async {
+          final technician = await Navigator.of(context)
+              .pushNamed('addStaffItem') as Technician;
+          cubit.updateTechnicians(technician);
+        },
+        text: 'اضافة عامل',
+      ),
       appBar: appBarWidget(context),
       body: Center(
         child: BlocProvider(
           create: (context) => StaffCubit(),
           child: BlocBuilder<StaffCubit, StaffState>(
             builder: (context, state) {
-              StaffCubit cubit = StaffCubit.get(context);
+              cubit = StaffCubit.get(context);
+              if (state is StaffInitial) {
+                cubit.getTechnicians();
+                // cubit.getAttendances();
+                return const CircularProgressIndicator();
+              }
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -32,14 +51,48 @@ class StaffPage extends StatelessWidget {
                   ),
                   Visibility(
                     visible: cubit.selectedIndex == 0,
-                    child: const Expanded(
-                      child: DailyTable(),
+                    child: Expanded(
+                      child: DailyTable(
+                        technicians: cubit.technicians,
+                      ),
                     ),
                   ),
                   Visibility(
                     visible: cubit.selectedIndex == 1,
-                    child: const Expanded(
-                      child: StaffTable(),
+                    child: Expanded(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: SingleChildScrollView(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 50,
+                                ),
+                                StaffDataTable(
+                                  technicians: cubit.technicians,
+                                  onEdit: (index) async {
+                                    print("edit");
+                                    final technician =
+                                        await Navigator.of(context).pushNamed(
+                                            'addStaffItem',
+                                            arguments: cubit.technicians[index]
+                                                .toJson()) as Technician;
+                                    cubit.updateTechnicians(technician,
+                                        update: true);
+                                  },
+                                  onDelete: (index) {
+                                    print("index: $index");
+                                    cubit.deleteTechnician(
+                                        cubit.technicians[index]);
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],

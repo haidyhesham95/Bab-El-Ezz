@@ -5,22 +5,19 @@ part 'part.g.dart';
 
 @JsonSerializable()
 class Part {
-  String id;
+  String? id;
   String name;
   String code;
   int quantity;
-  double price;
   String brand;
   double sellingPrice;
   double wholesalePrice;
   int lowStockThreshold;
 
   Part(
-    this.id,
     this.name,
     this.code,
     this.quantity,
-    this.price,
     this.brand,
     this.sellingPrice,
     this.wholesalePrice,

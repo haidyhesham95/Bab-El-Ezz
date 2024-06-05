@@ -1,3 +1,4 @@
+import 'package:bab_el_ezz/shared_utils/utils/widget/container_search.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../shared_utils/utils/widget/clip_path_gradient.dart';
@@ -22,10 +23,11 @@ class TopInvoicesSearch extends StatelessWidget {
       ),
       clipBathGradient(context, text: text ?? " قائمة الفواتير"),
       const SizedBox(height: 30),
-      // ContainerSearch(
-      //   hintText:hintText?? ' البحث عن فاتورة ',
-      //   onPressed: onPressedSearch,
-      // ),
+      ContainerSearch(
+        hintText: hintText ?? ' البحث عن فاتورة ',
+        onPressed: onPressedSearch,
+        controller: TextEditingController(),
+      ),
       const SizedBox(height: 20),
     ]);
   }

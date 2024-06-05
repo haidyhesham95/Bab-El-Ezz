@@ -6,17 +6,15 @@ import '../../../shared_utils/utils/widget/drop_menu.dart';
 DataRow tableItem(BuildContext context) {
   final size = MediaQuery.of(context).size;
   return DataRow(cells: [
-    DataCell(
-        DropMenu(
-          onTapEdit: () {},
-          onTapDelete: () {},
-        )),
-
+    DataCell(DropMenu(
+      onTapEdit: (index) {},
+      onTapDelete: (index) {},
+    )),
     const DataCell(
       DataTextField(
-  hintText: 'اضافه صنف',
-  ),
-       ),
+        hintText: 'اضافه صنف',
+      ),
+    ),
     const DataCell(Text('25')),
     const DataCell(Text('250')),
     const DataCell(Text('الخصم')),
@@ -24,13 +22,10 @@ DataRow tableItem(BuildContext context) {
       DataTextField(
         hintText: 'اضافه مصنعية',
       ),
-    ),    const DataCell(Text('الإجمالي')),
-    const DataCell(
-      DataTextField(
-  hintText: 'اضافه ملاحظه',
-      )),
+    ),
+    const DataCell(Text('الإجمالي')),
+    const DataCell(DataTextField(
+      hintText: 'اضافه ملاحظه',
+    )),
   ]);
-
-
-
 }

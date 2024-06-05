@@ -31,7 +31,7 @@ class AddsItemsStore extends StatelessWidget {
                           TextFieldWidget(
                             label: " اسم الصنف ",
                             hintText: "  ادخال اسم الصنف ",
-                            controller: cubit.typeNameController,
+                            controller: cubit.nameController,
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.name,
                             errorMessage: 'الرجاء ادخال اسم الصنف',
@@ -40,7 +40,7 @@ class AddsItemsStore extends StatelessWidget {
                           TextFieldWidget(
                             label: " كود الصنف ",
                             hintText: " ادخال كود الصنف ",
-                            controller: cubit.typeNumberController,
+                            controller: cubit.codeController,
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.number,
                             errorMessage: 'الرجاء ادخال كود الصنف',
@@ -76,7 +76,7 @@ class AddsItemsStore extends StatelessWidget {
                           TextFieldWidget(
                             label: " سعر البيع ",
                             hintText: " اضافه  سعر البيع ",
-                            controller: cubit.saleNumberController,
+                            controller: cubit.salePriceController,
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.number,
                             errorMessage: 'الرجاء ادخال سعر البيع',
@@ -100,7 +100,8 @@ class AddsItemsStore extends StatelessWidget {
                             text: ' اضافة ',
                             onPressed: () {
                               if (cubit.formKey.currentState!.validate()) {
-                                Navigator.pop(context);
+                                cubit.addPart().then(
+                                    (value) => Navigator.pop(context, value));
                               }
                             },
                           ),
