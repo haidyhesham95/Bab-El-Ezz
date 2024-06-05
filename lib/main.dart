@@ -27,6 +27,8 @@ import 'features/invoices/supplier_invoices/view/supplier_invoices.dart';
 import 'features/invoices/supplier_invoices/widget/add_invoice_data.dart';
 import 'features/invoices/supplier_invoices/widget/add_supplier_data.dart';
 import 'features/new_job-order/view/new_job_order_page .dart';
+import 'features/new_job-order/widgets/details_maintenance_page.dart';
+import 'features/new_job-order/widgets/previous_maintenance.dart';
 import 'features/staff/widget/account_clearance_page.dart';
 import 'features/staff/widget/add_staff_item.dart';
 import 'features/staff/widget/view_details_page.dart';
@@ -124,6 +126,9 @@ class MyApp extends StatelessWidget {
               "/print_invoice": (context) => const PrintInvoice(),
               "viewDetailsPage": (context) => const ViewDetailsPage(),
               "editProfile": (context) => const EditProfile(),
+              "PreviousMaintenance": (context) => const PreviousMaintenance(),
+              'detailsMaintenancePage': (context) =>
+                  const DetailsMaintenancePage(),
             },
           );
         },

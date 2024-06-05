@@ -21,9 +21,9 @@ final List<DataRow> rows;
     dataRowMaxHeight: MediaQuery.of(context).size.width * 0.15,
     dividerThickness: 1,
     headingRowColor: const MaterialStatePropertyAll(ColorsAsset.kGreen),
-    //horizontalMargin:horizontalMargin?? 5,
+    //horizontalMargin:horizontalMargin,
     headingRowHeight: 40,
-   // columnSpacing: columnSpacing??25,
+    columnSpacing: columnSpacing,
 
     columns: columns,
     rows: rows,

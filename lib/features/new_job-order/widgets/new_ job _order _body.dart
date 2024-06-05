@@ -17,6 +17,7 @@ import 'add_note_text.dart';
 import 'add_receipt_table.dart';
 import 'car_data.dart';
 import 'details.dart';
+import 'details_previous_maintenance_button.dart';
 import 'drop_button.dart';
 
 class NewJobOrderBody extends StatefulWidget {
@@ -100,6 +101,9 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 20),
+                   const DetailsPreviousMaintenanceButton(),
+                    
                     const SizedBox(height: 20),
                     Row(
                       children: [
