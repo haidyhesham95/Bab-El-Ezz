@@ -31,6 +31,7 @@ class MaintenanceCustomerTable extends StatelessWidget {
               const DataColumn(label: Text('الموديل')),
               const DataColumn(label: Text('سنة الصنع')),
               const DataColumn(label: Text('رقم اللوحة')),
+              const DataColumn(label: Text('للون السيارة')),
               const DataColumn(label: Text('رقم الشاشة')),
               const DataColumn(label: Text('رقم الماتور')),
               const DataColumn(label: Text('نوع ناقل الحركة')),
@@ -52,6 +53,7 @@ class MaintenanceCustomerTable extends StatelessWidget {
                 const DataCell(Text('dfdd')),
                 const DataCell(Text('dfdd')),
                 if (showAllDataCustomers) ...[
+                  const DataCell(Text('dfdd')),
                   const DataCell(Text('dfdd')),
                   const DataCell(Text('dfdd')),
                   const DataCell(Text('dfdd')),

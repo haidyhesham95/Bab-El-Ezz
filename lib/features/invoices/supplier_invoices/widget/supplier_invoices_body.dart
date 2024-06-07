@@ -43,7 +43,7 @@ class _SupplierInvoicesBodyState extends State<SupplierInvoicesBody> {
                         showAllDataInvoices = !showAllDataInvoices;
                       });
                     },
-                    showAll: false),
+                    showAll: showAllDataInvoices),
                 InvoicesSuppliersTable(
                   showAllDataInvoices: showAllDataInvoices,
                 ),

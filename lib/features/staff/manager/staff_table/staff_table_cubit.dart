@@ -2,6 +2,7 @@ import 'package:bab_el_ezz/data/attendance.dart';
 import 'package:bab_el_ezz/data/technician.dart';
 import 'package:bab_el_ezz/firebase/firebase_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +20,7 @@ class StaffTableCubit extends Cubit<StaffTableState> {
   TextEditingController nationalIdController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController dailyRateController = TextEditingController();
-
+TextEditingController phoneController = TextEditingController();
   TextEditingController specializationController = TextEditingController();
 
   Future addTechnician(Technician technician) async {

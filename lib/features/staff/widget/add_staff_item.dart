@@ -60,6 +60,15 @@ class AddStaffItem extends StatelessWidget {
                       ),
                       const SizedBox(height: 15),
                       TextFieldWidget(
+                        label: " الرقم التلفون ",
+                        hintText: "  ادخال الرقم التلفون ",
+                        controller: cubit.phoneController,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
+                        errorMessage: 'الرجاء ادخال الرقم التلفون',
+                      ),
+                      const SizedBox(height: 15),
+                      TextFieldWidget(
                         label: " الرقم القومي ",
                         hintText: "  ادخال الرقم القومي ",
                         controller: cubit.nationalIdController,
@@ -107,6 +116,7 @@ class AddStaffItem extends StatelessWidget {
                             Technician technician = Technician(
                               this.technician?.id,
                               cubit.nameController.text,
+                              cubit.phoneController.text,
                               cubit.nationalIdController.text,
                               cubit.specializationController.text,
                               cubit.titleController.text,

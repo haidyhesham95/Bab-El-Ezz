@@ -31,7 +31,7 @@ class MaintenanceInvoicesBody extends StatelessWidget {
                               onPressed: () {
                                 cubit.changeShowAllDataInvoices();
                               },
-                              showAll: false),
+                              showAll: cubit.showAllDataInvoices),
                           MaintenanceInvoiceTable(
                             showAllDataInvoices: cubit.showAllDataInvoices,
                           ),
@@ -46,7 +46,7 @@ class MaintenanceInvoicesBody extends StatelessWidget {
                               onPressed: () {
                                 cubit.changeShowAllDataCustomers();
                               },
-                              showAll: false),
+                              showAll:cubit. showAllDataCustomers),
                           MaintenanceCustomerTable(
                             showAllDataCustomers: cubit.showAllDataCustomers,
                           ),

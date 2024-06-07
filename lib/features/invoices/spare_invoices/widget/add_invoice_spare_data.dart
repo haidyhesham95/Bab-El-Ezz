@@ -52,14 +52,7 @@ class AddInvoiceSpareData extends StatelessWidget {
                                 errorMessage: '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
                               ),
                                  const SizedBox(height: 20),
-                              TextFieldWidget(
-                                label: " رقم الفاتورة : ",
-                                hintText: " ادخال رقم الفاتورة ",
-                                controller: cubit.nameController,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.number,
-                                errorMessage: '(رقم الفاتورة يجب ان يحتوي علي 3 خانات)',
-                              ),
+
                               Spacer(flex: 3,),
                               ButtonWidget(
                                 hasElevation: true,

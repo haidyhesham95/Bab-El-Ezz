@@ -11,7 +11,7 @@ Align showDetailsText(
     child: TextButton(
       onPressed: onPressed,
       child: Text(
-        showAll ? 'عرض أقل' : 'عرض كل التفاصيل',
+        showAll ? 'عرض تفاصيل أقل' : 'عرض كل التفاصيل',
         style: AppStyles.styleSemiBold14(context).copyWith(
           color: Colors.white,
         ),
