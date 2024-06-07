@@ -7,6 +7,7 @@ part 'technician.g.dart';
 class Technician {
   String? id;
   String name;
+  String phone;
   String nationalId; // Assuming this is the unique ID for the technician
   String specialization;
   String title;
@@ -25,6 +26,7 @@ class Technician {
   Technician(
     this.id,
     this.name,
+    this.phone,
     this.nationalId,
     this.specialization,
     this.title,

@@ -24,7 +24,7 @@ class CustomerSpareTable extends StatelessWidget {
           const DataColumn(label: Text('مسلسل')),
           const DataColumn(label: Text('الاسم')),
           const DataColumn(label: Text('رقم التليفون')),
-          const DataColumn(label: Text('عدد مرات الزياره')),
+          const DataColumn(label: Text('عدد لفواتير')),
           const DataColumn(label: Text('اجمالي  قيم الفواتير')),
         ],
         rows: List.generate(

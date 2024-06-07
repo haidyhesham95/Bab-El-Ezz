@@ -38,7 +38,7 @@ class _SupplierInvoicesBodyState extends State<SupplierInvoicesBody> {
                         showAllDataInvoices = !showAllDataInvoices;
                       });
                     },
-                    showAll: false),
+                    showAll: showAllDataInvoices),
                 InvoicesSuppliersTable(
                   showAllDataInvoices: showAllDataInvoices,
                 ),
@@ -55,7 +55,7 @@ class _SupplierInvoicesBodyState extends State<SupplierInvoicesBody> {
                         showAllDataSuppliers = !showAllDataSuppliers;
                       });
                     },
-                    showAll: false),
+                    showAll: showAllDataSuppliers),
                 SupplierTable(
                   showAllDataSuppliers: showAllDataSuppliers,
                 ),

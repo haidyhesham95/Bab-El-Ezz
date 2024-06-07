@@ -26,81 +26,70 @@ class AddSuppliersData extends StatelessWidget {
                 ),
                 body: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SingleChildScrollView(
-                        child: Form(
-                          key: cubit.formKey1,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const SizedBox(height: 20),
-                              TextFieldWidget(
-                                label: " اسم المورد ",
-                                hintText: "  الاسم ",
-                                controller: cubit.nameController,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.name,
-                                errorMessage:
-                                    '(الاسم يجب ان يحتوي علي 3 احرف علي الاقل)',
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              TextFieldWidget(
-                                label: " رقم التلفون ",
-                                hintText: " +20 ",
-                                controller: cubit.phoneController,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.number,
-                                errorMessage:
-                                    '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              TextFieldWidget(
-                                label: " اسم الشركة ",
-                                hintText: " ادخل اسم الشركة ",
-                                controller: cubit.companyNameController,
-                                textInputAction: TextInputAction.next,
-                                keyboardType: TextInputType.name,
-                                errorMessage:
-                                    '(الاسم يجب ان يحتوي علي 3 احرف علي الاقل)',
-                              ),
-                            ],
-                          ),
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: cubit.formKey1,
+                      child: SizedBox(
+                          height: size.height,
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 20),
+                            TextFieldWidget(
+                              label: " اسم المورد ",
+                              hintText: "  الاسم ",
+                              controller: cubit.nameController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.name,
+                              errorMessage:
+                                  '(الاسم يجب ان يحتوي علي 3 احرف علي الاقل)',
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            TextFieldWidget(
+                              label: " رقم التلفون ",
+                              hintText: " +20 ",
+                              controller: cubit.phoneController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.number,
+                              errorMessage:
+                                  '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            TextFieldWidget(
+                              label: " اسم الشركة ",
+                              hintText: " ادخل اسم الشركة ",
+                              controller: cubit.companyNameController,
+                              textInputAction: TextInputAction.next,
+                              keyboardType: TextInputType.name,
+                              errorMessage:
+                                  '(الاسم يجب ان يحتوي علي 3 احرف علي الاقل)',
+                            ),
+
+                            Spacer(flex: 3,),
+                            ButtonWidget(
+                              hasElevation: true,
+                              height: size.height * 0.05,
+                              text: ' إضافة  ',
+                              onPressed: () {
+                                if (cubit.formKey1.currentState!.validate()) {
+                                  Merchant merchant = Merchant(
+                                      name: cubit.nameController.text,
+                                      phone: cubit.phoneController.text,
+                                      company: cubit.companyNameController.text);
+
+                                  cubit.addMerchant(merchant).then((value) =>
+                                      Navigator.pop(context, merchant));
+                                }
+                              },
+                            ),
+                            Spacer(flex: 2,)
+                          ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          ButtonWidget(
-                            hasElevation: true,
-                            height: size.height * 0.05,
-                            text: ' إضافة  ',
-                            onPressed: () {
-                              if (cubit.formKey1.currentState!.validate()) {
-                                Merchant merchant = Merchant(
-                                    name: cubit.nameController.text,
-                                    phone: cubit.phoneController.text,
-                                    company: cubit.companyNameController.text);
-
-                                cubit.addMerchant(merchant).then((value) =>
-                                    Navigator.pop(context, merchant));
-                              }
-                            },
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                        ],
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               );

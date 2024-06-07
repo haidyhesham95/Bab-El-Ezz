@@ -13,6 +13,4 @@ class SpareInvoicesCubit extends Cubit<SpareInvoicesState> {
   TextEditingController customerNameController = TextEditingController();
   TextEditingController customerPhoneController = TextEditingController();
   TextEditingController nameController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController numberController = TextEditingController();
 }

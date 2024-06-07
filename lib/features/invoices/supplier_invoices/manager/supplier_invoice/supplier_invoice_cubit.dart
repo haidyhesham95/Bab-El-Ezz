@@ -20,6 +20,13 @@ class SupplierInvoiceCubit extends Cubit<SupplierInvoiceState> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController companyNameController = TextEditingController();
   TextEditingController invoiceNumberController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController paidController = TextEditingController();
+  TextEditingController aglController = TextEditingController();
+  TextEditingController dueDateController = TextEditingController();
+
+
+
 
   CollectionReference merchantRef = FirebaseCollection().merchantsCol;
   CollectionReference merchantInvRef = FirebaseCollection().merchantInvCol;

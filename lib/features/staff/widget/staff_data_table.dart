@@ -34,6 +34,7 @@ class StaffDataTable extends StatelessWidget {
             columns: const [
               DataColumn(label: Text('')),
               DataColumn(label: Text(' اسم الفني ')),
+              DataColumn(label: Text(' رقم التلفون ')),
               DataColumn(label: Text(' الرقم القومي ')),
               DataColumn(label: Text(' التخصص ')),
               DataColumn(label: Text(' الدرجة الوظيفية ')),
@@ -50,6 +51,7 @@ class StaffDataTable extends StatelessWidget {
                     index: index,
                   )),
                   DataCell(Text(cubit.technicians[index].name)),
+                  DataCell(Text(cubit.technicians[index].phone)),
                   DataCell(Text(cubit.technicians[index].nationalId)),
                   DataCell(Text(cubit.technicians[index].specialization)),
                   DataCell(Text(cubit.technicians[index].title)),

@@ -57,16 +57,13 @@ class AddItemsMerchantReturned extends StatelessWidget {
           },
           items: const [
             DropdownMenuItem(
-              value: 'سليم',
-              child: Text('سليم'),
+              value: 'استبدال',
+              child: Text('استبدال'),
             ),
+
             DropdownMenuItem(
-              value: 'تالف وسيتم استبداله ',
-              child: Text('تالف وسيتم استبداله '),
-            ),
-            DropdownMenuItem(
-              value: 'تالف ولن يتم استبداله ',
-              child: Text('تالف ولن يتم استبداله '),
+              value: 'مرتجع ',
+              child: Text('مرتجع '),
             ),
           ],
         ),

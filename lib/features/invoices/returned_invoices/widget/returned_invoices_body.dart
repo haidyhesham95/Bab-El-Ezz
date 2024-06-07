@@ -14,7 +14,7 @@ class ReturnedInvoiceBody extends StatelessWidget {
         child: Column(
           children: [
             TopInvoicesSearch(
-              text: ' مرتجع قطع غيار',
+              text: ' مرتجع العملاء',
               onPressedSearch: (){},
             ),
             const CustomerReturnedTable() ,
