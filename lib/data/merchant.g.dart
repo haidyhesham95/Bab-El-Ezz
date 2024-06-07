@@ -7,11 +7,11 @@ part of 'merchant.dart';
 // **************************************************************************
 
 Merchant _$MerchantFromJson(Map<String, dynamic> json) => Merchant(
+      id: json['id'] as String?,
       name: json['name'] as String,
       phone: json['phone'] as String,
       company: json['company'] as String,
     )
-      ..id = json['id'] as String?
       ..totalInvoices = json['totalInvoices'] as int?
       ..totalPrice = (json['totalPrice'] as num?)?.toDouble()
       ..totalPaid = (json['totalPaid'] as num?)?.toDouble()

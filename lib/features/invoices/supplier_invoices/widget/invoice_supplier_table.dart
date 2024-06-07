@@ -2,6 +2,7 @@ import 'package:bab_el_ezz/features/invoices/supplier_invoices/manager/supplier_
 import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../shared_utils/utils/widget/add_icon_button.dart';
 import '../../../../shared_utils/utils/widget/drop_menu.dart';
@@ -18,6 +19,12 @@ class InvoicesSuppliersTable extends StatelessWidget {
       child: BlocBuilder<SupplierInvoiceCubit, SupplierInvoiceState>(
         builder: (context, state) {
           SupplierInvoiceCubit cubit = SupplierInvoiceCubit.get(context);
+
+          if (state is SupplierInvoiceInitial) {
+            cubit.getMerchantInv();
+            return CircularProgressIndicator();
+          }
+
           return SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: CustomDataTable(
@@ -42,7 +49,7 @@ class InvoicesSuppliersTable extends StatelessWidget {
                 const DataColumn(label: Text('صورة الفاتورة')),
               ],
               rows: List.generate(
-                2,
+                cubit.merchantInvoices.length,
                 (index) => DataRow(
                   cells: <DataCell>[
                     DataCell(DropMenu(
@@ -50,18 +57,28 @@ class InvoicesSuppliersTable extends StatelessWidget {
                       onTapDelete: (index) {},
                     )),
                     if (showAllDataInvoices) ...[
-                      const DataCell(Text('dfddh')),
+                      DataCell(Text("${index + 1}")),
                     ],
-                    const DataCell(Text('dfddh')),
-                    const DataCell(Text('dfddh')),
-                    const DataCell(Text('dfddh')),
+                    DataCell(Text(cubit.merchantInvoices[index].clientName)),
+                    DataCell(Text(DateFormat("dd/MM/yyyy")
+                        .format(cubit.merchantInvoices[index].date))),
+                    DataCell(Text(
+                        cubit.merchantInvoices[index].invoiceNumber ?? '--')),
                     if (showAllDataInvoices) ...[
-                      const DataCell(Text('dfddh')),
-                      const DataCell(Text('dfddh')),
-                      const DataCell(Text('dfddh')),
-                      const DataCell(Text('dfddh')),
+                      DataCell(Text(cubit.merchantInvoices[index].totalPrice
+                              ?.toString() ??
+                          '--')),
+                      DataCell(Text(
+                          cubit.merchantInvoices[index].totalPaid?.toString() ??
+                              '--')),
+                      DataCell(Text(cubit.merchantInvoices[index].totalRemaining
+                              ?.toString() ??
+                          '--')),
+                      DataCell(Text(DateFormat("dd/MM/yyyy")
+                          .format(cubit.merchantInvoices[index].checkDate!))),
                     ],
-                    const DataCell(Text('dfddh')),
+                    DataCell(IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.image))),
                   ],
                 ),
               ),

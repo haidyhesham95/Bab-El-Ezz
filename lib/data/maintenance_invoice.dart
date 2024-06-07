@@ -6,22 +6,23 @@ part 'maintenance_invoice.g.dart';
 
 @JsonSerializable()
 class MaintenanceInvoice extends Invoice {
-  DateTime? date;
-  String? clientName; // Optional for supplier invoices
-  String? phoneNumber; // Optional for supplier invoices
   String? carBrand;
   String? carPlate;
-  String? imagePath;
 
   MaintenanceInvoice({
     required String invoiceNumber,
-    this.date,
-    this.clientName,
-    this.phoneNumber,
+    required DateTime date,
+    required String clientName,
+    required String phoneNumber,
     this.carBrand,
     this.carPlate,
-    this.imagePath,
-  }) : super(invoiceNumber: invoiceNumber);
+    required String imagePath,
+  }) : super(
+            invoiceNumber: invoiceNumber,
+            date: date,
+            clientName: clientName,
+            imagePath: imagePath,
+            phoneNumber: phoneNumber);
 
   factory MaintenanceInvoice.fromFirestore(DocumentSnapshot doc) =>
       MaintenanceInvoice.fromJson(doc.data()! as Map<String, dynamic>)

@@ -8,17 +8,34 @@ import '../../../../shared_utils/utils/widget/button_widget.dart';
 import '../manager/supplier_invoice/supplier_invoice_cubit.dart';
 
 class AddSuppliersData extends StatelessWidget {
-  const AddSuppliersData({super.key});
+  AddSuppliersData({super.key});
+
+  bool isUpdate = false;
+  Merchant? merchant;
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+
     return BlocProvider(
         create: (context) => SupplierInvoiceCubit(),
         child: BlocConsumer<SupplierInvoiceCubit, SupplierInvoiceState>(
             listener: (context, state) {},
             builder: (context, state) {
               SupplierInvoiceCubit cubit = SupplierInvoiceCubit.get(context);
+
+              if (state is SupplierInvoiceInitial && merchant == null) {
+                var data = ModalRoute.of(context)?.settings.arguments;
+                if (data != null) {
+                  isUpdate = true;
+                  merchant = Merchant.fromJson(data as Map<String, dynamic>);
+
+                  cubit.nameController.text = merchant?.name ?? '';
+                  cubit.phoneController.text = merchant?.phone ?? '';
+                  cubit.companyNameController.text = merchant?.company ?? '';
+                }
+              }
+
               return Scaffold(
                 appBar: constAppBar(
                   context,
@@ -86,12 +103,12 @@ class AddSuppliersData extends StatelessWidget {
                             onPressed: () {
                               if (cubit.formKey1.currentState!.validate()) {
                                 Merchant merchant = Merchant(
+                                    id: this.merchant?.id,
                                     name: cubit.nameController.text,
                                     phone: cubit.phoneController.text,
                                     company: cubit.companyNameController.text);
 
-                                cubit.addMerchant(merchant).then((value) =>
-                                    Navigator.pop(context, merchant));
+                                Navigator.pop(context, merchant);
                               }
                             },
                           ),

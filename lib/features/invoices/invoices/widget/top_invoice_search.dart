@@ -8,9 +8,11 @@ class TopInvoicesSearch extends StatelessWidget {
       {super.key,
       required this.onPressedSearch,
       this.height,
+      this.controller,
       this.hintText,
       this.text});
   final void Function()? onPressedSearch;
+  final TextEditingController? controller;
   final double? height;
   final String? hintText;
   final String? text;
@@ -26,7 +28,7 @@ class TopInvoicesSearch extends StatelessWidget {
       ContainerSearch(
         hintText: hintText ?? ' البحث عن فاتورة ',
         onPressed: onPressedSearch,
-        controller: TextEditingController(),
+        controller: controller ?? TextEditingController(),
       ),
       const SizedBox(height: 20),
     ]);

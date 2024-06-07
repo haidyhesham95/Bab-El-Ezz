@@ -27,16 +27,47 @@ class SupplierInvoiceCubit extends Cubit<SupplierInvoiceState> {
   String? selectedSupplierType;
   List<MerchantInvoice> merchantInvoices = [];
   List<Merchant> merchants = [];
+  bool showAllDataSuppliers = false;
+
+  updateShowAll() {
+    showAllDataSuppliers = !showAllDataSuppliers;
+    emit(UpdateData());
+  }
 
   void setSelectedSupplierType(String? value) {
     selectedSupplierType = value;
     emit(AddSupplierValueChanged(value));
   }
 
-  Future addMerchant(Merchant merchant) async {
-    merchants.add(merchant);
-    await merchantRef.add(merchant);
-    emit(UpdateData());
+  searchMerchantInv(String query) {
+    final data = merchantInvoices.where((invoice) {
+      final merchantName = invoice.clientName!.toLowerCase();
+      final invoiceNumber = invoice.invoiceNumber!.toLowerCase();
+      final lowerCaseQuery = query.toLowerCase();
+
+      return merchantName.contains(lowerCaseQuery) ||
+          invoiceNumber.contains(lowerCaseQuery);
+    }).toList();
+
+    emit(SearchData(data));
+  }
+
+  searchMerchant(String query) {
+    print("query: $query");
+    final data = merchants.where((invoice) {
+      final name = invoice.name.toLowerCase();
+      final phone = invoice.phone.toLowerCase();
+      final company = invoice.company.toLowerCase();
+      final lowerCaseQuery = query.toLowerCase();
+      print(
+          "name: $name, query: $query, matches: ${name.contains(lowerCaseQuery)}");
+
+      return company.contains(lowerCaseQuery) ||
+          name.contains(lowerCaseQuery) ||
+          phone.contains(lowerCaseQuery);
+    }).toList();
+
+    emit(SearchData(data));
   }
 
   update() {
@@ -46,13 +77,13 @@ class SupplierInvoiceCubit extends Cubit<SupplierInvoiceState> {
   getMerchants() async {
     final data = await merchantRef.get();
     merchants = data.docs.map((e) => e.data() as Merchant).toList();
-    emit(UpdateData());
+    emit(SearchData(merchants));
   }
 
   deleteMerchant(Merchant merchant) async {
     merchants.removeWhere((element) => element.id == merchant.id);
     await merchantRef.doc(merchant.id).delete();
-    emit(UpdateData());
+    emit(SearchData(merchants));
   }
 
   getMerchantInv() async {
@@ -78,17 +109,24 @@ class SupplierInvoiceCubit extends Cubit<SupplierInvoiceState> {
     emit(UpdateData());
   }
 
-  Future updateTechnicians(Merchant merchant, {bool update = false}) async {
+  Future updateMerchants(Merchant merchant, {bool update = false}) async {
+    print("id: ${merchant.id}");
     int index = update
         ? merchants.indexOf(
             merchants.where((element) => merchant.id == element.id).first)
         : 0;
+
+    //remove the element to update it
     merchants.removeWhere((element) => element.id == merchant.id);
     update ? merchants.insert(index, merchant) : merchants.add(merchant);
 
-    if (update) await merchantRef.doc(merchant.id).update(merchant.toJson());
+    if (update) {
+      await merchantRef.doc(merchant.id).update(merchant.toJson());
+    } else {
+      await merchantRef.add(merchant);
+    }
 
-    emit(UpdateData());
+    emit(SearchData(merchants));
   }
 
   String getRandomString(int length) {

@@ -17,6 +17,8 @@ class SupplierInvoicesBody extends StatefulWidget {
 class _SupplierInvoicesBodyState extends State<SupplierInvoicesBody> {
   bool showAllDataInvoices = false;
   bool showAllDataSuppliers = false;
+  TextEditingController invoiceController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -29,7 +31,10 @@ class _SupplierInvoicesBodyState extends State<SupplierInvoicesBody> {
             child: Column(
               children: [
                 TopInvoicesSearch(
-                  onPressedSearch: () {},
+                  controller: invoiceController,
+                  onPressedSearch: () {
+                    cubit.searchMerchantInv(invoiceController.text);
+                  },
                 ),
                 showDetailsText(
                     context: context,
@@ -42,23 +47,7 @@ class _SupplierInvoicesBodyState extends State<SupplierInvoicesBody> {
                 InvoicesSuppliersTable(
                   showAllDataInvoices: showAllDataInvoices,
                 ),
-                TopInvoicesSearch(
-                  onPressedSearch: () {},
-                  height: 70,
-                  text: " قائمة الموردين/ التجار",
-                  hintText: ' بحث عن مورد/تاجر ',
-                ),
-                showDetailsText(
-                    context: context,
-                    onPressed: () {
-                      setState(() {
-                        showAllDataSuppliers = !showAllDataSuppliers;
-                      });
-                    },
-                    showAll: false),
-                SupplierTable(
-                  showAllDataSuppliers: showAllDataSuppliers,
-                ),
+                SupplierTable(),
                 const SizedBox(
                   height: 20,
                 )

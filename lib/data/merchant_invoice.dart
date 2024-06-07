@@ -6,8 +6,6 @@ part 'merchant_invoice.g.dart';
 
 @JsonSerializable()
 class MerchantInvoice extends Invoice {
-  String? merchantName;
-  DateTime? date;
   double? totalPrice;
   double? totalPaid;
   double? totalRemaining;
@@ -16,13 +14,18 @@ class MerchantInvoice extends Invoice {
   MerchantInvoice(
       {required String imagePath,
       required String invoiceNumber,
-      this.merchantName,
-      this.date,
+      required String clientName,
+      required DateTime date,
       this.totalPrice,
       this.totalPaid,
       this.totalRemaining,
       this.checkDate})
-      : super(invoiceNumber: invoiceNumber, imagePath: imagePath);
+      : super(
+            invoiceNumber: invoiceNumber,
+            imagePath: imagePath,
+            date: date,
+            clientName: clientName,
+            phoneNumber: '');
 
   factory MerchantInvoice.fromFirestore(DocumentSnapshot doc) =>
       MerchantInvoice.fromJson(doc.data()! as Map<String, dynamic>)

@@ -117,7 +117,7 @@ class MyApp extends StatelessWidget {
               "spareInvoices": (context) => const SpareInvoices(),
               "addCustomerSpareData": (context) => const AddCustomerSpareData(),
               "addInvoiceSpareData": (context) => const AddInvoiceSpareData(),
-              "addSuppliersData": (context) => const AddSuppliersData(),
+              "addSuppliersData": (context) => AddSuppliersData(),
               "addCustomerReturnedData": (context) =>
                   const AddCustomerReturnedData(),
               "returnedInvoices": (context) => const ReturnedInvoices(),

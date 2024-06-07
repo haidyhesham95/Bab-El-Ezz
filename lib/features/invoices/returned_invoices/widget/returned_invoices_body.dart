@@ -7,30 +7,23 @@ import 'merchant_returned_table.dart';
 class ReturnedInvoiceBody extends StatelessWidget {
   const ReturnedInvoiceBody({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
+    return SingleChildScrollView(
         child: Column(
-          children: [
-            TopInvoicesSearch(
-              text: ' مرتجع قطع غيار',
-              onPressedSearch: (){},
-            ),
-            const CustomerReturnedTable() ,
-
-            TopInvoicesSearch(
-              onPressedSearch: (){},
-              text: ' مرتجع التجار / الموردين',
-              height: 70,
-            ),
-
-            const MerchantReturnedTable(),
-
-          ],
-        )
-
-    );
-
+      children: [
+        TopInvoicesSearch(
+          text: ' مرتجع قطع غيار',
+          onPressedSearch: () {},
+        ),
+        const CustomerReturnedTable(),
+        TopInvoicesSearch(
+          onPressedSearch: () {},
+          text: ' مرتجع التجار / الموردين',
+          height: 70,
+        ),
+        const MerchantReturnedTable(),
+      ],
+    ));
   }
 }

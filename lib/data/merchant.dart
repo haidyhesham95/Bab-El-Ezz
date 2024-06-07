@@ -14,7 +14,11 @@ class Merchant {
   double? totalPaid = 0;
   double? totalRemaining = 0;
 
-  Merchant({required this.name, required this.phone, required this.company});
+  Merchant(
+      {this.id,
+      required this.name,
+      required this.phone,
+      required this.company});
 
   factory Merchant.fromFirestore(DocumentSnapshot doc) =>
       Merchant.fromJson(doc.data()! as Map<String, dynamic>)..id = doc.id;

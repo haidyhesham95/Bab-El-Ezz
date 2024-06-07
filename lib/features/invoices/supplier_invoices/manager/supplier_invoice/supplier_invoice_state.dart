@@ -24,3 +24,9 @@ final class AddSupplierValueChanged extends SupplierInvoiceState {
 }
 
 final class UpdateData extends SupplierInvoiceState {}
+
+final class SearchData extends SupplierInvoiceState {
+  final List data;
+
+  SearchData(this.data);
+}
