@@ -52,7 +52,7 @@ class CarData extends StatelessWidget {
                 car.year,
               ),
               RowText(
-                'للون السيارة : : ',
+                'للون السيارة : ',
                 car.color,
               ),
               RowText(

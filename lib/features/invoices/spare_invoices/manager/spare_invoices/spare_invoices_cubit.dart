@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+
 part 'spare_invoices_state.dart';
 
 class SpareInvoicesCubit extends Cubit<SpareInvoicesState> {
@@ -13,4 +14,14 @@ class SpareInvoicesCubit extends Cubit<SpareInvoicesState> {
   TextEditingController customerNameController = TextEditingController();
   TextEditingController customerPhoneController = TextEditingController();
   TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+
+
+  List<DataRow> items = [];
+
+
+  void addItem(DataRow item) {
+    items.add(item);
+    emit(AddItems(items.cast<Widget>()));
+  }
 }

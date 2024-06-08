@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared_utils/utils/widget/drop_menu.dart';
 
-DataRow dataRowReceiptData(
-  context,
-) {
+DataRow addInvoiceSpareRowTable(
+    context,
+    ) {
   final size = MediaQuery.of(context).size;
   return DataRow(
     cells: <DataCell>[

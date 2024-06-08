@@ -8,7 +8,7 @@ class NewJobOrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: constAppBar(context, "امر شغل جديد"),
+      appBar: constAppBar(context, "امر شغل حالي"),
       body: const NewJobOrderBody(),
     );
   }

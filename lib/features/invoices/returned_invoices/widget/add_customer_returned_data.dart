@@ -108,19 +108,7 @@ class _AddCustomerReturnedDataState extends State<AddCustomerReturnedData> {
                       const SizedBox(
                         height: 15,
                       ),
-                      // ...items,
-                      // ElevatedButton(
-                      //   onPressed: () {
-                      //     setState(() {
-                      //       items.add(AddItemsCustomerReturned());
-                      //     });
-                      //   },
-                      //   child: Text(
-                      //     'اضافه صنف اخر',
-                      //     style: AppStyles.styleRegular14(context)
-                      //         .copyWith(color: Colors.white),
-                      //   ),
-                      // ),
+
                       const SizedBox(
                         height: 50,
                       ),

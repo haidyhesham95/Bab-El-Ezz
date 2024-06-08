@@ -56,12 +56,12 @@ class AddsItemsStore extends StatelessWidget {
                           ),
                           const SizedBox(height: 15),
                           TextFieldWidget(
-                            label: " ماركه السياره",
-                            hintText: " ادخال ماركه السياره ",
+                            label: " الماركة ",
+                            hintText: " ادخال الماركة  ",
                             controller: cubit.brandController,
                             textInputAction: TextInputAction.next,
                             keyboardType: TextInputType.name,
-                            errorMessage: 'الرجاء ادخال ماركه السياره',
+                            errorMessage: 'الرجاء ادخال الماركة ',
                           ),
                           const SizedBox(height: 15),
                           TextFieldWidget(

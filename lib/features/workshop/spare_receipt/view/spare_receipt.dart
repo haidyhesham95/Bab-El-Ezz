@@ -1,3 +1,4 @@
+import 'package:bab_el_ezz/features/new_job-order/widgets/gray_container.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/material.dart';
@@ -20,76 +21,88 @@ class SpareReceipt extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 5),
         child: BlocProvider(
         create: (context) => SpareReceiptCubit(),
-    child: BlocConsumer<SpareReceiptCubit, SpareReceiptState>(
-    listener: (context, state) {},
-    builder: (context, state) {
-    SpareReceiptCubit cubit = SpareReceiptCubit.get(context);
-    return  Column(
+          child: BlocConsumer<SpareReceiptCubit, SpareReceiptState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+          SpareReceiptCubit cubit = SpareReceiptCubit.get(context);
+          return  SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: SizedBox(
+        height: size.height,
+
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             Expanded(
-               child: SingleChildScrollView(
-                 physics: const BouncingScrollPhysics(),
-                 child: Column(
-                   mainAxisAlignment: MainAxisAlignment.start,
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     const SizedBox(height: 20),
-                     Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                       children: [
-                         TextFieldWidget(
-                           height: size.height * 0.045,
-                           label: ' اسم العميل :',
-                           width: size.width * 0.4,
-                           hintText: 'الاسم',
-                           hintStyle: AppStyles.styleRegular10(context),
-                           style: AppStyles.styleRegular10(context),
-                           borderRadius: 4,
-                           controller: cubit.nameController,
-                           onChanged: (value) {},
-                           keyboardType: TextInputType.text,
+            const SizedBox(height: 20),
+            GrayContainer(
+              height: size.height * 0.33,
+
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFieldWidget(
+                    height: size.height * 0.06,
+
+                    label: ' اسم العميل :',
+                    hintText: 'الاسم',
+                    hintStyle: AppStyles.styleRegular10(context),
+                    style: AppStyles.styleRegular10(context),
+                    borderRadius: 4,
+                    controller: cubit.nameController,
+                    onChanged: (value) {},
+                    keyboardType: TextInputType.text,
 
 
-                         ),
-                         TextFieldWidget(
-                           height: size.height * 0.045,
-                           label: 'رقم التلفون :',
-                           width: size.width * 0.4,
-                           hintText: 'الموجود عليه الواتساب',
-                           hintStyle: AppStyles.styleRegular10(context),
-                           style: AppStyles.styleRegular10(context),
+                  ),
+                  TextFieldWidget(
+                    height: size.height * 0.06,
+                    label: 'رقم التلفون :',
+                    hintText: 'الموجود عليه الواتساب',
+                    hintStyle: AppStyles.styleRegular10(context),
+                    style: AppStyles.styleRegular10(context),
 
-                           borderRadius: 4,
-                           controller: cubit.phoneController,
-                           onChanged: (value) {},
-                            keyboardType: TextInputType.number,
+                    borderRadius: 4,
+                    controller: cubit.phoneController,
+                    onChanged: (value) {},
+                     keyboardType: TextInputType.number,
 
-                         ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, 'addCustomer');
 
-                       ],
-                     ),
-                     const SizedBox(height: 20),
-                     SingleChildScrollView(
-                       scrollDirection: Axis.horizontal,
-                       child: SpareReceiptData(
-                       rows: cubit.items,
-                       onPressed:(){
+                    },
+                    child: Text('اضافه عميل',style: AppStyles.styleRegular14(context).copyWith(color: Colors.white),),
+                  ),
 
-                    cubit.addItem(dataRowReceiptData(context));
 
-                         }
-                       ),
-                     ),
-                     const SizedBox(height: 20),
-                   ],
-                 ),
-               ),
-             ),
+
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: SpareReceiptData(
+              rows: cubit.items,
+              onPressed:(){
+
+           cubit.addItem(dataRowReceiptData(context));
+
+                }
+              ),
+            ),
+           Spacer(flex: 3,),
             const SpareReceiptButtons(),
-            const SizedBox(height: 15),
+           Spacer()
           ],
-    );
-    }
+        ),
+      ),
+          );
+          }
 
         ),
       ),

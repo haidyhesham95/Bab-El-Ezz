@@ -6,6 +6,7 @@ import 'package:bab_el_ezz/features/setting/manager/theme/theme_cubit.dart';
 import 'package:bab_el_ezz/features/staff/view/staff_page.dart';
 import 'package:bab_el_ezz/features/store/widget/add_item_store.dart';
 import 'package:bab_el_ezz/features/workshop/add_client/view/add_client.dart';
+import 'package:bab_el_ezz/features/workshop/spare_receipt/widget/add_customer.dart';
 import 'package:bab_el_ezz/layout/view/layout.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,6 +22,7 @@ import 'features/invoices/maintenance_invoices/view/maintenance_invoices.dart';
 import 'features/invoices/returned_invoices/widget/add_customer_returned_data.dart';
 import 'features/invoices/returned_invoices/widget/add_merchant_returned_data.dart';
 import 'features/invoices/spare_invoices/view/spare_invoices.dart';
+import 'features/invoices/spare_invoices/widget/add_customer_in_spare_invoice.dart';
 import 'features/invoices/spare_invoices/widget/add_customer_spare_data.dart';
 import 'features/invoices/spare_invoices/widget/add_invoice_spare_data.dart';
 import 'features/invoices/supplier_invoices/view/supplier_invoices.dart';
@@ -127,8 +129,10 @@ class MyApp extends StatelessWidget {
               "viewDetailsPage": (context) => const ViewDetailsPage(),
               "editProfile": (context) => const EditProfile(),
               "PreviousMaintenance": (context) => const PreviousMaintenance(),
-              'detailsMaintenancePage': (context) =>
-                  const DetailsMaintenancePage(),
+              'detailsMaintenancePage': (context) => const DetailsMaintenancePage(),
+              'addCustomer': (context) => const AddCustomer(),
+              'AddCustomerInSpareInvoice': (context) => const AddCustomerInSpareInvoice(),
+
             },
           );
         },

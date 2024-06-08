@@ -13,11 +13,11 @@ class SpareReceiptData extends StatelessWidget {
             label:IconButton(
                 onPressed: onPressed,
                 icon: const Icon(Icons.add,color:  Colors.white,size: 20,))),
-        const DataColumn(label: Text('مسلسل')),
         const DataColumn(label: Text('الصنف')),
         const DataColumn(label: Text('الكمية')),
         const DataColumn(label: Text('السعر')),
         const DataColumn(label: Text('الخصم')),
+        const DataColumn(label: Text('المصنعية')),
         const DataColumn(label: Text('الاجمالي')),
 
         const DataColumn(label: Text('ملاحظات')),

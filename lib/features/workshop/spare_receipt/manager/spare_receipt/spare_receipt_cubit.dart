@@ -12,6 +12,8 @@ class SpareReceiptCubit extends Cubit<SpareReceiptState> {
   TextEditingController nameController = TextEditingController();
 
 
+
+
   List<DataRow> items = [];
 
 
