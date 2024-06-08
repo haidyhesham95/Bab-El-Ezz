@@ -1,10 +1,10 @@
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 
 import '../../../../shared_utils/styles/colors.dart';
 
-
-Container addImage(context) {
+Container addImage(context, Function() onTap, File? image) {
   final Size size = MediaQuery.of(context).size;
   return Container(
     width: double.infinity,
@@ -20,12 +20,16 @@ Container addImage(context) {
             spreadRadius: 0,
             color: Colors.black.withOpacity(0.15),
           )
-        ]
-    ),
+        ]),
     child: InkWell(
-        onTap: () {},
-        child: const Icon(
-          Icons.add_a_photo_outlined, size: 50, color: ColorsAsset.kGreen,)),
-
+      onTap: onTap,
+      child: image == null
+          ? Image.asset(
+              'assets/images/logo1.png',
+              fit: BoxFit.fitHeight,
+              color: Colors.grey,
+            )
+          : Image.file(image),
+    ),
   );
 }

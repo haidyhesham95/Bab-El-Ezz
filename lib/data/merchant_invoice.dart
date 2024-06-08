@@ -16,10 +16,10 @@ class MerchantInvoice extends Invoice {
       required String invoiceNumber,
       required String clientName,
       required DateTime date,
-      this.totalPrice,
-      this.totalPaid,
-      this.totalRemaining,
-      this.checkDate})
+      required this.totalPrice,
+      required this.totalPaid,
+      required this.totalRemaining,
+      required this.checkDate})
       : super(
             invoiceNumber: invoiceNumber,
             imagePath: imagePath,
@@ -29,7 +29,7 @@ class MerchantInvoice extends Invoice {
 
   factory MerchantInvoice.fromFirestore(DocumentSnapshot doc) =>
       MerchantInvoice.fromJson(doc.data()! as Map<String, dynamic>)
-        ..invoiceNumber = doc.id;
+        ..id = doc.id;
 
   factory MerchantInvoice.fromJson(Map<String, dynamic> json) =>
       _$MerchantInvoiceFromJson(json);

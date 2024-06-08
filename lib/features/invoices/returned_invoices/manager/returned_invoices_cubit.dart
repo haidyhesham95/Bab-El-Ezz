@@ -5,11 +5,12 @@ part 'returned_invoices_state.dart';
 
 class ReturnedInvoicesCubit extends Cubit<ReturnedInvoicesState> {
   ReturnedInvoicesCubit() : super(ReturnedInvoicesInitial());
+
   static ReturnedInvoicesCubit get(context) => BlocProvider.of(context);
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   GlobalKey<FormState> formKey1 = GlobalKey<FormState>();
 
-  TextEditingController typeController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController countController = TextEditingController();
   TextEditingController notesController = TextEditingController();
   TextEditingController priceController = TextEditingController();
@@ -18,14 +19,12 @@ class ReturnedInvoicesCubit extends Cubit<ReturnedInvoicesState> {
   TextEditingController merchantNotesController = TextEditingController();
   TextEditingController merchantPriceController = TextEditingController();
 
-
-  String? selectedType;
+  String selectedType = 'سليم';
 
   void setSelectedType(String? value) {
-    selectedType = value;
+    selectedType = value!;
     emit(TypeChanged(value));
   }
-
 
   String? selectedMerchantName;
 
@@ -41,17 +40,10 @@ class ReturnedInvoicesCubit extends Cubit<ReturnedInvoicesState> {
     emit(CompanyNameChanged(value));
   }
 
-
-
   String? selectedMerchantType;
 
   void setSelectedMerchantType(String? value) {
     selectedMerchantType = value;
     emit(TypeMerchantChanged(value));
   }
-
 }
-
-
-
-

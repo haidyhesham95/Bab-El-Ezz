@@ -51,7 +51,7 @@ class StaffDataTable extends StatelessWidget {
                     index: index,
                   )),
                   DataCell(Text(cubit.technicians[index].name)),
-                  DataCell(Text(cubit.technicians[index].phone)),
+                  DataCell(Text(cubit.technicians[index].phone ?? '--')),
                   DataCell(Text(cubit.technicians[index].nationalId)),
                   DataCell(Text(cubit.technicians[index].specialization)),
                   DataCell(Text(cubit.technicians[index].title)),

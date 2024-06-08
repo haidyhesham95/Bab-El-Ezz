@@ -110,7 +110,7 @@ class MyApp extends StatelessWidget {
               'addClient': (context) => AddClient(),
               "supplierInvoices": (context) => const SupplierInvoices(),
               "accountClearancePage": (context) => const AccountClearancePage(),
-              "addInvoiceData": (context) => const AddInvoicesData(),
+              "addInvoiceData": (context) => AddInvoicesData(),
               "addItemStore": (context) => const AddsItemsStore(),
               "addStaffItem": (context) => AddStaffItem(),
               'addDailyExpenses': (context) => const AddDailyExpenses(),

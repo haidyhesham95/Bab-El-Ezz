@@ -68,13 +68,13 @@ class SupplierTable extends StatelessWidget {
                       },
                       width: size.width * 0.35,
                     )),
-                    if (cubit.showAllDataSuppliers) ...[
+                    if (cubit.showAll) ...[
                       const DataColumn(label: Text('مسلسل')),
                     ],
                     const DataColumn(label: Text('الاسم')),
                     const DataColumn(label: Text('رقم التليفون')),
                     const DataColumn(label: Text('اسم الشركة')),
-                    if (cubit.showAllDataSuppliers) ...[
+                    if (cubit.showAll) ...[
                       const DataColumn(label: Text('عدد الفواتير')),
                       const DataColumn(label: Text('اجمالي الفواتير')),
                       const DataColumn(label: Text('اجمالي المدفوع')),
@@ -100,13 +100,13 @@ class SupplierTable extends StatelessWidget {
                             cubit.deleteMerchant(merchants[index]);
                           },
                         )),
-                        if (cubit.showAllDataSuppliers) ...[
+                        if (cubit.showAll) ...[
                           DataCell(Text("${index + 1}")),
                         ],
                         DataCell(Text(merchants[index].name)),
                         DataCell(Text(merchants[index].phone)),
                         DataCell(Text(merchants[index].company.toString())),
-                        if (cubit.showAllDataSuppliers) ...[
+                        if (cubit.showAll) ...[
                           DataCell(Text(
                               merchants[index].totalInvoices?.toString() ??
                                   "--")),

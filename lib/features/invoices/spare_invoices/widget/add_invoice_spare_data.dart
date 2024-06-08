@@ -2,6 +2,7 @@ import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../shared_utils/utils/widget/button_widget.dart';
 import '../../invoices/widget/add_image.dart';
 import '../manager/spare_invoices/spare_invoices_cubit.dart';
@@ -19,7 +20,10 @@ class AddInvoiceSpareData extends StatelessWidget {
             builder: (context, state) {
               SpareInvoicesCubit cubit = SpareInvoicesCubit.get(context);
               return Scaffold(
-                appBar: constAppBar(context, ' اضافة فاتورة جديدة', ),
+                appBar: constAppBar(
+                  context,
+                  ' اضافة فاتورة جديدة',
+                ),
                 body: SingleChildScrollView(
                   child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -30,30 +34,31 @@ class AddInvoiceSpareData extends StatelessWidget {
                           child: Column(
                             children: [
                               const SizedBox(height: 20),
-                              addImage(context,),
+                              addImage(context, () {}, null),
                               const SizedBox(height: 20),
-
-                                 TextFieldWidget(
+                              TextFieldWidget(
                                 label: " اسم العميل  : ",
                                 hintText: " ادخال الاسم  ",
                                 controller: cubit.nameController,
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.name,
-                                errorMessage: '(الاسم يجب ان يحتوي علي 3 خانات)',
+                                errorMessage:
+                                    '(الاسم يجب ان يحتوي علي 3 خانات)',
                               ),
                               const SizedBox(height: 20),
-
                               TextFieldWidget(
                                 label: " رقم التلفون : ",
                                 hintText: " +20 ",
                                 controller: cubit.customerPhoneController,
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.number,
-                                errorMessage: '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
+                                errorMessage:
+                                    '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
                               ),
-                                 const SizedBox(height: 20),
-
-                              Spacer(flex: 3,),
+                              const SizedBox(height: 20),
+                              Spacer(
+                                flex: 3,
+                              ),
                               ButtonWidget(
                                 hasElevation: true,
                                 height: size.height * 0.05,
@@ -62,11 +67,11 @@ class AddInvoiceSpareData extends StatelessWidget {
                                   if (cubit.formKey1.currentState!.validate()) {
                                     Navigator.pop(context);
                                   }
-
                                 },
-
                               ),
-                              Spacer(flex: 2,)
+                              Spacer(
+                                flex: 2,
+                              )
                             ],
                           ),
                         ),

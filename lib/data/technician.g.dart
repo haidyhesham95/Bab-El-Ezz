@@ -9,7 +9,7 @@ part of 'technician.dart';
 Technician _$TechnicianFromJson(Map<String, dynamic> json) => Technician(
       json['id'] as String?,
       json['name'] as String,
-      json['phone'] as String,
+      json['phone'] as String?,
       json['nationalId'] as String,
       json['specialization'] as String,
       json['title'] as String,
@@ -29,6 +29,7 @@ Map<String, dynamic> _$TechnicianToJson(Technician instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'phone': instance.phone,
       'nationalId': instance.nationalId,
       'specialization': instance.specialization,
       'title': instance.title,

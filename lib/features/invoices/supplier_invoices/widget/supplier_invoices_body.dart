@@ -3,8 +3,6 @@ import 'package:bab_el_ezz/features/invoices/supplier_invoices/widget/supplier_t
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../shared_utils/utils/widget/show_details_text.dart';
-import '../../invoices/widget/top_invoice_search.dart';
 import '../manager/supplier_invoice/supplier_invoice_cubit.dart';
 
 class SupplierInvoicesBody extends StatefulWidget {
@@ -15,10 +13,6 @@ class SupplierInvoicesBody extends StatefulWidget {
 }
 
 class _SupplierInvoicesBodyState extends State<SupplierInvoicesBody> {
-  bool showAllDataInvoices = false;
-  bool showAllDataSuppliers = false;
-  TextEditingController invoiceController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -30,23 +24,7 @@ class _SupplierInvoicesBodyState extends State<SupplierInvoicesBody> {
           return SingleChildScrollView(
             child: Column(
               children: [
-                TopInvoicesSearch(
-                  controller: invoiceController,
-                  onPressedSearch: () {
-                    cubit.searchMerchantInv(invoiceController.text);
-                  },
-                ),
-                showDetailsText(
-                    context: context,
-                    onPressed: () {
-                      setState(() {
-                        showAllDataInvoices = !showAllDataInvoices;
-                      });
-                    },
-                    showAll: showAllDataInvoices),
-                InvoicesSuppliersTable(
-                  showAllDataInvoices: showAllDataInvoices,
-                ),
+                InvoicesSuppliersTable(),
                 SupplierTable(),
                 const SizedBox(
                   height: 20,

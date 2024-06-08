@@ -5,7 +5,10 @@ import 'package:bab_el_ezz/data/invoice.dart';
 import 'package:bab_el_ezz/data/job_order.dart';
 import 'package:bab_el_ezz/data/maintenance_invoice.dart';
 import 'package:bab_el_ezz/data/merchant.dart';
+import 'package:bab_el_ezz/data/merchant_invoice.dart';
 import 'package:bab_el_ezz/data/part.dart';
+import 'package:bab_el_ezz/data/return_invoice.dart';
+import 'package:bab_el_ezz/data/spare_invoice.dart';
 import 'package:bab_el_ezz/data/technician.dart';
 import 'package:bab_el_ezz/data/workshop.dart';
 import 'package:bab_el_ezz/firebase/user_services.dart';
@@ -55,18 +58,18 @@ class FirebaseCollection {
         collectionName: invoiceCollectionName,
         fromJson: MaintenanceInvoice.fromFirestore,
         toJson: (MaintenanceInvoice model) => model.toJson());
-    merchantInvCol = _getOrCreateCollection<MaintenanceInvoice>(
+    merchantInvCol = _getOrCreateCollection<MerchantInvoice>(
         collectionName: invoiceCollectionName,
-        fromJson: MaintenanceInvoice.fromFirestore,
-        toJson: (MaintenanceInvoice model) => model.toJson());
-    partsInvCol = _getOrCreateCollection<MaintenanceInvoice>(
+        fromJson: MerchantInvoice.fromFirestore,
+        toJson: (MerchantInvoice model) => model.toJson());
+    partsInvCol = _getOrCreateCollection<SpareInvoice>(
         collectionName: invoiceCollectionName,
-        fromJson: MaintenanceInvoice.fromFirestore,
-        toJson: (MaintenanceInvoice model) => model.toJson());
-    returnInvCol = _getOrCreateCollection<MaintenanceInvoice>(
+        fromJson: SpareInvoice.fromFirestore,
+        toJson: (SpareInvoice model) => model.toJson());
+    returnInvCol = _getOrCreateCollection<ReturnInvoice>(
         collectionName: invoiceCollectionName,
-        fromJson: MaintenanceInvoice.fromFirestore,
-        toJson: (MaintenanceInvoice model) => model.toJson());
+        fromJson: ReturnInvoice.fromFirestore,
+        toJson: (ReturnInvoice model) => model.toJson());
     partCol = _getOrCreateCollection<Part>(
         collectionName: partCollectionName,
         fromJson: Part.fromFirestore,
