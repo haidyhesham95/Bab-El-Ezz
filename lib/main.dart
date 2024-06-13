@@ -55,6 +55,7 @@ Future<void> main() async {
 initializeDateFormatting(String s, param1) {}
 
 class MyApp extends StatefulWidget {
+
   MyApp(this.userAuthenticated, {super.key});
 
   bool userAuthenticated;
@@ -98,7 +99,7 @@ class _MyAppState extends State<MyApp> {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: const [
-              Locale('ar', ''), // Arabic
+              Locale('ar', '') , // Arabic
             ],
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
