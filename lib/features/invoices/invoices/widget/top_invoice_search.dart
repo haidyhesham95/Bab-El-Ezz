@@ -10,12 +10,14 @@ class TopInvoicesSearch extends StatelessWidget {
       this.height,
       this.controller,
       this.hintText,
-      this.text});
+      this.text,
+      this.showText = true});
   final void Function()? onPressedSearch;
   final TextEditingController? controller;
   final double? height;
   final String? hintText;
   final String? text;
+  final bool showText;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +25,10 @@ class TopInvoicesSearch extends StatelessWidget {
       SizedBox(
         height: height ?? 20,
       ),
-      clipBathGradient(context, text: text ?? " قائمة الفواتير"),
-      const SizedBox(height: 30),
+      if (showText) ...[
+        clipBathGradient(context, text: text ?? " قائمة الفواتير"),
+        const SizedBox(height: 30),
+      ],
       ContainerSearch(
         hintText: hintText ?? ' البحث عن فاتورة ',
         onPressed: onPressedSearch,

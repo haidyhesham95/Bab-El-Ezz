@@ -21,6 +21,7 @@ class FirebaseCollection {
   static const String jobOrderCollectionName = "Orders";
   static const String workshopCollectionName = "workshops";
   static const String customerCollectionName = "Customers";
+  static const String partsCustCollectionName = "Parts Customers";
   static const String carCollectionName = "Cars";
   static const String partCollectionName = "Parts";
   static const String invoiceCollectionName = "Invoices";
@@ -32,6 +33,7 @@ class FirebaseCollection {
   late CollectionReference<Technician> staffCol;
   late CollectionReference<Attendance> attendanceCol;
   late CollectionReference<Customer> customerCol;
+  late CollectionReference<Customer> partsCustCol;
   late CollectionReference<Workshop> workshopCol;
   late CollectionReference<Car> carCol;
   late CollectionReference<Part> partCol;
@@ -50,6 +52,10 @@ class FirebaseCollection {
         collectionName: jobOrderCollectionName,
         fromJson: JobOrder.fromFirestore,
         toJson: (JobOrder model) => model.toJson());
+    partsCustCol = _getOrCreateCollection<Customer>(
+        collectionName: partsCustCollectionName,
+        fromJson: Customer.fromFirestore,
+        toJson: (Customer model) => model.toJson());
     merchantsCol = _getOrCreateCollection<Merchant>(
         collectionName: merchantsCollectionName,
         fromJson: Merchant.fromFirestore,

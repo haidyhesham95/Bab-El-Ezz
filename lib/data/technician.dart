@@ -8,7 +8,7 @@ class Technician {
   String? id;
   String name;
   String? phone;
-  String nationalId; // Assuming this is the unique ID for the technician
+  String nationalId;
   String specialization;
   String title;
   double dailyRate;

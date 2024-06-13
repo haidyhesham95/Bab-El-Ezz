@@ -9,3 +9,10 @@ class AddItems extends SpareInvoicesState {
   final List<Widget> items;
   AddItems(this.items);
 }
+
+class UpdateData extends SpareInvoicesState {}
+
+class SearchData extends SpareInvoicesState {
+  final List data;
+  SearchData(this.data);
+}

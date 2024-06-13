@@ -22,7 +22,6 @@ import 'features/invoices/maintenance_invoices/view/maintenance_invoices.dart';
 import 'features/invoices/returned_invoices/widget/add_customer_returned_data.dart';
 import 'features/invoices/returned_invoices/widget/add_merchant_returned_data.dart';
 import 'features/invoices/spare_invoices/view/spare_invoices.dart';
-import 'features/invoices/spare_invoices/widget/add_customer_in_spare_invoice.dart';
 import 'features/invoices/spare_invoices/widget/add_customer_spare_data.dart';
 import 'features/invoices/spare_invoices/widget/add_invoice_spare_data.dart';
 import 'features/invoices/supplier_invoices/view/supplier_invoices.dart';
@@ -118,7 +117,7 @@ class MyApp extends StatelessWidget {
               'addDailyExpenses': (context) => const AddDailyExpenses(),
               "spareInvoices": (context) => const SpareInvoices(),
               "addCustomerSpareData": (context) => const AddCustomerSpareData(),
-              "addInvoiceSpareData": (context) => const AddInvoiceSpareData(),
+              "addInvoiceSpareData": (context) => AddInvoiceSpareData(),
               "addSuppliersData": (context) => AddSuppliersData(),
               "addCustomerReturnedData": (context) =>
                   const AddCustomerReturnedData(),
@@ -129,10 +128,11 @@ class MyApp extends StatelessWidget {
               "viewDetailsPage": (context) => const ViewDetailsPage(),
               "editProfile": (context) => const EditProfile(),
               "PreviousMaintenance": (context) => const PreviousMaintenance(),
-              'detailsMaintenancePage': (context) => const DetailsMaintenancePage(),
+              'detailsMaintenancePage': (context) =>
+                  const DetailsMaintenancePage(),
               'addCustomer': (context) => const AddCustomer(),
-              'AddCustomerInSpareInvoice': (context) => const AddCustomerInSpareInvoice(),
-
+              'AddCustomerInSpareInvoice': (context) =>
+                  const AddCustomerSpareData(),
             },
           );
         },

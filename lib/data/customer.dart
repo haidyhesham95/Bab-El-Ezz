@@ -8,7 +8,7 @@ class Customer {
   String? id;
   String name;
   String phoneNumber;
-  String carId; // Reference to the Car document
+  String? carId; // Reference to the Car document
 
   Customer(this.name, this.phoneNumber, this.carId);
 

@@ -2,27 +2,19 @@ import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
 import 'package:flutter/material.dart';
 
 class AddInvoiceSpareTable extends StatelessWidget {
-  const AddInvoiceSpareTable({super.key, required this.rows,required this.onPressed});
+  const AddInvoiceSpareTable({super.key, required this.rows});
   final List<DataRow> rows;
-  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
-    return CustomDataTable(
-        columns: [
-          DataColumn(
-              label:IconButton(
-                  onPressed: onPressed,
-                  icon: const Icon(Icons.add,color:  Colors.white,size: 20,))),
-          const DataColumn(label: Text('الصنف')),
-          const DataColumn(label: Text('الكمية')),
-          const DataColumn(label: Text('السعر')),
-          const DataColumn(label: Text('الخصم')),
-          const DataColumn(label: Text('المصنعية')),
-          const DataColumn(label: Text('الاجمالي')),
-
-          const DataColumn(label: Text('ملاحظات')),
-        ],
-        rows: rows
-    );
+    return CustomDataTable(columns: const [
+      DataColumn(label: Text('')),
+      DataColumn(label: Text('الصنف')),
+      DataColumn(label: Text('الكمية')),
+      DataColumn(label: Text('السعر')),
+      DataColumn(label: Text('الخصم')),
+      DataColumn(label: Text('المصنعية')),
+      DataColumn(label: Text('الاجمالي')),
+      DataColumn(label: Text('ملاحظات')),
+    ], rows: rows);
   }
 }
