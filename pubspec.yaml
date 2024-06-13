@@ -50,8 +50,11 @@ dependencies:
   intl:
   image_picker: ^1.0.8
   firebase_storage: ^11.6.9
-  path_provider: ^2.1.3
+  path_provider:
   open_file_plus: ^3.4.1
+  open_file:
+  pdf:
+  permission_handler:
 
 dev_dependencies:
   flutter_test:
@@ -97,6 +100,7 @@ flutter:
   fonts:
     - family: Cairo
       fonts:
+        - asset: assets/fonts/Cairo-Arabic-Regular.ttf
         - asset: assets/fonts/Cairo-Regular.ttf
         - asset: assets/fonts/Cairo-Light.ttf
           weight: 300
