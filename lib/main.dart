@@ -28,6 +28,7 @@ import 'features/invoices/supplier_invoices/view/supplier_invoices.dart';
 import 'features/invoices/supplier_invoices/widget/add_invoice_data.dart';
 import 'features/invoices/supplier_invoices/widget/add_supplier_data.dart';
 import 'features/new_job-order/view/new_job_order_page .dart';
+import 'features/new_job-order/widgets/create_pdf.dart';
 import 'features/new_job-order/widgets/details_maintenance_page.dart';
 import 'features/new_job-order/widgets/previous_maintenance.dart';
 import 'features/staff/widget/account_clearance_page.dart';
@@ -53,11 +54,23 @@ Future<void> main() async {
 
 initializeDateFormatting(String s, param1) {}
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
   MyApp(this.userAuthenticated, {super.key});
 
   bool userAuthenticated;
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    PdfGenerator.init();
+  }
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -86,12 +99,12 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: const [
-              Locale('ar', ''), // Arabic
+              Locale('ar', '') , // Arabic
             ],
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: cubit.isDark ? ThemeData.dark() : ThemeData.light(),
-            initialRoute: userAuthenticated ? "layout" : "login",
+            initialRoute: widget.userAuthenticated ? "layout" : "login",
             home: const Directionality(
               textDirection: TextDirection.rtl,
               child: LoginView(),

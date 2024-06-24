@@ -16,6 +16,7 @@ import '../../workshop/work_shop/widget/add_button.dart';
 import 'add_note_text.dart';
 import 'add_receipt_table.dart';
 import 'car_data.dart';
+import 'create_pdf.dart';
 import 'details.dart';
 import 'details_previous_maintenance_button.dart';
 import 'drop_button.dart';
@@ -172,8 +173,9 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                           hasElevation: true,
                           text: "انهاء امر الشغل",
                           onPressed: () {
-                            Navigator.pop(context);
-                          },
+                            print("Button pressed");
+                            PdfGenerator.createPdf();
+                                                     },
                           width: size.width * 0.4,
                           height: size.height * 0.05,
                         ),
