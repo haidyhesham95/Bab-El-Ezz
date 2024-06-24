@@ -1,6 +1,7 @@
 import 'package:bab_el_ezz/data/merchant.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,11 +19,11 @@ class AddSuppliersData extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
 
     return BlocProvider(
-        create: (context) => SupplierInvoiceCubit(),
-        child: BlocConsumer<SupplierInvoiceCubit, SupplierInvoiceState>(
+        create: (context) => InvoiceCubit(),
+        child: BlocConsumer<InvoiceCubit, InvoiceState>(
             listener: (context, state) {},
             builder: (context, state) {
-              SupplierInvoiceCubit cubit = SupplierInvoiceCubit.get(context);
+              InvoiceCubit cubit = InvoiceCubit.get(context);
 
               if (state is SupplierInvoiceInitial && merchant == null) {
                 var data = ModalRoute.of(context)?.settings.arguments;
@@ -48,7 +49,6 @@ class AddSuppliersData extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           SizedBox(
-                            height: size.height,
                             child: Column(
                               children: [
                                 const SizedBox(height: 20),
@@ -85,31 +85,6 @@ class AddSuppliersData extends StatelessWidget {
                                   errorMessage:
                                       '(الاسم يجب ان يحتوي علي 3 احرف علي الاقل)',
                                 ),
-                                Spacer(
-                                  flex: 3,
-                                ),
-                                ButtonWidget(
-                                  hasElevation: true,
-                                  height: size.height * 0.05,
-                                  text: ' إضافة  ',
-                                  onPressed: () {
-                                    if (cubit.formKey1.currentState!
-                                        .validate()) {
-                                      Merchant merchant = Merchant(
-                                          name: cubit.nameController.text,
-                                          phone: cubit.phoneController.text,
-                                          company:
-                                              cubit.companyNameController.text);
-
-                                      cubit.updateMerchants(merchant).then(
-                                          (value) =>
-                                              Navigator.pop(context, merchant));
-                                    }
-                                  },
-                                ),
-                                Spacer(
-                                  flex: 2,
-                                )
                               ],
                             ),
                           ),
@@ -121,7 +96,8 @@ class AddSuppliersData extends StatelessWidget {
                             height: size.height * 0.05,
                             text: ' إضافة  ',
                             onPressed: () {
-                              if (cubit.formKey1.currentState!.validate()) {
+                              if (kDebugMode ||
+                                  cubit.formKey1.currentState!.validate()) {
                                 Merchant merchant = Merchant(
                                     id: this.merchant?.id,
                                     name: cubit.nameController.text,

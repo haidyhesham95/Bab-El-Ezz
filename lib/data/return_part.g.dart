@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'return_invoice.dart';
+part of 'return_part.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ReturnInvoice _$ReturnInvoiceFromJson(Map<String, dynamic> json) =>
-    ReturnInvoice(
+ReturnPart _$ReturnPartFromJson(Map<String, dynamic> json) => ReturnPart(
       price: (json['price'] as num).toDouble(),
-      phoneNumber: json['phoneNumber'] as String,
-      clientName: json['clientName'] as String,
-      company: json['company'] as String,
-      parts: (json['parts'] as List<dynamic>)
-          .map((e) => ReturnPart.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      name: json['name'] as String,
+      quantity: json['quantity'] as int,
+      status: json['status'] as String,
+      notes: json['notes'] as String,
     )
       ..id = json['id'] as String?
+      ..clientName = json['clientName'] as String
+      ..phoneNumber = json['phoneNumber'] as String
       ..date = DateTime.parse(json['date'] as String)
       ..invoiceNumber = json['invoiceNumber'] as String
       ..imagePath = json['imagePath'] as String;
 
-Map<String, dynamic> _$ReturnInvoiceToJson(ReturnInvoice instance) =>
+Map<String, dynamic> _$ReturnPartToJson(ReturnPart instance) =>
     <String, dynamic>{
       'id': instance.id,
       'clientName': instance.clientName,
@@ -30,6 +29,8 @@ Map<String, dynamic> _$ReturnInvoiceToJson(ReturnInvoice instance) =>
       'price': instance.price,
       'invoiceNumber': instance.invoiceNumber,
       'imagePath': instance.imagePath,
-      'company': instance.company,
-      'parts': instance.parts,
+      'name': instance.name,
+      'quantity': instance.quantity,
+      'status': instance.status,
+      'notes': instance.notes,
     };

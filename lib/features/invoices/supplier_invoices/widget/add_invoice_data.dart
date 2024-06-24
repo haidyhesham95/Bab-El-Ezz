@@ -20,18 +20,45 @@ class AddInvoicesData extends StatelessWidget {
   AddInvoicesData({super.key});
 
   File? imageFile;
+  bool isUpdate = false;
+  MerchantInvoice? invoice;
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+
     return BlocProvider(
-        create: (context) => SupplierInvoiceCubit(),
-        child: BlocConsumer<SupplierInvoiceCubit, SupplierInvoiceState>(
+        create: (context) => InvoiceCubit(),
+        child: BlocConsumer<InvoiceCubit, InvoiceState>(
             listener: (context, state) {},
             builder: (context, state) {
-              SupplierInvoiceCubit cubit = SupplierInvoiceCubit.get(context);
+              InvoiceCubit cubit = InvoiceCubit.get(context);
+
+              invoice = ModalRoute.of(context)?.settings.arguments
+                  as MerchantInvoice?;
+
               if (state is SupplierInvoiceInitial) {
                 cubit.getMerchants();
+                if (invoice != null) {
+                  isUpdate = true;
+                  cubit.selectedMerchant = invoice?.clientName;
+                  cubit.dateController.text = DateFormat('yyyy-MM-dd')
+                      .format(invoice?.date ?? DateTime.now());
+                  cubit.invoiceNumberController.text =
+                      invoice?.invoiceNumber ?? '';
+
+                  cubit.priceController.text = (invoice?.price ?? 0).toString();
+                  cubit.paidController.text =
+                      (invoice?.totalPaid ?? 0).toString();
+                  cubit.aglController.text =
+                      (invoice?.totalRemaining ?? 0).toString();
+                  cubit.dueDateController.text = DateFormat('yyyy-MM-dd')
+                      .format(invoice?.checkDate ?? DateTime.now());
+
+                  cubit.totalRemaining = invoice?.totalRemaining ?? 0;
+                  cubit.totalPaid = invoice?.totalPaid ?? 0;
+                  cubit.totalPrice = invoice?.price ?? 0;
+                }
               }
               print("merchants: ${cubit.merchants.length}");
               return Scaffold(
@@ -51,7 +78,11 @@ class AddInvoicesData extends StatelessWidget {
                             addImage(context, () async {
                               imageFile = await showImagePicker(context);
                               cubit.update();
-                            }, imageFile?.absolute),
+                            },
+                                isUpdate
+                                    ? invoice?.imagePath
+                                    : imageFile?.absolute.path,
+                                update: isUpdate),
                             const SizedBox(height: 20),
                             DropButton(
                               styleHint: AppStyles.styleRegular14(context)
@@ -178,6 +209,7 @@ class AddInvoicesData extends StatelessWidget {
                               height: size.height * 0.05,
                               text: ' إضافة  ',
                               onPressed: () async {
+                                print("pressed");
                                 if (kDebugMode ||
                                     cubit.formKey.currentState!.validate()) {
                                   showDialog(
@@ -193,45 +225,51 @@ class AddInvoicesData extends StatelessWidget {
                                           ),
                                         );
                                       });
-                                  print("name: ${cubit.selectedMerchant}");
+                                  MerchantInvoice invoice = MerchantInvoice(
+                                      double.parse(cubit.priceController.text),
+                                      imagePath: (isUpdate
+                                              ? this.invoice?.imagePath
+                                              : imageFile?.absolute.path) ??
+                                          '',
+                                      invoiceNumber:
+                                          cubit.invoiceNumberController.text,
+                                      clientName: cubit.selectedMerchant ?? '',
+                                      date: DateTime.parse(
+                                          cubit.dateController.text),
+                                      totalPaid: double.parse(
+                                          cubit.paidController.text),
+                                      totalRemaining: double.parse(
+                                          cubit.aglController.text),
+                                      checkDate: DateTime.parse(
+                                          cubit.dueDateController.text));
                                   // MerchantInvoice invoice = MerchantInvoice(
                                   //     imagePath: imageFile?.absolute.path ?? '',
                                   //     invoiceNumber:
-                                  //         cubit.invoiceNumberController.text,
-                                  //     clientName: cubit.selectedMerchant ?? '',
-                                  //     date: DateTime.parse(
-                                  //         cubit.dateController.text),
-                                  //     totalPrice: double.parse(
-                                  //         cubit.priceController.text),
-                                  //     totalPaid: double.parse(
-                                  //         cubit.paidController.text),
-                                  //     totalRemaining: double.parse(
-                                  //         cubit.aglController.text),
-                                  //     checkDate: DateTime.parse(
-                                  //         cubit.dueDateController.text));
-                                  MerchantInvoice invoice = MerchantInvoice(
-                                      imagePath: imageFile?.absolute.path ?? '',
-                                      invoiceNumber: "1234",
-                                      clientName: "test",
-                                      date: DateTime.now(),
-                                      totalPrice: 1000,
-                                      totalPaid: 900,
-                                      totalRemaining: 100,
-                                      checkDate: DateTime.now());
-                                  invoice.id = DateFormat("yyyyMMddhhmmss")
-                                      .format(DateTime.now());
+                                  //         DateFormat("yyyyMMddhhmmss")
+                                  //             .format(DateTime.now()),
+                                  //     clientName: "test",
+                                  //     date: DateTime.now(),
+                                  //     totalPrice: 1000,
+                                  //     totalPaid: 900,
+                                  //     totalRemaining: 100,
+                                  //     checkDate: DateTime.now());
 
-                                  cubit
-                                      .uploadImage(imageFile, invoice.id!)
-                                      .whenComplete(() {
-                                        Navigator.pop(context);
-                                      })
-                                      .then(
-                                          (value) => invoice.imagePath = value)
-                                      .then((value) {
-                                        Navigator.pop(
-                                            context, invoice.toJson());
-                                      });
+                                  if (isUpdate) {
+                                    Navigator.pop(context);
+                                    Navigator.pop(context, invoice);
+                                  } else {
+                                    cubit
+                                        .uploadImage(
+                                            imageFile, invoice.invoiceNumber)
+                                        .whenComplete(() {
+                                          Navigator.pop(context);
+                                        })
+                                        .then((value) =>
+                                            invoice.imagePath = value)
+                                        .then((value) {
+                                          Navigator.pop(context, invoice);
+                                        });
+                                  }
                                 }
                               },
                             ),

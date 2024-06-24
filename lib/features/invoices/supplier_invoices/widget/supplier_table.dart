@@ -19,16 +19,15 @@ class SupplierTable extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return BlocProvider(
-      create: (context) => SupplierInvoiceCubit(),
-      child: BlocBuilder<SupplierInvoiceCubit, SupplierInvoiceState>(
+      create: (context) => InvoiceCubit(),
+      child: BlocBuilder<InvoiceCubit, InvoiceState>(
         builder: (context, state) {
-          SupplierInvoiceCubit cubit = context.read<SupplierInvoiceCubit>();
+          InvoiceCubit cubit = context.read<InvoiceCubit>();
 
           if (state is SupplierInvoiceInitial) {
             cubit.getMerchants();
             return CircularProgressIndicator();
           }
-          print("state: $state}");
           if (state is SearchData) {
             var data = state.data;
             if (data is List<Merchant>) {
@@ -53,7 +52,7 @@ class SupplierTable extends StatelessWidget {
                   onPressed: () {
                     cubit.updateShowAll();
                   },
-                  showAll: false),
+                  showAll: cubit.showAll),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: CustomDataTable(

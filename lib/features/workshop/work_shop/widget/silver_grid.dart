@@ -24,11 +24,6 @@ class SilverGrid extends StatelessWidget {
         delegate: SliverChildBuilderDelegate(
           childCount: listJobs.isEmpty ? 1 : listJobs.length + 1,
           (context, index) {
-            print("len: ${listJobs.length}");
-            print("index: $index");
-            // if (showAll && index > 1) {
-            //   return null;
-            // }
             if (index == listJobs.length || listJobs.isEmpty) {
               return itemAddJobContainer(context);
             } else {

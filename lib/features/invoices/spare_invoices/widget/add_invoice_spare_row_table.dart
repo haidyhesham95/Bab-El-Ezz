@@ -3,19 +3,29 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared_utils/utils/widget/drop_menu.dart';
 
-/// if controllers > 1, then it's a data row not input row
+/// if controllers is not empty, then it's a data row not input row
 ///
-/// controllers = [name, quantity, discount, service, notes]
+/// controllers = [name, quantity, price, notes]
 DataRow addInvoiceSpareRowTable(
   List<TextEditingController> controllers, {
   Function()? onAddPressed,
-  double price = 0,
   bool footer = false,
+  bool discount = false,
+  bool total = false,
 }) {
   bool dataRow = controllers[1].text.isNotEmpty;
-  if (dataRow && controllers.length != 5) {
-    throw Exception("Controllers must be length of 5");
+
+  if (dataRow &&
+      controllers.length != 4 &&
+      controllers.indexed
+          //name, quantity and price are mandatory.
+          .where((element) =>
+              element.$1 == 0 || element.$1 == 1 || element.$1 == 2)
+          .every((element) => element.$2.text.isNotEmpty)) {
+    throw Exception("All data must be filled");
   }
+  double price =
+      controllers[2].text.isEmpty ? 0 : double.parse(controllers[2].text);
 
   return DataRow(
     cells: <DataCell>[
@@ -27,44 +37,38 @@ DataRow addInvoiceSpareRowTable(
                 color: Colors.white,
                 size: 20,
               ))
-          : DropMenu(
-              onTapEdit: (index) {},
-              onTapDelete: (index) {},
-            )),
+          : (discount || total
+              ? Container()
+              : DropMenu(
+                  onTapEdit: (index) {},
+                  onTapDelete: (index) {},
+                ))),
       DataCell(dataRow
-          ? Text(controllers[0].text)
+          ? Text(total ? "اﻹجمالي" : controllers[0].text)
+          : (discount || total
+              ? Text(discount ? "الخصم" : "اﻹجمالي")
+              : DataTextField(
+                  controller: controllers[0],
+                  hintText: 'اضافه صنف',
+                ))),
+      DataCell(discount || total
+          ? Container()
+          : dataRow
+              ? Text(controllers[1].text)
+              : DataTextField(
+                  controller: controllers[1],
+                  hintText: 'اضافه كمية',
+                )),
+      DataCell(dataRow || total
+          ? Text(price.toString())
           : DataTextField(
-              controller: controllers[0],
-              hintText: 'اضافه صنف',
-            )),
-      DataCell(dataRow
-          ? Text(controllers[1].text)
-          : DataTextField(
-              controller: controllers[0],
-              hintText: 'اضافه كمية',
-            )),
-      DataCell(Text(dataRow ? price.toString() : '--')),
-      DataCell(dataRow
-          ? Text(controllers[2].text)
-          : DataTextField(
-              controller: controllers[0],
-              hintText: 'اضافه خصم',
+              controller: controllers[2],
+              hintText: 'اضافه سعر',
             )),
       DataCell(dataRow
           ? Text(controllers[3].text)
           : DataTextField(
-              controller: controllers[0],
-              hintText: 'اضافه المصنعية',
-            )),
-      DataCell(Text(dataRow
-          ? ((price * double.parse(controllers[1].text)) -
-                  double.parse(controllers[2].text))
-              .toString()
-          : '--')),
-      DataCell(dataRow
-          ? Text(controllers[4].text)
-          : DataTextField(
-              controller: controllers[0],
+              controller: controllers[3],
               hintText: 'اضافه ملاحظات',
             )),
     ],

@@ -8,6 +8,7 @@ part of 'invoice.dart';
 
 Invoice _$InvoiceFromJson(Map<String, dynamic> json) => Invoice(
       clientName: json['clientName'] as String,
+      price: (json['price'] as num).toDouble(),
       phoneNumber: json['phoneNumber'] as String,
       date: DateTime.parse(json['date'] as String),
       invoiceNumber: json['invoiceNumber'] as String,
@@ -19,6 +20,7 @@ Map<String, dynamic> _$InvoiceToJson(Invoice instance) => <String, dynamic>{
       'clientName': instance.clientName,
       'phoneNumber': instance.phoneNumber,
       'date': instance.date.toIso8601String(),
+      'price': instance.price,
       'invoiceNumber': instance.invoiceNumber,
       'imagePath': instance.imagePath,
     };

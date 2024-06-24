@@ -7,12 +7,15 @@ part of 'spare_invoice.dart';
 // **************************************************************************
 
 SpareInvoice _$SpareInvoiceFromJson(Map<String, dynamic> json) => SpareInvoice(
+      (json['price'] as num).toDouble(),
       imagePath: json['imagePath'] as String,
       invoiceNumber: json['invoiceNumber'] as String,
       phoneNumber: json['phoneNumber'] as String,
       clientName: json['clientName'] as String,
       date: DateTime.parse(json['date'] as String),
-      part: Part.fromJson(json['part'] as Map<String, dynamic>),
+      parts: (json['parts'] as List<dynamic>)
+          .map((e) => Part.fromJson(e as Map<String, dynamic>))
+          .toList(),
       discount: (json['discount'] as num?)?.toDouble() ?? 0,
       service: (json['service'] as num).toDouble(),
       notes: json['notes'] as String? ?? '',
@@ -24,9 +27,10 @@ Map<String, dynamic> _$SpareInvoiceToJson(SpareInvoice instance) =>
       'clientName': instance.clientName,
       'phoneNumber': instance.phoneNumber,
       'date': instance.date.toIso8601String(),
+      'price': instance.price,
       'invoiceNumber': instance.invoiceNumber,
       'imagePath': instance.imagePath,
-      'part': instance.part,
+      'parts': instance.parts,
       'discount': instance.discount,
       'service': instance.service,
       'notes': instance.notes,

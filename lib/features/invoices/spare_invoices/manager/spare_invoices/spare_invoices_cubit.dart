@@ -16,6 +16,7 @@ class SpareInvoicesCubit extends Cubit<SpareInvoicesState> {
 
   List<Customer> customers = [];
   List<Part> parts = [];
+
   List<SpareInvoice> invoices = [];
 
   CollectionReference partsInvRef = FirebaseCollection().partsInvCol;
@@ -30,11 +31,16 @@ class SpareInvoicesCubit extends Cubit<SpareInvoicesState> {
   TextEditingController searchController = TextEditingController();
 
   List<DataRow> items = List.from([], growable: true);
+  SpareInvoice invoice = SpareInvoice.empty();
 
-  void addItem(DataRow item) {
-    print("len: ${items.length}");
-    items.insert(0, item);
-    print("len2: ${items.length}");
+  void addItem(DataRow item, {int index = 0}) {
+    items.insert(index, item);
+    emit(AddItems(items.cast<Widget>()));
+  }
+
+  void updateTotalPrice(DataRow dataRow) {
+    items.removeLast();
+    addItem(dataRow, index: items.length);
     emit(AddItems(items.cast<Widget>()));
   }
 

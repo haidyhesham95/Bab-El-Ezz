@@ -1,6 +1,7 @@
 import 'package:bab_el_ezz/data/merchant_invoice.dart';
 import 'package:bab_el_ezz/features/invoices/invoices/widget/top_invoice_search.dart';
 import 'package:bab_el_ezz/features/invoices/supplier_invoices/manager/supplier_invoice/supplier_invoice_cubit.dart';
+import 'package:bab_el_ezz/shared_utils/utils/constant.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/show_details_text.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +21,13 @@ class InvoicesSuppliersTable extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return BlocProvider(
-      create: (context) => SupplierInvoiceCubit(),
-      child: BlocBuilder<SupplierInvoiceCubit, SupplierInvoiceState>(
+      create: (context) => InvoiceCubit(),
+      child: BlocBuilder<InvoiceCubit, InvoiceState>(
         builder: (context, state) {
-          SupplierInvoiceCubit cubit = SupplierInvoiceCubit.get(context);
+          InvoiceCubit cubit = InvoiceCubit.get(context);
 
           if (state is SupplierInvoiceInitial) {
-            cubit.getInvoices("merchant");
+            cubit.getInvoices(INVOICE_MERCHANT);
             return CircularProgressIndicator();
           }
 
@@ -54,10 +55,10 @@ class InvoicesSuppliersTable extends StatelessWidget {
                   columns: [
                     DataColumn(label: AddIconButton(
                       onPressed: () async {
-                        MerchantInvoice invoice = MerchantInvoice.fromJson(
+                        MerchantInvoice invoice =
                             await Navigator.pushNamed(context, 'addInvoiceData')
-                                as Map<String, dynamic>);
-                        cubit.addInvoice(invoice, "merchant");
+                                as MerchantInvoice;
+                        cubit.addInvoice(invoice, INVOICE_MERCHANT);
                       },
                     )),
                     if (cubit.showAll) ...[
@@ -79,8 +80,18 @@ class InvoicesSuppliersTable extends StatelessWidget {
                     (index) => DataRow(
                       cells: <DataCell>[
                         DataCell(DropMenu(
-                          onTapEdit: (index) {},
-                          onTapDelete: (index) {},
+                          onTapEdit: (index) async {
+                            MerchantInvoice invoice = await Navigator.pushNamed(
+                                context, 'addInvoiceData',
+                                arguments: invoices[index]) as MerchantInvoice;
+                            print("invoice: ${invoice.invoiceNumber}");
+                            cubit.updateInvoice(invoice, INVOICE_MERCHANT);
+                          },
+                          onTapDelete: (index) {
+                            cubit.deleteInvoice(
+                                invoices[index], INVOICE_MERCHANT);
+                          },
+                          index: index,
                         )),
                         if (cubit.showAll) ...[
                           DataCell(Text("${index + 1}")),
@@ -90,8 +101,8 @@ class InvoicesSuppliersTable extends StatelessWidget {
                             .format(invoices[index].date))),
                         DataCell(Text(invoices[index].invoiceNumber ?? '--')),
                         if (cubit.showAll) ...[
-                          DataCell(Text(
-                              invoices[index].totalPrice?.toString() ?? '--')),
+                          DataCell(
+                              Text(invoices[index].price.toString() ?? '--')),
                           DataCell(Text(
                               invoices[index].totalPaid?.toString() ?? '--')),
                           DataCell(Text(

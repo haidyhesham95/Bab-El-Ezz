@@ -5,27 +5,28 @@ sealed class ReturnedInvoicesState {}
 
 final class ReturnedInvoicesInitial extends ReturnedInvoicesState {}
 
- class TypeChanged extends ReturnedInvoicesState {
+class TypeChanged extends ReturnedInvoicesState {
   TypeChanged(this.value);
 
   final String? value;
 }
 
- class TypeMerchantChanged extends ReturnedInvoicesState {
+class TypeMerchantChanged extends ReturnedInvoicesState {
   TypeMerchantChanged(this.value);
 
   final String? value;
 }
 
- class MerchantNameChanged extends ReturnedInvoicesState {
+class MerchantNameChanged extends ReturnedInvoicesState {
   MerchantNameChanged(this.value);
 
   final String? value;
 }
 
+class CompanyNameChanged extends ReturnedInvoicesState {
+  CompanyNameChanged(this.value);
 
-  class CompanyNameChanged extends ReturnedInvoicesState {
-    CompanyNameChanged(this.value);
+  final String? value;
+}
 
-    final String? value;
-  }
+class UpdateData extends ReturnedInvoicesState {}

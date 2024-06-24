@@ -16,11 +16,11 @@ class _SupplierInvoicesBodyState extends State<SupplierInvoicesBody> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SupplierInvoiceCubit(),
-      child: BlocConsumer<SupplierInvoiceCubit, SupplierInvoiceState>(
+      create: (context) => InvoiceCubit(),
+      child: BlocConsumer<InvoiceCubit, InvoiceState>(
         listener: (context, state) {},
         builder: (context, state) {
-          SupplierInvoiceCubit cubit = SupplierInvoiceCubit.get(context);
+          InvoiceCubit cubit = InvoiceCubit.get(context);
           return SingleChildScrollView(
             child: Column(
               children: [

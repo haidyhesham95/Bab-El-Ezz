@@ -18,6 +18,7 @@ class MaintenanceInvoice extends Invoice {
     this.carPlate,
     required String imagePath,
   }) : super(
+            price: 0.0,
             invoiceNumber: invoiceNumber,
             date: date,
             clientName: clientName,

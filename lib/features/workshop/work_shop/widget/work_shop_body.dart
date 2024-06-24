@@ -28,7 +28,6 @@ class WorkShopBody extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           } else if (state is GetData) {
             listJobs = state.data;
-            print("listJobs: $listJobs");
           }
 
           return CustomScrollView(

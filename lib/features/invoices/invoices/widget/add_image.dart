@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared_utils/styles/colors.dart';
 
-Container addImage(context, Function() onTap, File? image) {
+Container addImage(context, Function() onTap, String? image,
+    {bool update = false}) {
   final Size size = MediaQuery.of(context).size;
   return Container(
     width: double.infinity,
@@ -29,7 +30,7 @@ Container addImage(context, Function() onTap, File? image) {
               fit: BoxFit.fitHeight,
               color: Colors.grey,
             )
-          : Image.file(image),
+          : (update ? Image.network(image) : Image.file(File(image))),
     ),
   );
 }

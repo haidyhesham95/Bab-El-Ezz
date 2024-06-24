@@ -32,7 +32,6 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -102,8 +101,7 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                       ],
                     ),
                     const SizedBox(height: 20),
-                   const DetailsPreviousMaintenanceButton(),
-                    
+                    const DetailsPreviousMaintenanceButton(),
                     const SizedBox(height: 20),
                     Row(
                       children: [

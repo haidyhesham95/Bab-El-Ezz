@@ -6,15 +6,19 @@ class AddInvoiceSpareTable extends StatelessWidget {
   final List<DataRow> rows;
   @override
   Widget build(BuildContext context) {
-    return CustomDataTable(columns: const [
-      DataColumn(label: Text('')),
-      DataColumn(label: Text('الصنف')),
-      DataColumn(label: Text('الكمية')),
-      DataColumn(label: Text('السعر')),
-      DataColumn(label: Text('الخصم')),
-      DataColumn(label: Text('المصنعية')),
-      DataColumn(label: Text('الاجمالي')),
-      DataColumn(label: Text('ملاحظات')),
-    ], rows: rows);
+    return CustomDataTable(
+      columns: const [
+        DataColumn(
+          label: Text(''),
+        ),
+        DataColumn(
+          label: Text('الصنف'),
+        ),
+        DataColumn(label: Text('الكمية')),
+        DataColumn(label: Text('السعر')),
+        DataColumn(label: Text('ملاحظات')),
+      ],
+      rows: rows,
+    );
   }
 }

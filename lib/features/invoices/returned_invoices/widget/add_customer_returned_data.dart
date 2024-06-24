@@ -1,4 +1,4 @@
-import 'package:bab_el_ezz/data/return_invoice.dart';
+import 'package:bab_el_ezz/data/return_part.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
@@ -20,6 +20,9 @@ class AddCustomerReturnedData extends StatefulWidget {
 class _AddCustomerReturnedDataState extends State<AddCustomerReturnedData> {
   List<Widget> items = [];
 
+  late ReturnPart? invoice;
+  bool isUpdate = false;
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -35,8 +38,22 @@ class _AddCustomerReturnedDataState extends State<AddCustomerReturnedData> {
               builder: (context, state) {
                 ReturnedInvoicesCubit cubit =
                     ReturnedInvoicesCubit.get(context);
+
+                if (state is ReturnedInvoicesInitial) {
+                  invoice =
+                      ModalRoute.of(context)?.settings.arguments as ReturnPart?;
+                  print("initial state");
+                  if (invoice != null && !isUpdate) {
+                    isUpdate = true;
+                    print("name: ${invoice!.name}");
+                    cubit.priceController.text = invoice!.price.toString();
+                    cubit.notesController.text = invoice!.notes;
+                    cubit.nameController.text = invoice!.name;
+                    cubit.countController.text = invoice!.quantity.toString();
+                    cubit.selectedType = invoice!.status;
+                  }
+                }
                 return Form(
-                  key: cubit.formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -108,7 +125,6 @@ class _AddCustomerReturnedDataState extends State<AddCustomerReturnedData> {
                       const SizedBox(
                         height: 15,
                       ),
-
                       const SizedBox(
                         height: 50,
                       ),
@@ -119,12 +135,14 @@ class _AddCustomerReturnedDataState extends State<AddCustomerReturnedData> {
                         onPressed: () {
                           if (kDebugMode ||
                               cubit.formKey.currentState!.validate()) {
-                            ReturnInvoice invoice = ReturnInvoice(
-                                part: cubit.nameController.text,
-                                quantity: int.parse(cubit.countController.text),
+                            ReturnPart invoice = ReturnPart(
                                 price: double.parse(cubit.priceController.text),
+                                name: cubit.nameController.text,
+                                quantity: int.parse(cubit.countController.text),
                                 status: cubit.selectedType,
-                                notes: cubit.notesController.text);
+                                notes: cubit.notesController.text)
+                              ..invoiceNumber =
+                                  this.invoice?.invoiceNumber ?? '';
                             Navigator.pop(context, invoice);
                           }
                         },

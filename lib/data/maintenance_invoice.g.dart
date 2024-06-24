@@ -15,7 +15,9 @@ MaintenanceInvoice _$MaintenanceInvoiceFromJson(Map<String, dynamic> json) =>
       carBrand: json['carBrand'] as String?,
       carPlate: json['carPlate'] as String?,
       imagePath: json['imagePath'] as String,
-    )..id = json['id'] as String?;
+    )
+      ..id = json['id'] as String?
+      ..price = (json['price'] as num).toDouble();
 
 Map<String, dynamic> _$MaintenanceInvoiceToJson(MaintenanceInvoice instance) =>
     <String, dynamic>{
@@ -23,6 +25,7 @@ Map<String, dynamic> _$MaintenanceInvoiceToJson(MaintenanceInvoice instance) =>
       'clientName': instance.clientName,
       'phoneNumber': instance.phoneNumber,
       'date': instance.date.toIso8601String(),
+      'price': instance.price,
       'invoiceNumber': instance.invoiceNumber,
       'imagePath': instance.imagePath,
       'carBrand': instance.carBrand,

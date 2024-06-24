@@ -8,6 +8,7 @@ import 'package:bab_el_ezz/data/merchant.dart';
 import 'package:bab_el_ezz/data/merchant_invoice.dart';
 import 'package:bab_el_ezz/data/part.dart';
 import 'package:bab_el_ezz/data/return_invoice.dart';
+import 'package:bab_el_ezz/data/return_part.dart';
 import 'package:bab_el_ezz/data/spare_invoice.dart';
 import 'package:bab_el_ezz/data/technician.dart';
 import 'package:bab_el_ezz/data/workshop.dart';
@@ -41,6 +42,7 @@ class FirebaseCollection {
   late CollectionReference<Invoice> merchantInvCol;
   late CollectionReference<Invoice> partsInvCol;
   late CollectionReference<Invoice> returnInvCol;
+  late CollectionReference<Invoice> returnPartInvCol;
   late CollectionReference<Merchant> merchantsCol;
 
   factory FirebaseCollection() {
@@ -76,6 +78,10 @@ class FirebaseCollection {
         collectionName: invoiceCollectionName,
         fromJson: ReturnInvoice.fromFirestore,
         toJson: (ReturnInvoice model) => model.toJson());
+    returnPartInvCol = _getOrCreateCollection<ReturnPart>(
+        collectionName: invoiceCollectionName,
+        fromJson: ReturnPart.fromFirestore,
+        toJson: (ReturnPart model) => model.toJson());
     partCol = _getOrCreateCollection<Part>(
         collectionName: partCollectionName,
         fromJson: Part.fromFirestore,

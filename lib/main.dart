@@ -116,7 +116,7 @@ class MyApp extends StatelessWidget {
               "addStaffItem": (context) => AddStaffItem(),
               'addDailyExpenses': (context) => const AddDailyExpenses(),
               "spareInvoices": (context) => const SpareInvoices(),
-              "addCustomerSpareData": (context) => const AddCustomerSpareData(),
+              "addCustomerSpareData": (context) => AddCustomerSpareData(),
               "addInvoiceSpareData": (context) => AddInvoiceSpareData(),
               "addSuppliersData": (context) => AddSuppliersData(),
               "addCustomerReturnedData": (context) =>
@@ -131,8 +131,7 @@ class MyApp extends StatelessWidget {
               'detailsMaintenancePage': (context) =>
                   const DetailsMaintenancePage(),
               'addCustomer': (context) => const AddCustomer(),
-              'AddCustomerInSpareInvoice': (context) =>
-                  const AddCustomerSpareData(),
+              'AddCustomerInSpareInvoice': (context) => AddCustomerSpareData(),
             },
           );
         },

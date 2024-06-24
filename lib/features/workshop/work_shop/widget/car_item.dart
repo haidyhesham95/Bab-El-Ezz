@@ -5,8 +5,6 @@ import '../../../../shared_utils/styles/text.dart';
 import '../../../../shared_utils/utils/widget/shadow_container.dart';
 
 ShadowContainer carItem(context, JobOrder jobOrder) {
-  print("make: ${jobOrder.car?.make}");
-  print("plate: ${jobOrder.car?.licensePlate}");
   return ShadowContainer(
     radius: 10,
     onTap: () {

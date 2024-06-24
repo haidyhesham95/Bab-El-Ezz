@@ -6,21 +6,20 @@ part 'merchant_invoice.g.dart';
 
 @JsonSerializable()
 class MerchantInvoice extends Invoice {
-  double? totalPrice;
   double? totalPaid;
   double? totalRemaining;
   DateTime? checkDate;
 
-  MerchantInvoice(
+  MerchantInvoice(double price,
       {required String imagePath,
       required String invoiceNumber,
       required String clientName,
       required DateTime date,
-      required this.totalPrice,
       required this.totalPaid,
       required this.totalRemaining,
       required this.checkDate})
       : super(
+            price: price,
             invoiceNumber: invoiceNumber,
             imagePath: imagePath,
             date: date,

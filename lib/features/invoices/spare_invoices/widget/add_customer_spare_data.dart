@@ -9,7 +9,10 @@ import '../../../../shared_utils/utils/widget/button_widget.dart';
 import '../manager/spare_invoices/spare_invoices_cubit.dart';
 
 class AddCustomerSpareData extends StatelessWidget {
-  const AddCustomerSpareData({super.key});
+  AddCustomerSpareData({super.key});
+
+  bool isUpdate = false;
+  Customer? customer;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,16 @@ class AddCustomerSpareData extends StatelessWidget {
             listener: (context, state) {},
             builder: (context, state) {
               SpareInvoicesCubit cubit = SpareInvoicesCubit.get(context);
+
+              if (state is SpareInvoicesInitial) {
+                customer =
+                    ModalRoute.of(context)?.settings.arguments as Customer?;
+                if (customer != null && !isUpdate) {
+                  isUpdate = true;
+                  cubit.customerNameController.text = customer!.name;
+                  cubit.customerPhoneController.text = customer!.phoneNumber;
+                }
+              }
               return Scaffold(
                 appBar: constAppBar(
                   context,
@@ -63,7 +76,6 @@ class AddCustomerSpareData extends StatelessWidget {
                                 height: size.height * 0.05,
                                 text: ' إضافة  ',
                                 onPressed: () {
-                                  print("pressed");
                                   if (kDebugMode ||
                                       cubit.formKey.currentState!.validate()) {
                                     Customer customer = Customer(
