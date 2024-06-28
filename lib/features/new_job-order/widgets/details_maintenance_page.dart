@@ -14,44 +14,48 @@ class DetailsMaintenancePage extends StatelessWidget {
     return Scaffold(
       appBar: constAppBar(context, "تفاصيل الصيانة"),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            SizedBox(
-              height: size.height * 0.2,
-              child: ShadowContainer(
-                radius: 10,
-                onTap: () {},
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      RowText(
-                        'التاريخ : ',
-                        '12/12/2021',
+        child: Center(
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              SizedBox(
+                height: size.height * 0.2,
+                width: size.width * 0.9,
+                child: ShadowContainer(
+                  radius: 10,
+                  onTap: () {},
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RowText(
+                          'التاريخ : ',
+                          '12/12/2021',
 
-                      ),
-                      RowText(
-                        'نوع الصيانة : ',
-                        'صيانة دورية',
-                      ),
-                      RowText(
-                        'الملاحظات : ',
-                        '-------',
-                      ),
+                        ),
+                        RowText(
+                          'نوع الصيانة : ',
+                          'صيانة دورية',
+                        ),
+                        RowText(
+                          'الملاحظات : ',
+                          '-------',
+                        ),
 
-                               ]),
-                )),
-            ),
+                                 ]),
+                  )),
+              ),
 
-            const SizedBox(height: 30),
+              const SizedBox(height: 30),
 
-            const DetailsMaintenanceTable(),
+              const DetailsMaintenanceTable(),
 
-            const SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-          ],
+            ],
+          ),
         ),
       )
 
