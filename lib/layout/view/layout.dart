@@ -3,6 +3,7 @@ import 'package:bab_el_ezz/features/staff/view/staff_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../features/data analysis/view/data_analysis.dart';
 import '../../features/invoices/invoices/view/invoice_page.dart';
 import '../../features/store/view/store_page.dart';
 import '../../features/workshop/work_shop/view/work_shop_page.dart';
@@ -21,7 +22,7 @@ class _NavBarState extends State<LayOut> {
 
   final List<Widget> _pages = [
     const WorkShopPage(),
-    const LoginView(),
+    const DataAnalysis(),
     const InvoicePage(),
     StaffPage(),
     const StorePage(),

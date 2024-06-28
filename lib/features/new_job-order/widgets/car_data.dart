@@ -15,8 +15,6 @@ class CarData extends StatelessWidget {
       padding: const EdgeInsets.only(right: 10),
       height: size.height * 0.25,
       child: Row(
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
             child: Column(
@@ -27,7 +25,9 @@ class CarData extends StatelessWidget {
                   'نوع السياره : ',
                   car.make,
                 ),
-                RowText('موديل السيارة : ', car.model),
+                RowText('موديل السيارة : ',
+                    car.model
+                ),
                 RowText(
                   'رقم الشاسيه : ',
                   car.chassisNumber,
@@ -43,31 +43,33 @@ class CarData extends StatelessWidget {
               ],
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              RowText(
-                'سنة الصنع : ',
-                car.year,
-              ),
-              RowText(
-                'للون السيارة : ',
-                car.color,
-              ),
-              RowText(
-                'رقم الموتور : ',
-                car.engineNumber,
-              ),
-              RowText(
-                'نوع ناقل الحركة : ',
-                car.transmissionType,
-              ),
-              const RowText(
-                ' ',
-                "",
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                RowText(
+                  'سنة الصنع : ',
+                  car.year,
+                ),
+                RowText(
+                  'للون السيارة : ',
+                  car.color,
+                ),
+                RowText(
+                  'رقم الموتور : ',
+                  car.engineNumber,
+                ),
+                RowText(
+                  'نوع ناقل الحركة : ',
+                  car.transmissionType,
+                ),
+                const RowText(
+                  ' ',
+                  "",
+                ),
+              ],
+            ),
           ),
         ],
       ),

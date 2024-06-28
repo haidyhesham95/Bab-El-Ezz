@@ -56,6 +56,10 @@ dependencies:
   open_file:
   pdf:
   permission_handler:
+  fl_chart: ^0.68.0
+  shared_preferences:
+  syncfusion_flutter_datepicker:
+  syncfusion_flutter_charts:
 
 dev_dependencies:
   flutter_test:

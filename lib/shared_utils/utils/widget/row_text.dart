@@ -2,22 +2,35 @@ import 'package:flutter/material.dart';
 
 import '../../styles/text.dart';
 
+
 class RowText extends StatelessWidget {
-  const RowText(this.title, this.data, {super.key, this.textStyle, this.dataStyle});
-final String? title;
-final String? data;
-final TextStyle? textStyle;
-final TextStyle? dataStyle;
+  const RowText(this.title, this.data,
+      {super.key, this.textStyle, this.dataStyle});
+
+  final String? title;
+  final String? data;
+  final TextStyle? textStyle;
+  final TextStyle? dataStyle;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
+    return Text.rich(
+      TextSpan(
         children: [
-          Text(' $title ', style: textStyle ?? AppStyles.styleSemiBold16(context),),
-          Text(' $data ',style: dataStyle ?? AppStyles.styleSemiBold14(context).copyWith(color: Colors.white)),
+          TextSpan(
+            text: title,
+            style: AppStyles.styleSemiBold16(context),
+          ),
+          TextSpan(
+            text: data,
+            style: AppStyles.styleSemiBold14(context).copyWith(color: Colors.white),
+
+          ),
         ],
       ),
+      overflow: TextOverflow.ellipsis,
+      maxLines: 2,
     );
   }
 }
+

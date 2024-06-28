@@ -2,6 +2,7 @@ import 'package:bab_el_ezz/data/car.dart';
 import 'package:bab_el_ezz/data/job_order.dart';
 import 'package:bab_el_ezz/data/technician.dart';
 import 'package:bab_el_ezz/features/new_job-order/manager/new_job/new_job_cubit.dart';
+import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
 import 'package:bab_el_ezz/shared_utils/styles/text.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/pay_container.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_align.dart';
@@ -24,7 +25,6 @@ import 'create_pdf.dart';
 import 'details.dart';
 import 'details_previous_maintenance_button.dart';
 import 'drop_button.dart';
-
 class NewJobOrderBody extends StatefulWidget {
   const NewJobOrderBody({super.key});
 
@@ -45,10 +45,19 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
 
   @override
   Widget build(BuildContext context) {
-    jobOrder = JobOrder.fromJson(
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>);
-    jobOrder ??= JobOrder.empty();
+    // jobOrder = JobOrder.fromJson(
+    //     ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>);
+    // jobOrder ??= JobOrder.empty();
+    final routeArgs = ModalRoute.of(context)?.settings.arguments;
 
+    if (routeArgs == null) {
+      return const Center(
+        child: Text('No arguments were provided!'),
+      );
+    }
+
+    jobOrder = JobOrder.fromJson(routeArgs as Map<String, dynamic>);
+    jobOrder ??= JobOrder.empty();
     final size = MediaQuery.of(context).size;
     return Padding(
         padding: const EdgeInsets.symmetric(
@@ -63,7 +72,10 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
 
               if (state is NewJobInitial) {
                 cubit.getTechnicians();
-                return CircularProgressIndicator();
+                return const Center(
+                    child: CircularProgressIndicator(
+                      color: ColorsAsset.kGreen,
+                    ));
               }
 
               if (state is GetData) {
@@ -76,11 +88,11 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                     const SizedBox(height: 20),
                     Details(
                       enterDate: DateFormat('yy-MM-dd HH:mm')
-                              .format(jobOrder?.startDate ?? DateTime.now()) ??
+                          .format(jobOrder?.startDate ?? DateTime.now()) ??
                           '',
                       outDate: jobOrder?.endDate != null
                           ? DateFormat('yy-MM-dd HH:mm')
-                              .format(jobOrder!.endDate!)
+                          .format(jobOrder!.endDate!)
                           : '',
                       clientName: jobOrder?.clientName ?? '',
                     ),
@@ -134,17 +146,17 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                             },
                             items: List.generate(
                                 techs.length,
-                                (index) => DropdownMenuItem(
-                                      value: techs[index].name,
-                                      child: Text(techs[index].name),
-                                    )),
+                                    (index) => DropdownMenuItem(
+                                  value: techs[index].name,
+                                  child: Text(techs[index].name),
+                                )),
                           ),
                         ),
                         const SizedBox(width: 10),
                         AddButton(
                           onPressed: () {
                             int index = techs.indexWhere((element) =>
-                                element.name == cubit.selectedValue);
+                            element.name == cubit.selectedValue);
                             selectedTechs.add(techs[index]);
                             techs.removeAt(index);
                             cubit.selectedValue = null;
@@ -156,16 +168,16 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                     ),
                     ...List.generate(
                         selectedTechs.length,
-                        (index) => ListTile(
-                              title: Text(selectedTechs[index].name),
-                              trailing: IconButton(
-                                  onPressed: () {
-                                    techs.add(selectedTechs[index]);
-                                    selectedTechs.removeAt(index);
-                                    cubit.update();
-                                  },
-                                  icon: const Icon(Icons.clear)),
-                            )),
+                            (index) => ListTile(
+                          title: Text(selectedTechs[index].name),
+                          trailing: IconButton(
+                              onPressed: () {
+                                techs.add(selectedTechs[index]);
+                                selectedTechs.removeAt(index);
+                                cubit.update();
+                              },
+                              icon: const Icon(Icons.clear)),
+                        )),
                     const SizedBox(height: 20),
                     Image.asset(
                       Assets.imagesCars,
@@ -178,59 +190,57 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                       'اضافة تفاصيل الفاتورة  ',
                     ),
                     const SizedBox(height: 15),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: BlocProvider(
-                        create: (context) => SpareInvoicesCubit(),
-                        child:
-                            BlocBuilder<SpareInvoicesCubit, SpareInvoicesState>(
-                          builder: (context, state) {
-                            SpareInvoicesCubit cubit1 =
-                                SpareInvoicesCubit.get(context);
+                    BlocProvider(
+                      create: (context) => SpareInvoicesCubit(),
+                      child:
+                      BlocBuilder<SpareInvoicesCubit, SpareInvoicesState>(
+                        builder: (context, state) {
+                          SpareInvoicesCubit cubit1 =
+                          SpareInvoicesCubit.get(context);
 
-                            if (state is SpareInvoicesInitial) {
+                          if (state is SpareInvoicesInitial) {
+                         //   _setupInitialData(cubit1);
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
                               _setupInitialData(cubit1);
-                            } else if (state is SearchData) {
-                              searchResults = state.data as List<Part>;
-                            }
+                            });
+                          } else if (state is SearchData) {
+                            searchResults = state.data as List<Part>;
+                          }
 
-                            return Column(
-                              children: [
-                                if (searchResults.isNotEmpty)
-                                  Expanded(
-                                    child: ListView.builder(
-                                      shrinkWrap: true,
-                                      itemBuilder: (_, index) => ListTile(
-                                        title: Text(searchResults[index].name),
-                                        onTap: (searchResults[index].quantity >
-                                                0)
-                                            ? () {
-                                                selectedPart =
-                                                    searchResults[index];
-                                                cubit1.partController.text =
-                                                    searchResults[index].name;
-                                                cubit1.priceController.text =
-                                                    searchResults[index]
-                                                        .sellingPrice
-                                                        .toString();
-                                                searchResults.clear();
-                                                cubit1.update();
-                                              }
-                                            : () {
-                                                Fluttertoast.showToast(
-                                                    msg: "لا يوجد مخزون");
-                                              },
-                                      ),
-                                      itemCount: searchResults.length,
-                                    ),
+                          return Column(
+                            children: [
+                              if (searchResults.isNotEmpty)
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  itemBuilder: (_, index) => ListTile(
+                                    title: Text(searchResults[index].name),
+                                    onTap: (searchResults[index].quantity >
+                                        0)
+                                        ? () {
+                                      selectedPart =
+                                      searchResults[index];
+                                      cubit1.partController.text =
+                                          searchResults[index].name;
+                                      cubit1.priceController.text =
+                                          searchResults[index]
+                                              .sellingPrice
+                                              .toString();
+                                      searchResults.clear();
+                                      cubit1.update();
+                                    }
+                                        : () {
+                                      Fluttertoast.showToast(
+                                          msg: "لا يوجد مخزون");
+                                    },
                                   ),
-                                AddInvoiceSpareTable(
-                                  rows: cubit1.items,
+                                  itemCount: searchResults.length,
                                 ),
-                              ],
-                            );
-                          },
-                        ),
+                              AddInvoiceSpareTable(
+                                rows: cubit1.items,
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -397,3 +407,5 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
     }
   }
 }
+
+

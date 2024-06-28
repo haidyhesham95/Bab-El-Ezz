@@ -6,19 +6,22 @@ class AddInvoiceSpareTable extends StatelessWidget {
   final List<DataRow> rows;
   @override
   Widget build(BuildContext context) {
-    return CustomDataTable(
-      columns: const [
-        DataColumn(
-          label: Text(''),
-        ),
-        DataColumn(
-          label: Text('الصنف'),
-        ),
-        DataColumn(label: Text('الكمية')),
-        DataColumn(label: Text('السعر')),
-        DataColumn(label: Text('ملاحظات')),
-      ],
-      rows: rows,
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: CustomDataTable(
+        columns: const [
+          DataColumn(
+            label: Text(''),
+          ),
+          DataColumn(
+            label: Text('الصنف'),
+          ),
+          DataColumn(label: Text('الكمية')),
+          DataColumn(label: Text('السعر')),
+          DataColumn(label: Text('ملاحظات')),
+        ],
+        rows: rows,
+      ),
     );
   }
 }
