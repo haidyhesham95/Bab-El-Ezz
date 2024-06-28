@@ -12,6 +12,13 @@ class SpareInvoicesCubit extends Cubit<SpareInvoicesState> {
   SpareInvoicesCubit() : super(SpareInvoicesInitial());
   static SpareInvoicesCubit get(context) => BlocProvider.of(context);
 
+  final TextEditingController partController = TextEditingController();
+  final TextEditingController quantityController = TextEditingController();
+  final TextEditingController priceController = TextEditingController();
+  final TextEditingController totalController = TextEditingController();
+  final TextEditingController discountController = TextEditingController();
+  final TextEditingController notesController = TextEditingController();
+
   bool isTableVisible = false;
 
   List<Customer> customers = [];

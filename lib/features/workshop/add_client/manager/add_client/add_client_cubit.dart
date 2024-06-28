@@ -51,28 +51,28 @@ class AddClientCubit extends Cubit<AddClientState> {
     emit(CharactersTapped(isTapped4));
   }
 
-  String selectedCarType = '';
+  String? selectedCarType;
 
   void setSelectedCarType(String value) {
     selectedCarType = value;
     emit(SelectCarTypeValueChanged(value));
   }
 
-  String selectedCarModel = '';
+  String? selectedCarModel;
 
   void setSelectedCarModel(String value) {
     selectedCarModel = value;
     emit(SelectCarModelValueChanged(value));
   }
 
-  String selectedCarColor = '';
+  String? selectedCarColor;
 
   void setSelectedCarColor(String value) {
     selectedCarColor = value;
     emit(SelectCarColorValueChanged(value));
   }
 
-  String selectedYear = '';
+  String? selectedYear;
 
   void setSelectedYear(String value) {
     selectedYear = value;

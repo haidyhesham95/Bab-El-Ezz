@@ -34,3 +34,8 @@ final class AddItems extends NewJobState {
 
   AddItems(this.items);
 }
+
+final class GetData extends NewJobState {
+  final List data;
+  GetData(this.data);
+}

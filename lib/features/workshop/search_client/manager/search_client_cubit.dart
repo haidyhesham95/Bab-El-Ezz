@@ -15,17 +15,11 @@ class SearchClientCubit extends Cubit<SearchClientState> {
 
   getJobOrders() async {
     QuerySnapshot snapshot = await ordersRef.get();
-    // print("orders: ${snapshot.docs.length}");
-    // jobOrders.clear();
-
-    final data = snapshot.docs.map((e) {
+    jobOrders = snapshot.docs.map((e) {
       var data = e.data();
-      print("data: $data");
       return (data as JobOrder);
     }).toList();
-    jobOrders = data;
-    print(data.length);
-    emit(GetData(data));
+    emit(GetData(jobOrders));
   }
 
   searchJobOrders(String query) {

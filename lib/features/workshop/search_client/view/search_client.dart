@@ -30,7 +30,6 @@ class SearchClient extends StatelessWidget {
               );
             }
             if (state is GetData) {
-              print("result: ${state.jobOrders}");
               jobOrders = state.jobOrders;
             }
             return Scaffold(
@@ -59,7 +58,6 @@ class SearchClient extends StatelessWidget {
                             hintText: 'بحث',
                             onPressed: () {
                               String query = controller.text;
-                              print("query: $query");
                               cubit.searchJobOrders(query);
                             },
                           ),

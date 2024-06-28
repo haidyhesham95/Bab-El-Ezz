@@ -69,7 +69,7 @@ class AddClient extends StatelessWidget {
                       ),
                       DropButton(
                         hintText: 'نوع السيارة',
-                        value: 'نوع السيارة',
+                        value: cubit.selectedCarType,
                         onChanged: (String? value) {
                           cubit.setSelectedCarType(value!);
                         },
@@ -86,7 +86,7 @@ class AddClient extends StatelessWidget {
                       ),
                       DropButton(
                         hintText: 'موديل السيارة',
-                        value: 'موديل السيارة',
+                        value: cubit.selectedCarModel,
                         onChanged: (String? value) {
                           cubit.setSelectedCarModel(value!);
                         },
@@ -104,7 +104,7 @@ class AddClient extends StatelessWidget {
                       ),
                       DropButton(
                         hintText: 'لون السيارة',
-                        value: 'أبيض',
+                        value: cubit.selectedCarColor,
                         onChanged: (String? value) {
                           cubit.setSelectedCarColor(value!);
                         },
@@ -128,7 +128,7 @@ class AddClient extends StatelessWidget {
                       ),
                       DropButton(
                         hintText: 'سنة الصنع  ',
-                        value: '2000',
+                        value: cubit.selectedYear,
                         onChanged: (String? value) {
                           cubit.setSelectedYear(value!);
                         },

@@ -24,12 +24,6 @@ class AddInvoiceSpareData extends StatelessWidget {
 
   Part? selectedPart;
 
-  final TextEditingController partController = TextEditingController();
-  final TextEditingController quantityController = TextEditingController();
-  final TextEditingController priceController = TextEditingController();
-  final TextEditingController totalController = TextEditingController();
-  final TextEditingController discountController = TextEditingController();
-  final TextEditingController notesController = TextEditingController();
   double totalPrice = 0;
 
   bool isUpdate = false;
@@ -56,9 +50,9 @@ class AddInvoiceSpareData extends StatelessWidget {
               phoneNumber = invoice!.phoneNumber;
               cubit.updateTableView(customerName, phoneNumber);
               invoice!.parts.forEach((part) {
-                partController.text = part.name;
-                quantityController.text = part.quantity.toString();
-                priceController.text = part.sellingPrice.toString();
+                cubit.partController.text = part.name;
+                cubit.quantityController.text = part.quantity.toString();
+                cubit.priceController.text = part.sellingPrice.toString();
                 onAddPressed(cubit);
               });
             }
@@ -98,11 +92,12 @@ class AddInvoiceSpareData extends StatelessWidget {
                             onTap: (searchResults[index].quantity > 0)
                                 ? () {
                                     selectedPart = searchResults[index];
-                                    partController.text =
+                                    cubit.partController.text =
                                         searchResults[index].name;
-                                    priceController.text = searchResults[index]
-                                        .sellingPrice
-                                        .toString();
+                                    cubit.priceController.text =
+                                        searchResults[index]
+                                            .sellingPrice
+                                            .toString();
                                     searchResults.clear();
                                     cubit.update();
                                   }
@@ -209,20 +204,20 @@ class AddInvoiceSpareData extends StatelessWidget {
 
   void _setupInitialData(SpareInvoicesCubit cubit) {
     // totalPrice = 0;
-    partController.addListener(() {
-      cubit.searchPart(partController.text);
+    cubit.partController.addListener(() {
+      cubit.searchPart(cubit.partController.text);
     });
 
-    discountController.addListener(() {
-      totalController.text =
-          (totalPrice - (double.tryParse(discountController.text) ?? 0))
+    cubit.discountController.addListener(() {
+      cubit.totalController.text =
+          (totalPrice - (double.tryParse(cubit.discountController.text) ?? 0))
               .toString();
       cubit.updateTotalPrice(addInvoiceSpareRowTable(
         [
-          partController,
-          quantityController,
-          totalController,
-          notesController,
+          cubit.partController,
+          cubit.quantityController,
+          cubit.totalController,
+          cubit.notesController,
         ],
         total: true,
       ));
@@ -232,29 +227,29 @@ class AddInvoiceSpareData extends StatelessWidget {
 
     cubit.addItem(addInvoiceSpareRowTable(
       [
-        partController,
-        quantityController,
-        totalController,
-        notesController,
+        cubit.partController,
+        cubit.quantityController,
+        cubit.totalController,
+        cubit.notesController,
       ],
       total: true,
     ));
 
     cubit.addItem(addInvoiceSpareRowTable(
       [
-        partController,
-        quantityController,
-        discountController,
-        notesController,
+        cubit.partController,
+        cubit.quantityController,
+        cubit.discountController,
+        cubit.notesController,
       ],
       discount: true,
     ));
 
     cubit.addItem(addInvoiceSpareRowTable([
-      partController,
-      quantityController,
-      priceController,
-      notesController,
+      cubit.partController,
+      cubit.quantityController,
+      cubit.priceController,
+      cubit.notesController,
     ], onAddPressed: () {
       onAddPressed(cubit);
     }, footer: true));
@@ -270,62 +265,63 @@ class AddInvoiceSpareData extends StatelessWidget {
   }
 
   void onAddPressed(SpareInvoicesCubit cubit) {
-    print("${quantityController.text}, ${selectedPart?.quantity}");
-    if (partController.text.isNotEmpty &&
-        quantityController.text.isNotEmpty &&
-        priceController.text.isNotEmpty &&
-        int.parse(quantityController.text) <
+    print("${cubit.quantityController.text}, ${selectedPart?.quantity}");
+    if (cubit.partController.text.isNotEmpty &&
+        cubit.quantityController.text.isNotEmpty &&
+        cubit.priceController.text.isNotEmpty &&
+        int.parse(cubit.quantityController.text) <
             (selectedPart?.quantity ?? double.infinity)) {
-      totalPrice += (double.parse(priceController.text) *
-          int.parse(quantityController.text));
+      totalPrice += (double.parse(cubit.priceController.text) *
+          int.parse(cubit.quantityController.text));
       print("total: $totalPrice");
-      totalController.text = totalPrice.toString();
+      cubit.totalController.text = totalPrice.toString();
 
       cubit.updateTotalPrice(addInvoiceSpareRowTable(
         [
-          partController,
-          quantityController,
-          totalController,
-          notesController,
+          cubit.partController,
+          cubit.quantityController,
+          cubit.totalController,
+          cubit.notesController,
         ],
         total: true,
       ));
 
       cubit.addItem(
         addInvoiceSpareRowTable([
-          partController,
-          quantityController,
-          priceController,
-          notesController,
+          cubit.partController,
+          cubit.quantityController,
+          cubit.priceController,
+          cubit.notesController,
         ]),
       );
 
       // Create an invoice
-      cubit.invoice.notes += '\n${notesController.text}';
+      cubit.invoice.notes += '\n${cubit.notesController.text}';
       cubit.invoice.phoneNumber = phoneNumber;
       cubit.invoice.clientName = customerName;
       cubit.invoice.date = DateTime.now();
 
       cubit.invoice.price = totalPrice;
-      cubit.invoice.discount = double.tryParse(discountController.text) ?? 0;
+      cubit.invoice.discount =
+          double.tryParse(cubit.discountController.text) ?? 0;
 
       if (selectedPart != null) {
-        selectedPart!.quantity -= int.parse(quantityController.text);
+        selectedPart!.quantity -= int.parse(cubit.quantityController.text);
       }
 
       cubit.invoice.parts.add(Part(
-          partController.text,
+          cubit.partController.text,
           selectedPart?.code ?? '',
-          int.parse(quantityController.text),
+          int.parse(cubit.quantityController.text),
           selectedPart?.brand ?? '',
-          double.parse(priceController.text),
+          double.parse(cubit.priceController.text),
           selectedPart?.wholesalePrice ?? 0,
           selectedPart?.lowStockThreshold ?? 99999));
-      partController.text = '';
-      quantityController.text = '';
-      // discountController.text = '';
-      notesController.text = '';
-      priceController.text = '';
+      cubit.partController.text = '';
+      cubit.quantityController.text = '';
+      // cubit.discountController.text = '';
+      cubit.notesController.text = '';
+      cubit.priceController.text = '';
       selectedPart = null;
     }
   }
