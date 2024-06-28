@@ -70,7 +70,7 @@ class InvoiceCubit extends Cubit<InvoiceState> {
   }
 
   String _getImagePath(Invoice invoice) {
-    return "images/${UserServices.getUserId()!}/${invoice.id}.jpg";
+    return "images/${UserServices.getUserId()!}/${invoice.invoiceNumber}.jpg";
   }
 
   // Data fetching and manipulation
@@ -326,8 +326,9 @@ class InvoiceCubit extends Cubit<InvoiceState> {
     try {
       final storageRef =
           FirebaseStorage.instance.ref().child(_getImagePath(invoice));
+      print("ref: ${storageRef.fullPath}");
       final directory = await getApplicationDocumentsDirectory();
-      final file = File('${directory.path}/${invoice.id}.jpg');
+      final file = File('${directory.path}/${invoice.invoiceNumber}.jpg');
 
       if (await file.exists()) {
         await OpenFile.open(file.path);

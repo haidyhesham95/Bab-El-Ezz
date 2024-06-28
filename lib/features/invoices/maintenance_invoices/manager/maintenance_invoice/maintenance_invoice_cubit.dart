@@ -21,33 +21,27 @@ class MaintenanceInvoiceCubit extends Cubit<MaintenanceInvoiceState> {
   TextEditingController typeController = TextEditingController();
   TextEditingController cartModelController = TextEditingController();
 
-
   TextEditingController clientNameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-
-
-
   List<DataRow> items = [];
-
 
   void addItem(DataRow item) {
     items.add(item);
     emit(AddItems(items.cast<Widget>()));
   }
 
-
   bool showAllDataInvoices = false;
   bool showAllDataCustomers = false;
 
   void changeShowAllDataInvoices() {
     showAllDataInvoices = !showAllDataInvoices;
-    emit(ChangeShowAllDataInvoices( showAllDataInvoices: showAllDataInvoices));
+    emit(ChangeShowAllDataInvoices(showAllDataInvoices: showAllDataInvoices));
   }
 
   void changeShowAllDataCustomers() {
     showAllDataCustomers = !showAllDataCustomers;
-    emit(ChangeShowAllDataCustomers(  showAllDataCustomers: showAllDataCustomers));
+    emit(
+        ChangeShowAllDataCustomers(showAllDataCustomers: showAllDataCustomers));
   }
-
 }

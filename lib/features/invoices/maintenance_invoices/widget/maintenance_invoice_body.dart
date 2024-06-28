@@ -23,18 +23,7 @@ class MaintenanceInvoicesBody extends StatelessWidget {
                           MaintenanceInvoiceCubit.get(context);
                       return Column(
                         children: [
-                          TopInvoicesSearch(
-                            onPressedSearch: () {},
-                          ),
-                          showDetailsText(
-                              context: context,
-                              onPressed: () {
-                                cubit.changeShowAllDataInvoices();
-                              },
-                              showAll: cubit.showAllDataInvoices),
-                          MaintenanceInvoiceTable(
-                            showAllDataInvoices: cubit.showAllDataInvoices,
-                          ),
+                          MaintenanceInvoiceTable(),
                           TopInvoicesSearch(
                             onPressedSearch: () {},
                             hintText: ' بحث عن عميل ',
@@ -46,7 +35,7 @@ class MaintenanceInvoicesBody extends StatelessWidget {
                               onPressed: () {
                                 cubit.changeShowAllDataCustomers();
                               },
-                              showAll:cubit. showAllDataCustomers),
+                              showAll: cubit.showAllDataCustomers),
                           MaintenanceCustomerTable(
                             showAllDataCustomers: cubit.showAllDataCustomers,
                           ),
