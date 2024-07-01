@@ -1,6 +1,8 @@
-import 'package:bab_el_ezz/firebase/phone_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../shared_utils/utils/constant.dart';
 
 part 'login_state.dart';
 
@@ -20,11 +22,13 @@ class LoginCubit extends Cubit<LoginState> {
     emit(ShowPasswordInLogin());
   }
 
-  login(BuildContext context) {
-    PhoneAuth(context)
-        .verifyPhoneNumber("+12345678901")
-        .onError((error, stackTrace) {
-      print("Error: $error");
+  login(BuildContext context) async {
+    String email = "${phoneNameController.text}$EMAIL_POSTFIX";
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+            email: email, password: passwordController.text)
+        .then((e) {
+      Navigator.pushNamed(context, "layout");
     });
   }
 }

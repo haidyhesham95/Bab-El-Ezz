@@ -22,22 +22,32 @@ class DailyExpensesData extends StatelessWidget {
                 ))),
         const DataColumn(label: Text('البند')),
         const DataColumn(label: Text('المبلغ')),
-        const DataColumn(label: Text('الاجمالي')),
       ],
-      rows: List.generate(
-        5,
-        (index) => DataRow(
+      rows: [
+        ...List.generate(
+          4,
+          (index) => DataRow(
+            cells: <DataCell>[
+              DataCell(DropMenu(
+                onTapEdit: (index) {},
+                onTapDelete: (index) {},
+              )),
+              const DataCell(Text('5222')), // Replace with actual item data
+              DataCell(Text('200')),
+            ],
+          ),
+        ),
+        DataRow(
           cells: <DataCell>[
-            DataCell(DropMenu(
-              onTapEdit: (index) {},
-              onTapDelete: (index) {},
+            const DataCell(Text(
+              'الاجمالي',
             )),
-            const DataCell(Text('5222')),
-            const DataCell(Text('5000000')),
-            const DataCell(Text('1200')),
+            const DataCell(Text('')), // Empty cell for alignment
+            DataCell(Text('4000',
+                style: const TextStyle(fontWeight: FontWeight.bold))),
           ],
         ),
-      ),
+      ],
     );
   }
 }

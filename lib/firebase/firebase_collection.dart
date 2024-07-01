@@ -20,7 +20,7 @@ class FirebaseCollection {
   static const String staffCollectionName = "Staff";
   static const String attendanceCollectionName = "Attendance";
   static const String jobOrderCollectionName = "Orders";
-  static const String workshopCollectionName = "workshops";
+  static const String workshopCollectionName = "workshop";
   static const String customerCollectionName = "Customers";
   static const String partsCustCollectionName = "Parts Customers";
   static const String carCollectionName = "Cars";

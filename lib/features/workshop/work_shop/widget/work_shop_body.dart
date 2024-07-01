@@ -32,7 +32,7 @@ class WorkShopBody extends StatelessWidget {
 
           return CustomScrollView(
             slivers: [
-              const SilverBoxDetails(),
+              SilverBoxDetails(cubit.workshop!),
               SilverGrid(
                 listJobs: listJobs,
                 showAll: cubit.showAll,

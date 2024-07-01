@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bab_el_ezz/data/job_order.dart';
 import 'package:flutter/services.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -14,7 +15,7 @@ class PdfGenerator {
         await rootBundle.load("assets/fonts/Cairo-Arabic-Regular.ttf"));
   }
 
-  static Future<void> createPdf() async {
+  static Future<void> createPdf(JobOrder? jobOrder) async {
     await init();
     final pdf = pw.Document();
 

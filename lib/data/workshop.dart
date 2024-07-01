@@ -5,21 +5,18 @@ part 'workshop.g.dart';
 
 @JsonSerializable()
 class Workshop {
-  String id;
+  String? id;
   String phoneNumber;
-  @JsonKey(includeToJson: false)
   String password;
   String name;
   String? branch;
   String address;
   String ownerName;
   String? secondaryPhoneNumber;
-  @JsonKey(includeToJson: false)
   String dataAnalysisPIN;
   String? logoPath;
 
   Workshop(
-      this.id,
       this.phoneNumber,
       this.password,
       this.name,

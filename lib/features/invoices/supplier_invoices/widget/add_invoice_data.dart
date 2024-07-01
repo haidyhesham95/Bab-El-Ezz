@@ -253,13 +253,12 @@ class AddInvoicesData extends StatelessWidget {
                                   //     totalPaid: 900,
                                   //     totalRemaining: 100,
                                   //     checkDate: DateTime.now());
-
+                                  //todo if image is different, update it
                                   if (isUpdate) {
                                     Navigator.pop(context);
                                     Navigator.pop(context, invoice);
                                   } else {
-                                    cubit
-                                        .uploadImage(
+                                    uploadImage(
                                             imageFile, invoice.invoiceNumber)
                                         .whenComplete(() {
                                           Navigator.pop(context);

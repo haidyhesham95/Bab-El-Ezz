@@ -305,23 +305,6 @@ class InvoiceCubit extends Cubit<InvoiceState> {
     emit(SearchData(invoices));
   }
 
-  // Image handling
-  Future<String> uploadImage(File? file, String invoiceId) async {
-    if (file == null) return Future.error("File is null");
-    final storageRef = FirebaseStorage.instance
-        .ref()
-        .child("images")
-        .child(UserServices.getUserId()!)
-        .child("$invoiceId.jpg");
-    print("invoiceId: $invoiceId");
-    final snapshot =
-        await storageRef.putFile(file).onError((error, stackTrace) {
-      print("error: $error");
-      return Future.error("error");
-    });
-    return await snapshot.ref.getDownloadURL();
-  }
-
   Future<void> downloadAndOpenImage(Invoice invoice) async {
     try {
       final storageRef =

@@ -2,6 +2,7 @@ import 'package:bab_el_ezz/features/setting/manager/theme/theme_cubit.dart';
 import 'package:bab_el_ezz/features/setting/widget/list_tile_widget.dart';
 import 'package:bab_el_ezz/features/setting/widget/theme_container.dart';
 import 'package:bab_el_ezz/features/setting/widget/toggle_container.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,27 +38,30 @@ class DropMenuWidget extends StatelessWidget {
                       listener: (context, state) {},
                       builder: (context, state) {
                         ThemeCubit cubit1 = ThemeCubit.get(context);
-                        return toggleContainer(context,
+                        return toggleContainer(
+                          context,
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               GestureDetector(
-                                onTap: () {
-                                  cubit.changeIndex(0);
-                                  cubit1.toggleLightTheme();
-                                },
-                                child:themeContainer(context, Assets.imagesDarkMode, cubit.selectedIndex == 0)
-
-                              ),
+                                  onTap: () {
+                                    cubit.changeIndex(0);
+                                    cubit1.toggleLightTheme();
+                                  },
+                                  child: themeContainer(
+                                      context,
+                                      Assets.imagesDarkMode,
+                                      cubit.selectedIndex == 0)),
                               GestureDetector(
-                                onTap: () {
-                                  cubit.changeIndex(1);
-                                  cubit1.toggleDarkTheme();
-                                },
-                                child:themeContainer(context, Assets.imagesLightMode,cubit.selectedIndex == 1 )
-
-                              ),
+                                  onTap: () {
+                                    cubit.changeIndex(1);
+                                    cubit1.toggleDarkTheme();
+                                  },
+                                  child: themeContainer(
+                                      context,
+                                      Assets.imagesLightMode,
+                                      cubit.selectedIndex == 1)),
                             ],
                           ),
                         );
@@ -66,20 +70,28 @@ class DropMenuWidget extends StatelessWidget {
                   ),
                 ),
                 PopupMenuItem(
-                  enabled: false,
-                  child: listTileWidget(context, Assets.imagesUser, 'الملف الشخصي', () { Navigator.pushNamed(context, 'editProfile'); })
-                ),
+                    enabled: false,
+                    child: listTileWidget(
+                        context, Assets.imagesUser, 'الملف الشخصي', () {
+                      Navigator.pushNamed(context, 'editProfile');
+                    })),
                 PopupMenuItem(
-                  enabled: false,
-                  child: listTileWidget(context,
-                    Assets.imagesLogoutIcon, 'تسجيل خروج',
-                        () {Navigator.pop(context); },
-                    radius: 8,
-                     colors: [
+                    enabled: false,
+                    child: listTileWidget(
+                      context,
+                      Assets.imagesLogoutIcon,
+                      'تسجيل خروج',
+                      () {
+                        FirebaseAuth.instance.signOut().then((e) {
+                          Navigator.pushReplacementNamed(context, 'login');
+                        });
+                      },
+                      radius: 8,
+                      colors: [
                         Color.fromRGBO(26, 96, 69, 95),
                         Color.fromRGBO(40, 145, 104, 93),
-                      ], )
-                ),
+                      ],
+                    )),
               ];
             },
           );

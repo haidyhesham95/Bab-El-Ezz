@@ -7,7 +7,6 @@ part of 'workshop.dart';
 // **************************************************************************
 
 Workshop _$WorkshopFromJson(Map<String, dynamic> json) => Workshop(
-      json['id'] as String,
       json['phoneNumber'] as String,
       json['password'] as String,
       json['name'] as String,
@@ -17,15 +16,17 @@ Workshop _$WorkshopFromJson(Map<String, dynamic> json) => Workshop(
       json['secondaryPhoneNumber'] as String?,
       json['dataAnalysisPIN'] as String,
       json['logoPath'] as String?,
-    );
+    )..id = json['id'] as String?;
 
 Map<String, dynamic> _$WorkshopToJson(Workshop instance) => <String, dynamic>{
       'id': instance.id,
       'phoneNumber': instance.phoneNumber,
+      'password': instance.password,
       'name': instance.name,
       'branch': instance.branch,
       'address': instance.address,
       'ownerName': instance.ownerName,
       'secondaryPhoneNumber': instance.secondaryPhoneNumber,
+      'dataAnalysisPIN': instance.dataAnalysisPIN,
       'logoPath': instance.logoPath,
     };

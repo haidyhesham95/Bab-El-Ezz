@@ -1,11 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'dart:io';
 
-import '../../../generated/assets.dart';
+import 'package:bab_el_ezz/features/invoices/invoices/widget/add_image.dart';
+import 'package:bab_el_ezz/shared_utils/utils/widget/pick_image.dart';
+import 'package:flutter/material.dart';
+
 import '../../../shared_utils/styles/text.dart';
 
 class AddLogo extends StatelessWidget {
-  const AddLogo({super.key});
+  AddLogo(
+      {super.key, required void Function(File?) this.onTap, this.imageFile});
+
+  File? imageFile;
+  Function(File?) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +30,14 @@ class AddLogo extends StatelessWidget {
           width: size.width * 0.5,
           child: Card(
             color: Colors.white,
-            child: SvgPicture.asset(
-              Assets.imagesAddImage,
-              fit: BoxFit.scaleDown,
-            ),
+            // child: SvgPicture.asset(
+            //   Assets.imagesAddImage,
+            //   fit: BoxFit.scaleDown,
+            // ),
+            child: addImage(context, () async {
+              imageFile = await showImagePicker(context);
+              onTap(imageFile);
+            }, imageFile?.absolute.path),
           ),
         ),
         const SizedBox(height: 15),

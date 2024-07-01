@@ -1,18 +1,35 @@
+import 'dart:io';
+
+import 'package:bab_el_ezz/data/workshop.dart';
 import 'package:bab_el_ezz/features/auth/widget/add_logo.dart';
-import 'package:bab_el_ezz/features/auth/widget/location.dart';
+import 'package:bab_el_ezz/features/invoices/invoices/widget/add_image.dart';
+import 'package:bab_el_ezz/firebase/firebase_collection.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
+import 'package:bcrypt/bcrypt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../generated/assets.dart';
 import '../manager/register/register_cubit.dart';
 
 class RegisterView2 extends StatelessWidget {
-  const RegisterView2({super.key});
+  RegisterView2({super.key});
+
+  String phone = '';
+  String password = '';
+  File? imageFile;
+  List<String>? data;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    data = ModalRoute.of(context)?.settings.arguments as List<String>?;
+    if (data != null && data!.length == 2) {
+      phone = data![0];
+      password = data![1];
+    }
+
     return Scaffold(
         body: SingleChildScrollView(
       child: Padding(
@@ -33,7 +50,7 @@ class RegisterView2 extends StatelessWidget {
                       TextFieldWidget(
                         label: " اسم الورشة /مركز/محل ",
                         hintText: "الاسم",
-                        controller: cubit.nameController,
+                        controller: cubit.workshopNameController,
                         errorMessage: "يجب ادخال الاسم",
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.text,
@@ -46,6 +63,7 @@ class RegisterView2 extends StatelessWidget {
                         errorMessage: "يجب ادخال اسم الفرع",
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.text,
+                        validator: (val) => null,
                       ),
                       const SizedBox(height: 10),
                       TextFieldWidget(
@@ -57,7 +75,7 @@ class RegisterView2 extends StatelessWidget {
                         keyboardType: TextInputType.text,
                       ),
                       const SizedBox(height: 20),
-                      const Location(),
+                      // const Location(),
                       const SizedBox(height: 15),
                       TextFieldWidget(
                         controller: cubit.ownerNameController,
@@ -68,13 +86,14 @@ class RegisterView2 extends StatelessWidget {
                         keyboardType: TextInputType.text,
                       ),
                       const SizedBox(height: 10),
-                       TextFieldWidget(
+                      TextFieldWidget(
                         label: " رقم هاتف آخر للتواصل(اختياري) ",
                         hintText: " +20 ",
                         controller: cubit.phoneController,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                         errorMessage: "يجب ادخال رقم الهاتف",
+                        validator: (val) => null,
                       ),
                       const SizedBox(height: 10),
                       TextFieldWidget(
@@ -93,7 +112,13 @@ class RegisterView2 extends StatelessWidget {
                         keyboardType: TextInputType.number,
                       ),
                       const SizedBox(height: 15),
-                       const AddLogo(),
+                      AddLogo(
+                        onTap: (file) {
+                          imageFile = file;
+                          cubit.update();
+                        },
+                        imageFile: imageFile,
+                      ),
                       const SizedBox(height: 40),
                       ButtonWidget(
                         height: size.height * 0.06,
@@ -102,10 +127,26 @@ class RegisterView2 extends StatelessWidget {
                         text: 'اتمام التسحيل',
                         onPressed: () {
                           if (cubit.formKey2.currentState!.validate()) {
-                            Navigator.pushNamed(context, 'login');
-
-
-
+                            Workshop workshop = Workshop(
+                                phone,
+                                BCrypt.hashpw(password, BCrypt.gensalt()),
+                                cubit.workshopNameController.text,
+                                cubit.branchNameController.text,
+                                cubit.addressController.text,
+                                cubit.ownerNameController.text,
+                                cubit.phoneController.text,
+                                BCrypt.hashpw(cubit.newPasswordController.text,
+                                    BCrypt.gensalt()),
+                                imageFile?.absolute.path ?? '');
+                            cubit.register(workshop).then((e) {
+                              uploadImage(imageFile, "logo").then((e) {
+                                FirebaseCollection()
+                                    .workshopCol
+                                    .doc("profile")
+                                    .update({"logoPath": e}).then((e) =>
+                                        Navigator.pushNamed(context, 'login'));
+                              });
+                            });
                           }
                         },
                       ),

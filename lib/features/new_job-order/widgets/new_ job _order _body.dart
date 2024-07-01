@@ -25,6 +25,7 @@ import 'create_pdf.dart';
 import 'details.dart';
 import 'details_previous_maintenance_button.dart';
 import 'drop_button.dart';
+
 class NewJobOrderBody extends StatefulWidget {
   const NewJobOrderBody({super.key});
 
@@ -74,8 +75,8 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                 cubit.getTechnicians();
                 return const Center(
                     child: CircularProgressIndicator(
-                      color: ColorsAsset.kGreen,
-                    ));
+                  color: ColorsAsset.kGreen,
+                ));
               }
 
               if (state is GetData) {
@@ -88,11 +89,11 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                     const SizedBox(height: 20),
                     Details(
                       enterDate: DateFormat('yy-MM-dd HH:mm')
-                          .format(jobOrder?.startDate ?? DateTime.now()) ??
+                              .format(jobOrder?.startDate ?? DateTime.now()) ??
                           '',
                       outDate: jobOrder?.endDate != null
                           ? DateFormat('yy-MM-dd HH:mm')
-                          .format(jobOrder!.endDate!)
+                              .format(jobOrder!.endDate!)
                           : '',
                       clientName: jobOrder?.clientName ?? '',
                     ),
@@ -146,17 +147,17 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                             },
                             items: List.generate(
                                 techs.length,
-                                    (index) => DropdownMenuItem(
-                                  value: techs[index].name,
-                                  child: Text(techs[index].name),
-                                )),
+                                (index) => DropdownMenuItem(
+                                      value: techs[index].name,
+                                      child: Text(techs[index].name),
+                                    )),
                           ),
                         ),
                         const SizedBox(width: 10),
                         AddButton(
                           onPressed: () {
                             int index = techs.indexWhere((element) =>
-                            element.name == cubit.selectedValue);
+                                element.name == cubit.selectedValue);
                             selectedTechs.add(techs[index]);
                             techs.removeAt(index);
                             cubit.selectedValue = null;
@@ -168,16 +169,16 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                     ),
                     ...List.generate(
                         selectedTechs.length,
-                            (index) => ListTile(
-                          title: Text(selectedTechs[index].name),
-                          trailing: IconButton(
-                              onPressed: () {
-                                techs.add(selectedTechs[index]);
-                                selectedTechs.removeAt(index);
-                                cubit.update();
-                              },
-                              icon: const Icon(Icons.clear)),
-                        )),
+                        (index) => ListTile(
+                              title: Text(selectedTechs[index].name),
+                              trailing: IconButton(
+                                  onPressed: () {
+                                    techs.add(selectedTechs[index]);
+                                    selectedTechs.removeAt(index);
+                                    cubit.update();
+                                  },
+                                  icon: const Icon(Icons.clear)),
+                            )),
                     const SizedBox(height: 20),
                     Image.asset(
                       Assets.imagesCars,
@@ -193,13 +194,13 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                     BlocProvider(
                       create: (context) => SpareInvoicesCubit(),
                       child:
-                      BlocBuilder<SpareInvoicesCubit, SpareInvoicesState>(
+                          BlocBuilder<SpareInvoicesCubit, SpareInvoicesState>(
                         builder: (context, state) {
                           SpareInvoicesCubit cubit1 =
-                          SpareInvoicesCubit.get(context);
+                              SpareInvoicesCubit.get(context);
 
                           if (state is SpareInvoicesInitial) {
-                         //   _setupInitialData(cubit1);
+                            //   _setupInitialData(cubit1);
                             WidgetsBinding.instance.addPostFrameCallback((_) {
                               _setupInitialData(cubit1);
                             });
@@ -214,24 +215,22 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                                   shrinkWrap: true,
                                   itemBuilder: (_, index) => ListTile(
                                     title: Text(searchResults[index].name),
-                                    onTap: (searchResults[index].quantity >
-                                        0)
+                                    onTap: (searchResults[index].quantity > 0)
                                         ? () {
-                                      selectedPart =
-                                      searchResults[index];
-                                      cubit1.partController.text =
-                                          searchResults[index].name;
-                                      cubit1.priceController.text =
-                                          searchResults[index]
-                                              .sellingPrice
-                                              .toString();
-                                      searchResults.clear();
-                                      cubit1.update();
-                                    }
+                                            selectedPart = searchResults[index];
+                                            cubit1.partController.text =
+                                                searchResults[index].name;
+                                            cubit1.priceController.text =
+                                                searchResults[index]
+                                                    .sellingPrice
+                                                    .toString();
+                                            searchResults.clear();
+                                            cubit1.update();
+                                          }
                                         : () {
-                                      Fluttertoast.showToast(
-                                          msg: "لا يوجد مخزون");
-                                    },
+                                            Fluttertoast.showToast(
+                                                msg: "لا يوجد مخزون");
+                                          },
                                   ),
                                   itemCount: searchResults.length,
                                 ),
@@ -273,7 +272,7 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                           text: "انهاء امر الشغل",
                           onPressed: () {
                             print("Button pressed");
-                            PdfGenerator.createPdf();
+                            PdfGenerator.createPdf(jobOrder);
                           },
                           width: size.width * 0.4,
                           height: size.height * 0.05,
@@ -407,5 +406,3 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
     }
   }
 }
-
-
