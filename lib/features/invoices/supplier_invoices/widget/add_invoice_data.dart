@@ -220,7 +220,7 @@ class AddInvoicesData extends StatelessWidget {
                                               0.5, // Example: 50% of screen width
                                           height: size.height *
                                               0.5, // Example: 30% of screen height
-                                          child: Center(
+                                          child: const Center(
                                             child: CircularProgressIndicator(),
                                           ),
                                         );

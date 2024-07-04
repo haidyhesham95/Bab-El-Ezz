@@ -39,6 +39,22 @@ abstract class AppStyles {
       fontWeight: FontWeight.w800,
     );
   }
+  static TextStyle styleLight16black(context) {
+    return TextStyle(
+      color: Colors.black,
+      fontSize: getResponsiveFontSize(context, fontSize: 16),
+      fontFamily: 'Cairo',
+      fontWeight: FontWeight.w400,
+    );
+  }
+  static TextStyle styleLight14grey(context) {
+    return TextStyle(
+      color: Colors.grey,
+      fontSize: getResponsiveFontSize(context, fontSize: 14),
+      fontFamily: 'Cairo',
+      fontWeight: FontWeight.w400,
+    );
+  }
   static TextStyle styleExtraBold13(context) {
     return TextStyle(
       fontSize: getResponsiveFontSize(context, fontSize: 13),

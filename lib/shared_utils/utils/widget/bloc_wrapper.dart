@@ -5,7 +5,7 @@ class BlocWrapper<C extends Cubit<S>, S> extends StatelessWidget {
   final Widget child;
   final C Function(BuildContext context) create;
 
-  BlocWrapper({
+  const BlocWrapper({super.key, 
     required this.child,
     required this.create,
   });

@@ -5,8 +5,6 @@ import 'package:intl/intl.dart';
 
 import '../../../../../shared_utils/styles/colors.dart';
 import '../../../../../shared_utils/styles/text.dart';
-import '../../../../../shared_utils/utils/widget/row_text.dart';
-import '../../../../new_job-order/widgets/gray_container.dart';
 
 class EmployeeDate extends StatelessWidget {
   const EmployeeDate({super.key});

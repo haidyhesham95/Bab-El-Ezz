@@ -88,8 +88,8 @@ class DropMenuWidget extends StatelessWidget {
                       },
                       radius: 8,
                       colors: [
-                        Color.fromRGBO(26, 96, 69, 95),
-                        Color.fromRGBO(40, 145, 104, 93),
+                        const Color.fromRGBO(26, 96, 69, 95),
+                        const Color.fromRGBO(40, 145, 104, 93),
                       ],
                     )),
               ];

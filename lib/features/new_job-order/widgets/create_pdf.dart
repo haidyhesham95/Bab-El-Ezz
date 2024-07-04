@@ -40,7 +40,7 @@ class PdfGenerator {
             crossAxisAlignment: pw.CrossAxisAlignment.center,
             children: [
               pw.Container(
-                padding: pw.EdgeInsets.only(right: 20, top: 15, bottom: 15),
+                padding: const pw.EdgeInsets.only(right: 20, top: 15, bottom: 15),
                 decoration: pw.BoxDecoration(
                   color: PdfColors.grey200,
                   borderRadius: pw.BorderRadius.circular(10),
@@ -50,56 +50,56 @@ class PdfGenerator {
                     pw.Row(
                       children: [
                         pw.Text("اسم المركز: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("الاسم ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text("الاسم ", style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                     pw.SizedBox(height: 10),
                     pw.Row(
                       children: [
                         pw.Text("اسم الفرع: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("الاسم ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text("الاسم ", style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                     pw.SizedBox(height: 10),
                     pw.Row(
                       children: [
                         pw.Text("اسم العميل: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("الاسم ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text("الاسم ", style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                     pw.SizedBox(height: 10),
                     pw.Row(
                       children: [
                         pw.Text("نوع السيارة: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("النوع ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text("النوع ", style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                     pw.SizedBox(height: 10),
                     pw.Row(
                       children: [
                         pw.Text("موديل السيارة: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("النوع ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text("النوع ", style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                     pw.SizedBox(height: 10),
                     pw.Row(
                       children: [
                         pw.Text("عدد الكيلو متر: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("200 ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text("200 ", style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                     pw.SizedBox(height: 10),
                     pw.Row(
                       children: [
                         pw.Text("نوع الصيانة: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("النوع ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text("النوع ", style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                   ],
@@ -111,19 +111,19 @@ class PdfGenerator {
                 children: [
                   pw.TableRow(
                     decoration:
-                        pw.BoxDecoration(color: PdfColor.fromInt(0xff289168)),
+                        const pw.BoxDecoration(color: PdfColor.fromInt(0xff289168)),
                     children: [
                       pw.Text('ملاحظات',
-                          style: pw.TextStyle(color: PdfColors.white),
+                          style: const pw.TextStyle(color: PdfColors.white),
                           textAlign: pw.TextAlign.center),
                       pw.Text('السعر',
-                          style: pw.TextStyle(color: PdfColors.white),
+                          style: const pw.TextStyle(color: PdfColors.white),
                           textAlign: pw.TextAlign.center),
                       pw.Text('الكمية',
-                          style: pw.TextStyle(color: PdfColors.white),
+                          style: const pw.TextStyle(color: PdfColors.white),
                           textAlign: pw.TextAlign.center),
                       pw.Text('الصنف',
-                          style: pw.TextStyle(color: PdfColors.white),
+                          style: const pw.TextStyle(color: PdfColors.white),
                           textAlign: pw.TextAlign.center),
                     ],
                   ),
@@ -151,7 +151,7 @@ class PdfGenerator {
                   ),
                   pw.TableRow(
                     children: [
-                      pw.Text('${discount.toString()}',
+                      pw.Text(discount.toString(),
                           textAlign: pw.TextAlign.center),
                       pw.Text('', textAlign: pw.TextAlign.center),
                       pw.Text('', textAlign: pw.TextAlign.center),
@@ -160,7 +160,7 @@ class PdfGenerator {
                   ),
                   pw.TableRow(
                     children: [
-                      pw.Text('${workmanship.toString()}',
+                      pw.Text(workmanship.toString(),
                           textAlign: pw.TextAlign.center),
                       pw.Text('', textAlign: pw.TextAlign.center),
                       pw.Text('', textAlign: pw.TextAlign.center),
@@ -169,7 +169,7 @@ class PdfGenerator {
                   ),
                   pw.TableRow(
                     children: [
-                      pw.Text('${total.toString()}',
+                      pw.Text(total.toString(),
                           textAlign: pw.TextAlign.center),
                       pw.Text('', textAlign: pw.TextAlign.center),
                       pw.Text('', textAlign: pw.TextAlign.center),

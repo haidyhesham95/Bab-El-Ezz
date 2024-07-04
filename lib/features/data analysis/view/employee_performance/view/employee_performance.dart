@@ -16,7 +16,7 @@ class EmployeePerformance extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 30),
-            EmployeeDate(),
+            const EmployeeDate(),
             const SizedBox(height: 30),
             EmployeeBarChart(),
             const SizedBox(height: 50),
@@ -29,7 +29,7 @@ class EmployeePerformance extends StatelessWidget {
                 SizedBox(width: 10),
               ],
             ),
-            SizedBox(height: 20,)
+            const SizedBox(height: 20,)
           ],
         ),
       )

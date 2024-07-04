@@ -28,7 +28,7 @@ class InvoicesSuppliersTable extends StatelessWidget {
 
           if (state is SupplierInvoiceInitial) {
             cubit.getInvoices(INVOICE_MERCHANT);
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           if (state is SearchData) {

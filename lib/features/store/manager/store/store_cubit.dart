@@ -33,20 +33,20 @@ class StoreCubit extends Cubit<StoreState> {
         int.parse(alertController.text));
     parts.add(part);
     await partRef.add(part);
-    emit(StoreItemsAdded([]));
+    emit(StoreItemsAdded(const []));
     //todo: handle added part in the view
     return part;
   }
 
   updateParts(Part value) {
     parts.add(value);
-    emit(StoreItemsAdded([]));
+    emit(StoreItemsAdded(const []));
   }
 
   getParts() async {
     final doc = await partRef.get();
     parts.clear();
     parts = doc.docs.map((e) => (e.data() as Part)).toList();
-    emit(StoreItemsAdded([]));
+    emit(StoreItemsAdded(const []));
   }
 }

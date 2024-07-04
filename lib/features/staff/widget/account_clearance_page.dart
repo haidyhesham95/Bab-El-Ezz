@@ -45,7 +45,7 @@ class _AccountClearancePageState extends State<AccountClearancePage> {
                 lastPayment = data[1];
                 dailyRate = data[2];
                 cubit.getTechDetails(data[0], data[1]);
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               }
               // Display clearance data from the cubit's state
               return Column(

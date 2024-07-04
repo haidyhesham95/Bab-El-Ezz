@@ -19,12 +19,12 @@ class TechnicalAnalysis extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 30),
-            TechnicalDate(),
-            SizedBox(height: 30),
-            TechnicalCards(),
-            SizedBox(height: 40),
-            Row(
+            const SizedBox(height: 30),
+            const TechnicalDate(),
+            const SizedBox(height: 30),
+            const TechnicalCards(),
+            const SizedBox(height: 40),
+            const Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(child: TechnicalDetails()),
@@ -40,7 +40,7 @@ class TechnicalAnalysis extends StatelessWidget {
             const SizedBox(height: 25),
             clipBathGradient(context, text: 'قطع الغيار / الاكثر استخداما '),
             const SizedBox(height: 30),
-            TechnicalBarChart(),
+            const TechnicalBarChart(),
             const SizedBox(height: 25),
 
 

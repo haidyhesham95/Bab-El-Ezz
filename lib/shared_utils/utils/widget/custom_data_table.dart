@@ -20,7 +20,7 @@ final List<DataRow> rows;
     dataRowMinHeight: MediaQuery.of(context).size.width * 0.15,
     dataRowMaxHeight: MediaQuery.of(context).size.width * 0.15,
     dividerThickness: 1,
-    headingRowColor: const MaterialStatePropertyAll(ColorsAsset.kGreen),
+    headingRowColor: const WidgetStatePropertyAll(ColorsAsset.kGreen),
     //horizontalMargin:horizontalMargin,
     headingRowHeight: 40,
     columnSpacing: columnSpacing,

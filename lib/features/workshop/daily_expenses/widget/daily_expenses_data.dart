@@ -33,18 +33,18 @@ class DailyExpensesData extends StatelessWidget {
                 onTapDelete: (index) {},
               )),
               const DataCell(Text('5222')), // Replace with actual item data
-              DataCell(Text('200')),
+              const DataCell(Text('200')),
             ],
           ),
         ),
-        DataRow(
+        const DataRow(
           cells: <DataCell>[
-            const DataCell(Text(
+            DataCell(Text(
               'الاجمالي',
             )),
-            const DataCell(Text('')), // Empty cell for alignment
+            DataCell(Text('')), // Empty cell for alignment
             DataCell(Text('4000',
-                style: const TextStyle(fontWeight: FontWeight.bold))),
+                style: TextStyle(fontWeight: FontWeight.bold))),
           ],
         ),
       ],

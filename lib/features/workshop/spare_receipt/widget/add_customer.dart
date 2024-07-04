@@ -26,7 +26,7 @@ class AddCustomer extends StatelessWidget {
                             const SizedBox(height: 20),
 
 
-                            TextFieldWidget(
+                            const TextFieldWidget(
                               label: " الاسم : ",
                               hintText: " ادخال الاسم ",
                               textInputAction: TextInputAction.next,
@@ -37,14 +37,14 @@ class AddCustomer extends StatelessWidget {
                             const SizedBox(height: 20),
 
 
-                            TextFieldWidget(
+                            const TextFieldWidget(
                               label: " رقم التلفون : ",
                               hintText: " +20 ",
                               textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.number,
                               errorMessage: '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
                             ),
-                            Spacer(flex: 3,),
+                            const Spacer(flex: 3,),
                             ButtonWidget(
                               hasElevation: true,
                               height: size.height * 0.05,
@@ -54,7 +54,7 @@ class AddCustomer extends StatelessWidget {
                               },
 
                             ),
-                            Spacer()
+                            const Spacer()
                           ],
                         ),
                       )),

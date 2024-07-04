@@ -1,9 +1,7 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../../../../shared_utils/styles/colors.dart';
 import 'item.dart';
 import 'model_details.dart';
 

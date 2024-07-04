@@ -47,7 +47,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  bool userAuthenticated = await FirebaseAuth.instance.currentUser != null;
+  bool userAuthenticated = FirebaseAuth.instance.currentUser != null;
   print("authent: $userAuthenticated");
   runApp(MyApp(userAuthenticated));
 }

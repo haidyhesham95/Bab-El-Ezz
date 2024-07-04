@@ -20,11 +20,11 @@ TextButton timePicker(BuildContext context, String text, state) {
               ),
               dialogBackgroundColor: ColorsAsset.kGreen,
               dataTableTheme: DataTableThemeData(
-                headingCellCursor: MaterialStateMouseCursor.clickable,
-                dataRowCursor: MaterialStateMouseCursor.clickable,
-                headingRowColor: MaterialStateColor.resolveWith(
+                headingCellCursor: WidgetStateMouseCursor.clickable,
+                dataRowCursor: WidgetStateMouseCursor.clickable,
+                headingRowColor: WidgetStateColor.resolveWith(
                     (states) => ColorsAsset.kGreen),
-                dataRowColor: MaterialStateColor.resolveWith(
+                dataRowColor: WidgetStateColor.resolveWith(
                     (states) => ColorsAsset.kGreen),
                 dataTextStyle: AppStyles.styleRegular14(context)
                     .copyWith(color: ColorsAsset.kGreen),
@@ -32,7 +32,6 @@ TextButton timePicker(BuildContext context, String text, state) {
                     .copyWith(color: ColorsAsset.kGreen),
               ),
               colorScheme: const ColorScheme.dark().copyWith(
-                onBackground: ColorsAsset.kGreen,
                 onPrimaryContainer: ColorsAsset.kGreen,
                 onSurface: ColorsAsset.kGreen,
                 onSecondary: ColorsAsset.kGreen,
@@ -54,7 +53,7 @@ TextButton timePicker(BuildContext context, String text, state) {
                 tertiaryContainer: ColorsAsset.kGreen,
                 error: ColorsAsset.kGreen,
                 onErrorContainer: ColorsAsset.kGreen,
-                background: Colors.white,
+                surface: Colors.white,
               ),
             ),
             child: child!,

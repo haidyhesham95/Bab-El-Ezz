@@ -29,7 +29,7 @@ class _StorePageState extends State<StorePage> {
           StoreCubit cubit = StoreCubit.get(context);
           if (state is StoreInitial) {
             cubit.getParts();
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           return Scaffold(
             floatingActionButtonLocation:

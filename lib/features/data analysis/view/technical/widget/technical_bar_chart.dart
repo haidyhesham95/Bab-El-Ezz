@@ -9,10 +9,10 @@ class TechnicalBarChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return SfCartesianChart(
 
-    primaryXAxis: CategoryAxis(
+    primaryXAxis: const CategoryAxis(
     title: AxisTitle(text: ''),
     ),
-    primaryYAxis: NumericAxis(
+    primaryYAxis: const NumericAxis(
 
     title: AxisTitle(text: ''),
     ),
@@ -21,7 +21,7 @@ class TechnicalBarChart extends StatelessWidget {
         BarSeries<dynamic, String>(
           enableTooltip: true,
           color: Colors.blue,
-          dataSource: [
+          dataSource: const [
             {'name': '5', 'amount': 4},
             {'name': 'النوع الثاني', 'amount': 3},
             {'name': 'Type 3', 'amount': 2},

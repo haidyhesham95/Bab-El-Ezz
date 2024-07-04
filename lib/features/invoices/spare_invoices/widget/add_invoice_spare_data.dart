@@ -49,12 +49,12 @@ class AddInvoiceSpareData extends StatelessWidget {
               customerName = invoice!.clientName;
               phoneNumber = invoice!.phoneNumber;
               cubit.updateTableView(customerName, phoneNumber);
-              invoice!.parts.forEach((part) {
+              for (var part in invoice!.parts) {
                 cubit.partController.text = part.name;
                 cubit.quantityController.text = part.quantity.toString();
                 cubit.priceController.text = part.sellingPrice.toString();
                 onAddPressed(cubit);
-              });
+              }
             }
           }
 

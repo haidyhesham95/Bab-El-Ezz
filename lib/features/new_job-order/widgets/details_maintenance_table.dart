@@ -13,23 +13,23 @@ class DetailsMaintenanceTable extends StatelessWidget {
       child: CustomDataTable(
       //  horizontalMargin: 75,
         columnSpacing: 90,
-          columns: [
-            const DataColumn(label: Text('الصنف')),
-            const DataColumn(label: Text('الكمية')),
-            const DataColumn(label: Text('المصنعية')),
+          columns: const [
+            DataColumn(label: Text('الصنف')),
+            DataColumn(label: Text('الكمية')),
+            DataColumn(label: Text('المصنعية')),
          ],
 
 
           rows: List.generate(
             3,
-                (index) => DataRow(
+                (index) => const DataRow(
                 cells: <DataCell>[
 
 
-                  const DataCell(Text('-------')),
-                  const DataCell(Text('5')),
+                  DataCell(Text('-------')),
+                  DataCell(Text('5')),
 
-                  const DataCell(Text('----')),
+                  DataCell(Text('----')),
 
 
                 ]

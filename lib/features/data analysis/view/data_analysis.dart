@@ -1,7 +1,6 @@
 import 'package:bab_el_ezz/features/data%20analysis/view/customer_opinions/view/customer_opinions.dart';
 import 'package:bab_el_ezz/features/data%20analysis/view/financial/view/financial_accounts.dart';
 import 'package:bab_el_ezz/features/data%20analysis/view/technical/view/technical_analysis.dart';
-import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared_utils/styles/colors.dart';
@@ -28,7 +27,7 @@ class DataAnalysis extends StatelessWidget {
             dividerColor: Colors.transparent,
             unselectedLabelColor: ColorsAsset.kLightGray.withOpacity(0.4),
             labelColor: ColorsAsset.kGreen,
-            tabs: [
+            tabs: const [
               Tab(text: 'الحسابات المالية'),
               Tab(text: 'التحليل الفني'),
               Tab(text: 'آداء العاملين'),
@@ -36,7 +35,7 @@ class DataAnalysis extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             FinancialAccounts(),
             TechnicalAnalysis(),

@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../shared_utils/styles/colors.dart';
 
 class RevenuesChart extends StatefulWidget {
   const RevenuesChart({super.key});
@@ -38,12 +37,12 @@ class _RevenuesChartState extends State<RevenuesChart> {
         PieChartSectionData(
           value: 72,
           radius: activeIndex == 0 ? 60 : 50,
-          color: Color(0xFF27AE60),
+          color: const Color(0xFF27AE60),
         ),
         PieChartSectionData(
           value: 55,
           radius: activeIndex == 1 ? 60 : 50,
-          color: Color(0xFFF1C40F),
+          color: const Color(0xFFF1C40F),
         ),
 
       ],

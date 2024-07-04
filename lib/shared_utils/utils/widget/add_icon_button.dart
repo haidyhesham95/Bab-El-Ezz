@@ -1,4 +1,3 @@
-import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../styles/text.dart';

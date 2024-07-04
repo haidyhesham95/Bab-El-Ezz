@@ -28,7 +28,7 @@ class StaffDataTable extends StatelessWidget {
           StaffCubit cubit = StaffCubit.get(context);
           if (state is StaffInitial) {
             cubit.getTechnicians();
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
           return CustomDataTable(
             columns: const [
