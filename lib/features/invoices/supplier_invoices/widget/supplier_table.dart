@@ -26,7 +26,7 @@ class SupplierTable extends StatelessWidget {
 
           if (state is SupplierInvoiceInitial) {
             cubit.getMerchants();
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
           if (state is SearchData) {
             var data = state.data;

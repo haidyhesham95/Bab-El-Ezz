@@ -12,9 +12,9 @@ class AddItemsCustomerReturned extends StatelessWidget {
     return Column(
 
       children: [
-        Divider(color: ColorsAsset.kBrown,),
+        const Divider(color: ColorsAsset.kBrown,),
         const SizedBox(height: 20),
-        TextFieldWidget(
+        const TextFieldWidget(
           label: " الصنف ",
           hintText: " اضافه صنف ",
           // controller: cubit.typeController,
@@ -25,7 +25,7 @@ class AddItemsCustomerReturned extends StatelessWidget {
         ),
 
         const SizedBox(height: 15,),
-        TextFieldWidget(
+        const TextFieldWidget(
           label: " الكمية ",
           hintText: " كميه الصنف ",
           // controller: cubit.countController,
@@ -35,7 +35,7 @@ class AddItemsCustomerReturned extends StatelessWidget {
         ),
 
         const SizedBox(height: 15,),
-        TextFieldWidget(
+        const TextFieldWidget(
           label: " السعر ",
           hintText: " اضافه السعر ",
           //  controller: cubit.priceController,
@@ -69,7 +69,7 @@ class AddItemsCustomerReturned extends StatelessWidget {
 
         const SizedBox(height: 15,),
 
-        TextFieldWidget(
+        const TextFieldWidget(
           label: " المالحظات ",
           hintText: "اضافه ملاحظه ",
           maxLines: 3,

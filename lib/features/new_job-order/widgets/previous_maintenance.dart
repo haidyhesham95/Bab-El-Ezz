@@ -21,7 +21,7 @@ class PreviousMaintenance extends StatelessWidget {
                 onTap: () {
                   Navigator.pushNamed(context, 'detailsMaintenancePage');
                 },
-                child: ListTile(
+                child: const ListTile(
                   title: RowText(
                     'نوع الصيانة : ',
                     'صيانة دورية',

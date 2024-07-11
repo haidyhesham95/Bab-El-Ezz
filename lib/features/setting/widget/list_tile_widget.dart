@@ -1,9 +1,7 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../generated/assets.dart';
 import '../../../shared_utils/styles/text.dart';
 
 Container listTileWidget (context, String assetName,String text,void Function()? onTap,{ double? radius,List<Color>? colors}) {
@@ -17,8 +15,8 @@ Container listTileWidget (context, String assetName,String text,void Function()?
       gradient: LinearGradient(
           colors: colors?? [
 
-            Color.fromRGBO(17, 62, 44, 97),
-            Color.fromRGBO(26, 96, 69, 95),
+            const Color.fromRGBO(17, 62, 44, 97),
+            const Color.fromRGBO(26, 96, 69, 95),
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter),

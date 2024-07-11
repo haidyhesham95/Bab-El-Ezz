@@ -81,7 +81,7 @@ class InvoiceSpareTable extends StatelessWidget {
                         DataCell(Text((invoices[index]).price.toString())),
                         DataCell(Text(DateFormat("yyyy-MM-dd hh:mm")
                             .format(invoices[index].date))),
-                        DataCell(Text('dfddh')),
+                        const DataCell(Text('dfddh')),
                       ],
                     ),
                   ),

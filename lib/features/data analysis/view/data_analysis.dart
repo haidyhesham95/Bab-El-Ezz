@@ -28,7 +28,7 @@ class DataAnalysis extends StatelessWidget {
             indicatorSize: TabBarIndicatorSize.tab,
             labelPadding: EdgeInsets.symmetric(horizontal: 0),
             labelColor: ColorsAsset.kGreen,
-            tabs: [
+            tabs: const [
               Tab(text: 'الحسابات المالية'),
               Tab(text: 'التحليل الفني'),
               Tab(text: 'آداء العاملين'),
@@ -36,7 +36,7 @@ class DataAnalysis extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             FinancialAccounts(),
             TechnicalAnalysis(),

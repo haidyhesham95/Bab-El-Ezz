@@ -45,7 +45,7 @@ class _AddMerchantReturnedDataState extends State<AddMerchantReturnedData> {
                   invoice = ModalRoute.of(context)?.settings.arguments
                       as ReturnInvoice?;
 
-                  return CircularProgressIndicator();
+                  return const CircularProgressIndicator();
                 }
 
                 print("invoice: ${invoice?.clientName}");

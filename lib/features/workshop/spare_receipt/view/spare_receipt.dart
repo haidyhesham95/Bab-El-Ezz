@@ -95,9 +95,9 @@ class SpareReceipt extends StatelessWidget {
                 }
               ),
             ),
-           Spacer(flex: 3,),
+           const Spacer(flex: 3,),
             const SpareReceiptButtons(),
-           Spacer()
+           const Spacer()
           ],
         ),
       ),

@@ -50,10 +50,10 @@ class CustomerCards extends StatelessWidget {
       padding: const EdgeInsets.only(right: 8, left: 8),
       decoration: BoxDecoration(
         color: backgroundColor,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 2,
-            offset: const Offset(0, 4),
+            offset: Offset(0, 4),
           ),
         ],
         borderRadius:BorderRadius.circular(10),
@@ -63,8 +63,8 @@ class CustomerCards extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(text, style: TextStyle(fontSize: 15,color: Colors.white), overflow: TextOverflow.visible),
-          Text(value, style:  TextStyle(fontSize: 15,color: Colors.white), overflow: TextOverflow.visible),
+          Text(text, style: const TextStyle(fontSize: 15,color: Colors.white), overflow: TextOverflow.visible),
+          Text(value, style:  const TextStyle(fontSize: 15,color: Colors.white), overflow: TextOverflow.visible),
         ],
       ),
     );

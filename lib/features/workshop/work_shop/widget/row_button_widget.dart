@@ -19,10 +19,10 @@ class RowButtonWidget extends StatelessWidget {
         width: size.width * 0.9,
         child: TextButton(
             style: ButtonStyle(
-              minimumSize: MaterialStateProperty.all(Size(size.width, 56)),
-              backgroundColor: MaterialStateProperty.all(ColorsAsset.kGreen),
-              iconColor: MaterialStateProperty.all(Colors.white),
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              minimumSize: WidgetStateProperty.all(Size(size.width, 56)),
+              backgroundColor: WidgetStateProperty.all(ColorsAsset.kGreen),
+              iconColor: WidgetStateProperty.all(Colors.white),
+              shape: WidgetStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               )),
             ),

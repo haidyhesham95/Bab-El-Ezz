@@ -78,14 +78,14 @@ class PhoneAuth {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Enter OTP'),
+          title: const Text('Enter OTP'),
           content: TextField(
             controller: codeController,
             keyboardType: TextInputType.number,
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Submit'),
+              child: const Text('Submit'),
               onPressed: () => Navigator.pop(context, codeController.text),
             ),
           ],

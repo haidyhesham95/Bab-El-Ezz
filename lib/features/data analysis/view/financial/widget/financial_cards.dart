@@ -76,7 +76,7 @@ class FinancialCards extends StatelessWidget {
               padding: const EdgeInsets.only(right: 5, left: 5),
               decoration: BoxDecoration(
                 color: color,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(10),
                   bottomRight: Radius.circular(10),
                 ),
@@ -88,17 +88,17 @@ class FinancialCards extends StatelessWidget {
                 height: iconSize,
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(text1,
-                      style: TextStyle(fontSize: 13, color: Colors.white),
+                      style: const TextStyle(fontSize: 15, color: Colors.white),
                       overflow: TextOverflow.visible),
                   Text(text2,
-                      style: TextStyle(fontSize: 15, color: Colors.white),
+                      style: const TextStyle(fontSize: 15, color: Colors.white),
                       overflow: TextOverflow.visible),
                 ],
               ),

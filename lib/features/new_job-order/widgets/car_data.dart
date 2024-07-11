@@ -36,7 +36,7 @@ class CarData extends StatelessWidget {
                   'رقم لوحة السيارة : ',
                   car.licensePlate,
                 ),
-                RowText(
+                const RowText(
                   'متوسط الاستهلاك الشهري : ',
                   "200",
                 ),

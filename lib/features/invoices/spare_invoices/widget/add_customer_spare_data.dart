@@ -68,7 +68,7 @@ class AddCustomerSpareData extends StatelessWidget {
                                 errorMessage:
                                     '(رقم الهاتف يجب ان يحتوي علي 11 خانات)',
                               ),
-                              Spacer(
+                              const Spacer(
                                 flex: 3,
                               ),
                               ButtonWidget(
@@ -87,7 +87,7 @@ class AddCustomerSpareData extends StatelessWidget {
                                   }
                                 },
                               ),
-                              Spacer()
+                              const Spacer()
                             ],
                           ),
                         ),

@@ -4,7 +4,7 @@ import '../../features/workshop/add_client/widget/otp_text_field.dart';
 import '../../shared_utils/utils/widget/text_field.dart';
 
 class LettersOtp extends StatefulWidget {
-  LettersOtp({Key? key}) : super(key: key);
+  const LettersOtp({Key? key}) : super(key: key);
 
   @override
   LettersOtpState createState() => LettersOtpState();

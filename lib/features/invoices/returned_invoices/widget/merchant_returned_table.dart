@@ -85,7 +85,7 @@ class MerchantReturnedTable extends StatelessWidget {
                           DataCell(Text(invoices[index].clientName)),
                           DataCell(Text(invoices[index].phoneNumber)),
                           DataCell(Text(invoices[index].price.toString())),
-                          DataCell(Text('dfdd')),
+                          const DataCell(Text('dfdd')),
                         ],
                       ),
                     )),
