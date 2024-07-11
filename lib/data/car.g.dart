@@ -12,6 +12,9 @@ Car _$CarFromJson(Map<String, dynamic> json) => Car(
       licensePlate: json['licensePlate'] as String?,
       color: json['color'] as String?,
       year: json['year'] as String?,
+      pastOrdersIds: (json['pastOrdersIds'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       mileage: json['mileage'] as String?,
       chassisNumber: json['chassisNumber'] as String?,
       engineNumber: json['engineNumber'] as String?,
@@ -29,4 +32,5 @@ Map<String, dynamic> _$CarToJson(Car instance) => <String, dynamic>{
       'chassisNumber': instance.chassisNumber,
       'engineNumber': instance.engineNumber,
       'transmissionType': instance.transmissionType,
+      'pastOrdersIds': instance.pastOrdersIds,
     };

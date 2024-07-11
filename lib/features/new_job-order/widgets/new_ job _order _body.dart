@@ -125,7 +125,7 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                       onChanged: (String? value) {
                         cubit.setSelectedMaintenanceType(value);
                       },
-                      items: const [
+                      items:  [
                         DropdownMenuItem(
                           value: 'صيانه اعطال',
                           child: Text('صيانه اعطال'),
@@ -137,6 +137,9 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                         DropdownMenuItem(
                           value: 'مرتجع',
                           child: Text('مرتجع تكرار أعطال'),
+                          onTap: (){
+                            // cubit.showButtonDialog(context);
+                          },
                         ),
                       ],
                     ),
@@ -301,9 +304,10 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                           hasElevation: true,
                           text: "انهاء امر الشغل",
                           onPressed: () {
-                            print("Button pressed");
-                            cubit.saveOrder(jobOrder!, true).then(
-                                (order) => Navigator.of(context).pop(order));
+                            cubit.showButtonDialog(context);
+                            // print("Button pressed");
+                            // cubit.saveOrder(jobOrder!, true).then(
+                            //     (order) => Navigator.of(context).pop(order));
                           },
                           width: size.width * 0.4,
                           height: size.height * 0.05,

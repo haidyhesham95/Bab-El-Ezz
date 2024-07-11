@@ -28,9 +28,6 @@ JobOrder _$JobOrderFromJson(Map<String, dynamic> json) => JobOrder(
       notes: json['notes'] as String?,
       maintenanceType: json['maintenanceType'] as String?,
       paymentType: json['paymentType'] as String?,
-      pastOrdersIds: (json['pastOrdersIds'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
       carImage: json['carImage'] as String?,
     )..id = json['id'] as String?;
 
@@ -42,7 +39,6 @@ Map<String, dynamic> _$JobOrderToJson(JobOrder instance) => <String, dynamic>{
       'maintenanceType': instance.maintenanceType,
       'technicians': JobOrder.techListToJson(instance.technicians),
       'notes': instance.notes,
-      'pastOrdersIds': instance.pastOrdersIds,
       'finished': instance.finished,
       'startDate': instance.startDate?.toIso8601String(),
       'endDate': instance.endDate?.toIso8601String(),

@@ -7,6 +7,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../shared_utils/styles/text.dart';
+import '../../../../shared_utils/utils/widget/button_widget.dart';
+import '../../widgets/previous_maintenance_miantenance_type.dart';
+
 part 'new_job_state.dart';
 
 class NewJobCubit extends Cubit<NewJobState> {
@@ -94,4 +98,27 @@ class NewJobCubit extends Cubit<NewJobState> {
 
     return job;
   }
+  void showButtonDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+
+            content:ButtonWidget(
+              child: Text("الصيانات السابقة",style: AppStyles.styleMedium18White(context)),
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => PreviousMaintenanceType(),));
+
+              },
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('رجوع',style: AppStyles.styleMedium16White(context)),
+              ),
+            ],
+          );
+        });}
 }

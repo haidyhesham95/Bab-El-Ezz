@@ -154,6 +154,22 @@ abstract class AppStyles {
       fontWeight: FontWeight.w500,
     );
   }
+  static TextStyle styleMedium16White(BuildContext context) {
+    return TextStyle(
+      fontSize: getResponsiveFontSize(context, fontSize: 16),
+      fontFamily: 'Cairo',
+      fontWeight: FontWeight.w500,
+      color: Colors.white
+    );
+  }
+  static TextStyle styleMedium18White(BuildContext context) {
+    return TextStyle(
+        fontSize: getResponsiveFontSize(context, fontSize: 18),
+        fontFamily: 'Cairo',
+        fontWeight: FontWeight.w500,
+        color: Colors.white
+    );
+  }
   static TextStyle styleMedium18(BuildContext context) {
     return TextStyle(
       fontSize: getResponsiveFontSize(context, fontSize: 18),

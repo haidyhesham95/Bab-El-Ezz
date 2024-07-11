@@ -36,6 +36,11 @@ class DetailsMaintenancePage extends StatelessWidget {
 
                         ),
                         RowText(
+                          'اسم الفني : ',
+                          'الاسم',
+
+                        ),
+                        RowText(
                           'نوع الصيانة : ',
                           'صيانة دورية',
                         ),
