@@ -304,10 +304,10 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                           hasElevation: true,
                           text: "انهاء امر الشغل",
                           onPressed: () {
-                            cubit.showButtonDialog(context);
-                            // print("Button pressed");
-                            // cubit.saveOrder(jobOrder!, true).then(
-                            //     (order) => Navigator.of(context).pop(order));
+
+                            print("Button pressed");
+                            cubit.saveOrder(jobOrder!, true).then(
+                                (order) => Navigator.of(context).pop(order));
                           },
                           width: size.width * 0.4,
                           height: size.height * 0.05,
