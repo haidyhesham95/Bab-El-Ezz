@@ -22,12 +22,28 @@ class DailyDataTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    print("techs: ${technicians.length}");
     return BlocProvider(
       create: (context) => DailyTableCubit(technicians),
       child: BlocConsumer<DailyTableCubit, DailyTableState>(
         listener: (context, state) {},
         builder: (context, state) {
           DailyTableCubit cubit = DailyTableCubit.get(context);
+          if (state is DailyTableInitial) {
+            cubit.statusList =
+                List.generate(technicians.length, (index) => 'اجازة');
+            cubit.checkIns = List.generate(technicians.length, (index) => null);
+            cubit.checkOuts =
+                List.generate(technicians.length, (index) => null);
+            cubit.noteController = List.generate(
+                technicians.length, (index) => TextEditingController());
+            cubit.bonusController = List.generate(
+                technicians.length, (index) => TextEditingController());
+            cubit.deductionController = List.generate(
+                technicians.length, (index) => TextEditingController());
+            cubit.advanceController = List.generate(
+                technicians.length, (index) => TextEditingController());
+          }
           return Column(
             children: [
               SingleChildScrollView(

@@ -30,12 +30,10 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(UpdateData());
   }
 
-  Future register(Workshop workshop) async {
+  Future register(Workshop workshop, String password) async {
     String email = "${workshop.phoneNumber}$EMAIL_POSTFIX";
-    print("email: $email");
-    print("pass: ${workshop.password}");
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email, password: workshop.password);
+    await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password);
     CollectionReference workshopRef = FirebaseCollection().workshopCol;
     await workshopRef.doc("profile").set(workshop);
   }

@@ -23,6 +23,7 @@ class SearchClient extends StatelessWidget {
       child: BlocConsumer<SearchClientCubit, SearchClientState>(
           builder: (context, state) {
             SearchClientCubit cubit = SearchClientCubit.get(context);
+
             if (state is SearchClientInitial) {
               cubit.getJobOrders();
               return const Center(
@@ -68,8 +69,6 @@ class SearchClient extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  //todo add listview to show as search results and
-                  //todo add new client at the bottom
                   Expanded(
                     child: GridView.builder(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -81,7 +80,13 @@ class SearchClient extends StatelessWidget {
                           mainAxisExtent: 100,
                         ),
                         itemBuilder: (BuildContext context, int index) {
-                          return carItem(context, jobOrders[index]);
+                          return carItem(context, jobOrders[index], () async {
+                            JobOrder? order = await Navigator.pushNamed(
+                                context, 'newJobOrderPage',
+                                arguments: jobOrders[index]) as JobOrder?;
+                            cubit.updateOrder(jobOrders[index], order);
+                            print("order2: ${order?.invoice}");
+                          });
                         }),
                   ),
                   Center(

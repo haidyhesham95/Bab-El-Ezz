@@ -14,6 +14,7 @@ class WorkShopCubit extends Cubit<WorkShopState> {
   final carRef = FirebaseCollection().carCol;
   final jobsRef = FirebaseCollection().jobOrderCol;
   final workshopRef = FirebaseCollection().workshopCol;
+  List<JobOrder> jobOrders = [];
   Workshop? workshop;
 
   static WorkShopCubit get(context) => BlocProvider.of(context);
@@ -27,12 +28,28 @@ class WorkShopCubit extends Cubit<WorkShopState> {
 
   getCurrentJobs() async {
     QuerySnapshot snapshot = await jobsRef.get();
-    final List<JobOrder> data = snapshot.docs.map((e) {
+    jobOrders = snapshot.docs
+        .where((e) => (e.data() as JobOrder).finished != true)
+        .map((e) {
       return e.data()! as JobOrder;
     }).toList();
     snapshot = await workshopRef.get();
     workshop =
-        snapshot.docs.where((e) => e.id == "profile").first.data() as Workshop;
-    emit(GetData(data: data));
+        //fixme
+        snapshot.docs.where((e) => e.id == "profile").firstOrNull?.data()
+            as Workshop?;
+    emit(GetData(data: jobOrders));
+  }
+
+  void updateOrder(JobOrder? oldOrder, JobOrder? newOrder) {
+    if (newOrder == null || oldOrder == null) return;
+
+    int index = jobOrders.indexOf(oldOrder);
+    jobOrders.removeAt(index);
+    if (!newOrder.finished) {
+      jobOrders.insert(index, newOrder);
+    }
+
+    emit(GetData(data: jobOrders));
   }
 }

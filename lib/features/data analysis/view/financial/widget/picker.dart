@@ -2,7 +2,6 @@ import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-
 class AppFunctions {
   static Future<DateTimeRange?> showPickerRange(
       BuildContext context, DateTimeRange? initialRange) async {
@@ -24,12 +23,14 @@ class AppFunctions {
                   startRangeSelectionColor: ColorsAsset.kGreen,
                   endRangeSelectionColor: ColorsAsset.kGreen,
 
-                  onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+                  onSelectionChanged:
+                      (DateRangePickerSelectionChangedArgs args) {
                     if (args.value is PickerDateRange) {
                       selectedRange = DateTimeRange(
-                        start: (args.value as PickerDateRange).startDate ?? DateTime.now(),
-                        end: (args.value as PickerDateRange).endDate ?? DateTime.now(),
-                      );
+                          start: (args.value as PickerDateRange).startDate ??
+                              DateTime.now(),
+                          end: (args.value as PickerDateRange).endDate ??
+                              DateTime.now());
                     }
                   },
                   cancelText: 'Cancel',
@@ -37,7 +38,7 @@ class AppFunctions {
 
                   selectionMode: DateRangePickerSelectionMode.range,
                   enablePastDates: true,
-                  maxDate: DateTime.now(),
+                  maxDate: DateTime.now().add(Duration(days: 1)),
                   backgroundColor: Colors.black,
                   headerStyle: const DateRangePickerHeaderStyle(
                     backgroundColor: Colors.black,
@@ -48,7 +49,7 @@ class AppFunctions {
                   rangeSelectionColor: ColorsAsset.kDarkGray,
                   rangeTextStyle: const TextStyle(color: Colors.white),
 
-                 // selectionTextStyle: const TextStyle(color: Colors.white),
+                  // selectionTextStyle: const TextStyle(color: Colors.white),
                   onSubmit: (value) {
                     Navigator.pop(context, selectedRange);
                   },

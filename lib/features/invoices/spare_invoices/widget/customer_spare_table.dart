@@ -64,9 +64,10 @@ class CustomerSpareTable extends StatelessWidget {
                             Customer customer = await Navigator.pushNamed(
                                 context, 'AddCustomerInSpareInvoice',
                                 arguments: Customer(
-                                    invoices[index].clientName,
-                                    invoices[index].phoneNumber,
-                                    '')) as Customer;
+                                  invoices[index].clientName,
+                                  invoices[index].phoneNumber,
+                                  '',
+                                )) as Customer;
                             cubit.updateCustomer(
                                 customer, invoices[index].phoneNumber);
                           },

@@ -4,13 +4,10 @@ import 'package:flutter/material.dart';
 import '../../../../shared_utils/styles/text.dart';
 import '../../../../shared_utils/utils/widget/shadow_container.dart';
 
-ShadowContainer carItem(context, JobOrder jobOrder) {
+ShadowContainer carItem(context, JobOrder jobOrder, Function() onTap) {
   return ShadowContainer(
     radius: 10,
-    onTap: () {
-      Navigator.pushNamed(context, 'newJobOrderPage',
-          arguments: jobOrder.toJson());
-    },
+    onTap: onTap,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,

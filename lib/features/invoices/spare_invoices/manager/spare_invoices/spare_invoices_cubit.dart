@@ -14,6 +14,7 @@ class SpareInvoicesCubit extends Cubit<SpareInvoicesState> {
 
   final TextEditingController partController = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
+  final TextEditingController serviceController = TextEditingController();
   final TextEditingController priceController = TextEditingController();
   final TextEditingController totalController = TextEditingController();
   final TextEditingController discountController = TextEditingController();
@@ -46,6 +47,7 @@ class SpareInvoicesCubit extends Cubit<SpareInvoicesState> {
   }
 
   void updateTotalPrice(DataRow dataRow) {
+    if (items.isEmpty) return;
     items.removeLast();
     addItem(dataRow, index: items.length);
     emit(AddItems(items.cast<Widget>()));

@@ -15,7 +15,11 @@ class SearchClientCubit extends Cubit<SearchClientState> {
 
   getJobOrders() async {
     QuerySnapshot snapshot = await ordersRef.get();
-    jobOrders = snapshot.docs.map((e) {
+    jobOrders = snapshot.docs
+
+        /// Get all jobs
+        // .where((e) => (e.data() as JobOrder).finished != true)
+        .map((e) {
       var data = e.data();
       return (data as JobOrder);
     }).toList();
@@ -35,5 +39,15 @@ class SearchClientCubit extends Cubit<SearchClientState> {
     }).toList();
 
     emit(GetData(data));
+  }
+
+  void updateOrder(JobOrder? oldOrder, JobOrder? newOrder) {
+    if (newOrder == null || oldOrder == null) return;
+
+    int index = jobOrders.indexOf(oldOrder);
+    jobOrders.removeAt(index);
+    jobOrders.insert(index, newOrder);
+
+    emit(GetData(jobOrders));
   }
 }

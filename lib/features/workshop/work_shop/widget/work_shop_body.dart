@@ -32,10 +32,20 @@ class WorkShopBody extends StatelessWidget {
 
           return CustomScrollView(
             slivers: [
-              SilverBoxDetails(cubit.workshop!),
+              cubit.workshop != null
+                  ? SilverBoxDetails(cubit.workshop!)
+                  : const SliverToBoxAdapter(child: SizedBox.shrink()),
               SilverGrid(
                 listJobs: listJobs,
                 showAll: cubit.showAll,
+                onTap: (index) async {
+                  JobOrder? order = await Navigator.pushNamed(
+                      context, 'newJobOrderPage',
+                      arguments: listJobs[index]) as JobOrder?;
+                  print("index: $index");
+                  print("order2: ${order?.toJson()}");
+                  cubit.updateOrder(listJobs[index], order);
+                },
               ),
               silverBoxButtons(
                 context,

@@ -12,6 +12,8 @@ DataRow addInvoiceSpareRowTable(
   bool footer = false,
   bool discount = false,
   bool total = false,
+  bool service = false,
+  Function()? onEditDone,
 }) {
   bool dataRow = controllers[1].text.isNotEmpty;
 
@@ -45,13 +47,13 @@ DataRow addInvoiceSpareRowTable(
                 ))),
       DataCell(dataRow
           ? Text(total ? "اﻹجمالي" : controllers[0].text)
-          : (discount || total
-              ? Text(discount ? "الخصم" : "اﻹجمالي")
+          : (discount || total || service
+              ? Text(discount ? "الخصم" : (service ? "المصنعية" : "اﻹجمالي"))
               : DataTextField(
                   controller: controllers[0],
                   hintText: 'اضافه صنف',
                 ))),
-      DataCell(discount || total
+      DataCell(discount || total || service
           ? Container()
           : dataRow
               ? Text(controllers[1].text)
@@ -62,6 +64,7 @@ DataRow addInvoiceSpareRowTable(
       DataCell(dataRow || total
           ? Text(price.toString())
           : DataTextField(
+              onEditDone: onEditDone,
               controller: controllers[2],
               hintText: 'اضافه سعر',
             )),

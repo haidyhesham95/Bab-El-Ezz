@@ -101,6 +101,7 @@ class AddClientCubit extends Cubit<AddClientState> {
         clientNameController.text,
         phoneNameController.text,
         carDocRef.id,
+        created: DateTime.now(),
       );
 
       final jobOrder = JobOrder(
@@ -114,7 +115,7 @@ class AddClientCubit extends Cubit<AddClientState> {
       await FirebaseCollection().customerCol.add(customer);
 
       // ... (Show success message, navigate back, etc.)
-      return jobOrder.toJson();
+      return jobOrder;
     } catch (e) {
       // ... (Handle errors)
     }

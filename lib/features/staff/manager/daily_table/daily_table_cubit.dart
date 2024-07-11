@@ -9,34 +9,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'daily_table_state.dart';
 
 class DailyTableCubit extends Cubit<DailyTableState> {
-  DailyTableCubit(this.technicians) : super(DailyTableInitial()) {
-    statusList = List.generate(technicians.length, (index) => 'اجازة');
-    checkIns = List.generate(technicians.length, (index) => null);
-    checkOuts = List.generate(technicians.length, (index) => null);
-
-    noteController =
-        List.generate(technicians.length, (index) => TextEditingController());
-    bonusController =
-        List.generate(technicians.length, (index) => TextEditingController());
-    deductionController =
-        List.generate(technicians.length, (index) => TextEditingController());
-    advanceController =
-        List.generate(technicians.length, (index) => TextEditingController());
-  }
+  DailyTableCubit(this.technicians) : super(DailyTableInitial()) {}
 
   CollectionReference attendanceRef = FirebaseCollection().attendanceCol;
   CollectionReference staffRef = FirebaseCollection().staffCol;
 
   final List<Technician> technicians;
   List<Attendance> attends = [];
-  late final List<String> statusList;
-  late final List<TimeOfDay?> checkIns;
-  late final List<TimeOfDay?> checkOuts;
+  List<String> statusList = [];
+  List<TimeOfDay?> checkIns = [];
+  List<TimeOfDay?> checkOuts = [];
 
-  late List<TextEditingController> noteController;
-  late List<TextEditingController> bonusController;
-  late List<TextEditingController> deductionController;
-  late List<TextEditingController> advanceController;
+  List<TextEditingController> noteController = [];
+  List<TextEditingController> bonusController = [];
+  List<TextEditingController> deductionController = [];
+  List<TextEditingController> advanceController = [];
 
   static DailyTableCubit get(context) => BlocProvider.of(context);
 

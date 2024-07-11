@@ -1,5 +1,6 @@
 import 'package:bab_el_ezz/data/car.dart';
 import 'package:bab_el_ezz/data/job_order.dart';
+import 'package:bab_el_ezz/data/spare_invoice.dart';
 import 'package:bab_el_ezz/data/technician.dart';
 import 'package:bab_el_ezz/features/new_job-order/manager/new_job/new_job_cubit.dart';
 import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
@@ -19,25 +20,23 @@ import '../../invoices/spare_invoices/manager/spare_invoices/spare_invoices_cubi
 import '../../invoices/spare_invoices/widget/add_invoice_spare_row_table.dart';
 import '../../invoices/spare_invoices/widget/add_invoice_spare_table.dart';
 import '../../workshop/work_shop/widget/add_button.dart';
-import 'add_note_text.dart';
 import 'car_data.dart';
-import 'create_pdf.dart';
 import 'details.dart';
 import 'details_previous_maintenance_button.dart';
 import 'drop_button.dart';
 
 class NewJobOrderBody extends StatefulWidget {
-  const NewJobOrderBody({super.key});
+  NewJobOrderBody({super.key});
 
   @override
   _NewJobOrderBodyState createState() => _NewJobOrderBodyState();
 }
 
 class _NewJobOrderBodyState extends State<NewJobOrderBody> {
-  late JobOrder? jobOrder;
+  JobOrder? jobOrder;
 
   double totalPrice = 0;
-  List<Technician> techs = [], selectedTechs = [];
+  List<Technician> techs = [];
 
   @override
   void initState() {
@@ -46,19 +45,15 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
 
   @override
   Widget build(BuildContext context) {
-    // jobOrder = JobOrder.fromJson(
-    //     ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>);
-    // jobOrder ??= JobOrder.empty();
-    final routeArgs = ModalRoute.of(context)?.settings.arguments;
+    jobOrder = ModalRoute.of(context)?.settings.arguments as JobOrder?;
 
-    if (routeArgs == null) {
+    if (jobOrder == null) {
       return const Center(
         child: Text('No arguments were provided!'),
       );
     }
 
-    jobOrder = JobOrder.fromJson(routeArgs as Map<String, dynamic>);
-    jobOrder ??= JobOrder.empty();
+    print("order: ${jobOrder?.id}");
     final size = MediaQuery.of(context).size;
     return Padding(
         padding: const EdgeInsets.symmetric(
@@ -69,10 +64,17 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
           child: BlocBuilder<NewJobCubit, NewJobState>(
             builder: (context, state) {
               NewJobCubit cubit = NewJobCubit.get(context);
-              cubit.kMController.text = jobOrder?.car?.mileage ?? '';
+              print("job: ${jobOrder?.paymentType}");
 
               if (state is NewJobInitial) {
                 cubit.getTechnicians();
+                cubit.kMController.text = jobOrder?.car?.mileage ?? '';
+                cubit.selectedMaintenanceType = jobOrder?.maintenanceType;
+                if (jobOrder?.paymentType == "visa") {
+                  cubit.electronicTapped();
+                } else {
+                  cubit.isTapped2 = true;
+                }
                 return const Center(
                     child: CircularProgressIndicator(
                   color: ColorsAsset.kGreen,
@@ -81,6 +83,12 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
 
               if (state is GetData) {
                 techs = state.data as List<Technician>;
+                cubit.selectedTechs.clear();
+                jobOrder?.technicians?.forEach((tech) {
+                  cubit.selectedTechs.add(tech);
+                  techs.removeWhere((e) => tech.name == e.name);
+                });
+                cubit.notesController.text = jobOrder?.notes ?? '';
               }
 
               return SingleChildScrollView(
@@ -158,8 +166,9 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                           onPressed: () {
                             int index = techs.indexWhere((element) =>
                                 element.name == cubit.selectedValue);
-                            selectedTechs.add(techs[index]);
-                            techs.removeAt(index);
+                            cubit.selectedTechs.add(techs[index]);
+                            techs.removeWhere(
+                                (e) => techs[index].name == e.name);
                             cubit.selectedValue = null;
 
                             cubit.update();
@@ -168,13 +177,13 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                       ],
                     ),
                     ...List.generate(
-                        selectedTechs.length,
+                        cubit.selectedTechs.length,
                         (index) => ListTile(
-                              title: Text(selectedTechs[index].name),
+                              title: Text(cubit.selectedTechs[index].name),
                               trailing: IconButton(
                                   onPressed: () {
-                                    techs.add(selectedTechs[index]);
-                                    selectedTechs.removeAt(index);
+                                    techs.add(cubit.selectedTechs[index]);
+                                    cubit.selectedTechs.removeAt(index);
                                     cubit.update();
                                   },
                                   icon: const Icon(Icons.clear)),
@@ -184,7 +193,16 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                       Assets.imagesCars,
                     ),
                     const SizedBox(height: 20),
-                    addNoteText(context),
+                    TextFieldWidget(
+                      label: " اضافة ملاحظات ",
+                      titleStyle: AppStyles.styleMedium16(context),
+                      hintStyle: AppStyles.styleSemiBold14(context),
+                      hintText: "ملاحظات..",
+                      maxLines: 3,
+                      controller: cubit.notesController,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.text,
+                    ),
                     const SizedBox(height: 10),
                     textAlign(
                       context,
@@ -200,10 +218,19 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                               SpareInvoicesCubit.get(context);
 
                           if (state is SpareInvoicesInitial) {
-                            //   _setupInitialData(cubit1);
-                            WidgetsBinding.instance.addPostFrameCallback((_) {
-                              _setupInitialData(cubit1);
-                            });
+                            _setupInitialData(cubit1);
+                            if (jobOrder != null && jobOrder!.invoice != null) {
+                              List<Part>? parts = List.from(
+                                  jobOrder?.invoice?.parts as Iterable);
+                              parts?.forEach((part) {
+                                cubit1.partController.text = part.name;
+                                cubit1.quantityController.text =
+                                    part.quantity.toString();
+                                cubit1.priceController.text =
+                                    part.sellingPrice.toString();
+                                onAddPressed(cubit1);
+                              });
+                            }
                           } else if (state is SearchData) {
                             searchResults = state.data as List<Part>;
                           }
@@ -263,7 +290,10 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                         ButtonWidget(
                           hasElevation: true,
                           text: "حفظ مؤقت",
-                          onPressed: () {},
+                          onPressed: () {
+                            cubit.saveOrder(jobOrder!, false).then(
+                                (order) => Navigator.of(context).pop(order));
+                          },
                           width: size.width * 0.4,
                           height: size.height * 0.05,
                         ),
@@ -272,7 +302,8 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                           text: "انهاء امر الشغل",
                           onPressed: () {
                             print("Button pressed");
-                            PdfGenerator.createPdf(jobOrder);
+                            cubit.saveOrder(jobOrder!, true).then(
+                                (order) => Navigator.of(context).pop(order));
                           },
                           width: size.width * 0.4,
                           height: size.height * 0.05,
@@ -295,19 +326,39 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
     });
 
     cubit.discountController.addListener(() {
-      cubit.totalController.text =
-          (totalPrice - (double.tryParse(cubit.discountController.text) ?? 0))
-              .toString();
-      cubit.updateTotalPrice(addInvoiceSpareRowTable(
-        [
-          cubit.partController,
-          cubit.quantityController,
-          cubit.totalController,
-          cubit.notesController,
-        ],
-        total: true,
-      ));
+      // cubit.totalController.text =
+      //     ((double.tryParse(cubit.totalController.text) ?? 0) -
+      //             (double.tryParse(cubit.discountController.text) ?? 0))
+      //         .toString();
+      // // totalPrice = double.tryParse(cubit.totalController.text) ?? 0;
+      // cubit.updateTotalPrice(addInvoiceSpareRowTable(
+      //   [
+      //     cubit.partController,
+      //     cubit.quantityController,
+      //     cubit.totalController,
+      //     cubit.notesController,
+      //   ],
+      //   total: true,
+      // ));
     });
+
+    cubit.serviceController.addListener(() {
+      // cubit.totalController.text =
+      //     ((double.tryParse(cubit.totalController.text) ?? 0) +
+      //             (double.tryParse(cubit.serviceController.text) ?? 0))
+      //         .toString();
+      // // totalPrice = double.tryParse(cubit.totalController.text) ?? 0;
+      // cubit.updateTotalPrice(addInvoiceSpareRowTable(
+      //   [
+      //     cubit.partController,
+      //     cubit.quantityController,
+      //     cubit.totalController,
+      //     cubit.notesController,
+      //   ],
+      //   total: true,
+      // ));
+    });
+
     cubit.getCustomers();
     cubit.getParts();
 
@@ -321,15 +372,52 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
       total: true,
     ));
 
-    cubit.addItem(addInvoiceSpareRowTable(
-      [
+    cubit.addItem(
+      addInvoiceSpareRowTable([
         cubit.partController,
         cubit.quantityController,
         cubit.discountController,
         cubit.notesController,
-      ],
-      discount: true,
-    ));
+      ], discount: true, onEditDone: () {
+        cubit.totalController.text =
+            ((double.tryParse(cubit.totalController.text) ?? 0) -
+                    (double.tryParse(cubit.discountController.text) ?? 0))
+                .toString();
+        // totalPrice = double.tryParse(cubit.totalController.text) ?? 0;
+        cubit.updateTotalPrice(addInvoiceSpareRowTable(
+          [
+            cubit.partController,
+            cubit.quantityController,
+            cubit.totalController,
+            cubit.notesController,
+          ],
+          total: true,
+        ));
+      }),
+    );
+
+    cubit.addItem(addInvoiceSpareRowTable([
+      cubit.partController,
+      cubit.quantityController,
+      cubit.serviceController,
+      cubit.notesController,
+    ], service: true, onEditDone: () {
+      print("service: ${cubit.serviceController.text}");
+      cubit.totalController.text =
+          ((double.tryParse(cubit.totalController.text) ?? 0) +
+                  (double.tryParse(cubit.serviceController.text) ?? 0))
+              .toString();
+      // totalPrice = double.tryParse(cubit.totalController.text) ?? 0;
+      cubit.updateTotalPrice(addInvoiceSpareRowTable(
+        [
+          cubit.partController,
+          cubit.quantityController,
+          cubit.totalController,
+          cubit.notesController,
+        ],
+        total: true,
+      ));
+    }));
 
     cubit.addItem(addInvoiceSpareRowTable([
       cubit.partController,
@@ -344,8 +432,10 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
   Part? selectedPart;
   List<Part> searchResults = [];
 
+  //fixme: add must be pressed to add invoice..
   void onAddPressed(SpareInvoicesCubit cubit) {
-    print("${cubit.quantityController.text}, ${selectedPart?.quantity}");
+    jobOrder?.invoice ??= SpareInvoice.empty();
+
     if (cubit.partController.text.isNotEmpty &&
         cubit.quantityController.text.isNotEmpty &&
         cubit.priceController.text.isNotEmpty &&
@@ -376,20 +466,23 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
       );
 
       // Create an invoice
-      cubit.invoice.notes += '\n${cubit.notesController.text}';
-      cubit.invoice.phoneNumber = '';
-      cubit.invoice.clientName = '';
-      cubit.invoice.date = DateTime.now();
+      jobOrder?.invoice?.notes += '\n${cubit.notesController.text}';
+      jobOrder?.invoice?.phoneNumber = '';
+      jobOrder?.invoice?.clientName = '';
+      jobOrder?.invoice?.date = DateTime.now();
 
-      cubit.invoice.price = totalPrice;
-      cubit.invoice.discount =
+      print("service2: ${cubit.serviceController.text}");
+      jobOrder?.invoice?.price = totalPrice;
+      jobOrder?.invoice?.service =
+          double.tryParse(cubit.serviceController.text) ?? 0;
+      jobOrder?.invoice?.discount =
           double.tryParse(cubit.discountController.text) ?? 0;
 
       if (selectedPart != null) {
         selectedPart!.quantity -= int.parse(cubit.quantityController.text);
       }
 
-      cubit.invoice.parts.add(Part(
+      jobOrder?.invoice?.parts.add(Part(
           cubit.partController.text,
           selectedPart?.code ?? '',
           int.parse(cubit.quantityController.text),

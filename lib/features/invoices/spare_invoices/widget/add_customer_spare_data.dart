@@ -81,7 +81,8 @@ class AddCustomerSpareData extends StatelessWidget {
                                     Customer customer = Customer(
                                         cubit.customerNameController.text,
                                         cubit.customerPhoneController.text,
-                                        null);
+                                        null,
+                                        created: DateTime.now());
                                     Navigator.pop(context, customer);
                                   }
                                 },

@@ -64,6 +64,8 @@ class RegisterView1 extends StatelessWidget {
                         if (cubit.formKey1.currentState!.validate() &&
                             cubit.passwordController.text ==
                                 cubit.confirmPasswordController.text) {
+                          print(
+                              "pass-register: ${cubit.passwordController.text}");
                           Navigator.pushNamed(context, 'register2', arguments: [
                             cubit.phoneNameController.text,
                             cubit.passwordController.text

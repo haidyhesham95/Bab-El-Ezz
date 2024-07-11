@@ -9,9 +9,11 @@ class SilverGrid extends StatelessWidget {
     super.key,
     required this.listJobs,
     this.showAll = false,
+    required this.onTap,
   });
   final bool showAll;
   final List<JobOrder> listJobs;
+  final Function(int) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class SilverGrid extends StatelessWidget {
             if (index == listJobs.length || listJobs.isEmpty) {
               return itemAddJobContainer(context);
             } else {
-              return carItem(context, listJobs[index]);
+              return carItem(context, listJobs[index], () => onTap(index));
             }
           },
         ));

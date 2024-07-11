@@ -177,6 +177,8 @@ class AddInvoiceSpareData extends StatelessWidget {
           onPressed: () {
             print("onPressed: ${cubit.invoice.price}");
             cubit.invoice.invoiceNumber = (invoice?.invoiceNumber ?? '');
+            cubit.invoice.clientName = cubit.customerNameController.text;
+            cubit.invoice.phoneNumber = cubit.customerPhoneController.text;
             Navigator.of(context).pop(cubit.invoice);
           },
         ),

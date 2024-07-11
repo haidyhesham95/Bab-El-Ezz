@@ -7,6 +7,7 @@ import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../shared_utils/styles/colors.dart';
@@ -212,19 +213,7 @@ class AddInvoicesData extends StatelessWidget {
                                 print("pressed");
                                 if (kDebugMode ||
                                     cubit.formKey.currentState!.validate()) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return SizedBox(
-                                          width: size.width *
-                                              0.5, // Example: 50% of screen width
-                                          height: size.height *
-                                              0.5, // Example: 30% of screen height
-                                          child: Center(
-                                            child: CircularProgressIndicator(),
-                                          ),
-                                        );
-                                      });
+                                  EasyLoading.show();
                                   MerchantInvoice invoice = MerchantInvoice(
                                       double.parse(cubit.priceController.text),
                                       imagePath: (isUpdate
@@ -254,20 +243,24 @@ class AddInvoicesData extends StatelessWidget {
                                   //     totalRemaining: 100,
                                   //     checkDate: DateTime.now());
                                   //todo if image is different, update it
+                                  print("update: $isUpdate");
                                   if (isUpdate) {
-                                    Navigator.pop(context);
+                                    EasyLoading.dismiss();
                                     Navigator.pop(context, invoice);
                                   } else {
                                     uploadImage(
                                             imageFile, invoice.invoiceNumber)
-                                        .whenComplete(() {
-                                          Navigator.pop(context);
-                                        })
+                                        .whenComplete(
+                                            () => EasyLoading.dismiss())
                                         .then((value) =>
                                             invoice.imagePath = value)
                                         .then((value) {
-                                          Navigator.pop(context, invoice);
-                                        });
+                                      print("val: $value");
+                                      print("inv: ${invoice.toJson()}");
+                                      Navigator.pop(context, invoice);
+                                    }).onError((e, _) {
+                                      print(e);
+                                    });
                                   }
                                 }
                               },

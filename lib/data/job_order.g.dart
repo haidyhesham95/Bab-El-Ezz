@@ -12,21 +12,26 @@ JobOrder _$JobOrderFromJson(Map<String, dynamic> json) => JobOrder(
           : Car.fromJson(json['car'] as Map<String, dynamic>),
       clientName: json['clientName'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
-      description: json['description'] as String?,
-      services: (json['services'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      partsUsed: (json['partsUsed'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      status: json['status'] as String?,
+      finished: json['finished'] as bool? ?? false,
       startDate: json['startDate'] == null
           ? null
           : DateTime.parse(json['startDate'] as String),
       endDate: json['endDate'] == null
           ? null
           : DateTime.parse(json['endDate'] as String),
-      technicianId: json['technicianId'] as String?,
+      technicians: (json['technicians'] as List<dynamic>?)
+          ?.map((e) => Technician.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      invoice: json['invoice'] == null
+          ? null
+          : SpareInvoice.fromJson(json['invoice'] as Map<String, dynamic>),
+      notes: json['notes'] as String?,
+      maintenanceType: json['maintenanceType'] as String?,
+      paymentType: json['paymentType'] as String?,
+      pastOrdersIds: (json['pastOrdersIds'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      carImage: json['carImage'] as String?,
     )..id = json['id'] as String?;
 
 Map<String, dynamic> _$JobOrderToJson(JobOrder instance) => <String, dynamic>{
@@ -34,11 +39,14 @@ Map<String, dynamic> _$JobOrderToJson(JobOrder instance) => <String, dynamic>{
       'car': JobOrder.carToJson(instance.car),
       'clientName': instance.clientName,
       'phoneNumber': instance.phoneNumber,
-      'description': instance.description,
-      'services': instance.services,
-      'partsUsed': instance.partsUsed,
-      'status': instance.status,
+      'maintenanceType': instance.maintenanceType,
+      'technicians': JobOrder.techListToJson(instance.technicians),
+      'notes': instance.notes,
+      'pastOrdersIds': instance.pastOrdersIds,
+      'finished': instance.finished,
       'startDate': instance.startDate?.toIso8601String(),
       'endDate': instance.endDate?.toIso8601String(),
-      'technicianId': instance.technicianId,
+      'invoice': JobOrder.invoiceToJson(instance.invoice),
+      'paymentType': instance.paymentType,
+      'carImage': instance.carImage,
     };

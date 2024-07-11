@@ -4,5 +4,7 @@ part of 'technical_cubit.dart';
 sealed class TechnicalState {}
 
 final class TechnicalInitial extends TechnicalState {}
+
 final class GetRangeDate extends TechnicalState {}
 
+final class UpdateData extends TechnicalState {}

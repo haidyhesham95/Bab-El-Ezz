@@ -10,18 +10,21 @@ class DataTextField extends StatelessWidget {
       this.width,
       this.height,
       this.style,
+      this.onEditDone,
       this.controller});
   final String? hintText;
   final double? width;
   final double? height;
   final TextStyle? style;
   final TextEditingController? controller;
+  final Function()? onEditDone;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
       height: height,
       child: TextField(
+        onEditingComplete: onEditDone,
         controller: controller,
         cursorColor: ColorsAsset.kGreen,
         textAlignVertical: TextAlignVertical.center,

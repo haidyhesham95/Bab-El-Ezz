@@ -8,9 +8,10 @@ class Customer {
   String? id;
   String name;
   String phoneNumber;
-  String? carId; // Reference to the Car document
+  DateTime? created;
+  String? carId;
 
-  Customer(this.name, this.phoneNumber, this.carId);
+  Customer(this.name, this.phoneNumber, this.carId, {this.created});
 
   factory Customer.fromFirestore(DocumentSnapshot doc) =>
       Customer.fromJson(doc.data()! as Map<String, dynamic>)..id = doc.id;

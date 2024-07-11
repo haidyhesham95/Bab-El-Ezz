@@ -20,11 +20,13 @@ class StaffTableCubit extends Cubit<StaffTableState> {
   TextEditingController nationalIdController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController dailyRateController = TextEditingController();
-TextEditingController phoneController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController specializationController = TextEditingController();
 
   Future addTechnician(Technician technician) async {
+    print("tech: ${technician.toJson()}");
     await staffRef.add(technician).then((value) {
+      print("val: $value");
       attendanceRef
           .doc(technician.id)
           .set(Attendance.empty(value.id ?? '', technician.name));

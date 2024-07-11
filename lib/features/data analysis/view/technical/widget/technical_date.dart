@@ -1,46 +1,30 @@
 import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
+import 'package:bab_el_ezz/shared_utils/styles/text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
-
-import '../../../../../shared_utils/styles/text.dart';
-import '../manager/technical_cubit.dart';
-
 
 class TechnicalDate extends StatelessWidget {
-  const TechnicalDate({super.key});
+  TechnicalDate({super.key, required this.onTap, required this.text});
+  Function() onTap;
+  String text;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TechnicalCubit(),
-      child: BlocBuilder<TechnicalCubit, TechnicalState>(
-        builder: (context, state) {
-          TechnicalCubit cubit = TechnicalCubit.get(context);
-
-          return InkWell(
-            onTap: ()  {
-               cubit.getDateRange(context);
-            },
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(10),
-              margin: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                border: Border.all(color: ColorsAsset.kGreen),
-              ),
-              child: Center(
-                child: Text(
-                  cubit.selectedRange == null
-                      ? ' اختر التاريخ من - إلى '
-                      : ' من : ${DateFormat('yyyy-MM-dd').format(cubit.selectedRange!.start)}  -  الي : ${DateFormat('yyyy-MM-dd').format(cubit.selectedRange!.end)} ',
-                  style: AppStyles.styleMedium16(context),
-                ),
-              ),
-            ),
-          );
-        },
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: ColorsAsset.kGreen),
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: AppStyles.styleMedium16(context),
+          ),
+        ),
       ),
     );
   }

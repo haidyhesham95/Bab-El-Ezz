@@ -9,7 +9,9 @@ import '../widget/forget_password.dart';
 import '../widget/top_page.dart';
 
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+  LoginView({super.key});
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,9 @@ class LoginView extends StatelessWidget {
             listener: (context, state) {},
             builder: (context, state) {
               final cubit = LoginCubit.get(context);
+
               return Form(
-                key: cubit.formKey,
+                key: formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +69,7 @@ class LoginView extends StatelessWidget {
                       hasElevation: true,
                       text: 'تسجيل الدخول',
                       onPressed: () {
-                        if (cubit.formKey.currentState!.validate()) {
+                        if (formKey.currentState?.validate() ?? false) {
                           cubit.login(context);
                         }
                       },

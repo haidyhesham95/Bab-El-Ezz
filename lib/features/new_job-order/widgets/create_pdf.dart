@@ -15,19 +15,19 @@ class PdfGenerator {
         await rootBundle.load("assets/fonts/Cairo-Arabic-Regular.ttf"));
   }
 
-  static Future<void> createPdf(JobOrder? jobOrder) async {
+  static Future<void> createPdf(JobOrder jobOrder) async {
     await init();
     final pdf = pw.Document();
 
-    List<Map<String, dynamic>> items = [
-      {'الصنف': 'صنف 1', 'الكمية': 2, 'السعر': 200, 'ملاحظات': 'ملاحظه'},
-      {'الصنف': 'صنف 2', 'الكمية': 3, 'السعر': 150, 'ملاحظات': 'ملاحظه'},
-    ];
+    // List<Map<String, dynamic>> items = [
+    //   {'الصنف': 'صنف 1', 'الكمية': 2, 'السعر': 200, 'ملاحظات': 'ملاحظه'},
+    //   {'الصنف': 'صنف 2', 'الكمية': 3, 'السعر': 150, 'ملاحظات': 'ملاحظه'},
+    // ];
 
-    double total =
-        items.fold(0, (sum, item) => sum + item['الكمية'] * item['السعر']);
-    double discount = 50;
-    double workmanship = 100;
+    // double total =
+    //     items.fold(0, (sum, item) => sum + item['الكمية'] * item['السعر']);
+    // double discount = 50;
+    // double workmanship = 100;
 
     pdf.addPage(
       pw.Page(
@@ -40,7 +40,8 @@ class PdfGenerator {
             crossAxisAlignment: pw.CrossAxisAlignment.center,
             children: [
               pw.Container(
-                padding: pw.EdgeInsets.only(right: 20, top: 15, bottom: 15),
+                padding:
+                    const pw.EdgeInsets.only(right: 20, top: 15, bottom: 15),
                 decoration: pw.BoxDecoration(
                   color: PdfColors.grey200,
                   borderRadius: pw.BorderRadius.circular(10),
@@ -50,56 +51,63 @@ class PdfGenerator {
                     pw.Row(
                       children: [
                         pw.Text("اسم المركز: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("الاسم ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text("الاسم ",
+                            style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                     pw.SizedBox(height: 10),
                     pw.Row(
                       children: [
                         pw.Text("اسم الفرع: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("الاسم ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text("الاسم ",
+                            style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                     pw.SizedBox(height: 10),
                     pw.Row(
                       children: [
                         pw.Text("اسم العميل: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("الاسم ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text(jobOrder.clientName!,
+                            style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                     pw.SizedBox(height: 10),
                     pw.Row(
                       children: [
                         pw.Text("نوع السيارة: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("النوع ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text(jobOrder.car?.make ?? '',
+                            style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                     pw.SizedBox(height: 10),
                     pw.Row(
                       children: [
                         pw.Text("موديل السيارة: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("النوع ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text(jobOrder.car?.model ?? '',
+                            style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                     pw.SizedBox(height: 10),
                     pw.Row(
                       children: [
                         pw.Text("عدد الكيلو متر: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("200 ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text(jobOrder.car?.mileage ?? '',
+                            style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                     pw.SizedBox(height: 10),
                     pw.Row(
                       children: [
                         pw.Text("نوع الصيانة: ",
-                            style: pw.TextStyle(fontSize: 20)),
-                        pw.Text("النوع ", style: pw.TextStyle(fontSize: 18)),
+                            style: const pw.TextStyle(fontSize: 20)),
+                        pw.Text(jobOrder.maintenanceType ?? '',
+                            style: const pw.TextStyle(fontSize: 18)),
                       ],
                     ),
                   ],
@@ -110,33 +118,32 @@ class PdfGenerator {
                 border: pw.TableBorder.all(),
                 children: [
                   pw.TableRow(
-                    decoration:
-                        pw.BoxDecoration(color: PdfColor.fromInt(0xff289168)),
+                    decoration: const pw.BoxDecoration(
+                        color: PdfColor.fromInt(0xff289168)),
                     children: [
                       pw.Text('ملاحظات',
-                          style: pw.TextStyle(color: PdfColors.white),
+                          style: const pw.TextStyle(color: PdfColors.white),
                           textAlign: pw.TextAlign.center),
                       pw.Text('السعر',
-                          style: pw.TextStyle(color: PdfColors.white),
+                          style: const pw.TextStyle(color: PdfColors.white),
                           textAlign: pw.TextAlign.center),
                       pw.Text('الكمية',
-                          style: pw.TextStyle(color: PdfColors.white),
+                          style: const pw.TextStyle(color: PdfColors.white),
                           textAlign: pw.TextAlign.center),
                       pw.Text('الصنف',
-                          style: pw.TextStyle(color: PdfColors.white),
+                          style: const pw.TextStyle(color: PdfColors.white),
                           textAlign: pw.TextAlign.center),
                     ],
                   ),
-                  ...items
+                  ...?jobOrder.invoice?.parts
                       .map((item) => pw.TableRow(
                             children: [
-                              pw.Text(item['الصنف'].toString(),
+                              pw.Text('', textAlign: pw.TextAlign.center),
+                              pw.Text(item.sellingPrice.toString(),
                                   textAlign: pw.TextAlign.center),
-                              pw.Text(item['الكمية'].toString(),
+                              pw.Text(item.quantity.toString(),
                                   textAlign: pw.TextAlign.center),
-                              pw.Text(item['السعر'].toString(),
-                                  textAlign: pw.TextAlign.center),
-                              pw.Text(item['ملاحظات'].toString(),
+                              pw.Text(item.name.toString(),
                                   textAlign: pw.TextAlign.center),
                             ],
                           ))
@@ -151,27 +158,27 @@ class PdfGenerator {
                   ),
                   pw.TableRow(
                     children: [
-                      pw.Text('${discount.toString()}',
-                          textAlign: pw.TextAlign.center),
                       pw.Text('', textAlign: pw.TextAlign.center),
+                      pw.Text('${jobOrder.invoice?.discount.toString()}',
+                          textAlign: pw.TextAlign.center),
                       pw.Text('', textAlign: pw.TextAlign.center),
                       pw.Text('الخصم', textAlign: pw.TextAlign.center),
                     ],
                   ),
                   pw.TableRow(
                     children: [
-                      pw.Text('${workmanship.toString()}',
-                          textAlign: pw.TextAlign.center),
                       pw.Text('', textAlign: pw.TextAlign.center),
+                      pw.Text('${jobOrder.invoice?.service.toString()}',
+                          textAlign: pw.TextAlign.center),
                       pw.Text('', textAlign: pw.TextAlign.center),
                       pw.Text('المصنعية', textAlign: pw.TextAlign.center),
                     ],
                   ),
                   pw.TableRow(
                     children: [
-                      pw.Text('${total.toString()}',
-                          textAlign: pw.TextAlign.center),
                       pw.Text('', textAlign: pw.TextAlign.center),
+                      pw.Text('${jobOrder.invoice?.price.toString()}',
+                          textAlign: pw.TextAlign.center),
                       pw.Text('', textAlign: pw.TextAlign.center),
                       pw.Text('الاجمالي', textAlign: pw.TextAlign.center),
                     ],

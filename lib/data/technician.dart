@@ -12,9 +12,7 @@ class Technician {
   String specialization;
   String title;
   double dailyRate;
-  @JsonKey(fromJson: _dateTimeFromJson, toJson: _dateTimeToJson)
   DateTime? created;
-  @JsonKey(fromJson: _dateTimeFromJson, toJson: _dateTimeToJson)
   DateTime? lastPayment;
   int? workDays;
   int? offDays;

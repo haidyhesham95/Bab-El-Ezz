@@ -1,4 +1,7 @@
+import 'package:bab_el_ezz/data/job_order.dart';
+import 'package:bab_el_ezz/data/spare_invoice.dart';
 import 'package:bab_el_ezz/data/technician.dart';
+import 'package:bab_el_ezz/features/new_job-order/widgets/create_pdf.dart';
 import 'package:bab_el_ezz/firebase/firebase_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +16,12 @@ class NewJobCubit extends Cubit<NewJobState> {
   TextEditingController kMController = TextEditingController();
 
   CollectionReference techRef = FirebaseCollection().staffCol;
+  CollectionReference jobRef = FirebaseCollection().jobOrderCol;
 
-  List<Technician> technicians = [];
+  TextEditingController notesController = TextEditingController();
+
+  List<Technician> technicians = [], selectedTechs = [];
+  SpareInvoice? invoice;
 
   getTechnicians() async {
     final data = await techRef.get();
@@ -60,5 +67,31 @@ class NewJobCubit extends Cubit<NewJobState> {
 
   void update() {
     emit(ElectronicTapped(isTapped2));
+  }
+
+  Future<JobOrder> saveOrder(JobOrder job, bool finished) async {
+    print("invoice: ${job.invoice}");
+    job
+      ..car = (job.car?..mileage = kMController.text)
+      ..finished = finished
+      ..technicians = selectedTechs
+      ..endDate = finished ? DateTime.now() : null
+      ..invoice = (job.invoice)
+      ..notes = notesController.text
+      ..maintenanceType = selectedMaintenanceType
+      ..paymentType = isTapped1 ? "cash" : "visa";
+
+    if ((await jobRef.doc(job.id).get()).exists) {
+      await jobRef.doc(job.id).update(job.toJson());
+    } else {
+      print("job with id: ${job.id} not found");
+      await jobRef.add(job);
+    }
+
+    if (finished) {
+      PdfGenerator.createPdf(job);
+    }
+
+    return job;
   }
 }

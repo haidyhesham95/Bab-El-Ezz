@@ -1,4 +1,6 @@
 import 'package:bab_el_ezz/data/car.dart';
+import 'package:bab_el_ezz/data/spare_invoice.dart';
+import 'package:bab_el_ezz/data/technician.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -11,37 +13,44 @@ class JobOrder {
   Car? car;
   String? clientName;
   String? phoneNumber;
-  String? description;
-  List<String>? services;
-  List<String>? partsUsed;
-  String? status;
+  String? maintenanceType;
+  @JsonKey(toJson: techListToJson)
+  List<Technician>? technicians;
+  String? notes;
+
+  bool finished = false;
   DateTime? startDate;
   DateTime? endDate;
-  String? technicianId;
+  @JsonKey(toJson: invoiceToJson)
+  SpareInvoice? invoice;
+  String? paymentType;
+  String? carImage;
 
   JobOrder(
       {this.car,
       this.clientName,
       this.phoneNumber,
-      this.description,
-      this.services,
-      this.partsUsed,
-      this.status,
+      this.finished = false,
       this.startDate,
       this.endDate,
-      this.technicianId});
+      this.technicians,
+      this.invoice,
+      this.notes,
+      this.maintenanceType,
+      this.paymentType,
+      this.carImage});
 
   JobOrder.empty() {
     car = Car.empty();
     phoneNumber = '';
     clientName = '';
-    description = '';
-    services = [];
-    partsUsed = [];
-    status = '';
+    notes = '';
+    technicians = [];
+    invoice = SpareInvoice.empty();
+    finished = false;
     startDate = DateTime.now();
     endDate = DateTime.now();
-    technicianId = '';
+    carImage = '';
   }
 
   factory JobOrder.fromFirestore(DocumentSnapshot doc) =>
@@ -53,4 +62,10 @@ class JobOrder {
   Map<String, dynamic> toJson() => _$JobOrderToJson(this);
 
   static Map<String, dynamic>? carToJson(Car? car) => car?.toJson();
+
+  static List<Map<String, dynamic>>? techListToJson(List<Technician>? techs) =>
+      techs?.map((e) => e.toJson()).toList();
+
+  static Map<String, dynamic>? invoiceToJson(SpareInvoice? invoice) =>
+      invoice?.toJson();
 }

@@ -4,4 +4,7 @@ part of 'employee_cubit.dart';
 sealed class EmployeeState {}
 
 final class EmployeeInitial extends EmployeeState {}
+
 class GetRangeDate extends EmployeeState {}
+
+class UpdateData extends EmployeeState {}

@@ -12,6 +12,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -104,12 +105,12 @@ class _MyAppState extends State<MyApp> {
             title: 'Flutter Demo',
             theme: cubit.isDark ? ThemeData.dark() : ThemeData.light(),
             initialRoute: widget.userAuthenticated ? "layout" : "login",
-            home: const Directionality(
+            home: Directionality(
               textDirection: TextDirection.rtl,
               child: LoginView(),
             ),
             routes: {
-              'login': (context) => const LoginView(),
+              'login': (context) => LoginView(),
               "register1": (context) => const RegisterView1(),
               "register2": (context) => RegisterView2(),
               "staff": (context) => StaffPage(),
@@ -126,7 +127,7 @@ class _MyAppState extends State<MyApp> {
               "addInvoiceData": (context) => AddInvoicesData(),
               "addItemStore": (context) => const AddsItemsStore(),
               "addStaffItem": (context) => AddStaffItem(),
-              'addDailyExpenses': (context) => const AddDailyExpenses(),
+              'addDailyExpenses': (context) => AddDailyExpenses(),
               "spareInvoices": (context) => const SpareInvoices(),
               "addCustomerSpareData": (context) => AddCustomerSpareData(),
               "addInvoiceSpareData": (context) => AddInvoiceSpareData(),
@@ -145,6 +146,7 @@ class _MyAppState extends State<MyApp> {
               'addCustomer': (context) => const AddCustomer(),
               'AddCustomerInSpareInvoice': (context) => AddCustomerSpareData(),
             },
+            builder: EasyLoading.init(),
           );
         },
       ),

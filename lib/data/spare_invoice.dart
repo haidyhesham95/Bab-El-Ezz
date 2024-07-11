@@ -46,7 +46,6 @@ class SpareInvoice extends Invoice {
           phoneNumber: '',
         );
 
-  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = _$SpareInvoiceToJson(this);
     data['parts'] = parts
@@ -62,4 +61,7 @@ class SpareInvoice extends Invoice {
         .toList(); // Convert parts back to List<Part>
     return _$SpareInvoiceFromJson(data);
   }
+
+  factory SpareInvoice.fromJson(Map<String, dynamic> json) =>
+      _$SpareInvoiceFromJson(json);
 }

@@ -15,6 +15,7 @@ class Car {
   String? chassisNumber;
   String? engineNumber;
   String? transmissionType;
+  List<String>? pastOrdersIds;
 
   Car(
       {this.make,
@@ -22,6 +23,7 @@ class Car {
       this.licensePlate,
       this.color,
       this.year,
+      this.pastOrdersIds,
       this.mileage,
       this.chassisNumber,
       this.engineNumber,

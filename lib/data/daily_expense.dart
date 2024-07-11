@@ -5,12 +5,12 @@ part 'daily_expense.g.dart';
 
 @JsonSerializable()
 class DailyExpense {
-  String id;
+  String? id;
   String item;
-  double amount;
+  double price;
   DateTime date;
 
-  DailyExpense(this.id, this.item, this.amount, this.date);
+  DailyExpense(this.item, this.price, this.date);
 
   factory DailyExpense.fromFirestore(DocumentSnapshot doc) =>
       DailyExpense.fromJson(doc.data()! as Map<String, dynamic>)..id = doc.id;

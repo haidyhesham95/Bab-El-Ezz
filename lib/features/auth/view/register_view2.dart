@@ -6,9 +6,9 @@ import 'package:bab_el_ezz/features/invoices/invoices/widget/add_image.dart';
 import 'package:bab_el_ezz/firebase/firebase_collection.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
-import 'package:bcrypt/bcrypt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../../generated/assets.dart';
 import '../manager/register/register_cubit.dart';
@@ -28,6 +28,7 @@ class RegisterView2 extends StatelessWidget {
     if (data != null && data!.length == 2) {
       phone = data![0];
       password = data![1];
+      print("reg2: $password");
     }
 
     return Scaffold(
@@ -129,17 +130,19 @@ class RegisterView2 extends StatelessWidget {
                           if (cubit.formKey2.currentState!.validate()) {
                             Workshop workshop = Workshop(
                                 phone,
-                                BCrypt.hashpw(password, BCrypt.gensalt()),
+                                password,
                                 cubit.workshopNameController.text,
                                 cubit.branchNameController.text,
                                 cubit.addressController.text,
                                 cubit.ownerNameController.text,
                                 cubit.phoneController.text,
-                                BCrypt.hashpw(cubit.newPasswordController.text,
-                                    BCrypt.gensalt()),
+                                cubit.newPasswordController.text,
                                 imageFile?.absolute.path ?? '');
-                            cubit.register(workshop).then((e) {
-                              uploadImage(imageFile, "logo").then((e) {
+                            EasyLoading.show();
+                            cubit.register(workshop, password).then((e) {
+                              uploadImage(imageFile, "logo")
+                                  .whenComplete(() => EasyLoading.dismiss())
+                                  .then((e) {
                                 FirebaseCollection()
                                     .workshopCol
                                     .doc("profile")

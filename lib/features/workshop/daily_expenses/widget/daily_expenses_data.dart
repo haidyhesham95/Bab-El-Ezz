@@ -1,5 +1,8 @@
+import 'package:bab_el_ezz/data/daily_expense.dart';
+import 'package:bab_el_ezz/features/workshop/daily_expenses/manager/daily_expenses_cubit.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../shared_utils/utils/widget/drop_menu.dart';
 
@@ -8,46 +11,72 @@ class DailyExpensesData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomDataTable(
-      columns: [
-        DataColumn(
-            label: IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "addDailyExpenses");
-                },
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                  size: 20,
-                ))),
-        const DataColumn(label: Text('البند')),
-        const DataColumn(label: Text('المبلغ')),
-      ],
-      rows: [
-        ...List.generate(
-          4,
-          (index) => DataRow(
-            cells: <DataCell>[
-              DataCell(DropMenu(
-                onTapEdit: (index) {},
-                onTapDelete: (index) {},
-              )),
-              const DataCell(Text('5222')), // Replace with actual item data
-              DataCell(Text('200')),
+    return BlocProvider(
+      create: (context) => DailyExpensesCubit(),
+      child: BlocBuilder<DailyExpensesCubit, DailyExpensesState>(
+        builder: (context, state) {
+          DailyExpensesCubit cubit = DailyExpensesCubit.get(context);
+
+          if (state is DailyExpensesInitial) {
+            cubit.getExpenses();
+            return CircularProgressIndicator();
+          }
+
+          return CustomDataTable(
+            columns: [
+              DataColumn(
+                  label: IconButton(
+                      onPressed: () async {
+                        DailyExpense expense = await Navigator.pushNamed(
+                            context, "addDailyExpenses") as DailyExpense;
+                        cubit.addExpense(expense);
+                      },
+                      icon: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 20,
+                      ))),
+              const DataColumn(label: Text('البند')),
+              const DataColumn(label: Text('المبلغ')),
             ],
-          ),
-        ),
-        DataRow(
-          cells: <DataCell>[
-            const DataCell(Text(
-              'الاجمالي',
-            )),
-            const DataCell(Text('')), // Empty cell for alignment
-            DataCell(Text('4000',
-                style: const TextStyle(fontWeight: FontWeight.bold))),
-          ],
-        ),
-      ],
+            rows: [
+              ...List.generate(
+                cubit.dailyExpenses.length,
+                (index) => DataRow(
+                  cells: <DataCell>[
+                    DataCell(DropMenu(
+                      index: index,
+                      onTapEdit: (index) async {
+                        DailyExpense expense = await Navigator.pushNamed(
+                                context, "addDailyExpenses",
+                                arguments: cubit.dailyExpenses[index])
+                            as DailyExpense;
+                        cubit.updateExpense(expense);
+                      },
+                      onTapDelete: (index) {
+                        cubit.deleteExpense(cubit.dailyExpenses[index]);
+                      },
+                    )),
+                    DataCell(Text(cubit.dailyExpenses[index].item)),
+                    // Replace with actual item data
+                    DataCell(Text(cubit.dailyExpenses[index].price.toString())),
+                  ],
+                ),
+              ),
+              DataRow(
+                cells: <DataCell>[
+                  const DataCell(Text(
+                    'الاجمالي',
+                  )),
+                  const DataCell(Text('')), // Empty cell for alignment
+                  DataCell(Text(cubit.total.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold))),
+                ],
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }

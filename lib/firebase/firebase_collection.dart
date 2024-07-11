@@ -1,12 +1,14 @@
 import 'package:bab_el_ezz/data/attendance.dart';
 import 'package:bab_el_ezz/data/car.dart';
 import 'package:bab_el_ezz/data/customer.dart';
+import 'package:bab_el_ezz/data/daily_expense.dart';
 import 'package:bab_el_ezz/data/invoice.dart';
 import 'package:bab_el_ezz/data/job_order.dart';
 import 'package:bab_el_ezz/data/maintenance_invoice.dart';
 import 'package:bab_el_ezz/data/merchant.dart';
 import 'package:bab_el_ezz/data/merchant_invoice.dart';
 import 'package:bab_el_ezz/data/part.dart';
+import 'package:bab_el_ezz/data/part_customer.dart';
 import 'package:bab_el_ezz/data/return_invoice.dart';
 import 'package:bab_el_ezz/data/return_part.dart';
 import 'package:bab_el_ezz/data/spare_invoice.dart';
@@ -27,6 +29,7 @@ class FirebaseCollection {
   static const String partCollectionName = "Parts";
   static const String invoiceCollectionName = "Invoices";
   static const String merchantsCollectionName = "Merchants";
+  static const String dailyExpenseCollectionName = "Daily Expenses";
 
   static final FirebaseCollection _singleton = FirebaseCollection._internal();
   static final Map<Type, CollectionReference<dynamic>> _collectionCache = {};
@@ -34,7 +37,7 @@ class FirebaseCollection {
   late CollectionReference<Technician> staffCol;
   late CollectionReference<Attendance> attendanceCol;
   late CollectionReference<Customer> customerCol;
-  late CollectionReference<Customer> partsCustCol;
+  late CollectionReference<PartCustomer> partsCustCol;
   late CollectionReference<Workshop> workshopCol;
   late CollectionReference<Car> carCol;
   late CollectionReference<Part> partCol;
@@ -44,6 +47,7 @@ class FirebaseCollection {
   late CollectionReference<Invoice> returnInvCol;
   late CollectionReference<Invoice> returnPartInvCol;
   late CollectionReference<Merchant> merchantsCol;
+  late CollectionReference<DailyExpense> dailyExpenseCol;
 
   factory FirebaseCollection() {
     return _singleton;
@@ -54,10 +58,14 @@ class FirebaseCollection {
         collectionName: jobOrderCollectionName,
         fromJson: JobOrder.fromFirestore,
         toJson: (JobOrder model) => model.toJson());
-    partsCustCol = _getOrCreateCollection<Customer>(
+    dailyExpenseCol = _getOrCreateCollection<DailyExpense>(
+        collectionName: dailyExpenseCollectionName,
+        fromJson: DailyExpense.fromFirestore,
+        toJson: (DailyExpense model) => model.toJson());
+    partsCustCol = _getOrCreateCollection<PartCustomer>(
         collectionName: partsCustCollectionName,
-        fromJson: Customer.fromFirestore,
-        toJson: (Customer model) => model.toJson());
+        fromJson: PartCustomer.fromFirestore,
+        toJson: (PartCustomer model) => model.toJson());
     merchantsCol = _getOrCreateCollection<Merchant>(
         collectionName: merchantsCollectionName,
         fromJson: Merchant.fromFirestore,
