@@ -1,5 +1,6 @@
 import 'package:bab_el_ezz/data/customer.dart';
 import 'package:bab_el_ezz/data/part.dart';
+import 'package:bab_el_ezz/data/part_customer.dart';
 import 'package:bab_el_ezz/data/spare_invoice.dart';
 import 'package:bab_el_ezz/firebase/firebase_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,7 +23,7 @@ class SpareInvoicesCubit extends Cubit<SpareInvoicesState> {
 
   bool isTableVisible = false;
 
-  List<Customer> customers = [];
+  List<PartCustomer> customers = [];
   List<Part> parts = [];
 
   List<SpareInvoice> invoices = [];
@@ -55,7 +56,7 @@ class SpareInvoicesCubit extends Cubit<SpareInvoicesState> {
 
   getCustomers() async {
     final ref = await customersRef.get();
-    customers = ref.docs.map((e) => e.data() as Customer).toList();
+    customers = ref.docs.map((e) => e.data() as PartCustomer).toList();
     emit(UpdateData());
   }
 

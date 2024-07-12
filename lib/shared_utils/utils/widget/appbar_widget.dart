@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-// import '../../../features/notification/notification_page.dart';
+import '../../../features/notification/notification_page.dart';
 import '../../../features/setting/view/drop_menu.dart';
 import '../../../generated/assets.dart';
 import '../../styles/text.dart';
@@ -13,7 +13,9 @@ AppBar appBarWidget(BuildContext context) {
       children: [
         InkWell(
           onTap: () {
-            // Navigator.of(context).push(MaterialPageRoute(builder: (context) =>const NotificationPage() ,));
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const NotificationPage(),
+            ));
           },
           child: Row(
             children: [

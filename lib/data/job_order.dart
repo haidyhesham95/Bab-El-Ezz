@@ -14,10 +14,10 @@ class JobOrder {
   String? clientName;
   String? phoneNumber;
   String? maintenanceType;
+  bool isReturn = false;
   @JsonKey(toJson: techListToJson)
   List<Technician>? technicians;
   String? notes;
-
   bool finished = false;
   DateTime? startDate;
   DateTime? endDate;
@@ -37,6 +37,7 @@ class JobOrder {
       this.invoice,
       this.notes,
       this.maintenanceType,
+      this.isReturn = false,
       this.paymentType,
       this.carImage});
 
@@ -48,6 +49,7 @@ class JobOrder {
     technicians = [];
     invoice = SpareInvoice.empty();
     finished = false;
+    isReturn = false;
     startDate = DateTime.now();
     endDate = DateTime.now();
     carImage = '';

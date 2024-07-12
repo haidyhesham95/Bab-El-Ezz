@@ -56,11 +56,11 @@ class TechnicalAnalysis extends StatelessWidget {
                   orders: cubit.numOrders,
                 ),
                 const SizedBox(height: 40),
-                const Row(
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Expanded(child: TechnicalDetails()),
-                    Expanded(child: TechnicalChart()),
+                    Expanded(child: TechnicalDetails(cubit.jobOrders)),
+                    Expanded(child: TechnicalChart(cubit.jobOrders)),
                     SizedBox(width: 10),
                   ],
                 ),

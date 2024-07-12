@@ -26,6 +26,7 @@ class TechnicalCubit extends Cubit<TechnicalState> {
   CollectionReference customersPartRef = FirebaseCollection().partsCustCol;
 
   List<QueryDocumentSnapshot> customersList = [];
+  List<JobOrder> jobOrders = [];
 
   getData() async {
     print("getData");
@@ -36,11 +37,8 @@ class TechnicalCubit extends Cubit<TechnicalState> {
     customersList.addAll(customers.docs);
     customersList.addAll(partsCust.docs);
 
-    print(customersRef.path);
-
-    int total =
-        orders.docs.length + merchants.docs.length + customers!.docs.length;
-    print("total: $total");
+    // int total =
+    //     orders.docs.length + merchants.docs.length + customers!.docs.length;
 
     newClients = customers!.docs.where((e) {
       Customer customer = e.data() as Customer;
@@ -54,6 +52,21 @@ class TechnicalCubit extends Cubit<TechnicalState> {
 
     currentClients = customers!.docs.length;
     numOrders = orders.docs.length;
+    jobOrders.clear();
+
+    orders.docs.where((e) {
+      JobOrder jobOrder = e.data() as JobOrder;
+
+      return (jobOrder.endDate?.isBefore((selectedRange?.end ??
+                  jobOrder.endDate!.add(Duration(seconds: 2)))) ??
+              false) &&
+          (jobOrder.endDate?.isAfter(selectedRange?.start ??
+                  jobOrder.endDate!.subtract(Duration(seconds: 2))) ??
+              false);
+    }).forEach((e) {
+      JobOrder jobOrder = e.data() as JobOrder;
+      jobOrders.add(jobOrder);
+    });
 
     emit(UpdateData());
   }

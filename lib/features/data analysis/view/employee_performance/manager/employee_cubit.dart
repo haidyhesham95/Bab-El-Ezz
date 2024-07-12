@@ -16,35 +16,31 @@ class EmployeeCubit extends Cubit<EmployeeState> {
   DateTimeRange? selectedRange;
   CollectionReference ordersRef = FirebaseCollection().jobOrderCol;
   Map<String, int> techCars = {};
+  List<JobOrder> jobOrders = [];
 
   getTechs() async {
     final data = await ordersRef.get();
     techCars.clear();
+    jobOrders.clear();
 
-    print("Fetched data: ${data.docs.map((e) => e.data()).toList()}");
+    // print("Fetched data: ${data.docs.map((e) => e.data()).toList()}");
 
     // Using where and map correctly
     data.docs.where((e) {
-      JobOrder order = e.data() as JobOrder;
+      JobOrder jobOrder = e.data() as JobOrder;
 
-      print("Evaluating order: ${order.toJson()}");
-
-      bool isWithinRange = (order.endDate?.isBefore(
-                selectedRange?.end ?? order.endDate!.add(Duration(seconds: 2)),
-              ) ??
+      bool isWithinRange = (jobOrder.endDate?.isBefore((selectedRange?.end ??
+                  jobOrder.endDate!.add(Duration(seconds: 2)))) ??
               false) &&
-          (order.endDate?.isAfter(
-                selectedRange?.start ??
-                    order.endDate!.subtract(Duration(seconds: 2)),
-              ) ??
+          (jobOrder.endDate?.isAfter(selectedRange?.start ??
+                  jobOrder.endDate!.subtract(Duration(seconds: 2))) ??
               false);
-
-      print("Is within range: $isWithinRange");
 
       return isWithinRange;
     }).forEach((e) {
       JobOrder order = e.data() as JobOrder;
-      print("techs: ${order.technicians?.map((e) => e.name)}");
+      jobOrders.add(order);
+      // print("techs: ${order.technicians?.map((e) => e.name)}");
 
       order.technicians?.forEach((technician) {
         if (techCars.containsKey(technician.name)) {

@@ -47,8 +47,33 @@ class EmployeePerformance extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Expanded(child: EmployeeChartDetails(cubit.techCars)),
-                    Expanded(child: EmployeeChart()),
+                    // jobs in progress won't appear here
+                    Expanded(child: EmployeeChartDetails(cubit.jobOrders)),
+                    Container(
+                      width: 200, // Set a fixed width for the GridView
+                      height: 200, // Set a fixed height for the GridView
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                        ),
+                        itemCount: cubit.techCars.keys
+                            .length, // Make sure to set the item count
+                        itemBuilder: (context, index) {
+                          return EmployeeChart(
+                            jobOrders: cubit.jobOrders
+                                .where((e) => (e.technicians
+                                        ?.map((e) => e.name)
+                                        .toList()
+                                        .contains(cubit.techCars.keys
+                                            .elementAt(index)) ??
+                                    false))
+                                .toList(),
+                          );
+                        },
+                      ),
+                    ),
                     SizedBox(width: 10),
                   ],
                 ),

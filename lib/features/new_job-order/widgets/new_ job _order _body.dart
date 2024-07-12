@@ -3,8 +3,10 @@ import 'package:bab_el_ezz/data/job_order.dart';
 import 'package:bab_el_ezz/data/spare_invoice.dart';
 import 'package:bab_el_ezz/data/technician.dart';
 import 'package:bab_el_ezz/features/new_job-order/manager/new_job/new_job_cubit.dart';
+import 'package:bab_el_ezz/features/new_job-order/widgets/previous_maintenance_miantenance_type.dart';
 import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
 import 'package:bab_el_ezz/shared_utils/styles/text.dart';
+import 'package:bab_el_ezz/shared_utils/utils/constant.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/pay_container.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_align.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +66,6 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
           child: BlocBuilder<NewJobCubit, NewJobState>(
             builder: (context, state) {
               NewJobCubit cubit = NewJobCubit.get(context);
-              print("job: ${jobOrder?.paymentType}");
 
               if (state is NewJobInitial) {
                 cubit.getTechnicians();
@@ -72,8 +73,8 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                 cubit.selectedMaintenanceType = jobOrder?.maintenanceType;
                 if (jobOrder?.paymentType == "visa") {
                   cubit.electronicTapped();
-                } else {
-                  cubit.isTapped2 = true;
+                } else if (jobOrder?.paymentType == "cash") {
+                  cubit.cashTapped();
                 }
                 return const Center(
                     child: CircularProgressIndicator(
@@ -84,6 +85,7 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
               if (state is GetData) {
                 techs = state.data as List<Technician>;
                 cubit.selectedTechs.clear();
+                print("techs: ${jobOrder?.technicians?.map((e) => e.name)}");
                 jobOrder?.technicians?.forEach((tech) {
                   cubit.selectedTechs.add(tech);
                   techs.removeWhere((e) => tech.name == e.name);
@@ -125,23 +127,46 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                       onChanged: (String? value) {
                         cubit.setSelectedMaintenanceType(value);
                       },
-                      items:  [
+                      items: [
                         DropdownMenuItem(
-                          value: 'صيانه اعطال',
-                          child: Text('صيانه اعطال'),
+                          value: MAIN_TYPE_FAULT,
+                          child: Text(MAIN_TYPE_FAULT),
+                          onTap: () {
+                            cubit.changeReturnVisiblity(false);
+                          },
                         ),
                         DropdownMenuItem(
-                          value: 'صيانة دورية',
-                          child: Text('صيانة دورية'),
+                          value: MAIN_TYPE_PERIODIC,
+                          child: Text(MAIN_TYPE_PERIODIC),
+                          onTap: () {
+                            cubit.changeReturnVisiblity(false);
+                          },
                         ),
                         DropdownMenuItem(
                           value: 'مرتجع',
-                          child: Text('مرتجع تكرار أعطال'),
-                          onTap: (){
-                            // cubit.showButtonDialog(context);
+                          child: const Text('مرتجع تكرار أعطال'),
+                          onTap: () {
+                            cubit.changeReturnVisiblity(true);
                           },
                         ),
                       ],
+                    ),
+                    const SizedBox(height: 20),
+                    Visibility(
+                      visible: cubit.returnVisible,
+                      child: TextButton(
+                        child: const Text("اختر الصيانة السابقة للمرتجع"),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const PreviousMaintenanceType(
+                                  chooseItem: true,
+                                ),
+                              ));
+                        },
+                      ),
                     ),
                     const SizedBox(height: 20),
                     const DetailsPreviousMaintenanceButton(),
@@ -304,7 +329,6 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                           hasElevation: true,
                           text: "انهاء امر الشغل",
                           onPressed: () {
-
                             print("Button pressed");
                             cubit.saveOrder(jobOrder!, true).then(
                                 (order) => Navigator.of(context).pop(order));

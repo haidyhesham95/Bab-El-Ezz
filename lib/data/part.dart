@@ -7,7 +7,7 @@ part 'part.g.dart';
 class Part {
   String? id;
   String name;
-  String code;
+  String? code;
   int quantity;
   String brand;
   double sellingPrice;

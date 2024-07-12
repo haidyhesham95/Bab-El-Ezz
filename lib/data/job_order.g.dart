@@ -27,6 +27,7 @@ JobOrder _$JobOrderFromJson(Map<String, dynamic> json) => JobOrder(
           : SpareInvoice.fromJson(json['invoice'] as Map<String, dynamic>),
       notes: json['notes'] as String?,
       maintenanceType: json['maintenanceType'] as String?,
+      isReturn: json['isReturn'] as bool? ?? false,
       paymentType: json['paymentType'] as String?,
       carImage: json['carImage'] as String?,
     )..id = json['id'] as String?;
@@ -37,6 +38,7 @@ Map<String, dynamic> _$JobOrderToJson(JobOrder instance) => <String, dynamic>{
       'clientName': instance.clientName,
       'phoneNumber': instance.phoneNumber,
       'maintenanceType': instance.maintenanceType,
+      'isReturn': instance.isReturn,
       'technicians': JobOrder.techListToJson(instance.technicians),
       'notes': instance.notes,
       'finished': instance.finished,
