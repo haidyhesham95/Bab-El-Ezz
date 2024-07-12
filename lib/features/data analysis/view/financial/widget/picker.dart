@@ -38,7 +38,7 @@ class AppFunctions {
 
                   selectionMode: DateRangePickerSelectionMode.range,
                   enablePastDates: true,
-                  maxDate: DateTime.now().add(Duration(days: 1)),
+                  maxDate: DateTime.now().add(const Duration(days: 1)),
                   backgroundColor: Colors.black,
                   headerStyle: const DateRangePickerHeaderStyle(
                     backgroundColor: Colors.black,

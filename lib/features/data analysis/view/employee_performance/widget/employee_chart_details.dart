@@ -30,9 +30,18 @@ class EmployeeChartDetails extends StatelessWidget {
           title: 'صيانات أعطال مرتجع',
           value: getData(MAIN_TYPE_FAULT, true)),
     ];
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: items.map((e) => ItemDetails(itemDetailsModel: e)).toList(),
+    return SizedBox(
+      height: 80,
+      child: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+         childAspectRatio: 8
+        ),
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return ItemDetails(itemDetailsModel: items[index]);
+        },
+      )
     );
   }
 

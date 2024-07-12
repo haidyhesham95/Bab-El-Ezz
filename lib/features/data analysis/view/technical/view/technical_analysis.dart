@@ -30,11 +30,11 @@ class TechnicalAnalysis extends StatelessWidget {
             if (state is TechnicalInitial) {
               cubit.getData();
               cubit.getPartsData();
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
             if (state is GetRangeDate) {
               cubit.getData();
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
 
             return Column(
@@ -61,7 +61,7 @@ class TechnicalAnalysis extends StatelessWidget {
                   children: [
                     Expanded(child: TechnicalDetails(cubit.jobOrders)),
                     Expanded(child: TechnicalChart(cubit.jobOrders)),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -93,13 +93,13 @@ class TechnicalAnalysis extends StatelessWidget {
   List<int> _countNewPerMonth(List<int> list) {
     DateTime now = DateTime.now();
     List<int> ret = List.generate(12, (index) => 0);
-    list.forEach((e) {
+    for (var e in list) {
       print("month: $e");
       // if month == 0, then created is null
       if (e != 0) {
         ret[(e - now.month) % 12]++;
       }
-    });
+    }
     return ret;
   }
 }

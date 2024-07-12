@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'daily_table_state.dart';
 
 class DailyTableCubit extends Cubit<DailyTableState> {
-  DailyTableCubit(this.technicians) : super(DailyTableInitial()) {}
+  DailyTableCubit(this.technicians) : super(DailyTableInitial());
 
   CollectionReference attendanceRef = FirebaseCollection().attendanceCol;
   CollectionReference staffRef = FirebaseCollection().staffCol;

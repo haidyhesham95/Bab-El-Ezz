@@ -30,10 +30,10 @@ class EmployeeCubit extends Cubit<EmployeeState> {
       JobOrder jobOrder = e.data() as JobOrder;
 
       bool isWithinRange = (jobOrder.endDate?.isBefore((selectedRange?.end ??
-                  jobOrder.endDate!.add(Duration(seconds: 2)))) ??
+                  jobOrder.endDate!.add(const Duration(seconds: 2)))) ??
               false) &&
           (jobOrder.endDate?.isAfter(selectedRange?.start ??
-                  jobOrder.endDate!.subtract(Duration(seconds: 2))) ??
+                  jobOrder.endDate!.subtract(const Duration(seconds: 2))) ??
               false);
 
       return isWithinRange;

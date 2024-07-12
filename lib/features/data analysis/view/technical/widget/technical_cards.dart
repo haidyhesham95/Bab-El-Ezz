@@ -20,7 +20,7 @@ class TechnicalCards extends StatelessWidget {
         Flexible(
           child: _buildCard(
             height: size.height * 0.08,
-            backgroundColor: Colors.red.shade400,
+            backgroundColor: const Color(0xffF1BA1A ),
             text: 'العملاء الحاليين',
             value: currentClients.toString(),
           ),

@@ -104,7 +104,7 @@ class _TotalStoreState extends State<TotalStore> {
         bottomTitles: AxisTitles(
           sideTitles: SideTitles(
             showTitles: true,
-            reservedSize: 30,
+            reservedSize: 60,
             interval: 1,
             getTitlesWidget: bottomTitleWidgets,
           ),
@@ -137,7 +137,7 @@ class _TotalStoreState extends State<TotalStore> {
             FlSpot(11, 4),
 
           ],
-          isCurved: true,
+          isCurved: false,
           gradient: LinearGradient(colors: gradientColors),
           barWidth: 5,
           isStrokeCapRound: true,
@@ -145,7 +145,7 @@ class _TotalStoreState extends State<TotalStore> {
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
-              colors: gradientColors.map((color) => color.withOpacity(0.3)).toList(),
+              colors: gradientColors.map((color) => color.withOpacity(0.1)).toList(),
             ),
           ),
         ),

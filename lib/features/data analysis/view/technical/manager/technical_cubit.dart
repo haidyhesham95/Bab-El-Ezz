@@ -40,17 +40,17 @@ class TechnicalCubit extends Cubit<TechnicalState> {
     // int total =
     //     orders.docs.length + merchants.docs.length + customers!.docs.length;
 
-    newClients = customers!.docs.where((e) {
+    newClients = customers.docs.where((e) {
       Customer customer = e.data() as Customer;
       return (customer.created?.isBefore((selectedRange?.end ??
-                  customer.created!.add(Duration(seconds: 2)))) ??
+                  customer.created!.add(const Duration(seconds: 2)))) ??
               true) &&
           (customer.created?.isAfter(selectedRange?.start ??
-                  customer.created!.subtract(Duration(seconds: 2))) ??
+                  customer.created!.subtract(const Duration(seconds: 2))) ??
               true);
     }).length;
 
-    currentClients = customers!.docs.length;
+    currentClients = customers.docs.length;
     numOrders = orders.docs.length;
     jobOrders.clear();
 
@@ -58,10 +58,10 @@ class TechnicalCubit extends Cubit<TechnicalState> {
       JobOrder jobOrder = e.data() as JobOrder;
 
       return (jobOrder.endDate?.isBefore((selectedRange?.end ??
-                  jobOrder.endDate!.add(Duration(seconds: 2)))) ??
+                  jobOrder.endDate!.add(const Duration(seconds: 2)))) ??
               false) &&
           (jobOrder.endDate?.isAfter(selectedRange?.start ??
-                  jobOrder.endDate!.subtract(Duration(seconds: 2))) ??
+                  jobOrder.endDate!.subtract(const Duration(seconds: 2))) ??
               false);
     }).forEach((e) {
       JobOrder jobOrder = e.data() as JobOrder;

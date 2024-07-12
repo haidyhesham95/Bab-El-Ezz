@@ -37,12 +37,12 @@ class _TotalChartState extends State<TotalChart> {
         PieChartSectionData(
           value: 40,
           radius: activeIndex == 0 ? 60 : 50,
-          color: const Color(0xff5DA5DA ),
+          color: const Color(0xffF1BA1A ),
         ),
         PieChartSectionData(
           value: 55,
           radius: activeIndex == 1 ? 60 : 50,
-          color: const Color(0xffFAA43A)
+          color: Colors.blue
         ),
         PieChartSectionData(
           value: 30,

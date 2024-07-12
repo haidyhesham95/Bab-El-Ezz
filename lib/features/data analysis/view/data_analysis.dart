@@ -26,7 +26,7 @@ class DataAnalysis extends StatelessWidget {
             dividerColor: Colors.transparent,
             unselectedLabelColor: ColorsAsset.kLightGray.withOpacity(0.4),
             indicatorSize: TabBarIndicatorSize.tab,
-            labelPadding: EdgeInsets.symmetric(horizontal: 0),
+            labelPadding: const EdgeInsets.symmetric(horizontal: 0),
             labelColor: ColorsAsset.kGreen,
             tabs: const [
               Tab(text: 'الحسابات المالية'),
