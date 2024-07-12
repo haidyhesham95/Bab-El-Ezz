@@ -20,9 +20,10 @@ class _EmployeeBarChartState extends State<EmployeeBarChart> {
       x: x,
       barRods: [
         BarChartRodData(
+          borderRadius: BorderRadius.circular(0),
           toY: value,
           color: color,
-          width: 12,
+          width: 50,
         ),
       ],
       showingTooltipIndicators: touchedGroupIndex == x ? [0] : [],
@@ -36,7 +37,7 @@ class _EmployeeBarChartState extends State<EmployeeBarChart> {
     return Padding(
       padding: const EdgeInsets.only(right: 20, left: 15),
       child: AspectRatio(
-        aspectRatio: 1.4,
+        aspectRatio: 2,
         child: BarChart(
           BarChartData(
             alignment: BarChartAlignment.spaceEvenly,

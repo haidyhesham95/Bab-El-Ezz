@@ -51,12 +51,12 @@ class _TechnicalChartState extends State<TechnicalChart> {
         PieChartSectionData(
           value: getData(MAIN_TYPE_FAULT).toDouble(),
           radius: activeIndex == 2 ? 60 : 50,
-          color: Colors.red,
+          color: const Color(0xff60BD68),
         ),
         PieChartSectionData(
           value: getData(MAIN_TYPE_FAULT, true).toDouble(),
           radius: activeIndex == 3 ? 60 : 50,
-          color: Colors.orange,
+          color: const Color(0xffF1BA1A ),
         ),
       ],
     );

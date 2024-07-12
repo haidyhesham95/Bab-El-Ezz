@@ -47,17 +47,21 @@ class _NewCustomerChartState extends State<NewCustomerChart> {
         drawVerticalLine: true,
         horizontalInterval: 1,
         verticalInterval: 1,
-        getDrawingHorizontalLine: (value) => FlLine(color: Colors.transparent),
-        getDrawingVerticalLine: (value) => FlLine(color: Colors.transparent),
+        getDrawingHorizontalLine: (value) => const FlLine(color: Colors.transparent),
+        getDrawingVerticalLine: (value) => const FlLine(color: Colors.transparent),
       ),
       titlesData: FlTitlesData(
         show: true,
-        rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: true)),
+
+        rightTitles: const AxisTitles(sideTitles: SideTitles(reservedSize: 40,showTitles: true),),
         topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
         bottomTitles: AxisTitles(
+
           sideTitles: SideTitles(
+
             showTitles: true,
-            reservedSize: 30,
+            reservedSize: 40,
+
             interval: 1,
             getTitlesWidget: _bottomTitleWidgets,
           ),
@@ -67,17 +71,19 @@ class _NewCustomerChartState extends State<NewCustomerChart> {
       // ... (other chart properties - borderData, minX, maxX, minY, maxY)
       lineBarsData: [
         LineChartBarData(
+
           spots: spots,
-          isCurved: true,
+          isCurved: false,
+
           gradient: LinearGradient(colors: gradientColors),
-          barWidth: 5,
+          barWidth: 3,
           isStrokeCapRound: true,
           dotData: const FlDotData(show: false),
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
               colors: gradientColors
-                  .map((color) => color.withOpacity(0.3))
+                  .map((color) => color.withOpacity(0.1))
                   .toList(),
             ),
           ),

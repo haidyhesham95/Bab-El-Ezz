@@ -2,14 +2,14 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 
-class RevenuesChart extends StatefulWidget {
-  const RevenuesChart({super.key});
+class QuestionsChart extends StatefulWidget {
+  const QuestionsChart({super.key});
 
   @override
-  State<RevenuesChart> createState() => _RevenuesChartState();
+  State<QuestionsChart> createState() => _QuestionsChartState();
 }
 
-class _RevenuesChartState extends State<RevenuesChart> {
+class _QuestionsChartState extends State<QuestionsChart> {
   int activeIndex = -1;
 
   @override
@@ -37,17 +37,20 @@ class _RevenuesChartState extends State<RevenuesChart> {
         PieChartSectionData(
           value: 72,
           radius: activeIndex == 0 ? 60 : 50,
-          color: const Color(0xFF0E9FE9),
+          color: Colors.blue,
         ),
         PieChartSectionData(
           value: 55,
           radius: activeIndex == 1 ? 60 : 50,
-          color: const Color(0xFFF1BA1A),
+          color: const Color(0xFFF1C40F),
+        ),
+        PieChartSectionData(
+          value: 55,
+          radius: activeIndex == 1 ? 60 : 50,
+          color: Colors.green,
         ),
 
       ],
     );
   }
 }
-
-

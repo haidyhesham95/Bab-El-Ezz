@@ -25,15 +25,15 @@ class PreviousMaintenanceType extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => DetailsMaintenancePageType()),
+                    builder: (context) => const DetailsMaintenancePageType()),
               );
             },
             child: ListTile(
-              title: RowText(
+              title: const RowText(
                 'نوع الصيانة : ',
                 'صيانة دورية',
               ),
-              subtitle: RowText(
+              subtitle: const RowText(
                 'التاريخ : ',
                 '12/12/2021',
               ),
@@ -42,7 +42,7 @@ class PreviousMaintenanceType extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: Text('اختر'), // Arabic for "Choose"
+                      child: const Text('اختر'), // Arabic for "Choose"
                     )
                   : null,
             ),

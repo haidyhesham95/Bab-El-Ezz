@@ -19,7 +19,7 @@ class DailyExpensesData extends StatelessWidget {
 
           if (state is DailyExpensesInitial) {
             cubit.getExpenses();
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
           return CustomDataTable(

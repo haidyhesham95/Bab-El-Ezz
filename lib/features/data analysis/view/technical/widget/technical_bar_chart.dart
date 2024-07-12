@@ -18,16 +18,19 @@ class TechnicalBarChart extends StatelessWidget {
         .toList();
     dataList.sort((a, b) => (a['amount'] as int).compareTo(b['amount']));
     return SfCartesianChart(
-      primaryXAxis: CategoryAxis(
+      primaryXAxis: const CategoryAxis(
         title: AxisTitle(text: ''),
       ),
-      primaryYAxis: NumericAxis(
+      primaryYAxis: const NumericAxis(
         title: AxisTitle(text: ''),
       ),
       tooltipBehavior: TooltipBehavior(enable: true),
       series: <CartesianSeries<dynamic, String>>[
         BarSeries<dynamic, String>(
+          width: 0.3,
+
           enableTooltip: true,
+
           color: Colors.blue,
           dataSource: dataList,
           xValueMapper: (dynamic data, _) => data['name'],

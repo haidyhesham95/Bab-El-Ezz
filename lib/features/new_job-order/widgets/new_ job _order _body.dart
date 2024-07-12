@@ -28,7 +28,7 @@ import 'details_previous_maintenance_button.dart';
 import 'drop_button.dart';
 
 class NewJobOrderBody extends StatefulWidget {
-  NewJobOrderBody({super.key});
+  const NewJobOrderBody({super.key});
 
   @override
   _NewJobOrderBodyState createState() => _NewJobOrderBodyState();
@@ -130,14 +130,14 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                       items: [
                         DropdownMenuItem(
                           value: MAIN_TYPE_FAULT,
-                          child: Text(MAIN_TYPE_FAULT),
+                          child: const Text(MAIN_TYPE_FAULT),
                           onTap: () {
                             cubit.changeReturnVisiblity(false);
                           },
                         ),
                         DropdownMenuItem(
                           value: MAIN_TYPE_PERIODIC,
-                          child: Text(MAIN_TYPE_PERIODIC),
+                          child: const Text(MAIN_TYPE_PERIODIC),
                           onTap: () {
                             cubit.changeReturnVisiblity(false);
                           },
@@ -250,14 +250,14 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                             if (jobOrder != null && jobOrder!.invoice != null) {
                               List<Part>? parts = List.from(
                                   jobOrder?.invoice?.parts as Iterable);
-                              parts?.forEach((part) {
+                              for (var part in parts) {
                                 cubit1.partController.text = part.name;
                                 cubit1.quantityController.text =
                                     part.quantity.toString();
                                 cubit1.priceController.text =
                                     part.sellingPrice.toString();
                                 onAddPressed(cubit1);
-                              });
+                              }
                             }
                           } else if (state is SearchData) {
                             searchResults = state.data as List<Part>;
