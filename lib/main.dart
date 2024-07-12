@@ -1,3 +1,5 @@
+import 'dart:html' as html;
+
 import 'package:bab_el_ezz/features/auth/manager/login/login_cubit.dart';
 import 'package:bab_el_ezz/features/auth/view/login_view.dart';
 import 'package:bab_el_ezz/features/auth/view/register_view1.dart';
@@ -73,82 +75,112 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        BlocProvider<LoginCubit>(
-          create: (context) => LoginCubit(),
+    final url = Uri.base.toString();
+    print("url: $url");
+    if (url.contains("webpage")) {
+      return const MaterialApp(title: 'Survey', home: SurveyPage());
+    } else {
+      return MultiProvider(
+        providers: [
+          BlocProvider<LoginCubit>(
+            create: (context) => LoginCubit(),
+          ),
+          BlocProvider<RegisterCubit>(
+            create: (context) => RegisterCubit(),
+          ),
+          BlocProvider<ThemeCubit>(
+            create: (context) => ThemeCubit(),
+          ),
+        ],
+        child: BlocConsumer<ThemeCubit, ThemeState>(
+          listener: (context, state) {
+            // TODO: implement listener
+          },
+          builder: (context, state) {
+            ThemeCubit cubit = ThemeCubit.get(context);
+            return MaterialApp(
+              locale: const Locale('ar', ''), // Set locale to Arabic
+              localizationsDelegates: const [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: const [
+                Locale('ar', ''), // Arabic
+              ],
+              debugShowCheckedModeBanner: false,
+              title: 'Flutter Demo',
+              theme: cubit.isDark ? ThemeData.dark() : ThemeData.light(),
+              initialRoute: widget.userAuthenticated ? "layout" : "login",
+              home: Directionality(
+                textDirection: TextDirection.rtl,
+                child: LoginView(),
+              ),
+              routes: {
+                'login': (context) => LoginView(),
+                "register1": (context) => const RegisterView1(),
+                "register2": (context) => RegisterView2(),
+                "staff": (context) => StaffPage(),
+                "layout": (context) => const LayOut(),
+                "dailyExpenses": (context) => const DailyExpenses(),
+                "workshop": (context) => WorkShopBody(),
+                "spareReceipt": (context) => const SpareReceipt(),
+                "newJobOrderPage": (context) => const NewJobOrderPage(),
+                "maintenanceInvoices": (context) => const MaintenanceInvoices(),
+                "searchClient": (context) => SearchClient(),
+                'addClient': (context) => AddClient(),
+                "supplierInvoices": (context) => const SupplierInvoices(),
+                "accountClearancePage": (context) =>
+                    const AccountClearancePage(),
+                "addInvoiceData": (context) => AddInvoicesData(),
+                "addItemStore": (context) => const AddsItemsStore(),
+                "addStaffItem": (context) => AddStaffItem(),
+                'addDailyExpenses': (context) => AddDailyExpenses(),
+                "spareInvoices": (context) => const SpareInvoices(),
+                "addCustomerSpareData": (context) => AddCustomerSpareData(),
+                "addInvoiceSpareData": (context) => AddInvoiceSpareData(),
+                "addSuppliersData": (context) => AddSuppliersData(),
+                "addCustomerReturnedData": (context) =>
+                    const AddCustomerReturnedData(),
+                "returnedInvoices": (context) => const ReturnedInvoices(),
+                "addMerchantReturnedData": (context) =>
+                    const AddMerchantReturnedData(),
+                "/print_invoice": (context) => const PrintInvoice(),
+                "viewDetailsPage": (context) => const ViewDetailsPage(),
+                "editProfile": (context) => const EditProfile(),
+                "PreviousMaintenance": (context) => const PreviousMaintenance(),
+                'detailsMaintenancePage': (context) =>
+                    const DetailsMaintenancePage(),
+                'addCustomer': (context) => const AddCustomer(),
+                'AddCustomerInSpareInvoice': (context) =>
+                    AddCustomerSpareData(),
+              },
+              builder: EasyLoading.init(),
+            );
+          },
         ),
-        BlocProvider<RegisterCubit>(
-          create: (context) => RegisterCubit(),
-        ),
-        BlocProvider<ThemeCubit>(
-          create: (context) => ThemeCubit(),
-        ),
-      ],
-      child: BlocConsumer<ThemeCubit, ThemeState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
-        builder: (context, state) {
-          ThemeCubit cubit = ThemeCubit.get(context);
-          return MaterialApp(
-            locale: const Locale('ar', ''), // Set locale to Arabic
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale('ar', ''), // Arabic
-            ],
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            theme: cubit.isDark ? ThemeData.dark() : ThemeData.light(),
-            initialRoute: widget.userAuthenticated ? "layout" : "login",
-            home: Directionality(
-              textDirection: TextDirection.rtl,
-              child: LoginView(),
-            ),
-            routes: {
-              'login': (context) => LoginView(),
-              "register1": (context) => const RegisterView1(),
-              "register2": (context) => RegisterView2(),
-              "staff": (context) => StaffPage(),
-              "layout": (context) => const LayOut(),
-              "dailyExpenses": (context) => const DailyExpenses(),
-              "workshop": (context) => WorkShopBody(),
-              "spareReceipt": (context) => const SpareReceipt(),
-              "newJobOrderPage": (context) => const NewJobOrderPage(),
-              "maintenanceInvoices": (context) => const MaintenanceInvoices(),
-              "searchClient": (context) => SearchClient(),
-              'addClient': (context) => AddClient(),
-              "supplierInvoices": (context) => const SupplierInvoices(),
-              "accountClearancePage": (context) => const AccountClearancePage(),
-              "addInvoiceData": (context) => AddInvoicesData(),
-              "addItemStore": (context) => const AddsItemsStore(),
-              "addStaffItem": (context) => AddStaffItem(),
-              'addDailyExpenses': (context) => AddDailyExpenses(),
-              "spareInvoices": (context) => const SpareInvoices(),
-              "addCustomerSpareData": (context) => AddCustomerSpareData(),
-              "addInvoiceSpareData": (context) => AddInvoiceSpareData(),
-              "addSuppliersData": (context) => AddSuppliersData(),
-              "addCustomerReturnedData": (context) =>
-                  const AddCustomerReturnedData(),
-              "returnedInvoices": (context) => const ReturnedInvoices(),
-              "addMerchantReturnedData": (context) =>
-                  const AddMerchantReturnedData(),
-              "/print_invoice": (context) => const PrintInvoice(),
-              "viewDetailsPage": (context) => const ViewDetailsPage(),
-              "editProfile": (context) => const EditProfile(),
-              "PreviousMaintenance": (context) => const PreviousMaintenance(),
-              'detailsMaintenancePage': (context) =>
-                  const DetailsMaintenancePage(),
-              'addCustomer': (context) => const AddCustomer(),
-              'AddCustomerInSpareInvoice': (context) => AddCustomerSpareData(),
-            },
-            builder: EasyLoading.init(),
-          );
-        },
+      );
+    }
+  }
+}
+
+class SurveyPage extends StatefulWidget {
+  const SurveyPage({Key? key}) : super(key: key);
+
+  @override
+  State<SurveyPage> createState() => _SurveyPageState();
+}
+
+class _SurveyPageState extends State<SurveyPage> {
+  @override
+  Widget build(BuildContext context) {
+    final url = html.window.location.href;
+    Uri uri = Uri.parse(url);
+    String? uid = uri.queryParameters['uid'];
+
+    return Scaffold(
+      body: Center(
+        child: Text(uid ?? 'null'),
       ),
     );
   }
