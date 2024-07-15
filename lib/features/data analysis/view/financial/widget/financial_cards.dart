@@ -5,7 +5,9 @@ import '../../../../../generated/assets.dart';
 import '../../../../../shared_utils/styles/colors.dart';
 
 class FinancialCards extends StatelessWidget {
-  const FinancialCards({super.key});
+  const FinancialCards(this.net, this.store, this.remaining, {super.key});
+
+  final double net, store, remaining;
 
   @override
   Widget build(BuildContext context) {
@@ -14,39 +16,38 @@ class FinancialCards extends StatelessWidget {
       children: [
         Flexible(
           child: _buildCard(
-            height: size.height * 0.08,
+            size: size,
             iconPath: Assets.imagesProfit,
             iconColor: Colors.white,
             iconSize: 35,
             backgroundColor: ColorsAsset.kGreen.withOpacity(0.9),
             color: ColorsAsset.kGreen,
-
             text1: 'صافي الربح',
-            text2: '%72',
+            text2: net.toString(),
           ),
         ),
         Flexible(
           child: _buildCard(
-            height: size.height * 0.08,
+            size: size,
             iconPath: Assets.imagesPrice,
             iconColor: Colors.white,
             iconSize: 28,
-            backgroundColor: const Color(0xffF1BA1A ).withOpacity(0.8),
-            color: const Color(0xffF1BA1A ),
+            backgroundColor: const Color(0xffF1BA1A).withOpacity(0.8),
+            color: const Color(0xffF1BA1A),
             text1: 'رصيد المخزن',
-            text2: '%72',
+            text2: store.toString(),
           ),
         ),
         Flexible(
           child: _buildCard(
-            height: size.height * 0.08,
+            size: size,
             iconPath: Assets.imagesValue1,
             iconColor: Colors.white,
             iconSize: 28,
             backgroundColor: Colors.blue.shade400,
             color: Colors.blue,
             text1: 'اجمالي الاجل ',
-            text2: '%72',
+            text2: remaining.toString(),
           ),
         ),
       ],
@@ -60,11 +61,11 @@ class FinancialCards extends StatelessWidget {
     required Color backgroundColor,
     required String text1,
     required String text2,
-    required double height,
+    required Size size,
     required Color color,
   }) {
     return SizedBox(
-      height: height,
+      height: size.height * 0.09,
       child: Card(
         color: backgroundColor,
         shape: RoundedRectangleBorder(
@@ -73,7 +74,8 @@ class FinancialCards extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: height,
+              height: size.height * 0.08,
+              width: size.width * 0.09,
               padding: const EdgeInsets.only(right: 5, left: 5),
               decoration: BoxDecoration(
                 color: color,
@@ -96,10 +98,10 @@ class FinancialCards extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(text1,
-                      style: const TextStyle(fontSize: 15, color: Colors.white),
+                      style: const TextStyle(fontSize: 13, color: Colors.white),
                       overflow: TextOverflow.visible),
                   Text(text2,
-                      style: const TextStyle(fontSize: 15, color: Colors.white),
+                      style: const TextStyle(fontSize: 13, color: Colors.white),
                       overflow: TextOverflow.visible),
                 ],
               ),

@@ -4,29 +4,29 @@ import 'package:json_annotation/json_annotation.dart';
 part 'feedback.g.dart';
 
 @JsonSerializable()
-class Feedback {
-  String id;
+class Review {
+  String? id;
   int waitingTimeRating;
   int receptionRating;
   int serviceQualityRating;
   int priceRating;
   bool workCompletedFirstTime;
   bool wouldRecommend;
+  DateTime time;
 
-  Feedback(
-      this.id,
+  Review(
       this.waitingTimeRating,
       this.receptionRating,
       this.serviceQualityRating,
       this.priceRating,
       this.workCompletedFirstTime,
-      this.wouldRecommend);
+      this.wouldRecommend,
+      this.time);
 
-  factory Feedback.fromFirestore(DocumentSnapshot doc) =>
-      Feedback.fromJson(doc.data()! as Map<String, dynamic>)..id = doc.id;
+  factory Review.fromFirestore(DocumentSnapshot doc) =>
+      Review.fromJson(doc.data()! as Map<String, dynamic>)..id = doc.id;
 
-  factory Feedback.fromJson(Map<String, dynamic> json) =>
-      _$FeedbackFromJson(json);
+  factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FeedbackToJson(this);
+  Map<String, dynamic> toJson() => _$ReviewToJson(this);
 }

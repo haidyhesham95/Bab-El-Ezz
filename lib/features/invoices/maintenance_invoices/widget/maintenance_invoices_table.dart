@@ -1,7 +1,7 @@
+import 'package:bab_el_ezz/data/job_order.dart';
 import 'package:bab_el_ezz/data/maintenance_invoice.dart';
 import 'package:bab_el_ezz/features/invoices/invoices/widget/top_invoice_search.dart';
 import 'package:bab_el_ezz/features/invoices/supplier_invoices/manager/supplier_invoice/supplier_invoice_cubit.dart';
-import 'package:bab_el_ezz/shared_utils/utils/constant.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/custom_data_table.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/show_details_text.dart';
 import 'package:flutter/material.dart';
@@ -25,10 +25,12 @@ class MaintenanceInvoiceTable extends StatelessWidget {
           InvoiceCubit cubit = InvoiceCubit.get(context);
 
           if (state is SupplierInvoiceInitial) {
-            cubit.getInvoices(INVOICE_MAINTENANCE);
+            cubit.getOrders();
           }
           if (state is SearchData) {
-            invoices = state.data.map((e) => e as MaintenanceInvoice).toList();
+            invoices = state.data
+                .map((e) => MaintenanceInvoice.fromJobOrder(e as JobOrder))
+                .toList();
           }
 
           return Column(
@@ -72,8 +74,9 @@ class MaintenanceInvoiceTable extends StatelessWidget {
                           index: index,
                           onTapEdit: (index) {},
                           onTapDelete: (index) {
-                            cubit.deleteInvoice(
-                                invoices[index], INVOICE_MAINTENANCE);
+                            /// we have to delete the job order
+                            // cubit.deleteInvoice(
+                            //     invoices[index], INVOICE_MAINTENANCE);
                           },
                         )),
                         if (cubit.showAll) ...[

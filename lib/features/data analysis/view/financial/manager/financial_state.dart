@@ -6,3 +6,5 @@ sealed class FinancialState {}
 final class FinancialInitial extends FinancialState {}
 
 class GetRangeDate extends FinancialState {}
+
+class UpdateData extends FinancialState {}

@@ -9,7 +9,7 @@ class Part {
   String name;
   String? code;
   int quantity;
-  String brand;
+  String? brand;
   double sellingPrice;
   double wholesalePrice;
   int lowStockThreshold;

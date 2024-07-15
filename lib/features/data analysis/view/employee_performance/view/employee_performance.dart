@@ -47,34 +47,38 @@ class EmployeePerformance extends StatelessWidget {
                 EmployeeChartDetails(cubit.jobOrders),
                 SizedBox(
                   width: 200,
-                   height: 300,
+                  height: 300,
                   child: ListView.builder(
-                    itemCount:  cubit.techCars.keys
-                        .length,
+                    shrinkWrap: true,
+                    itemCount: cubit.techCars.keys.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: [
-                            Text(cubit.techCars.keys.elementAt(index),style: const TextStyle(fontSize: 20),),
-                            const SizedBox(height: 10,),
+                            Text(
+                              cubit.techCars.keys.elementAt(index),
+                              style: const TextStyle(fontSize: 20),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
                             EmployeeChart(
                               jobOrders: cubit.jobOrders
                                   .where((e) => (e.technicians
-                                  ?.map((e) => e.name)
-                                  .toList()
-                                  .contains(cubit.techCars.keys
-                                  .elementAt(index)) ??
-                                  false))
+                                          ?.map((e) => e.name)
+                                          .toList()
+                                          .contains(cubit.techCars.keys
+                                              .elementAt(index)) ??
+                                      false))
                                   .toList(),
                             ),
                           ],
                         ),
                       );
-
-                    },),
+                    },
+                  ),
                 ),
-
                 const SizedBox(
                   height: 20,
                 )

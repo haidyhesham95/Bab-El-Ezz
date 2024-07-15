@@ -57,9 +57,22 @@ class DailyExpensesCubit extends Cubit<DailyExpensesState> {
         expense.date.year == now.year;
   }
 
-  void updateExpense(DailyExpense expense) {
+  void updateExpense(DailyExpense expense) async {
+    final data = await expensesRef.get();
+    // await data.docs.first.reference.update(data);
     int index =
         dailyExpenses.indexWhere((e) => e.date.isAtSameMomentAs(expense.date));
+    final iter = data.docs.where((e) {
+      DailyExpense exp = e.data() as DailyExpense;
+      return exp.item == dailyExpenses[index].item &&
+          exp.price == dailyExpenses[index].price &&
+          exp.date.isAtSameMomentAs(dailyExpenses[index].date);
+    });
+
+    if (iter.isNotEmpty) {
+      await iter.first.reference.update(expense.toJson());
+    }
+
     total -= dailyExpenses[index].price;
     total += expense.price;
     dailyExpenses.removeAt(index);

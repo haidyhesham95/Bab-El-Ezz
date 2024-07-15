@@ -10,7 +10,7 @@ Part _$PartFromJson(Map<String, dynamic> json) => Part(
       json['name'] as String,
       json['code'] as String?,
       json['quantity'] as int,
-      json['brand'] as String,
+      json['brand'] as String?,
       (json['sellingPrice'] as num).toDouble(),
       (json['wholesalePrice'] as num).toDouble(),
       json['lowStockThreshold'] as int,

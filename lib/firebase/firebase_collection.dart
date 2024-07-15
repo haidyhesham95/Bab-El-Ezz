@@ -2,6 +2,7 @@ import 'package:bab_el_ezz/data/attendance.dart';
 import 'package:bab_el_ezz/data/car.dart';
 import 'package:bab_el_ezz/data/customer.dart';
 import 'package:bab_el_ezz/data/daily_expense.dart';
+import 'package:bab_el_ezz/data/feedback.dart';
 import 'package:bab_el_ezz/data/invoice.dart';
 import 'package:bab_el_ezz/data/job_order.dart';
 import 'package:bab_el_ezz/data/maintenance_invoice.dart';
@@ -29,6 +30,7 @@ class FirebaseCollection {
   static const String partCollectionName = "Parts";
   static const String invoiceCollectionName = "Invoices";
   static const String merchantsCollectionName = "Merchants";
+  static const String feedbackCollectionName = "Feedbacks";
   static const String dailyExpenseCollectionName = "Daily Expenses";
 
   static final FirebaseCollection _singleton = FirebaseCollection._internal();
@@ -40,6 +42,7 @@ class FirebaseCollection {
   late CollectionReference<PartCustomer> partsCustCol;
   late CollectionReference<Workshop> workshopCol;
   late CollectionReference<Car> carCol;
+  late CollectionReference<Review> feedbackCol;
   late CollectionReference<Part> partCol;
   late CollectionReference<Invoice> maintenanceInvCol;
   late CollectionReference<Invoice> merchantInvCol;
@@ -58,6 +61,10 @@ class FirebaseCollection {
         collectionName: jobOrderCollectionName,
         fromJson: JobOrder.fromFirestore,
         toJson: (JobOrder model) => model.toJson());
+    feedbackCol = _getOrCreateCollection<Review>(
+        collectionName: feedbackCollectionName,
+        fromJson: Review.fromFirestore,
+        toJson: (Review model) => model.toJson());
     dailyExpenseCol = _getOrCreateCollection<DailyExpense>(
         collectionName: dailyExpenseCollectionName,
         fromJson: DailyExpense.fromFirestore,

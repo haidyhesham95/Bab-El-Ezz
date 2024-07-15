@@ -1,5 +1,3 @@
-import 'dart:html' as html;
-
 import 'package:bab_el_ezz/features/auth/manager/login/login_cubit.dart';
 import 'package:bab_el_ezz/features/auth/view/login_view.dart';
 import 'package:bab_el_ezz/features/auth/view/register_view1.dart';
@@ -10,6 +8,7 @@ import 'package:bab_el_ezz/features/store/widget/add_item_store.dart';
 import 'package:bab_el_ezz/features/workshop/add_client/view/add_client.dart';
 import 'package:bab_el_ezz/features/workshop/spare_receipt/widget/add_customer.dart';
 import 'package:bab_el_ezz/layout/view/layout.dart';
+import 'package:bab_el_ezz/webpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -161,27 +160,5 @@ class _MyAppState extends State<MyApp> {
         ),
       );
     }
-  }
-}
-
-class SurveyPage extends StatefulWidget {
-  const SurveyPage({Key? key}) : super(key: key);
-
-  @override
-  State<SurveyPage> createState() => _SurveyPageState();
-}
-
-class _SurveyPageState extends State<SurveyPage> {
-  @override
-  Widget build(BuildContext context) {
-    final url = html.window.location.href;
-    Uri uri = Uri.parse(url);
-    String? uid = uri.queryParameters['uid'];
-
-    return Scaffold(
-      body: Center(
-        child: Text(uid ?? 'null'),
-      ),
-    );
   }
 }

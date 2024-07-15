@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bab_el_ezz/data/customer.dart';
 import 'package:bab_el_ezz/data/invoice.dart';
+import 'package:bab_el_ezz/data/job_order.dart';
 import 'package:bab_el_ezz/data/merchant.dart';
 import 'package:bab_el_ezz/data/merchant_invoice.dart';
 import 'package:bab_el_ezz/data/part.dart';
@@ -54,10 +55,12 @@ class InvoiceCubit extends Cubit<InvoiceState> {
       FirebaseCollection().returnPartInvCol;
   final CollectionReference partsRef = FirebaseCollection().partCol;
   final CollectionReference partsCustRef = FirebaseCollection().partsCustCol;
+  final CollectionReference ordersRef = FirebaseCollection().jobOrderCol;
 
   // State variables
   String? selectedMerchant;
   List<Invoice> invoices = [];
+  List<JobOrder> jobOrders = [];
   List<Merchant> merchants = [];
   List<Customer> customers = [];
   bool showAll = false;
@@ -78,6 +81,12 @@ class InvoiceCubit extends Cubit<InvoiceState> {
     final data = await merchantRef.get();
     merchants = data.docs.map((e) => e.data() as Merchant).toList();
     emit(SearchData(merchants));
+  }
+
+  Future getOrders() async {
+    final data = await ordersRef.get();
+    jobOrders = data.docs.map((e) => e.data() as JobOrder).toList();
+    emit(SearchData(jobOrders));
   }
 
   Future<void> getInvoices(String type) async {

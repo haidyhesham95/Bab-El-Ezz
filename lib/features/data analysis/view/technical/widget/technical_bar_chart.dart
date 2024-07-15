@@ -28,9 +28,7 @@ class TechnicalBarChart extends StatelessWidget {
       series: <CartesianSeries<dynamic, String>>[
         BarSeries<dynamic, String>(
           width: 0.3,
-
           enableTooltip: true,
-
           color: Colors.blue,
           dataSource: dataList,
           xValueMapper: (dynamic data, _) => data['name'],
