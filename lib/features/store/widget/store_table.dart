@@ -49,7 +49,7 @@ class StoreTable extends StatelessWidget {
                   DataCell(Text(parts[index].quantity.toString())),
                   if (showAllData) ...[
                     DataCell(Text(parts[index].code ?? '')),
-                    DataCell(Text(parts[index].brand)),
+                    DataCell(Text(parts[index].brand!)),
                     DataCell(Text(parts[index].wholesalePrice.toString())),
                     DataCell(Text(parts[index].sellingPrice.toString())),
                     DataCell(Text(parts[index].lowStockThreshold.toString())),
