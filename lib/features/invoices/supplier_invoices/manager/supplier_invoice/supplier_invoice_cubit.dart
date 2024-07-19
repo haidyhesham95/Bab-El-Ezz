@@ -213,6 +213,9 @@ class InvoiceCubit extends Cubit<InvoiceState> {
             .doc(_getInvoiceDocumentId(invoice, type))
             .set(invoice);
       } else if (type.contains(INVOICE_SPARE)) {
+        DateTime now = DateTime.now();
+        await UserServices.updateTotalStore(invoice.price, now.month, now.year,
+            sell: true);
         await partsInvRef
             .doc(_getInvoiceDocumentId(invoice, type))
             .set(invoice)

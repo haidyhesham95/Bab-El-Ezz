@@ -1,5 +1,6 @@
 import 'package:bab_el_ezz/data/part.dart';
 import 'package:bab_el_ezz/firebase/firebase_collection.dart';
+import 'package:bab_el_ezz/firebase/user_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,9 +31,13 @@ class StoreCubit extends Cubit<StoreState> {
         brandController.text,
         double.parse(priceController.text),
         double.parse(salePriceController.text),
-        int.parse(alertController.text));
+        int.parse(alertController.text),
+        availableDate: DateTime.now());
     parts.add(part);
     await partRef.add(part);
+    await UserServices.updateTotalStore(double.parse(priceController.text),
+        DateTime.now().month, DateTime.now().year,
+        sell: false);
     emit(StoreItemsAdded(const []));
     //todo: handle added part in the view
     return part;

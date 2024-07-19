@@ -1,9 +1,13 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-
 class TotalChart extends StatefulWidget {
-  const TotalChart({super.key});
+  TotalChart(
+      {super.key,
+      required this.salaries,
+      required this.merchantInvoices,
+      required this.dailyExpenses});
+  double salaries, merchantInvoices, dailyExpenses;
 
   @override
   State<TotalChart> createState() => _TotalChartState();
@@ -13,7 +17,6 @@ class _TotalChartState extends State<TotalChart> {
   int activeIndex = -1;
 
   @override
-
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 1,
@@ -23,7 +26,6 @@ class _TotalChartState extends State<TotalChart> {
 
   PieChartData getChartData() {
     return PieChartData(
-
       pieTouchData: PieTouchData(
         enabled: true,
         touchCallback: (p0, pietouchResponse) {
@@ -35,21 +37,19 @@ class _TotalChartState extends State<TotalChart> {
       sectionsSpace: 0,
       sections: [
         PieChartSectionData(
-          value: 40,
+          value: widget.merchantInvoices,
           radius: activeIndex == 0 ? 60 : 50,
-          color: const Color(0xffF1BA1A ),
+          color: const Color(0xffF1BA1A),
         ),
         PieChartSectionData(
-          value: 55,
+          value: widget.salaries,
           radius: activeIndex == 1 ? 60 : 50,
-          color: Colors.blue
+          color: Colors.blue,
         ),
         PieChartSectionData(
-          value: 30,
-          radius: activeIndex == 2 ? 60 : 50,
-          color: const Color(0xff60BD68)
-        ),
-
+            value: widget.dailyExpenses,
+            radius: activeIndex == 2 ? 60 : 50,
+            color: const Color(0xff60BD68)),
       ],
     );
   }

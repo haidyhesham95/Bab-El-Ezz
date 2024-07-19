@@ -3,6 +3,7 @@ import 'package:bab_el_ezz/data/spare_invoice.dart';
 import 'package:bab_el_ezz/data/technician.dart';
 import 'package:bab_el_ezz/features/new_job-order/widgets/create_pdf.dart';
 import 'package:bab_el_ezz/firebase/firebase_collection.dart';
+import 'package:bab_el_ezz/firebase/user_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -93,6 +94,11 @@ class NewJobCubit extends Cubit<NewJobState> {
     }
 
     if (finished) {
+      DateTime now = DateTime.now();
+      //fixme: what if the parts are not in the store??!
+      await UserServices.updateTotalStore(
+          job.invoice?.price ?? 0, now.month, now.year,
+          sell: true);
       PdfGenerator.createPdf(job);
     }
 

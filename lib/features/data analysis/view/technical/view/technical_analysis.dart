@@ -94,7 +94,6 @@ class TechnicalAnalysis extends StatelessWidget {
     DateTime now = DateTime.now();
     List<int> ret = List.generate(12, (index) => 0);
     for (var e in list) {
-      print("month: $e");
       // if month == 0, then created is null
       if (e != 0) {
         ret[(e - now.month) % 12]++;

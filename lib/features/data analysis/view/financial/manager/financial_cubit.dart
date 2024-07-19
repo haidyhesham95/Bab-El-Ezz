@@ -17,6 +17,8 @@ class FinancialCubit extends Cubit<FinancialState> {
 
   static FinancialCubit get(BuildContext context) => BlocProvider.of(context);
   DateTimeRange? selectedRange;
+  List<Part> parts = [];
+  List<double> monthlyNetIncome = List.generate(12, (e) => 0);
 
   double net = 0,
       income = 0,
@@ -36,26 +38,34 @@ class FinancialCubit extends Cubit<FinancialState> {
   CollectionReference merchantInvRef = FirebaseCollection().merchantInvCol;
 
   populateData() async {
+    print("data");
     final orders = await ordersRef.get();
     final invoices = await spareInvRef.get();
     final expenses = await dailyExpRef.get();
     final store = await storeRef.get();
     final merchantInv = await merchantInvRef.get();
 
+    print("orders: ${orders.docs.length}");
+    parts = store.docs.map((e) => e.data() as Part).toList();
+
     storePrice = store.docs.fold(
         0.0,
         (p, e) =>
-            p + //todo: sellingPrice or whole??
-            ((e.data() as Part).quantity * (e.data() as Part).sellingPrice));
+            p +
+            ((e.data() as Part).quantity *
+                ((e.data() as Part).sellingPrice ?? 0)));
 
     remaining = merchantInv.docs.fold(
         0.0, (p, e) => p + ((e.data() as MerchantInvoice).totalRemaining ?? 0));
+    merchantInvoices = merchantInv.docs
+        .fold(0.0, (p, e) => p + ((e.data() as MerchantInvoice).price));
 
     calculateIncome(orders, invoices);
     calculateSpending(expenses);
 
     net = income - spending;
-
+    print("income: $income");
+    print("spending: $spending");
     emit(UpdateData());
   }
 
@@ -72,36 +82,53 @@ class FinancialCubit extends Cubit<FinancialState> {
     orders.docs.where((e) {
       JobOrder jobOrder = e.data() as JobOrder;
 
-      return (jobOrder.endDate?.isBefore((selectedRange?.end ??
-                  jobOrder.endDate!.add(const Duration(seconds: 2)))) ??
+      // don't return unfinished jobs
+      // if selectedRange is null, return from the start of current year
+      return (jobOrder.endDate?.isBefore(
+                  (selectedRange?.end ?? DateTime(DateTime.now().year + 1))) ??
               false) &&
-          (jobOrder.endDate?.isAfter(selectedRange?.start ??
-                  jobOrder.endDate!.subtract(const Duration(seconds: 2))) ??
+          (jobOrder.endDate?.isAfter(
+                  selectedRange?.start ?? DateTime(DateTime.now().year)) ??
               false);
     }).forEach((e) {
       JobOrder jobOrder = e.data() as JobOrder;
 
       income += jobOrder.invoice?.price ?? 0;
+      monthlyNetIncome[jobOrder.endDate?.month ?? 0] +=
+          jobOrder.invoice?.price ?? 0;
 
-      spending +=
-          ((jobOrder.technicians?.fold(0.0, (p, e) => p + e.dailyRate) ?? 0) *
-              (selectedRange?.end
-                      .difference(selectedRange?.start ?? selectedRange!.end)
-                      .inDays ??
-                  0));
+      double salary = ((jobOrder.technicians
+                  ?.fold(0.0, (p, e) => p + e.dailyRate) ??
+              0) *
+          ((jobOrder.endDate
+                          ?.difference(jobOrder.startDate ?? jobOrder.endDate!)
+                          .inHours ??
+                      0) /
+                  24)
+              .ceilToDouble());
+
+      salaries += salary;
+      spending += salary;
+      monthlyNetIncome[jobOrder.endDate?.month ?? 0] -= salary;
     });
 
-    invoices.docs.where((e) {
+    invoices.docs.where((e) => e.id.contains("spare")).where((e) {
       SpareInvoice invoice = e.data() as SpareInvoice;
 
-      return (invoice.date.isBefore((selectedRange?.end ??
-              invoice.date.add(const Duration(seconds: 2))))) &&
-          (invoice.date.isAfter(selectedRange?.start ??
-              invoice.date.subtract(const Duration(seconds: 2))));
+      // if invoice data is null, return false
+      // if selectedRange is null, return from the start of current year
+      return (invoice.date.isBefore(
+              (selectedRange?.end ?? DateTime(DateTime.now().year + 1)))) &&
+          (invoice.date
+              .isAfter(selectedRange?.start ?? DateTime(DateTime.now().year)));
     }).forEach((e) {
       SpareInvoice invoice = e.data() as SpareInvoice;
       services += invoice.service;
+      for (var i in invoice.parts) {
+        spareParts += (i.quantity * (i.sellingPrice ?? 0));
+      }
       income += invoice.price;
+      monthlyNetIncome[invoice.date.month] += invoice.price;
     });
   }
 
@@ -109,13 +136,16 @@ class FinancialCubit extends Cubit<FinancialState> {
     expenses.docs.where((e) {
       DailyExpense expense = e.data() as DailyExpense;
 
-      return (expense.date.isBefore((selectedRange?.end ??
-              expense.date.add(const Duration(seconds: 2))))) &&
-          (expense.date.isAfter(selectedRange?.start ??
-              expense.date.subtract(const Duration(seconds: 2))));
+      return (expense.date.isBefore(
+              (selectedRange?.end ?? DateTime(DateTime.now().year + 1)))) &&
+          (expense.date
+              .isAfter(selectedRange?.start ?? DateTime(DateTime.now().year)));
     }).forEach((e) {
       DailyExpense expense = e.data() as DailyExpense;
+      dailyExpenses += expense.price;
       spending += expense.price;
+
+      monthlyNetIncome[expense.date.month] -= expense.price;
     });
   }
 }

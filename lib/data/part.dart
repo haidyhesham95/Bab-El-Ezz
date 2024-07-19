@@ -10,19 +10,14 @@ class Part {
   String? code;
   int quantity;
   String? brand;
-  double sellingPrice;
+  double? sellingPrice;
   double wholesalePrice;
   int lowStockThreshold;
+  DateTime? availableDate;
 
-  Part(
-    this.name,
-    this.code,
-    this.quantity,
-    this.brand,
-    this.sellingPrice,
-    this.wholesalePrice,
-    this.lowStockThreshold,
-  );
+  Part(this.name, this.code, this.quantity, this.brand, this.sellingPrice,
+      this.wholesalePrice, this.lowStockThreshold,
+      {this.availableDate});
 
   factory Part.fromFirestore(DocumentSnapshot doc) =>
       Part.fromJson(doc.data()! as Map<String, dynamic>)..id = doc.id;

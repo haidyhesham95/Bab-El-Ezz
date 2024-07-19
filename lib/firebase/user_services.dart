@@ -29,6 +29,43 @@ class UserServices {
     }
   }
 
+  static Future getTotalStore(int year) async {
+    final ref =
+        FirebaseFirestore.instance.collection("shops").doc(getUserId()!);
+    final data = await ref.get();
+
+    if (data.data()!['total_store_$year'] != null) {
+      return data.data()!['total_store_$year'] as List;
+    } else {
+      ref.set({
+        'total_store_$year':
+            FieldValue.arrayUnion(List.generate(12, (e) => 0.0))
+      });
+      return List.generate(12, (e) => 0);
+    }
+  }
+
+  static updateTotalStore(double total, int month, int year,
+      {required bool sell}) async {
+    final ref =
+        FirebaseFirestore.instance.collection("shops").doc(getUserId()!);
+    final data = await ref.get();
+
+    if (data.exists) {
+      List list = await getTotalStore(year);
+      if (sell) {
+        list[month] -= total;
+      } else {
+        list[month] += total;
+      }
+      await ref.update({'total_store_$year': list});
+    } else {
+      await ref.set({
+        'total_store': FieldValue.arrayUnion(List.generate(12, (e) => 0.0))
+      });
+    }
+  }
+
   static String _convertToSixDgts(int n) {
     return n.toString().padLeft(6, "0");
   }

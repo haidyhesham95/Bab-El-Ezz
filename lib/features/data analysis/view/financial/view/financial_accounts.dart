@@ -60,33 +60,48 @@ class _FinancialAccountsState extends State<FinancialAccounts> {
                     const SizedBox(height: 30),
                     clipBathGradient(context, text: 'الإيرادات '),
                     const SizedBox(height: 30),
-                    const Row(
+                    Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Expanded(child: RevenuesDetails()),
-                        Expanded(child: RevenuesChart()),
+                        Expanded(
+                            child: RevenuesDetails(
+                          service: cubit.services,
+                          parts: cubit.spareParts,
+                        )),
+                        Expanded(
+                            child: RevenuesChart(
+                          service: cubit.services,
+                          parts: cubit.spareParts,
+                        )),
                         SizedBox(width: 10),
                       ],
                     ),
                     const SizedBox(height: 20),
                     clipBathGradient(context, text: 'اجمالي المصروفات '),
                     const SizedBox(height: 30),
-                    const Row(
+                    Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(child: TotalDetails()),
-                        Expanded(child: TotalChart()),
+                        Expanded(
+                            child: TotalChart(
+                          salaries: cubit.salaries,
+                          dailyExpenses: cubit.dailyExpenses,
+                          merchantInvoices: cubit.merchantInvoices,
+                        )),
                         SizedBox(width: 10),
                       ],
                     ),
                     const SizedBox(height: 25),
                     clipBathGradient(context, text: 'اجمالي رصيد المخزن '),
                     const SizedBox(height: 30),
-                    const TotalStore(),
+                    TotalStore(
+                      monthlyData: _countNewPerMonth(cubit),
+                    ),
                     const SizedBox(height: 25),
                     clipBathGradient(context, text: 'صافي الربح '),
                     const SizedBox(height: 30),
-                    const NetProfit(),
+                    NetProfit(cubit.monthlyNetIncome),
                     const SizedBox(height: 20),
                   ],
                 );
@@ -96,5 +111,30 @@ class _FinancialAccountsState extends State<FinancialAccounts> {
         ),
       ),
     );
+  }
+
+  /// list of user created months [1..12] (length unknown)
+  List<double> _countNewPerMonth(FinancialCubit cubit) {
+    DateTime now = DateTime.now();
+    List<double> ret = List.generate(12, (index) => 0);
+    Map<int, double> priceMap = {};
+    cubit.parts.forEach((part) {
+      if (priceMap.containsKey(part.availableDate?.month ?? 0)) {
+        priceMap[part.availableDate?.month ?? 0] =
+            priceMap[part.availableDate?.month ?? 0]! +
+                (part.quantity * (part.sellingPrice ?? 0));
+      } else {
+        priceMap[part.availableDate?.month ?? 0] =
+            part.quantity * (part.sellingPrice ?? 0);
+      }
+    });
+    for (var e in priceMap.entries) {
+      // if month == 0, then created is null
+      if (e.key != 0) {
+        ret[(e.key - now.month) % 12] += e.value;
+      }
+    }
+    print("data: $ret");
+    return ret;
   }
 }
