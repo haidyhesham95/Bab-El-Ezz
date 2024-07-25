@@ -66,8 +66,8 @@ AddItemsMerchantReturned(
                 child: Text('استبدال'),
               ),
               DropdownMenuItem(
-                value: 'مرتجع ',
-                child: Text('مرتجع '),
+                value: 'مرتجع',
+                child: Text('مرتجع'),
               ),
             ],
           );

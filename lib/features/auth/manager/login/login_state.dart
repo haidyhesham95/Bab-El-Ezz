@@ -6,3 +6,5 @@ sealed class LoginState {}
 final class LoginInitial extends LoginState {}
 
 final class ShowPasswordInLogin extends LoginState {}
+
+final class UpdateData extends LoginState {}

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
+import '../widget/opnion_details_item.dart';
 import '../widget/questions_chart.dart';
 
 class CustomerOpinions extends StatelessWidget {
@@ -28,38 +29,47 @@ class CustomerOpinions extends StatelessWidget {
 
           if (state is CustomerInitial) {
             cubit.getData();
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
           return Scaffold(
-              body: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 30,
+              body: CustomScrollView(
+                slivers: [
+                  const SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 30,
+                    ),),
+                  SliverToBoxAdapter(
+                    child: TechnicalDate(
+                      text: cubit.selectedRange == null
+                          ? ' اختر التاريخ من - إلى '
+                          : ' من : ${DateFormat('yyyy-MM-dd').format(cubit.selectedRange!.start)}  -  الي : ${DateFormat('yyyy-MM-dd').format(cubit.selectedRange!.end)} ',
+                      onTap: () {
+                        cubit.getDateRange(context);
+                      },
+                    ),),
+                  const SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 30,
+                    ),),
+                  SliverToBoxAdapter(
+                    child:  CustomerCards(cubit.jobOrders, cubit.feedbacks),),
+                  const SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: 30,
+                    ),),
+                  const SliverAppBar(
+                      pinned: true,
+                      expandedHeight: 50,
+                      collapsedHeight: 60,
+                      flexibleSpace:OpnionItems(),
                   ),
-                  TechnicalDate(
-                    text: cubit.selectedRange == null
-                        ? ' اختر التاريخ من - إلى '
-                        : ' من : ${DateFormat('yyyy-MM-dd').format(cubit.selectedRange!.start)}  -  الي : ${DateFormat('yyyy-MM-dd').format(cubit.selectedRange!.end)} ',
-                    onTap: () {
-                      cubit.getDateRange(context);
-                    },
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  CustomerCards(cubit.jobOrders, cubit.feedbacks),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  SizedBox(
-                    height: 500,
-                    width: double.infinity,
-                    child: ListView.builder(
+                  SliverToBoxAdapter(
+                    child:  ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
                       itemCount: 6,
                       itemBuilder: (context, index) {
                         return Padding(
@@ -84,12 +94,12 @@ class CustomerOpinions extends StatelessWidget {
                           ),
                         );
                       },
-                    ),
-                  ),
+                    ),),
+
                 ],
-              ),
-            ),
-          ));
+
+              )
+          );
         },
       ),
     );

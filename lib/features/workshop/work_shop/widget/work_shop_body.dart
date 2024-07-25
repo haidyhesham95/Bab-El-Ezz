@@ -42,8 +42,6 @@ class WorkShopBody extends StatelessWidget {
                   JobOrder? order = await Navigator.pushNamed(
                       context, 'newJobOrderPage',
                       arguments: listJobs[index]) as JobOrder?;
-                  print("index: $index");
-                  print("order2: ${order?.toJson()}");
                   cubit.updateOrder(listJobs[index], order);
                 },
               ),

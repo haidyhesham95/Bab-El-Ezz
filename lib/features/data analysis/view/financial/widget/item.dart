@@ -23,7 +23,7 @@ class ItemDetails extends StatelessWidget {
           ),
         ),
         title: Text(
-          itemDetailsModel.title,
+          itemDetailsModel.title!,
           style: AppStyles.styleRegular16(context),
         ),
 

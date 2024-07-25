@@ -9,6 +9,7 @@ import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../generated/assets.dart';
 import '../manager/register/register_cubit.dart';
@@ -93,23 +94,30 @@ class RegisterView2 extends StatelessWidget {
                         controller: cubit.phoneController,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
-                        errorMessage: "يجب ادخال رقم الهاتف",
-                        validator: (val) => null,
                       ),
                       const SizedBox(height: 10),
                       TextFieldWidget(
                         label: " الرقم السري لتحليل البيانات ",
                         hintText: "الرقم السري ",
-                        controller: cubit.newPasswordController,
+                        controller: cubit.dataPasswordController,
                         errorMessage: "يجب ادخال الرقم السري",
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.next,
                       ),
                       TextFieldWidget(
-                        controller: cubit.newConfirmPasswordController,
-                        errorMessage: "يجب ادخال تأكيد الرقم السري",
+                        label: "الرقم السري للعاملين",
+                        controller: cubit.employeePasswordController,
+                        errorMessage: "يجب ادخال الرقم السري",
                         //titleStyle: AppStyles.styleRegular12(context),
                         hintText: "  تأكيد الرقم السري ",
+                        keyboardType: TextInputType.number,
+                      ),
+                      TextFieldWidget(
+                        controller: cubit.storePasswordController,
+                        errorMessage: "يجب ادخال الرقم السري",
+                        //titleStyle: AppStyles.styleRegular12(context),
+                        hintText: "الرقم السري ",
+                        label: "الرقم السري للمخزن",
                         keyboardType: TextInputType.number,
                       ),
                       const SizedBox(height: 15),
@@ -128,6 +136,13 @@ class RegisterView2 extends StatelessWidget {
                         text: 'اتمام التسحيل',
                         onPressed: () {
                           if (cubit.formKey2.currentState!.validate()) {
+                            if (cubit.dataPasswordController.text !=
+                                cubit.employeePasswordController.text) {
+                              Fluttertoast.showToast(
+                                  msg:
+                                      "الرقم السري لتحليل البيانات غير متطابق مع التأكيد");
+                              return;
+                            }
                             Workshop workshop = Workshop(
                                 phone,
                                 password,
@@ -136,7 +151,9 @@ class RegisterView2 extends StatelessWidget {
                                 cubit.addressController.text,
                                 cubit.ownerNameController.text,
                                 cubit.phoneController.text,
-                                cubit.newPasswordController.text,
+                                cubit.dataPasswordController.text,
+                                cubit.employeePasswordController.text,
+                                cubit.storePasswordController.text,
                                 imageFile?.absolute.path ?? '');
                             EasyLoading.show();
                             cubit.register(workshop, password).then((e) {
@@ -146,8 +163,14 @@ class RegisterView2 extends StatelessWidget {
                                 FirebaseCollection()
                                     .workshopCol
                                     .doc("profile")
-                                    .update({"logoPath": e}).then((e) =>
-                                        Navigator.pushNamed(context, 'login'));
+                                    .update({"logoPath": e}).then((e) {
+                                  Fluttertoast.showToast(
+                                      msg: "تم التسجيل بنجاح");
+                                  Navigator.pushNamed(context, 'login');
+                                });
+                              }).onError((error, _) {
+                                Fluttertoast.showToast(msg: error.toString());
+                                EasyLoading.dismiss();
                               });
                             });
                           }

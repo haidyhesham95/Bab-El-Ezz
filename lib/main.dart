@@ -31,7 +31,6 @@ import 'features/invoices/supplier_invoices/widget/add_invoice_data.dart';
 import 'features/invoices/supplier_invoices/widget/add_supplier_data.dart';
 import 'features/new_job-order/view/new_job_order_page .dart';
 import 'features/new_job-order/widgets/create_pdf.dart';
-import 'features/new_job-order/widgets/details_maintenance_page.dart';
 import 'features/new_job-order/widgets/previous_maintenance.dart';
 import 'features/staff/widget/account_clearance_page.dart';
 import 'features/staff/widget/add_staff_item.dart';
@@ -148,8 +147,8 @@ class _MyAppState extends State<MyApp> {
                 "viewDetailsPage": (context) => const ViewDetailsPage(),
                 "editProfile": (context) => const EditProfile(),
                 "PreviousMaintenance": (context) => const PreviousMaintenance(),
-                'detailsMaintenancePage': (context) =>
-                    const DetailsMaintenancePage(),
+                // 'detailsMaintenancePage': (context) =>
+                //     const DetailsMaintenancePage(),
                 'addCustomer': (context) => const AddCustomer(),
                 'AddCustomerInSpareInvoice': (context) =>
                     AddCustomerSpareData(),

@@ -1,4 +1,3 @@
-
 import 'package:bab_el_ezz/shared_utils/styles/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -11,10 +10,15 @@ enum DrawingMode {
 }
 
 class InteractiveImagePainter extends StatefulWidget {
-  const InteractiveImagePainter({super.key});
+  InteractiveImagePainter(
+      {super.key, required this.globalKey, required this.backgroundImage});
+
+  GlobalKey globalKey;
+  String? backgroundImage;
 
   @override
-  _InteractiveImagePainterState createState() => _InteractiveImagePainterState();
+  _InteractiveImagePainterState createState() =>
+      _InteractiveImagePainterState();
 }
 
 class _InteractiveImagePainterState extends State<InteractiveImagePainter> {
@@ -53,34 +57,41 @@ class _InteractiveImagePainterState extends State<InteractiveImagePainter> {
           ),
         ],
       ),
-      body: Stack(
-        children: [
-          Image.asset(Assets.imagesCars),
-          GestureDetector(
-            onPanDown: (details) {
-              setState(() {
-                if (mode == DrawingMode.Draw) {
-                  lines.add([details.localPosition]);
-                } else if (mode == DrawingMode.Mark) {
-                  lines.add([]);
-                }
-              });
-            },
-            onPanUpdate: (details) {
-              setState(() {
-                if (mode == DrawingMode.Draw) {
-                  lines.last.add(details.localPosition);
-                }
-              });
-            },
-            child: CustomPaint(
-              painter: ImagePainter(lines: lines, drawPaint: drawPaint, markPaint: markPaint),
-              child: const SizedBox.expand(),
+      body: RepaintBoundary(
+        key: widget.globalKey,
+        child: Stack(
+          children: [
+            widget.backgroundImage == null
+                ? Image.asset(Assets.imagesCars)
+                : Image.network(
+                    widget.backgroundImage!,
+                  ),
+            GestureDetector(
+              onPanDown: (details) {
+                setState(() {
+                  if (mode == DrawingMode.Draw) {
+                    lines.add([details.localPosition]);
+                  } else if (mode == DrawingMode.Mark) {
+                    lines.add([]);
+                  }
+                });
+              },
+              onPanUpdate: (details) {
+                setState(() {
+                  if (mode == DrawingMode.Draw) {
+                    lines.last.add(details.localPosition);
+                  }
+                });
+              },
+              child: CustomPaint(
+                painter: ImagePainter(
+                    lines: lines, drawPaint: drawPaint, markPaint: markPaint),
+                child: const SizedBox.expand(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
-

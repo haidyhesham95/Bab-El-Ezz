@@ -102,12 +102,12 @@ class _AddCustomerReturnedDataState extends State<AddCustomerReturnedData> {
                             child: Text('سليم'),
                           ),
                           DropdownMenuItem(
-                            value: 'تالف وسيتم استبداله ',
-                            child: Text('تالف وسيتم استبداله '),
+                            value: 'تالف وسيتم استبداله',
+                            child: Text('تالف وسيتم استبداله'),
                           ),
                           DropdownMenuItem(
-                            value: 'تالف ولن يتم استبداله ',
-                            child: Text('تالف ولن يتم استبداله '),
+                            value: 'تالف ولن يتم استبداله',
+                            child: Text('تالف ولن يتم استبداله'),
                           ),
                         ],
                       ),

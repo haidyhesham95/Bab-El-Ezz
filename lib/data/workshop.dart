@@ -14,6 +14,8 @@ class Workshop {
   String ownerName;
   String? secondaryPhoneNumber;
   String dataAnalysisPIN;
+  String employeesPIN;
+  String storePIN;
   String? logoPath;
 
   Workshop(
@@ -25,6 +27,8 @@ class Workshop {
       this.ownerName,
       this.secondaryPhoneNumber,
       this.dataAnalysisPIN,
+      this.employeesPIN,
+      this.storePIN,
       this.logoPath);
 
   factory Workshop.fromFirestore(DocumentSnapshot doc) =>

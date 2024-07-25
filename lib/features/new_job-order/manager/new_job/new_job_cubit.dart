@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:bab_el_ezz/data/car.dart';
 import 'package:bab_el_ezz/data/job_order.dart';
 import 'package:bab_el_ezz/data/spare_invoice.dart';
 import 'package:bab_el_ezz/data/technician.dart';
@@ -5,8 +8,12 @@ import 'package:bab_el_ezz/features/new_job-order/widgets/create_pdf.dart';
 import 'package:bab_el_ezz/firebase/firebase_collection.dart';
 import 'package:bab_el_ezz/firebase/user_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 part 'new_job_state.dart';
 
@@ -18,12 +25,14 @@ class NewJobCubit extends Cubit<NewJobState> {
 
   CollectionReference techRef = FirebaseCollection().staffCol;
   CollectionReference jobRef = FirebaseCollection().jobOrderCol;
+  CollectionReference carRef = FirebaseCollection().carCol;
 
   TextEditingController notesController = TextEditingController();
 
   List<Technician> technicians = [], selectedTechs = [];
   SpareInvoice? invoice;
   bool returnVisible = false;
+  List<JobOrder> pastOrders = [];
 
   getTechnicians() async {
     final data = await techRef.get();
@@ -71,19 +80,47 @@ class NewJobCubit extends Cubit<NewJobState> {
     emit(ElectronicTapped(isTapped2));
   }
 
-  Future<JobOrder> saveOrder(JobOrder job, bool finished) async {
+  getPastOrders(String carPlate) async {
+    final data = await carRef.where('licensePlate', isEqualTo: carPlate).get();
+
+    List<String> pastIds = (data.docs.first.data() as Car).pastOrdersIds ?? [];
+    print("pastIds: $pastIds");
+
+    for (String id in pastIds) {
+      DocumentSnapshot doc = await jobRef.doc(id).get();
+      if (doc.exists) {
+        pastOrders.add(doc.data() as JobOrder);
+      }
+    }
+    emit(UpdateData());
+  }
+
+  Future<JobOrder> saveOrder(
+      JobOrder job, bool finished, GlobalKey imageKey, bool pastOrder) async {
+    EasyLoading.show();
+
     print("invoice: ${job.invoice}");
-    job.car?.pastOrdersIds?.add(job.id!);
+    final imageLink = await captureAndUpload(imageKey);
+    print("imageLink: $imageLink");
+
+    String? id;
+
+    /// Get a new id for job order if it's already past
+    if (pastOrder) {
+      final x = await jobRef.add('');
+      id = x.id;
+      job.id = id;
+    }
+
     job
-      ..car = (job.car
-        ?..mileage = kMController.text
-        ..pastOrdersIds = job.car?.pastOrdersIds)
+      ..car = (job.car?..mileage = kMController.text)
       ..finished = finished
       ..technicians = selectedTechs
       ..endDate = finished ? DateTime.now() : null
       ..invoice = (job.invoice)
       ..notes = notesController.text
       ..maintenanceType = selectedMaintenanceType
+      ..carImage = imageLink
       ..paymentType = isTapped1 ? "cash" : "visa";
 
     if ((await jobRef.doc(job.id).get()).exists) {
@@ -94,19 +131,49 @@ class NewJobCubit extends Cubit<NewJobState> {
     }
 
     if (finished) {
+      final data = await carRef
+          .where('licensePlate', isEqualTo: job.car?.licensePlate)
+          .get();
+      final List jobIds = data.docs.map((e) => e.data() as String).toList();
+      jobIds.add(id ?? job.id);
+      data.docs.first.reference.update({'pastOrdersIds': jobIds});
+
       DateTime now = DateTime.now();
-      //fixme: what if the parts are not in the store??!
       await UserServices.updateTotalStore(
           job.invoice?.price ?? 0, now.month, now.year,
           sell: true);
       PdfGenerator.createPdf(job);
     }
-
+    EasyLoading.dismiss();
     return job;
   }
 
   void changeReturnVisiblity(bool visible) {
     returnVisible = visible;
     emit(state);
+  }
+
+  Future<String> captureAndUpload(GlobalKey globalKey) async {
+    RenderRepaintBoundary boundary =
+        globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+    var image = await boundary.toImage();
+    ByteData? byteData = await image.toByteData(format: ImageByteFormat.png);
+    Uint8List pngBytes = byteData!.buffer.asUint8List();
+
+    // Upload the pngBytes to Firebase Storage
+    return await _uploadToFirebase(pngBytes);
+  }
+
+  Future<String> _uploadToFirebase(Uint8List pngBytes) async {
+    // Initialize Firebase
+    // await Firebase.initializeApp(); // Uncomment if Firebase isn't initialized
+
+    FirebaseStorage storage = FirebaseStorage.instance;
+    Reference ref = storage
+        .ref()
+        .child("images/${DateTime.now().millisecondsSinceEpoch}.png");
+    UploadTask uploadTask = ref.putData(pngBytes);
+    final task = await uploadTask.whenComplete(() => print("Upload complete"));
+    return await task.ref.getDownloadURL();
   }
 }

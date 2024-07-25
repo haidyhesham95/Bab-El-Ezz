@@ -1,5 +1,6 @@
 import 'package:bab_el_ezz/data/customer.dart';
 import 'package:bab_el_ezz/data/part.dart';
+import 'package:bab_el_ezz/data/part_customer.dart';
 import 'package:bab_el_ezz/data/spare_invoice.dart';
 import 'package:bab_el_ezz/features/invoices/invoices/widget/top_invoice_search.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
@@ -143,8 +144,8 @@ class AddInvoiceSpareData extends StatelessWidget {
           ],
           ElevatedButton(
             onPressed: () async {
-              Customer customer = await Navigator.pushNamed(
-                  context, 'AddCustomerInSpareInvoice') as Customer;
+              PartCustomer customer = await Navigator.pushNamed(
+                  context, 'AddCustomerInSpareInvoice') as PartCustomer;
               cubit.addCustomer(customer);
             },
             child: Text(

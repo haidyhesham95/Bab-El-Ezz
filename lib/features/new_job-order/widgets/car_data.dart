@@ -25,9 +25,7 @@ class CarData extends StatelessWidget {
                   'نوع السياره : ',
                   car.make,
                 ),
-                RowText('موديل السيارة : ',
-                    car.model
-                ),
+                RowText('موديل السيارة : ', car.model),
                 RowText(
                   'رقم الشاسيه : ',
                   car.chassisNumber,

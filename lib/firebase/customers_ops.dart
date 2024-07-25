@@ -1,4 +1,3 @@
-import 'package:bab_el_ezz/data/car.dart';
 import 'package:bab_el_ezz/data/customer.dart';
 import 'package:bab_el_ezz/firebase/firebase_collection.dart';
 
@@ -16,9 +15,5 @@ class CustomersOps {
 
   Future addCustomer(Customer customer) {
     return firebaseCollection.customerCol.add(customer);
-  }
-
-  Future addCar(Car car) {
-    return firebaseCollection.carCol.add(car);
   }
 }

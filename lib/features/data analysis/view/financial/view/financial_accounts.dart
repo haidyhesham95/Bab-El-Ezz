@@ -50,7 +50,7 @@ class _FinancialAccountsState extends State<FinancialAccounts> {
                     ),
                     const SizedBox(height: 30),
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         right: 5,
                         left: 5,
                       ),

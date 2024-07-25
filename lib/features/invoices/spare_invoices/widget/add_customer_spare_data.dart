@@ -1,4 +1,5 @@
 import 'package:bab_el_ezz/data/customer.dart';
+import 'package:bab_el_ezz/data/part_customer.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_field.dart';
 import 'package:flutter/foundation.dart';
@@ -78,7 +79,7 @@ class AddCustomerSpareData extends StatelessWidget {
                                 onPressed: () {
                                   if (kDebugMode ||
                                       cubit.formKey.currentState!.validate()) {
-                                    Customer customer = Customer(
+                                    PartCustomer customer = PartCustomer(
                                         cubit.customerNameController.text,
                                         cubit.customerPhoneController.text,
                                         null,

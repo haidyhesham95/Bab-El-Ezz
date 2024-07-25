@@ -15,6 +15,8 @@ Workshop _$WorkshopFromJson(Map<String, dynamic> json) => Workshop(
       json['ownerName'] as String,
       json['secondaryPhoneNumber'] as String?,
       json['dataAnalysisPIN'] as String,
+      json['employeesPIN'] as String,
+      json['storePIN'] as String,
       json['logoPath'] as String?,
     )..id = json['id'] as String?;
 
@@ -28,5 +30,7 @@ Map<String, dynamic> _$WorkshopToJson(Workshop instance) => <String, dynamic>{
       'ownerName': instance.ownerName,
       'secondaryPhoneNumber': instance.secondaryPhoneNumber,
       'dataAnalysisPIN': instance.dataAnalysisPIN,
+      'employeesPIN': instance.employeesPIN,
+      'storePIN': instance.storePIN,
       'logoPath': instance.logoPath,
     };

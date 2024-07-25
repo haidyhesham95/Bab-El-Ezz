@@ -11,7 +11,6 @@ part 'work_shop_state.dart';
 class WorkShopCubit extends Cubit<WorkShopState> {
   WorkShopCubit() : super(WorkShopInitial());
   String uid = UserServices.getUserId()!;
-  final carRef = FirebaseCollection().carCol;
   final jobsRef = FirebaseCollection().jobOrderCol;
   final workshopRef = FirebaseCollection().workshopCol;
   List<JobOrder> jobOrders = [];
@@ -34,10 +33,8 @@ class WorkShopCubit extends Cubit<WorkShopState> {
       return e.data()! as JobOrder;
     }).toList();
     snapshot = await workshopRef.get();
-    workshop =
-        //fixme
-        snapshot.docs.where((e) => e.id == "profile").firstOrNull?.data()
-            as Workshop?;
+    workshop = snapshot.docs.where((e) => e.id == "profile").firstOrNull?.data()
+        as Workshop?;
     emit(GetData(data: jobOrders));
   }
 

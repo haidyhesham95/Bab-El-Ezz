@@ -9,6 +9,7 @@ import '../../../../shared_utils/styles/colors.dart';
 Container addImage(context, Function() onTap, String? image,
     {bool update = false}) {
   final Size size = MediaQuery.of(context).size;
+  print("image: $image");
   return Container(
     width: double.infinity,
     height: size.height * 0.15,
@@ -26,7 +27,7 @@ Container addImage(context, Function() onTap, String? image,
         ]),
     child: InkWell(
       onTap: onTap,
-      child: image == null
+      child: image == null || image.isEmpty
           ? Image.asset(
               'assets/images/logo1.png',
               fit: BoxFit.fitHeight,

@@ -8,6 +8,7 @@ ShadowContainer carItem(context, JobOrder jobOrder, Function() onTap) {
   return ShadowContainer(
     radius: 10,
     onTap: onTap,
+    colorShadow: jobOrder.car?.colorAsColor,
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,

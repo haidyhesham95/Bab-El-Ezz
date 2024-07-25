@@ -39,3 +39,5 @@ final class GetData extends NewJobState {
   final List data;
   GetData(this.data);
 }
+
+final class UpdateData extends NewJobState {}

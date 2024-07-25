@@ -1,6 +1,7 @@
 import 'package:bab_el_ezz/car_number/view/car_number.dart';
 import 'package:bab_el_ezz/car_number/view/letters_otp.dart';
 import 'package:bab_el_ezz/features/workshop/add_client/widget/otp.dart';
+import 'package:bab_el_ezz/shared_utils/utils/constant.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/button_widget.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/const_appbar.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/text_align.dart';
@@ -73,13 +74,12 @@ class AddClient extends StatelessWidget {
                         onChanged: (String? value) {
                           cubit.setSelectedCarType(value!);
                         },
-                        items: const [
-                          DropdownMenuItem(
-                              value: 'نوع السيارة', child: Text('نوع السيارة')),
-                          DropdownMenuItem(
-                              value: '1نوع السيارة',
-                              child: Text('1نوع السيارة')),
-                        ],
+                        items: carMakesAndModels.keys
+                            .map((e) => DropdownMenuItem(
+                                  value: e,
+                                  child: Text(e),
+                                ))
+                            .toList(),
                       ),
                       const SizedBox(
                         height: 15,
@@ -90,14 +90,12 @@ class AddClient extends StatelessWidget {
                         onChanged: (String? value) {
                           cubit.setSelectedCarModel(value!);
                         },
-                        items: const [
-                          DropdownMenuItem(
-                              value: 'موديل السيارة',
-                              child: Text('موديل السيارة')),
-                          DropdownMenuItem(
-                              value: 'موديل السيارة1',
-                              child: Text('1موديل السيارة')),
-                        ],
+                        items: carMakesAndModels[cubit.selectedCarType]
+                            ?.map((e) => DropdownMenuItem(
+                                  value: e,
+                                  child: Text(e),
+                                ))
+                            .toList(),
                       ),
                       const SizedBox(
                         height: 15,

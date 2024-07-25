@@ -1,4 +1,5 @@
 import 'package:bab_el_ezz/data/part.dart';
+import 'package:bab_el_ezz/features/auth/manager/login/login_cubit.dart';
 import 'package:bab_el_ezz/features/store/manager/store/store_cubit.dart';
 import 'package:bab_el_ezz/features/store/widget/store_table.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/show_details_text.dart';
@@ -23,54 +24,65 @@ class _StorePageState extends State<StorePage> {
     final Size size = MediaQuery.of(context).size;
 
     return BlocProvider(
-      create: (context) => StoreCubit(),
-      child: BlocBuilder<StoreCubit, StoreState>(
+      create: (context) => LoginCubit(),
+      child: BlocBuilder<LoginCubit, LoginState>(
         builder: (context, state) {
-          StoreCubit cubit = StoreCubit.get(context);
-          if (state is StoreInitial) {
-            cubit.getParts();
-            return const Center(child: CircularProgressIndicator());
+          LoginCubit loginCubit = LoginCubit.get(context);
+          if (state is LoginInitial) {
+            return loginCubit.PINView(loginCubit, size, loginCubit.STORE_PAGE);
           }
-          return Scaffold(
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.startFloat,
-            appBar: appBarWidget(context),
-            body: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 5,
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
+          return BlocProvider(
+            create: (context) => StoreCubit(),
+            child: BlocBuilder<StoreCubit, StoreState>(
+              builder: (context, state) {
+                StoreCubit cubit = StoreCubit.get(context);
+                if (state is StoreInitial) {
+                  cubit.getParts();
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return Scaffold(
+                  floatingActionButtonLocation:
+                      FloatingActionButtonLocation.startFloat,
+                  appBar: appBarWidget(context),
+                  body: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 5,
                     ),
-                    showDetailsText(
-                      context: context,
-                      showAll: showAllColumns,
-                      onPressed: () {
-                        setState(() {
-                          showAllColumns = !showAllColumns;
-                        });
-                      },
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          showDetailsText(
+                            context: context,
+                            showAll: showAllColumns,
+                            onPressed: () {
+                              setState(() {
+                                showAllColumns = !showAllColumns;
+                              });
+                            },
+                          ),
+                          SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: StoreTable(
+                                parts: cubit.parts,
+                                showAllData: showAllColumns,
+                              )),
+                        ],
+                      ),
                     ),
-                    SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: StoreTable(
-                          parts: cubit.parts,
-                          showAllData: showAllColumns,
-                        )),
-                  ],
-                ),
-              ),
-            ),
-            floatingActionButton: floatingButton(
-              context: context,
-              onPressed: () {
-                Navigator.pushNamed(context, 'addItemStore')
-                    .then((value) => cubit.updateParts(value as Part));
+                  ),
+                  floatingActionButton: floatingButton(
+                    context: context,
+                    onPressed: () {
+                      Navigator.pushNamed(context, 'addItemStore')
+                          .then((value) => cubit.updateParts(value as Part));
+                    },
+                    text: 'إضافة صنف',
+                  ),
+                );
               },
-              text: 'إضافة صنف',
             ),
           );
         },

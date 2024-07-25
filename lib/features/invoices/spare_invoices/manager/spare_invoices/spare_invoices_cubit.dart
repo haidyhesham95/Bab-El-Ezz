@@ -1,4 +1,3 @@
-import 'package:bab_el_ezz/data/customer.dart';
 import 'package:bab_el_ezz/data/part.dart';
 import 'package:bab_el_ezz/data/part_customer.dart';
 import 'package:bab_el_ezz/data/spare_invoice.dart';
@@ -78,7 +77,7 @@ class SpareInvoicesCubit extends Cubit<SpareInvoicesState> {
     emit(UpdateData());
   }
 
-  void addCustomer(Customer customer) async {
+  void addCustomer(PartCustomer customer) async {
     await customersRef.add(customer);
     updateTableView(customer.name, customer.phoneNumber);
   }

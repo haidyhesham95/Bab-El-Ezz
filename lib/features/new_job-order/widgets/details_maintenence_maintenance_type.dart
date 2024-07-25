@@ -1,14 +1,16 @@
+import 'package:bab_el_ezz/data/job_order.dart';
 import 'package:bab_el_ezz/shared_utils/utils/widget/row_text.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-import '../../../shared_utils/styles/text.dart';
-import '../../../shared_utils/utils/widget/button_widget.dart';
 import '../../../shared_utils/utils/widget/const_appbar.dart';
 import '../../../shared_utils/utils/widget/shadow_container.dart';
 import 'details_maintenance_table.dart';
 
 class DetailsMaintenancePageType extends StatelessWidget {
-  const DetailsMaintenancePageType({super.key});
+  DetailsMaintenancePageType(this.pastOrder, {super.key});
+
+  JobOrder pastOrder;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class DetailsMaintenancePageType extends StatelessWidget {
                   child: ShadowContainer(
                       radius: 10,
                       onTap: () {},
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -34,44 +36,35 @@ class DetailsMaintenancePageType extends StatelessWidget {
                             children: [
                               RowText(
                                 'التاريخ : ',
-                                '12/12/2021',
-
+                                DateFormat("yyyy/MM/dd").format(
+                                    pastOrder.endDate ?? DateTime.now()),
                               ),
                               RowText(
                                 'اسم الفني : ',
-                                'الاسم',
-
+                                pastOrder.technicians?.join("\n") ?? '',
                               ),
                               RowText(
                                 'نوع الصيانة : ',
-                                'صيانة دورية',
+                                pastOrder.maintenanceType ?? '',
                               ),
                               RowText(
                                 'الملاحظات : ',
-                                '-------',
+                                pastOrder.notes ?? '',
                               ),
-
                             ]),
                       )),
                 ),
-
                 const SizedBox(height: 30),
-
-                const DetailsMaintenanceTable(),
-
+                DetailsMaintenanceTable(pastOrder.invoice?.parts ?? []),
                 const SizedBox(height: 20),
-                ButtonWidget(
-                  child: Text("ربط هذه الصيانة بالعطل المتكرر",style: AppStyles.styleMedium18White(context)),
-                  onPressed: (){
-
-                  },
-                ),
-
+                // ButtonWidget(
+                //   child: Text("ربط هذه الصيانة بالعطل المتكرر",
+                //       style: AppStyles.styleMedium18White(context)),
+                //   onPressed: () {},
+                // ),
               ],
             ),
           ),
-        )
-
-    );
+        ));
   }
 }

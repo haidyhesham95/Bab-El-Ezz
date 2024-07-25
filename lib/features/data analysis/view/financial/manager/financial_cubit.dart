@@ -1,13 +1,17 @@
 import 'package:bab_el_ezz/data/daily_expense.dart';
+import 'package:bab_el_ezz/data/invoice.dart';
 import 'package:bab_el_ezz/data/job_order.dart';
 import 'package:bab_el_ezz/data/merchant_invoice.dart';
 import 'package:bab_el_ezz/data/part.dart';
+import 'package:bab_el_ezz/data/return_invoice.dart';
+import 'package:bab_el_ezz/data/return_part.dart';
 import 'package:bab_el_ezz/data/spare_invoice.dart';
 import 'package:bab_el_ezz/firebase/firebase_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../shared_utils/utils/constant.dart';
 import '../widget/picker.dart';
 
 part 'financial_state.dart';
@@ -36,6 +40,7 @@ class FinancialCubit extends Cubit<FinancialState> {
   CollectionReference dailyExpRef = FirebaseCollection().dailyExpenseCol;
   CollectionReference storeRef = FirebaseCollection().partCol;
   CollectionReference merchantInvRef = FirebaseCollection().merchantInvCol;
+  CollectionReference returnInvRef = FirebaseCollection().returnInvCol;
 
   populateData() async {
     print("data");
@@ -112,7 +117,7 @@ class FinancialCubit extends Cubit<FinancialState> {
       monthlyNetIncome[jobOrder.endDate?.month ?? 0] -= salary;
     });
 
-    invoices.docs.where((e) => e.id.contains("spare")).where((e) {
+    invoices.docs.where((e) {
       SpareInvoice invoice = e.data() as SpareInvoice;
 
       // if invoice data is null, return false
@@ -122,13 +127,38 @@ class FinancialCubit extends Cubit<FinancialState> {
           (invoice.date
               .isAfter(selectedRange?.start ?? DateTime(DateTime.now().year)));
     }).forEach((e) {
-      SpareInvoice invoice = e.data() as SpareInvoice;
-      services += invoice.service;
-      for (var i in invoice.parts) {
-        spareParts += (i.quantity * (i.sellingPrice ?? 0));
+      if (e.id == _getInvoiceDocumentId(e.data() as Invoice, INVOICE_SPARE)) {
+        SpareInvoice invoice = e.data() as SpareInvoice;
+        services += invoice.service;
+        for (var i in invoice.parts) {
+          spareParts += (i.quantity * (i.sellingPrice ?? 0));
+        }
+        income += invoice.price;
+        monthlyNetIncome[invoice.date.month] += invoice.price;
+      } else if (e.id ==
+          _getInvoiceDocumentId(e.data() as Invoice, INVOICE_RETURN)) {
+        ReturnPart invoice = e.data() as ReturnPart;
+        double unitPrice;
+        unitPrice = (invoice.quantity * invoice.price);
+        income -= unitPrice;
+        if (invoice.status == "تالف وسيتم استبداله" ||
+            invoice.status == "سليم") {
+          storePrice += unitPrice;
+        }
+        monthlyNetIncome[invoice.date.month] -= unitPrice;
+      } else if (e.id ==
+          _getInvoiceDocumentId(e.data() as Invoice, INVOICE_MERCHANT_RETURN)) {
+        ReturnInvoice invoice = e.data() as ReturnInvoice;
+        double unitPrice;
+        for (var i in invoice.parts) {
+          unitPrice = (i.quantity * i.price);
+          if (i.status == "مرتجع") {
+            spending -= unitPrice;
+            storePrice -= unitPrice;
+          }
+          monthlyNetIncome[invoice.date.month] += unitPrice;
+        }
       }
-      income += invoice.price;
-      monthlyNetIncome[invoice.date.month] += invoice.price;
     });
   }
 
@@ -147,5 +177,9 @@ class FinancialCubit extends Cubit<FinancialState> {
 
       monthlyNetIncome[expense.date.month] -= expense.price;
     });
+  }
+
+  String _getInvoiceDocumentId(Invoice invoice, String type) {
+    return "${invoice.invoiceNumber}_$type";
   }
 }

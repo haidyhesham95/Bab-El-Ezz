@@ -82,8 +82,10 @@ class SearchClient extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return carItem(context, jobOrders[index], () async {
                             JobOrder? order = await Navigator.pushNamed(
-                                context, 'newJobOrderPage',
-                                arguments: jobOrders[index]) as JobOrder?;
+                                context, 'newJobOrderPage', arguments: [
+                              jobOrders[index],
+                              jobOrders[index].finished
+                            ]) as JobOrder?;
                             cubit.updateOrder(jobOrders[index], order);
                             print("order2: ${order?.invoice}");
                           });

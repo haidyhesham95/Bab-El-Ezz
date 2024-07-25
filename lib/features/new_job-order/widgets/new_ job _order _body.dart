@@ -15,7 +15,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 import '../../../data/part.dart';
-import '../../../generated/assets.dart';
 import '../../../shared_utils/utils/widget/button_widget.dart';
 import '../../../shared_utils/utils/widget/text_field.dart';
 import '../../invoices/spare_invoices/manager/spare_invoices/spare_invoices_cubit.dart';
@@ -24,8 +23,8 @@ import '../../invoices/spare_invoices/widget/add_invoice_spare_table.dart';
 import '../../workshop/work_shop/widget/add_button.dart';
 import 'car_data.dart';
 import 'details.dart';
-import 'details_previous_maintenance_button.dart';
 import 'drop_button.dart';
+import 'marker.dart';
 
 class NewJobOrderBody extends StatefulWidget {
   const NewJobOrderBody({super.key});
@@ -39,6 +38,9 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
 
   double totalPrice = 0;
   List<Technician> techs = [];
+  bool pastOrder = false;
+
+  GlobalKey paintKey = GlobalKey();
 
   @override
   void initState() {
@@ -47,7 +49,15 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
 
   @override
   Widget build(BuildContext context) {
-    jobOrder = ModalRoute.of(context)?.settings.arguments as JobOrder?;
+    final data = ModalRoute.of(context)?.settings.arguments;
+    if (data != null) {
+      if (data is List) {
+        jobOrder = data[0] as JobOrder;
+        pastOrder = data[1] as bool;
+      } else {
+        jobOrder = data as JobOrder;
+      }
+    }
 
     if (jobOrder == null) {
       return const Center(
@@ -69,8 +79,10 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
 
               if (state is NewJobInitial) {
                 cubit.getTechnicians();
+                cubit.getPastOrders(jobOrder?.car?.licensePlate ?? '');
                 cubit.kMController.text = jobOrder?.car?.mileage ?? '';
                 cubit.selectedMaintenanceType = jobOrder?.maintenanceType;
+
                 if (jobOrder?.paymentType == "visa") {
                   cubit.electronicTapped();
                 } else if (jobOrder?.paymentType == "cash") {
@@ -156,20 +168,44 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                       visible: cubit.returnVisible,
                       child: TextButton(
                         child: const Text("اختر الصيانة السابقة للمرتجع"),
-                        onPressed: () {
-                          Navigator.push(
+                        onPressed: () async {
+                          JobOrder order = await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const PreviousMaintenanceType(
+                                builder: (context) => PreviousMaintenanceType(
                                   chooseItem: true,
+                                  pastOrders: cubit.pastOrders,
                                 ),
                               ));
                         },
                       ),
                     ),
                     const SizedBox(height: 20),
-                    const DetailsPreviousMaintenanceButton(),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PreviousMaintenanceType(
+                                pastOrders: cubit.pastOrders,
+                              ),
+                            ));
+                      },
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            textAlign(
+                              context,
+                              'تفاصيل الصيانات السابقة',
+                              style: AppStyles.styleMedium16(context)
+                                  .copyWith(color: ColorsAsset.kGreen),
+                            ),
+                            const Icon(
+                              Icons.arrow_forward_ios_outlined,
+                              color: ColorsAsset.kGreen,
+                            )
+                          ]),
+                    ),
                     const SizedBox(height: 20),
                     Row(
                       children: [
@@ -217,8 +253,13 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                                   icon: const Icon(Icons.clear)),
                             )),
                     const SizedBox(height: 20),
-                    Image.asset(
-                      Assets.imagesCars,
+                    SizedBox(
+                      height: size.height * 0.5,
+                      width: size.width * 0.9,
+                      child: InteractiveImagePainter(
+                        globalKey: paintKey,
+                        backgroundImage: jobOrder?.carImage,
+                      ),
                     ),
                     const SizedBox(height: 20),
                     TextFieldWidget(
@@ -319,8 +360,12 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                           hasElevation: true,
                           text: "حفظ مؤقت",
                           onPressed: () {
-                            cubit.saveOrder(jobOrder!, false).then(
-                                (order) => Navigator.of(context).pop(order));
+                            cubit
+                                .saveOrder(
+                                    jobOrder!, false, paintKey, pastOrder)
+                                .then((order) => Navigator.of(context)
+                                    .pushReplacementNamed("layout",
+                                        result: order));
                           },
                           width: size.width * 0.4,
                           height: size.height * 0.05,
@@ -330,8 +375,11 @@ class _NewJobOrderBodyState extends State<NewJobOrderBody> {
                           text: "انهاء امر الشغل",
                           onPressed: () {
                             print("Button pressed");
-                            cubit.saveOrder(jobOrder!, true).then(
-                                (order) => Navigator.of(context).pop(order));
+                            cubit
+                                .saveOrder(jobOrder!, true, paintKey, pastOrder)
+                                .then((order) => Navigator.of(context)
+                                    .pushReplacementNamed("layout",
+                                        result: order));
                           },
                           width: size.width * 0.4,
                           height: size.height * 0.05,
