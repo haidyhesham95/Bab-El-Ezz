@@ -76,7 +76,7 @@ class _MyAppState extends State<MyApp> {
     final url = Uri.base.toString();
     print("url: $url");
     if (url.contains("webpage")) {
-      return const MaterialApp(title: 'Survey', home: SurveyPage());
+      return  MaterialApp(title: 'Survey', home: SurveyPage());
     } else {
       return MultiProvider(
         providers: [
